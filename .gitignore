@@ -32,7 +32,6 @@
 Debug/
 Release/
 .vs/
-external/
 
 # Visual Studio files
 *.sln
