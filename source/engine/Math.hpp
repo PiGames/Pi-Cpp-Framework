@@ -8,6 +8,7 @@ class Math
         Math();
         virtual ~Math();
 
+
         static float PerlinNoise(float a, float b);
     protected:
 
