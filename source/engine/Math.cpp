@@ -1,4 +1,4 @@
-#include "Math.h"
+#include "Math.hpp"
 
 Math::Math()
 {
@@ -10,7 +10,7 @@ Math::~Math()
     //dtor
 }
 
-Math::PerlinNoise(float a, float b)
+float Math::PerlinNoise(float a, float b)
 {
 
 
