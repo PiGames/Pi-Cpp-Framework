@@ -16,10 +16,14 @@ namespace pi
 
 		// Returns Game Object's name (default <unnamed GameObject>)
 		std::string getName();
+		// Returns Game Object's posiion (default (0,0))
+		sf::Vector2f getPosition();
 		
 		// Sets Game Object's name (default <unnamed GameObject>)
 		void setName(const std::string& name);
-		
+		// Sets Game Object's position (default (0,0))
+		void setPosition(sf::Vector2f position);
+
 		// Adds Component to Game Object
 		// Use SceneClass->ComponentCache->getComponent<YourComponent>(args)
 		// returns pointer to Component
@@ -47,6 +51,8 @@ namespace pi
 		std::array<UpdatableComponent*, MAX_COMPONENT_COUNT> updatableComponents;
 		std::array<DrawableComponent*, MAX_COMPONENT_COUNT> drawableComponents;
 
+
+		sf::Vector2f position;
 	};
 
 	template<class T>

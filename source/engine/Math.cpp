@@ -10,6 +10,5 @@ Math::~Math()
 
 float Math::PerlinNoise(float a, float b)
 {
-
-
+	return a;
 }

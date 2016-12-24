@@ -8,6 +8,7 @@
 
 namespace pi
 {
+	// Template for Resource Cache - use it to store your resources 
 	template<class T>
 	class ResourceCache
 	{
@@ -15,9 +16,11 @@ namespace pi
 		ResourceCache();
 		virtual ~ResourceCache() = default;
 	
+		// Returns reference to given resource
 		virtual T& get(const std::string& key) = 0;
 
 	protected:
+		// Returns special resource version if error occures in get method
 		virtual std::unique_ptr<T> handleError() = 0;
 
 	protected:
@@ -39,7 +42,9 @@ namespace pi
 	public:
 		TextureCache();
 
+		// Sets Fallback Color
 		sf::Color getFallbackColor();
+		// Returns Fallback Color
 		void setFallbackColor(sf::Color color);
 
 		sf::Texture& get(const std::string& path);
