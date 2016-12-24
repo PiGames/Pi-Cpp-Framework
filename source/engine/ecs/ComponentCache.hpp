@@ -30,7 +30,7 @@ namespace pi
 		void draw(sf::RenderTarget& target, sf::RenderStates states);
 
 	private:
-		static const std::uint8_t MAX_COMPONENT_COUNT = 256;
+		static const std::uint16_t MAX_COMPONENT_COUNT = 1024;
 
 		std::array<std::unique_ptr<UpdatableComponent>, MAX_COMPONENT_COUNT> updatableComponents;
 		std::array<std::unique_ptr<DrawableComponent>, MAX_COMPONENT_COUNT> drawableComponents;
