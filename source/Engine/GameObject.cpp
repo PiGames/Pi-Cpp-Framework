@@ -1,4 +1,4 @@
-#include "Engine/GameObject.hpp"
+#include "GameObject.hpp"
 
 namespace pi
 {
@@ -6,11 +6,8 @@ namespace pi
 	{
 		this->name = "<unnamed GameObject>";
 
-		for (auto* ptr : this->updatableComponents)
-			ptr = nullptr;
-
-		for (auto* ptr : this->drawableComponents)
-			ptr = nullptr;
+		updatableComponents.fill(nullptr);
+		drawableComponents.fill(nullptr);
 	}
 
 	GameObject::~GameObject()

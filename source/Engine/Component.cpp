@@ -1,4 +1,4 @@
-#include "Engine/Component.hpp"
+#include "Component.hpp"
 
 namespace pi
 {
