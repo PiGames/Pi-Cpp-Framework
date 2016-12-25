@@ -10,6 +10,8 @@ namespace pi
 {
 	namespace phy
 	{
+		class BoxCollider;
+
 		class Rigidbody final:
 			public UpdatableComponent
 		{

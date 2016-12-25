@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "Rigidbody.hpp"
 #include "engine/ecs/Component.hpp"
 #include "engine/ecs/GameObject.hpp"
 

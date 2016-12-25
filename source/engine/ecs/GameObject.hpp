@@ -93,7 +93,7 @@ namespace pi
 
 		else if (std::is_base_of<DrawableComponent, T>::value)
 			for (auto* drawable : this->drawableComponents)
-				if (drawable != nullptr && drawable->type == component.type)
+				if (drawable != nullptr && drawable->type == componentID)
 					return dynamic_cast<T*>(drawable);
 
 		return nullptr;
