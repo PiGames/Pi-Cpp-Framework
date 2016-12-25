@@ -1,4 +1,4 @@
-#include "CollideableObject.h"
+#include "CollideableObject.hpp"
 
 CollideableObject::CollideableObject(bool flag):collideable(flag)
 {
