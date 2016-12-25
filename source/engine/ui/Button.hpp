@@ -10,19 +10,27 @@ namespace pi
 		class Button
 		{
 		public:
-			Button(sf::Texture&, const sf::Vector2f&, const sf::Vector2f&);
+			Button() = default;
+			~Button() = default;
 
-			void update(sf::RenderWindow&);
+			// Set
+			void setTexture(sf::Texture&);
+			void setPosition(const sf::Vector2f&);
+			void setSize(const sf::Vector2f&);
+			// Get
+			sf::Texture getTexture() { return this->m_Texture; }
+			const sf::Vector2f getPosition() const { return this->m_Position; }
+			const sf::Vector2f getSize() const { return this->m_Size; }
+
 			void addCallback(void());
 			void click(sf::Event);
+			void update(sf::RenderWindow&);
 
 		private:
-			sf::Sprite sprite;
-			sf::Vector2f size;
-			std::vector <void(*)()> functions;
+			sf::Texture m_Texture;
+			sf::Sprite m_Sprite;
+			sf::Vector2f m_Position, m_Size;
+			std::vector <void(*)()> m_Functions;
 		};
 	}
 }
-
-
-

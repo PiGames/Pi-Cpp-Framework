@@ -1,33 +1,42 @@
 #include "Button.hpp"
 
-
 namespace pi
 {
 	namespace ui
 	{
-		Button::Button(sf::Texture& texture, const sf::Vector2f& position, const sf::Vector2f& factors)
-			: sprite(texture)
+		void Button::setTexture(sf::Texture& texture)
 		{
-			sprite.setPosition(position);
-			size = { factors.x, factors.y };
-			sprite.setScale({ size.x / texture.getSize().x, size.y / texture.getSize().y });
+			this->m_Texture = texture;
+			this->m_Sprite.setTexture(m_Texture);
+		}
+
+		void Button::setPosition(const sf::Vector2f& position)
+		{
+			this->m_Position = position;
+			this->m_Sprite.setPosition(m_Position);
+		}
+
+		void Button::setSize(const sf::Vector2f& size)
+		{
+			this->m_Size = size;
+			this->m_Sprite.setScale({ this->m_Size.x / this->m_Texture.getSize().x, this->m_Size.y / this->m_Texture.getSize().y });
 		}
 
 		void Button::addCallback(void function())
 		{
-			functions.push_back(function);
+			this->m_Functions.push_back(function);
 		}
 
 		void Button::click(sf::Event event)
 		{
-			if (this->sprite.getGlobalBounds().contains(event.mouseButton.x, event.mouseButton.y))
-				for (unsigned i = 0; i < functions.size(); ++i)
-					functions[i]();
+			if (this->m_Sprite.getGlobalBounds().contains((float)event.mouseButton.x, (float)event.mouseButton.y))
+				for (unsigned i = 0; i < this->m_Functions.size(); ++i)
+					this->m_Functions[i]();
 		}
 
 		void Button::update(sf::RenderWindow& window)
 		{
-			window.draw(sprite);
+			window.draw(this->m_Sprite);
 		}
 	}
 }
