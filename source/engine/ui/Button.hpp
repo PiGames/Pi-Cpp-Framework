@@ -1,36 +1,34 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
-#include <vector>
+#include "Element.hpp"
+
+#include <array>
+#include <algorithm>
 
 namespace pi
 {
 	namespace ui
 	{
-		class Button
+		class Button : public pi::ui::Element
 		{
 		public:
-			Button() = default;
+			Button();
 			~Button() = default;
-
+			
 			// Set
 			void setTexture(sf::Texture&);
 			void setPosition(const sf::Vector2f&);
 			void setSize(const sf::Vector2f&);
 			// Get
-			sf::Texture getTexture() { return this->m_Texture; }
-			const sf::Vector2f getPosition() const { return this->m_Position; }
-			const sf::Vector2f getSize() const { return this->m_Size; }
+			sf::Texture getTexture() const { return this->m_Texture; }
 
 			void addCallback(void());
-			void click(sf::Event);
-			void update(sf::RenderWindow&);
+
+			virtual void use(sf::Event& event) override;
 
 		private:
 			sf::Texture m_Texture;
-			sf::Sprite m_Sprite;
-			sf::Vector2f m_Position, m_Size;
-			std::vector <void(*)()> m_Functions;
+			std::array <void(*)(), 8> m_Functions;
 		};
 	}
 }

@@ -4,18 +4,29 @@ namespace pi
 {
 	namespace ui
 	{
+		// Public
+
+		Checkbox::Checkbox()
+		{
+			for (auto &i : this->m_FunctionsOff)
+				i = nullptr;
+			for (auto &i : this->m_FunctionsOn)
+				i = nullptr;
+			this->m_Enable = false;
+		}
+
 		void Checkbox::setTexture(sf::Texture& textureOff, sf::Texture& textureOn)
 		{
 			this->m_TextureOff = textureOff;
 			this->m_TextureOn = textureOn;
 			this->m_Texture = &this->m_TextureOff;
-			this->m_Sprite.setTexture(*m_Texture);
+			this->m_Sprite.setTexture(*this->m_Texture);
 		}
 
 		void Checkbox::setPosition(const sf::Vector2f& position)
 		{
 			this->m_Position = position;
-			this->m_Sprite.setPosition(m_Position);
+			this->m_Sprite.setPosition(this->m_Position);
 		}
 
 		void Checkbox::setSize(const sf::Vector2f& size)
@@ -24,14 +35,22 @@ namespace pi
 			this->m_Sprite.setScale({ this->m_Size.x / this->m_Texture->getSize().x, this->m_Size.y / this->m_Texture->getSize().y });
 		}
 
-		void Checkbox::addCallbackOff(void function())
-		{
-			this->m_FunctionsOff.push_back(function);
-		}
-
 		void Checkbox::addCallbackOn(void function())
 		{
-			this->m_FunctionsOn.push_back(function);
+			for (unsigned i = 0; i < this->m_FunctionsOn.size(); ++i)
+				if (this->m_FunctionsOn[i] == nullptr)
+				{
+					this->m_FunctionsOn[i] = function; break;
+				}
+		}
+
+		void Checkbox::addCallbackOff(void function())
+		{
+			for (unsigned i = 0; i < this->m_FunctionsOff.size(); ++i)
+				if (this->m_FunctionsOff[i] == nullptr)
+				{
+					this->m_FunctionsOff[i] = function; break;
+				}
 		}
 
 		void Checkbox::use(sf::Event& event)
@@ -45,10 +64,7 @@ namespace pi
 			}
 		}
 
-		void Checkbox::update(sf::RenderWindow& window)
-		{
-			window.draw(this->m_Sprite);
-		}
+		// Private
 
 		void Checkbox::enable()
 		{
@@ -56,7 +72,8 @@ namespace pi
 			this->m_Texture = &this->m_TextureOn;
 			this->m_Sprite.setTexture(*m_Texture);
 			for (unsigned i = 0; i < this->m_FunctionsOn.size(); ++i)
-				this->m_FunctionsOn[i]();
+				if (this->m_FunctionsOn[i] != nullptr)
+					this->m_FunctionsOn[i]();
 		}
 
 		void Checkbox::disable()
@@ -65,7 +82,8 @@ namespace pi
 			this->m_Texture = &this->m_TextureOff;
 			this->m_Sprite.setTexture(*m_Texture);
 			for (unsigned i = 0; i < this->m_FunctionsOff.size(); ++i)
-				this->m_FunctionsOff[i]();
+				if (this->m_FunctionsOff[i] != nullptr)
+					this->m_FunctionsOff[i]();
 		}
 	}
 }
