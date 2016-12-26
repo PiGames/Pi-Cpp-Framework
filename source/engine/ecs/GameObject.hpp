@@ -2,8 +2,11 @@
 
 #include <array>
 #include <functional>
+#include <SFML/System/Vector2.hpp>
+#include <vector>
 
 #include "Component.hpp"
+
 
 namespace pi
 {
@@ -16,13 +19,13 @@ namespace pi
 
 		// Returns Game Object's name (default <unnamed GameObject>)
 		std::string getName();
-		// Returns Game Object's posiion (default (0,0))
-		sf::Vector2f getPosition();
+		// Returns Game Object's posiion (default(0,0))
+		std::vector<sf::Vector2i> *getPosition();
 		
 		// Sets Game Object's name (default <unnamed GameObject>)
 		void setName(const std::string& name);
 		// Sets Game Object's position (default (0,0))
-		void setPosition(sf::Vector2f position);
+		void setPosition(std::vector<sf::Vector2i> position)
 
 		// Adds Component to Game Object
 		// Use SceneClass->ComponentCache->getComponent<YourComponent>(args)
@@ -49,10 +52,9 @@ namespace pi
 
 		std::string name;
 		std::array<UpdatableComponent*, MAX_COMPONENT_COUNT> updatableComponents;
-		std::array<DrawableComponent*, MAX_COMPONENT_COUNT> drawableComponents;
+		std::array<DrawableComponent*, MAX_COMPONENT_COUNT> drawableComponents;	
 
-
-		sf::Vector2f position;
+		std::vector<sf::Vector2i> unitPosition;
 	};
 
 	template<class T>

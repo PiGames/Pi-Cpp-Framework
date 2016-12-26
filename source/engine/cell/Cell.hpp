@@ -3,12 +3,10 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Sprite.hpp>
+#include "GameObject.hpp"
 
-#include "CollideableObject.hpp"
-
-class Cell : public sf::Drawable, public CollideableObject
+class Cell : public sf::Drawable, public pi::GameObject
 {
-	const sf::Vector2i unitPosition; // in i|j system
 	const int ID;
 	sf::Sprite object;
 
@@ -18,6 +16,4 @@ class Cell : public sf::Drawable, public CollideableObject
 
 public:
 	Cell(int id,sf::Texture *texture,sf::Vector2f position,sf::Vector2f worldSize,bool collideable);
-	
-	sf::Vector2i GetUnitPosition();
 };

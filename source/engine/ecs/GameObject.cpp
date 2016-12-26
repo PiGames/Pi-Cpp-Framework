@@ -5,7 +5,7 @@ namespace pi
 	GameObject::GameObject()
 	{
 		this->name = "<unnamed GameObject>";
-		this->position = sf::Vector2f(0, 0);
+		this->unitPosition.emplace_back(0, 0);
 
 		updatableComponents.fill(nullptr);
 		drawableComponents.fill(nullptr);
@@ -25,9 +25,9 @@ namespace pi
 		return this->name;
 	}
 
-	sf::Vector2f GameObject::getPosition()
+	std::vector<sf::Vector2i> *GameObject::getPosition()
 	{
-		return this->position;
+		return &unitPosition;
 	}
 
 	void GameObject::setName(const std::string & name)
@@ -35,8 +35,8 @@ namespace pi
 		this->name = name;
 	}
 
-	void GameObject::setPosition(sf::Vector2f position)
+	void GameObject::setPosition(std::vector<sf::Vector2i> position)
 	{
-		this->position = position;
+		this->unitPosition = position;
 	}
 }
