@@ -19,8 +19,20 @@ namespace pi
 		{
 			this->m_TextureOff = textureOff;
 			this->m_TextureOn = textureOn;
-			this->m_Texture = &this->m_TextureOff;
+			if (!this->m_Enable)
+			{
+				this->m_Texture = &this->m_TextureOff;
+			}
+			else if (this->m_Enable)
+			{
+				this->m_Texture = &this->m_TextureOn;
+			}
 			this->m_Sprite.setTexture(*this->m_Texture);
+		}
+
+		void Checkbox::setEnable(bool enable)
+		{
+			this->m_Enable = enable;
 		}
 
 		void Checkbox::setPosition(const sf::Vector2f& position)
@@ -55,7 +67,7 @@ namespace pi
 
 		void Checkbox::use(sf::Event& event)
 		{
-			if (this->m_Sprite.getGlobalBounds().contains((float)event.mouseButton.x, (float)event.mouseButton.y))
+			if (this->m_Sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
 			{
 				if (!this->m_Enable)
 					this->enable();

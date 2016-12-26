@@ -23,21 +23,25 @@ namespace pi
 			this->m_RateSprite.setTexture(this->m_RateTexture);
 		}
 
-		void Slider::setPosition(const sf::Vector2f& position)
+		void Slider::setRect(const sf::Vector2f& position, const sf::Vector2f& size)
 		{
 			this->m_Position = position;
-			this->m_Sprite.setPosition(this->m_Position);
-			this->m_RateSprite.setPosition({ this->m_Position.x + (this->m_SliderTexture.getSize().x / 2) - (this->m_RateTexture.getSize().x / 2), this->m_Position.y });
-		}
-
-		void Slider::setSize(const sf::Vector2f& size)
-		{
 			this->m_Size = size;
+			// Set scale for slider and rate
 			this->m_Sprite.setScale({ this->m_Size.x / this->m_SliderTexture.getSize().x, this->m_Size.y / this->m_SliderTexture.getSize().y });
-			this->m_RateSprite.setScale({ this->m_Size.x / this->m_SliderTexture.getSize().x * 0.2, this->m_Size.y / this->m_SliderTexture.getSize().y * 0.2});
+			this->m_RateSprite.setScale({ this->m_Size.x / static_cast<float>(this->m_RateTexture.getSize().x) * 0.2f, this->m_Size.y / static_cast<float>(this->m_RateTexture.getSize().y) * 1.2f });
+
+			// Multiplied scale with texture size
+			this->m_RateSize = { (this->m_Size.x / static_cast<float>(this->m_RateTexture.getSize().x) * 0.2f) * static_cast<float>(this->m_RateTexture.getSize().x),
+			(this->m_Size.y / static_cast<float>(this->m_RateTexture.getSize().y) * 1.2f) * static_cast<float>(this->m_RateTexture.getSize().y) };
+
+			
+			// Set position for slider and rate
+			this->m_Sprite.setPosition(this->m_Position);
+			this->m_RateSprite.setPosition({ this->m_Position.x + (this->m_Size.x / 2) - (this->m_RateSize.x / 2), this->m_Position.y + (this->m_Size.y / 2) - (this->m_RateSize.y /2) });
 		}
 
-		void Slider::event(sf::Event& event)
+		void Slider::use(sf::Event& event)
 		{
 
 		}

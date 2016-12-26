@@ -18,6 +18,7 @@ namespace pi
 			void setTexture(sf::Texture&, sf::Texture&);
 			void setPosition(const sf::Vector2f&);
 			void setSize(const sf::Vector2f&);
+			void setEnable(bool);
 			// Get
 			sf::Texture getTexture() const { return *this->m_Texture; }
 			sf::Texture getTextureOff() const { return this->m_TextureOff; }

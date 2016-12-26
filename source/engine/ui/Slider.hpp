@@ -16,16 +16,16 @@ namespace pi
 
 			// Set
 			void setTexture(sf::Texture&, sf::Texture&);
-			void setPosition(const sf::Vector2f&);
-			void setSize(const sf::Vector2f&);
+			void setRect(const sf::Vector2f&, const sf::Vector2f&);
 			// Get
 
-			void event(sf::Event&);
+			virtual void use(sf::Event&) override;
 			virtual void update(sf::RenderWindow&) override;
 
 		private:
 			sf::Texture m_SliderTexture, m_RateTexture;
 			sf::Sprite m_RateSprite;
+			sf::Vector2f m_RateSize;
 			std::array <void(*)(), 8> m_Functions;
 			bool m_Enable;
 		};
