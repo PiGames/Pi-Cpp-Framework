@@ -75,7 +75,6 @@ void PathFinder::categorizeCells(sf::Vector2i * neighbor, sf::Vector2i * current
 			(isInMap(sf::Vector2i(currentlyConsidered->x + alternate.first.x, currentlyConsidered->y + alternate.first.y)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.first.y) + currentlyConsidered->x + alternate.first.x].IsCollideable()) ||
 			(isInMap(sf::Vector2i(currentlyConsidered->x + alternate.second.x, currentlyConsidered->y + alternate.second.y)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.second.y) + currentlyConsidered->x + alternate.second.x].IsCollideable()))
 			increaseWeight(neighbor, currentlyConsidered, Q);
-
 	}
 }
 
@@ -120,45 +119,21 @@ void PathFinder::tourTheMap(std::queue<Cell*> *Q, sf::Vector2i *toPos)
 {
 	sf::Vector2i currentlyConsidered;
 
+	const std::vector<std::pair<int,int>> neighbours = { std::pair<int,int>(0,-1),std::pair<int,int>(1,-1), std::pair<int,int>(1,0),std::pair<int,int>(-1,1),std::pair<int,int>(0,1),std::pair<int,int>(-1, 1),std::pair<int,int>(-1, 0),std::pair<int,int>(-1, -1)};
+	sf::Vector2i neighbor;
+
 	while (!Q->empty())
 	{
 		currentlyConsidered = sf::Vector2i(convertCordsToPos(Q->front()->GetPosition()));
 		Q->pop();
-
-		sf::Vector2i neighbor = sf::Vector2i(currentlyConsidered.x - 1, currentlyConsidered.y - 1);//TOP-LEFT
-		categorizeCells(&neighbor, &currentlyConsidered, Q, PathFinder::Direction::NORTH_WEST);
-		if (neighbor == *toPos) break;
-
-		neighbor = sf::Vector2i(currentlyConsidered.x, currentlyConsidered.y - 1);//TOP-CENTER
-		categorizeCells(&neighbor, &currentlyConsidered, Q, PathFinder::Direction::NORTH);
-		if (neighbor == *toPos) break;
-
-		neighbor = sf::Vector2i(currentlyConsidered.x + 1, currentlyConsidered.y - 1);//TOP-RIGHT
-		categorizeCells(&neighbor, &currentlyConsidered, Q, PathFinder::Direction::NORTH_EAST);
-		if (neighbor == *toPos) break;
-
-		neighbor = sf::Vector2i(currentlyConsidered.x - 1, currentlyConsidered.y);//CENTER-LEFT
-		categorizeCells(&neighbor, &currentlyConsidered, Q, PathFinder::Direction::WEST);
-		if (neighbor == *toPos) break;
-
-		neighbor = sf::Vector2i(currentlyConsidered.x + 1, currentlyConsidered.y);//CENTER-RIGHT
-		categorizeCells(&neighbor, &currentlyConsidered, Q, PathFinder::Direction::EAST);
-		if (neighbor == *toPos) break;
-
-		neighbor = sf::Vector2i(currentlyConsidered.x - 1, currentlyConsidered.y + 1);//DOWN-LEFT
-		categorizeCells(&neighbor, &currentlyConsidered, Q, PathFinder::Direction::SOUTH_WEST);
-		if (neighbor == *toPos) break;
-
-
-		neighbor = sf::Vector2i(currentlyConsidered.x, currentlyConsidered.y + 1);//DOWN-CENTER
-		categorizeCells(&neighbor, &currentlyConsidered, Q, PathFinder::Direction::SOUTH);
-		if (neighbor == *toPos) break;
-
-		neighbor = sf::Vector2i(currentlyConsidered.x + 1, currentlyConsidered.y + 1);//DOWN-RIGHT
-		categorizeCells(&neighbor, &currentlyConsidered, Q, PathFinder::Direction::SOUTH_EAST);
+		for (size_t direction = 0; direction < neighbours.size(); direction++)
+		{
+			neighbor = sf::Vector2i(currentlyConsidered.x + neighbours[direction].first, currentlyConsidered.y + neighbours[direction].second);
+			categorizeCells(&neighbor, &currentlyConsidered, Q, direction);
+			if (neighbor == *toPos) break;
+		}
 		if (neighbor == *toPos) break;
 	}
-
 }
 
 bool PathFinder::foundLowerWeight(sf::Vector2i *currentlyConsidered, sf::Vector2i *neighbor, std::queue<sf::Vector2f>* targets)
@@ -189,32 +164,22 @@ void PathFinder::establishingRoad(std::queue<Cell*> *Q, std::queue<sf::Vector2f>
 
 void PathFinder::searchLowerWeight(sf::Vector2i *currentlyConsidered, sf::Vector2i *fromPos, bool *sthChangedFlag, std::queue<sf::Vector2f> *targets)
 {
+	const std::vector<std::pair<int, int>> neighbours = { std::pair<int,int>(0,-1),std::pair<int,int>(1,-1), std::pair<int,int>(1,0),std::pair<int,int>(-1,1),std::pair<int,int>(0,1),std::pair<int,int>(-1, 1),std::pair<int,int>(-1, 0),std::pair<int,int>(-1, -1) };
+	
+	sf::Vector2i neighbor;
+
 	while (*currentlyConsidered != *fromPos && *sthChangedFlag)
 	{
-		sf::Vector2i neighbor = sf::Vector2i(currentlyConsidered->x - 1, currentlyConsidered->y - 1);
-		if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) continue;
-
-		neighbor = sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y - 1);//TOP-CENTER
-		if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) continue;
-
-		neighbor = sf::Vector2i(currentlyConsidered->x + 1, currentlyConsidered->y - 1);//TOP-RIGHT
-		if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) continue;
-
-		neighbor = sf::Vector2i(currentlyConsidered->x - 1, currentlyConsidered->y);//CENTER-LEFT
-		if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) continue;
-
-		neighbor = sf::Vector2i(currentlyConsidered->x + 1, currentlyConsidered->y);//CENTER-RIGHT
-		if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) continue;
-
-		neighbor = sf::Vector2i(currentlyConsidered->x - 1, currentlyConsidered->y + 1);//DOWN-LEFT
-		if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) continue;
-
-		neighbor = sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y + 1);//DOWN-CENTER
-		if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) continue;
-
-		neighbor = sf::Vector2i(currentlyConsidered->x + 1, currentlyConsidered->y + 1);//DOWN-RIGHT
-		if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) continue;
-
+		size_t direction;
+		for (direction = 0; direction < neighbours.size(); direction++)
+		{
+			if (direction < neighbours.size()-1)
+			{
+				neighbor = sf::Vector2i(currentlyConsidered->x + neighbours[direction].first, currentlyConsidered->y + neighbours[direction].second);
+				if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) break;
+			}
+		}
+		if (direction != neighbours.size()) continue;
 		*sthChangedFlag = false;
 	}
 }
