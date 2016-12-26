@@ -4,7 +4,7 @@
 #include <queue>
 #include <iostream>
 #include <algorithm>
-#include "Cell.h"
+#include "Cell.hpp"
 
 class PathFinder final
 {

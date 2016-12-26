@@ -4,7 +4,7 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
-#include "CollideableObject.h"
+#include "CollideableObject.hpp"
 
 class Cell : public sf::Drawable, public CollideableObject
 {

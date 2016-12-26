@@ -31,51 +31,51 @@ void PathFinder::transitionToNeighbor(sf::Vector2i *neighbor, sf::Vector2i *curr
 
 void PathFinder::categorizeCells(sf::Vector2i * neighbor, sf::Vector2i * currentlyConsidered, std::queue<Cell*> *Q, short direction)
 {
+	std::pair<sf::Vector2i,sf::Vector2i> alternate;
+
 	if (isInMap(*neighbor) && !(&(*(mapImitation::cells))[mapSize.x*neighbor->y + neighbor->x])->IsCollideable() && mapImitation::weights[mapSize.x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
 	{
 		switch (direction)
 		{
-		case PathFinder::Direction::NORTH:
-		case PathFinder::Direction::EAST:
-		case PathFinder::Direction::SOUTH:
-		case PathFinder::Direction::WEST: increaseWeight(neighbor, currentlyConsidered, Q); break;
+			case PathFinder::Direction::NORTH:
+			case PathFinder::Direction::EAST:
+			case PathFinder::Direction::SOUTH:
+			case PathFinder::Direction::WEST: increaseWeight(neighbor, currentlyConsidered, Q); break;
 
 			case PathFinder::Direction::NORTH_EAST:
 			{
-			if ((isInMap(sf::Vector2i(currentlyConsidered->x+1, currentlyConsidered->y)) && isInMap(sf::Vector2i(currentlyConsidered->x , currentlyConsidered->y-1)) && !(*(mapImitation::cells))[mapSize.x*neighbor->y + neighbor->x + 1].IsCollideable() && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y-1) + currentlyConsidered->x ].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x + 1, currentlyConsidered->y)) && !(*(mapImitation::cells))[mapSize.x*currentlyConsidered->y + currentlyConsidered->x + 1].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y - 1)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y - 1) + currentlyConsidered->x].IsCollideable()))
-			increaseWeight(neighbor, currentlyConsidered, Q);
-			break;
+				alternate.first.x = 1; alternate.first.y = 0;
+				alternate.second.x = 0; alternate.second.y = -1;
+				break;
 			}
 
 			case PathFinder::Direction::SOUTH_EAST:
 			{
-			if ((isInMap(sf::Vector2i(currentlyConsidered->x + 1, currentlyConsidered->y)) && isInMap(sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y + 1)) && !(*(mapImitation::cells))[mapSize.x*currentlyConsidered->y + currentlyConsidered->x + 1].IsCollideable() && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + 1) + currentlyConsidered->x].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x + 1, currentlyConsidered->y)) && !(*(mapImitation::cells))[mapSize.x*currentlyConsidered->y + currentlyConsidered->x + 1].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y + 1)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + 1) + currentlyConsidered->x].IsCollideable()))
-			increaseWeight(neighbor, currentlyConsidered, Q);
-			break;
+				alternate.first.x = 1; alternate.first.y = 0;
+				alternate.second.x = 0; alternate.second.y = 1;
+				break;
 			}
 
 			case PathFinder::Direction::SOUTH_WEST:
 			{
-			if ((isInMap(sf::Vector2i(currentlyConsidered->x - 1, currentlyConsidered->y)) && isInMap(sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y + 1)) && !(*(mapImitation::cells))[mapSize.x*currentlyConsidered->y + currentlyConsidered->x - 1].IsCollideable() && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + 1) + currentlyConsidered->x].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x - 1, currentlyConsidered->y)) && !(*(mapImitation::cells))[mapSize.x*currentlyConsidered->y + currentlyConsidered->x - 1].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y + 1)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + 1) + currentlyConsidered->x].IsCollideable()))
-			increaseWeight(neighbor, currentlyConsidered, Q);
-			break;
+				alternate.first.x = -1; alternate.first.y = 0;
+				alternate.second.x = 0; alternate.second.y = 1;
+				break;
 			}
 
 			case PathFinder::Direction::NORTH_WEST:
 			{
-			if ((isInMap(sf::Vector2i(currentlyConsidered->x - 1, currentlyConsidered->y)) && isInMap(sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y - 1)) && !(*(mapImitation::cells))[mapSize.x*currentlyConsidered->y + currentlyConsidered->x - 1].IsCollideable() && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y - 1) + currentlyConsidered->x].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x - 1, currentlyConsidered->y)) && !(*(mapImitation::cells))[mapSize.x*currentlyConsidered->y + currentlyConsidered->x - 1].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x, currentlyConsidered->y - 1)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y - 1) + currentlyConsidered->x].IsCollideable()))
-			increaseWeight(neighbor, currentlyConsidered, Q);
-			break;
+				alternate.first.x = -1; alternate.first.y = 0;
+				alternate.second.x = 0; alternate.second.y = -1;
+				break;
 			}
 		}
+		
+		if ((isInMap(sf::Vector2i(currentlyConsidered->x + alternate.first.x, currentlyConsidered->y + alternate.first.y)) && isInMap(sf::Vector2i(currentlyConsidered->x + alternate.second.x, currentlyConsidered->y + alternate.second.y)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.first.y) + currentlyConsidered->x + alternate.first.x].IsCollideable() && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.second.y) + currentlyConsidered->x + alternate.second.x].IsCollideable()) ||
+			(isInMap(sf::Vector2i(currentlyConsidered->x + alternate.first.x, currentlyConsidered->y + alternate.first.y)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.first.y) + currentlyConsidered->x + alternate.first.x].IsCollideable()) ||
+			(isInMap(sf::Vector2i(currentlyConsidered->x + alternate.second.x, currentlyConsidered->y + alternate.second.y)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.second.y) + currentlyConsidered->x + alternate.second.x].IsCollideable()))
+			increaseWeight(neighbor, currentlyConsidered, Q);
+
 	}
 }
 
