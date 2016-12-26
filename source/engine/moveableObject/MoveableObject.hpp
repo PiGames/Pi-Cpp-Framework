@@ -2,7 +2,7 @@
 
 #include <queue>
 #include <SFML/System/Vector2.hpp>
-#include "PathFinder.hpp"
+#include "engine/pathfinder/PathFinder.hpp"
 
 class MoveableObject
 {

@@ -4,7 +4,7 @@
 #include <queue>
 #include <iostream>
 #include <algorithm>
-#include "Cell.hpp"
+#include "engine/cell/Cell.hpp"
 
 class PathFinder final
 {
@@ -81,8 +81,11 @@ class PathFinder final
 	//Increasing weight of cell and calling addToQueueSearch() method
 	static void increaseWeight(sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<Cell*> *Q);
 		
-	//add cordinates fo cell to queue search
+	//Add cordinates fo cell to queue search
 	static void	addToQueueSearch(std::queue<Cell*> *Q, sf::Vector2i *neighbor);
+
+	//Checking that a cell is an obstacle or not
+	static bool isCellBlocking(sf::Vector2i * currentlyConsidered, sf::Vector2i *singleAlternate);
 
 public:
 

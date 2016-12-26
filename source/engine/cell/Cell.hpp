@@ -3,7 +3,7 @@
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include "GameObject.hpp"
+#include "engine/ecs/GameObject.hpp"
 
 class Cell : public sf::Drawable, public pi::GameObject
 {

@@ -71,10 +71,9 @@ void PathFinder::categorizeCells(sf::Vector2i * neighbor, sf::Vector2i * current
 			}
 		}
 		
-		if ((isInMap(sf::Vector2i(currentlyConsidered->x + alternate.first.x, currentlyConsidered->y + alternate.first.y)) && isInMap(sf::Vector2i(currentlyConsidered->x + alternate.second.x, currentlyConsidered->y + alternate.second.y)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.first.y) + currentlyConsidered->x + alternate.first.x].IsCollideable() && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.second.y) + currentlyConsidered->x + alternate.second.x].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x + alternate.first.x, currentlyConsidered->y + alternate.first.y)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.first.y) + currentlyConsidered->x + alternate.first.x].IsCollideable()) ||
-			(isInMap(sf::Vector2i(currentlyConsidered->x + alternate.second.x, currentlyConsidered->y + alternate.second.y)) && !(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + alternate.second.y) + currentlyConsidered->x + alternate.second.x].IsCollideable()))
+		if (!isCellBlocking(currentlyConsidered,&alternate.first) && !isCellBlocking(currentlyConsidered,&alternate.second))
 			increaseWeight(neighbor, currentlyConsidered, Q);
+
 	}
 }
 
@@ -100,7 +99,7 @@ void PathFinder::reverse(std::queue<sf::Vector2f>* targets)
 void PathFinder::initialTreatments(std::queue<Cell*>* Q, sf::Vector2i * fromPos)
 {
 	setWeightsVectorAsNotVisited();
-	enterFirstElementToQueue(Q, fromPos);
+enterFirstElementToQueue(Q, fromPos);
 }
 
 void PathFinder::setWeightsVectorAsNotVisited()
@@ -119,7 +118,7 @@ void PathFinder::tourTheMap(std::queue<Cell*> *Q, sf::Vector2i *toPos)
 {
 	sf::Vector2i currentlyConsidered;
 
-	const std::vector<std::pair<int,int>> neighbours = { std::pair<int,int>(0,-1),std::pair<int,int>(1,-1), std::pair<int,int>(1,0),std::pair<int,int>(-1,1),std::pair<int,int>(0,1),std::pair<int,int>(-1, 1),std::pair<int,int>(-1, 0),std::pair<int,int>(-1, -1)};
+	const std::vector<std::pair<int, int>> neighbours = { std::pair<int,int>(0,-1),std::pair<int,int>(1,-1), std::pair<int,int>(1,0),std::pair<int,int>(1,1),std::pair<int,int>(0,1),std::pair<int,int>(-1, 1),std::pair<int,int>(-1, 0),std::pair<int,int>(-1, -1) };
 	sf::Vector2i neighbor;
 
 	while (!Q->empty())
@@ -163,9 +162,9 @@ void PathFinder::establishingRoad(std::queue<Cell*> *Q, std::queue<sf::Vector2f>
 }
 
 void PathFinder::searchLowerWeight(sf::Vector2i *currentlyConsidered, sf::Vector2i *fromPos, bool *sthChangedFlag, std::queue<sf::Vector2f> *targets)
-{
-	const std::vector<std::pair<int, int>> neighbours = { std::pair<int,int>(0,-1),std::pair<int,int>(1,-1), std::pair<int,int>(1,0),std::pair<int,int>(-1,1),std::pair<int,int>(0,1),std::pair<int,int>(-1, 1),std::pair<int,int>(-1, 0),std::pair<int,int>(-1, -1) };
-	
+{	
+	const std::vector<std::pair<int, int>> neighbours = { std::pair<int,int>(0,-1),std::pair<int,int>(1,-1), std::pair<int,int>(1,0),std::pair<int,int>(1,1),std::pair<int,int>(0,1),std::pair<int,int>(-1, 1),std::pair<int,int>(-1, 0),std::pair<int,int>(-1, -1) };
+
 	sf::Vector2i neighbor;
 
 	while (*currentlyConsidered != *fromPos && *sthChangedFlag)
@@ -173,11 +172,8 @@ void PathFinder::searchLowerWeight(sf::Vector2i *currentlyConsidered, sf::Vector
 		size_t direction;
 		for (direction = 0; direction < neighbours.size(); direction++)
 		{
-			if (direction < neighbours.size()-1)
-			{
 				neighbor = sf::Vector2i(currentlyConsidered->x + neighbours[direction].first, currentlyConsidered->y + neighbours[direction].second);
 				if (foundLowerWeight(currentlyConsidered, &neighbor, targets)) break;
-			}
 		}
 		if (direction != neighbours.size()) continue;
 		*sthChangedFlag = false;
@@ -189,10 +185,19 @@ void PathFinder::increaseWeight(sf::Vector2i *neighbor, sf::Vector2i *currentlyC
 	mapImitation::weights[mapSize.x*neighbor->y + neighbor->x] = mapImitation::weights[mapSize.x*currentlyConsidered->y + currentlyConsidered->x] + 1;
 	addToQueueSearch(Q, neighbor);
 }
-	
+
 void PathFinder::addToQueueSearch(std::queue<Cell*>* Q, sf::Vector2i * neighbor)
 {
 	Q->push(&((*(mapImitation::cells))[mapSize.x*neighbor->y + neighbor->x]));
+}
+
+bool PathFinder::isCellBlocking(sf::Vector2i * currentlyConsidered, sf::Vector2i * singleAlternate)
+{
+	if (!isInMap(sf::Vector2i(currentlyConsidered->x + singleAlternate->x, currentlyConsidered->y + singleAlternate->y)))
+		return false;
+	else if (!(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + singleAlternate->y) + currentlyConsidered->x + singleAlternate->x].IsCollideable())
+		return false;
+	return true;
 }
 
 void PathFinder::Init(std::vector<Cell> *cells, sf::Vector2f cellDim, sf::Vector2i worldSize)
