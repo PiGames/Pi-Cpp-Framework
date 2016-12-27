@@ -3,13 +3,12 @@
 #include "Element.hpp"
 
 #include <array>
-#include <algorithm>
 
 namespace pi
 {
 	namespace ui
 	{
-		class Button final : public pi::ui::Element
+		class Button final : public Element
 		{
 		public:
 			Button();

@@ -16,6 +16,8 @@ namespace pi
 				i = nullptr;
 		}
 
+		// Button methods
+
 		void UI::addButton(pi::ui::Button& button)
 		{
 			for (unsigned i = 0; i < this->buttons.size(); ++i)
@@ -39,6 +41,8 @@ namespace pi
 					this->buttons[i]->update(window);
 		}
 
+		// Checkbox methods
+
 		void UI::addCheckbox(pi::ui::Checkbox& checkbox)
 		{
 			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
@@ -61,5 +65,46 @@ namespace pi
 				if (this->checkboxs[i] != nullptr)
 					this->checkboxs[i]->update(window);
 		}
+
+		// Slider methods
+
+		void UI::addSlider(pi::ui::Slider& slider)
+		{
+			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
+				if (this->sliders[i] == nullptr)
+				{
+					this->sliders[i] = &slider; break;
+				}
+		}
+
+		void UI::useSliders(sf::Event& event)
+		{
+			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
+				if (this->sliders[i] != nullptr)
+					this->sliders[i]->use(event);
+		}
+
+		void UI::updateSliders(sf::RenderWindow& window)
+		{
+			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
+				if (this->sliders[i] != nullptr)
+					this->sliders[i]->update(window);
+		}
+
+		void UI::selectedSliders(sf::Event& event)
+		{
+			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
+				if (this->sliders[i] != nullptr)
+					this->sliders[i]->selected(event);
+		}
+
+		void UI::releasedSliders()
+		{
+			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
+				if (this->sliders[i] != nullptr)
+					this->sliders[i]->released();
+		}
+
+		// List 
 	}
 }

@@ -8,7 +8,7 @@ namespace pi
 {
 	namespace ui
 	{
-		class Checkbox final : public pi::ui::Element
+		class Checkbox final : public Element
 		{
 		public:
 			Checkbox();

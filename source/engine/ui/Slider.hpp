@@ -8,7 +8,7 @@ namespace pi
 {
 	namespace ui
 	{
-		class Slider final : public pi::ui::Element
+		class Slider final : public Element
 		{
 		public:
 			Slider();

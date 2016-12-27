@@ -11,7 +11,7 @@ namespace pi
 {
 	namespace ui
 	{
-		class UI
+		class UI final
 		{
 		public:
 			UI();
@@ -30,7 +30,11 @@ namespace pi
 			// Chechbox section end
 
 			// Slider section start
-
+			void addSlider(pi::ui::Slider&);
+			void useSliders(sf::Event&);
+			void updateSliders(sf::RenderWindow&);
+			void selectedSliders(sf::Event&);
+			void releasedSliders();
 			// Slider section end
 
 		private:
