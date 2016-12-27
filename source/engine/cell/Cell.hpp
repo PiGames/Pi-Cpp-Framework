@@ -4,8 +4,9 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include "engine/ecs/GameObject.hpp"
+#include "engine/realObject/RealObject.hpp"
 
-class Cell : public sf::Drawable, public pi::GameObject
+class Cell : public sf::Drawable, public pi::GameObject, public RealObject
 {
 	const int ID;
 	sf::Sprite object;
