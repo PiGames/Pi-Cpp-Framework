@@ -123,7 +123,7 @@ void PathFinder::tourTheMap(std::queue<Cell*> *Q, sf::Vector2i *toPos)
 
 	while (!Q->empty())
 	{
-		currentlyConsidered = sf::Vector2i(convertCordsToPos(Q->front()->getPosition());
+		currentlyConsidered = sf::Vector2i(convertCordsToPos(Q->front()->getPosition()));
 		Q->pop();
 		for (size_t direction = 0; direction < neighbours.size(); direction++)
 		{

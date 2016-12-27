@@ -23,6 +23,7 @@ namespace pi
 		ComponentCache& operator=(ComponentCache&&) = delete;
 	
 		// Returns pointer to added Component
+		// Also returns nullptr if there is more than 1024 Components of ComponentType
 		template <typename T, enable_if<std::is_base_of<Component, T>>..., class ...Args>
 		T* get(Args&& ...args)
 		{
@@ -40,14 +41,14 @@ namespace pi
 						return component;
 					}
 
-					else if (t->getComponentType() == ComponentType::Drawable)
-						for (auto& drawable : this->drawable)
-							if (!drawable)
-							{
-								drawable.reset(component);
+			else if (t->getComponentType() == ComponentType::Drawable)
+				for (auto& drawable : this->drawable)
+					if (!drawable)
+					{
+						drawable.reset(component);
 
-								return component;
-							}
+						return component;
+					}
 
 			delete component;
 
