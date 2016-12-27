@@ -32,6 +32,15 @@ namespace pi
 
 			T* component = new T(args...);
 
+			if(t->getComponentType() == ComponentType::Both)
+				for(auto& both : this->both)
+					if (!both)
+					{
+						both.reset(component);
+
+						return component;
+					}
+
 			else if (t->getComponentType() == ComponentType::Updatable)
 				for (auto& updatable : this->updatable)
 					if (!updatable)
@@ -62,5 +71,6 @@ namespace pi
 
 		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> updatable;
 		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> drawable;
+		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> both;
 	};
 }

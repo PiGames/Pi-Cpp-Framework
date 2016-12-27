@@ -7,6 +7,10 @@ namespace pi
 		for (auto& drawable : this->drawable)
 			if (drawable)
 				target.draw(*drawable, states);
+
+		for (auto& both : this->both)
+			if (both)
+				target.draw(*both, states);
 	}
 
 	ComponentCache::ComponentCache()
@@ -18,6 +22,10 @@ namespace pi
 		for (auto& updatable : this->updatable)
 			if (updatable)
 				updatable->update(deltaTime);
+
+		for (auto& both : this->both)
+			if (both)
+				both->update(deltaTime);
 	}
 
 }

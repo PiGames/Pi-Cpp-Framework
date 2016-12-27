@@ -11,7 +11,8 @@ namespace pi
 	enum class ComponentType
 	{
 		Updatable = 0,
-		Drawable
+		Drawable,
+		Both
 	};
 
 	// Component class 
