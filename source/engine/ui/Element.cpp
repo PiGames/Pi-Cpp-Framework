@@ -8,7 +8,7 @@ namespace pi
 
 		void Element::update(sf::RenderWindow& window)
 		{
-			window.draw(this->m_Sprite);
+			window.draw(this->sprite);
 		}
 	}
 }

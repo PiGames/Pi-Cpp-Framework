@@ -9,7 +9,7 @@ namespace pi
 {
 	namespace ui
 	{
-		class Button : public pi::ui::Element
+		class Button final : public pi::ui::Element
 		{
 		public:
 			Button();
@@ -19,16 +19,17 @@ namespace pi
 			void setTexture(sf::Texture&);
 			void setPosition(const sf::Vector2f&);
 			void setSize(const sf::Vector2f&);
+			void setRect(const sf::Vector2f&, const sf::Vector2f&);
 			// Get
-			sf::Texture getTexture() const { return this->m_Texture; }
+			sf::Texture getTexture() const { return this->texture; }
 
 			void addCallback(void());
 
 			virtual void use(sf::Event& event) override;
 
 		private:
-			sf::Texture m_Texture;
-			std::array <void(*)(), 8> m_Functions;
+			sf::Texture texture;
+			std::array <void(*)(), 8> functions;
 		};
 	}
 }

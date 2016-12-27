@@ -8,7 +8,7 @@ namespace pi
 {
 	namespace ui
 	{
-		class Checkbox : public pi::ui::Element
+		class Checkbox final : public pi::ui::Element
 		{
 		public:
 			Checkbox();
@@ -18,25 +18,27 @@ namespace pi
 			void setTexture(sf::Texture&, sf::Texture&);
 			void setPosition(const sf::Vector2f&);
 			void setSize(const sf::Vector2f&);
+			void setRect(const sf::Vector2f&, const sf::Vector2f&);
 			void setEnable(bool);
 			// Get
-			sf::Texture getTexture() const { return *this->m_Texture; }
-			sf::Texture getTextureOff() const { return this->m_TextureOff; }
-			sf::Texture getTextureOn() const { return this->m_TextureOn; }
+			sf::Texture getTexture() const { return *this->texture; }
+			sf::Texture getTextureOn() const { return this->textureOn; }
+			sf::Texture getTextureOff() const { return this->textureOff; }
+			const bool getEnable() const { return this->enable; }
 
-			void addCallbackOff(void());
 			void addCallbackOn(void());
+			void addCallbackOff(void());
 
 			virtual void use(sf::Event& event) override;
 			
 		private:
-			sf::Texture *m_Texture, m_TextureOff, m_TextureOn;
-			std::array <void(*)(), 8> m_FunctionsOff;
-			std::array <void(*)(), 8> m_FunctionsOn;
-			bool m_Enable;
+			sf::Texture *texture, textureOn, textureOff;
+			std::array <void(*)(), 8> functionsOff;
+			std::array <void(*)(), 8> functionsOn;
+			bool enable;
 
-			void enable();
-			void disable();
+			void Enable();
+			void Disable();
 		};
 	}
 }

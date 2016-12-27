@@ -8,94 +8,102 @@ namespace pi
 
 		Checkbox::Checkbox()
 		{
-			for (auto &i : this->m_FunctionsOff)
+			for (auto &i : this->functionsOn)
 				i = nullptr;
-			for (auto &i : this->m_FunctionsOn)
+			for (auto &i : this->functionsOff)
 				i = nullptr;
-			this->m_Enable = false;
+			this->enable = false;
 		}
 
 		void Checkbox::setTexture(sf::Texture& textureOff, sf::Texture& textureOn)
 		{
-			this->m_TextureOff = textureOff;
-			this->m_TextureOn = textureOn;
-			if (!this->m_Enable)
+			this->textureOff = textureOn;
+			this->textureOn = textureOff;
+			if (!this->enable)
 			{
-				this->m_Texture = &this->m_TextureOff;
+				this->texture = &this->textureOff;
 			}
-			else if (this->m_Enable)
+			else if (this->enable)
 			{
-				this->m_Texture = &this->m_TextureOn;
+				this->texture = &this->textureOn;
 			}
-			this->m_Sprite.setTexture(*this->m_Texture);
-		}
-
-		void Checkbox::setEnable(bool enable)
-		{
-			this->m_Enable = enable;
+			this->sprite.setTexture(*this->texture);
 		}
 
 		void Checkbox::setPosition(const sf::Vector2f& position)
 		{
-			this->m_Position = position;
-			this->m_Sprite.setPosition(this->m_Position);
+			this->position = position;
+			this->sprite.setPosition(this->position);
 		}
 
 		void Checkbox::setSize(const sf::Vector2f& size)
 		{
-			this->m_Size = size;
-			this->m_Sprite.setScale({ this->m_Size.x / this->m_Texture->getSize().x, this->m_Size.y / this->m_Texture->getSize().y });
+			this->size = size;
+			this->sprite.setScale({ this->size.x / this->texture->getSize().x, this->size.y / this->texture->getSize().y });
+		}
+
+		void Checkbox::setRect(const sf::Vector2f& position, const sf::Vector2f& size)
+		{
+			this->position = position;
+			this->size = size;
+			this->sprite.setPosition(this->position);
+			this->sprite.setScale({ this->size.x / this->texture->getSize().x, this->size.y / this->texture->getSize().y });
+		}
+
+		void Checkbox::setEnable(bool enable)
+		{
+			this->enable = enable;
 		}
 
 		void Checkbox::addCallbackOn(void function())
 		{
-			for (unsigned i = 0; i < this->m_FunctionsOn.size(); ++i)
-				if (this->m_FunctionsOn[i] == nullptr)
+			for (unsigned i = 0; i < this->functionsOn.size(); ++i)
+				if (this->functionsOn[i] == nullptr)
 				{
-					this->m_FunctionsOn[i] = function; break;
+					this->functionsOn[i] = function; break;
 				}
 		}
 
 		void Checkbox::addCallbackOff(void function())
 		{
-			for (unsigned i = 0; i < this->m_FunctionsOff.size(); ++i)
-				if (this->m_FunctionsOff[i] == nullptr)
+			for (unsigned i = 0; i < this->functionsOff.size(); ++i)
+				if (this->functionsOff[i] == nullptr)
 				{
-					this->m_FunctionsOff[i] = function; break;
+					this->functionsOff[i] = function; break;
 				}
 		}
 
 		void Checkbox::use(sf::Event& event)
 		{
-			if (this->m_Sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
+			if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
 			{
-				if (!this->m_Enable)
-					this->enable();
-				else if (this->m_Enable)
-					this->disable();
+				if (!this->enable)
+					this->Enable();
+				else if (this->enable)
+					this->Disable();
 			}
 		}
 
 		// Private
 
-		void Checkbox::enable()
+		void Checkbox::Enable()
 		{
-			this->m_Enable = true;
-			this->m_Texture = &this->m_TextureOn;
-			this->m_Sprite.setTexture(*m_Texture);
-			for (unsigned i = 0; i < this->m_FunctionsOn.size(); ++i)
-				if (this->m_FunctionsOn[i] != nullptr)
-					this->m_FunctionsOn[i]();
+			this->enable = true;
+			this->texture = &this->textureOn;
+			this->sprite.setTexture(*texture);
+			for (unsigned i = 0; i < this->functionsOn.size(); ++i)
+				if (this->functionsOn[i] != nullptr)
+					this->functionsOn[i]();
 		}
 
-		void Checkbox::disable()
+		void Checkbox::Disable()
 		{
-			this->m_Enable = false;
-			this->m_Texture = &this->m_TextureOff;
-			this->m_Sprite.setTexture(*m_Texture);
-			for (unsigned i = 0; i < this->m_FunctionsOff.size(); ++i)
-				if (this->m_FunctionsOff[i] != nullptr)
-					this->m_FunctionsOff[i]();
+			this->enable = false;
+			this->texture = &this->textureOff;
+			this->sprite.setTexture(*texture);
+			for (unsigned i = 0; i < this->functionsOff.size(); ++i)
+				if (this->functionsOff[i] != nullptr)
+					this->functionsOff[i]();
 		}
 	}
 }

@@ -8,58 +8,58 @@ namespace pi
 
 		UI::UI()
 		{
-			for (auto &i : this->m_Buttons)
+			for (auto &i : this->buttons)
 				i = nullptr;
-			for (auto &i : this->m_Checkboxs)
+			for (auto &i : this->checkboxs)
 				i = nullptr;
-			for (auto &i : this->m_Sliders)
+			for (auto &i : this->sliders)
 				i = nullptr;
 		}
 
 		void UI::addButton(pi::ui::Button& button)
 		{
-			for (unsigned i = 0; i < this->m_Buttons.size(); ++i)
-				if (this->m_Buttons[i] == nullptr)
+			for (unsigned i = 0; i < this->buttons.size(); ++i)
+				if (this->buttons[i] == nullptr)
 				{
-					this->m_Buttons[i] = &button; break;
+					this->buttons[i] = &button; break;
 				}
 		}
 
 		void UI::useButtons(sf::Event& event)
 		{
-			for (unsigned i = 0; i < this->m_Buttons.size(); ++i)
-				if (this->m_Buttons[i] != nullptr)
-					this->m_Buttons[i]->use(event);
+			for (unsigned i = 0; i < this->buttons.size(); ++i)
+				if (this->buttons[i] != nullptr)
+					this->buttons[i]->use(event);
 		}
 
 		void UI::updateButtons(sf::RenderWindow& window)
 		{
-			for (unsigned i = 0; i < this->m_Buttons.size(); ++i)
-				if (this->m_Buttons[i] != nullptr)
-					this->m_Buttons[i]->update(window);
+			for (unsigned i = 0; i < this->buttons.size(); ++i)
+				if (this->buttons[i] != nullptr)
+					this->buttons[i]->update(window);
 		}
 
 		void UI::addCheckbox(pi::ui::Checkbox& checkbox)
 		{
-			for (unsigned i = 0; i < this->m_Checkboxs.size(); ++i)
-				if (this->m_Checkboxs[i] == nullptr)
+			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
+				if (this->checkboxs[i] == nullptr)
 				{
-					this->m_Checkboxs[i] = &checkbox; break;
+					this->checkboxs[i] = &checkbox; break;
 				}
 		}
 
 		void UI::useCheckboxs(sf::Event& event)
 		{
-			for (unsigned i = 0; i < this->m_Checkboxs.size(); ++i)
-				if (this->m_Checkboxs[i] != nullptr)
-					this->m_Checkboxs[i]->use(event);
+			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
+				if (this->checkboxs[i] != nullptr)
+					this->checkboxs[i]->use(event);
 		}
 
 		void UI::updateCheckboxs(sf::RenderWindow& window)
 		{
-			for (unsigned i = 0; i < this->m_Checkboxs.size(); ++i)
-				if (this->m_Checkboxs[i] != nullptr)
-					this->m_Checkboxs[i]->update(window);
+			for (unsigned i = 0; i < this->checkboxs.size(); ++i)
+				if (this->checkboxs[i] != nullptr)
+					this->checkboxs[i]->update(window);
 		}
 	}
 }

@@ -8,43 +8,51 @@ namespace pi
 
 		Button::Button()
 		{
-			for(auto &i : this->m_Functions)
+			for(auto &i : this->functions)
 				i = nullptr;
 		}
 
 		void Button::setTexture(sf::Texture& texture)
 		{
-			this->m_Texture = texture;
-			this->m_Sprite.setTexture(this->m_Texture);
+			this->texture = texture;
+			this->sprite.setTexture(this->texture);
 		}
 
 		void Button::setPosition(const sf::Vector2f& position)
 		{
-			this->m_Position = position;
-			this->m_Sprite.setPosition(this->m_Position);
+			this->position = position;
+			this->sprite.setPosition(this->position);
 		}
 
 		void Button::setSize(const sf::Vector2f& size)
 		{
-			this->m_Size = size;
-			this->m_Sprite.setScale({ this->m_Size.x / this->m_Texture.getSize().x, this->m_Size.y / this->m_Texture.getSize().y });
+			this->size = size;
+			this->sprite.setScale({ this->size.x / this->texture.getSize().x, this->size.y / this->texture.getSize().y });
+		}
+
+		void Button::setRect(const sf::Vector2f& position, const sf::Vector2f& size)
+		{
+			this->position = position;
+			this->size = size;
+			this->sprite.setPosition(this->position);
+			this->sprite.setScale({ this->size.x / this->texture.getSize().x, this->size.y / this->texture.getSize().y });
 		}
 
 		void Button::addCallback(void function())
 		{
-			for (unsigned i = 0; i < this->m_Functions.size(); ++i)
-				if (this->m_Functions[i] == nullptr)
+			for (unsigned i = 0; i < this->functions.size(); ++i)
+				if (this->functions[i] == nullptr)
 				{
-					this->m_Functions[i] = function; break;
+					this->functions[i] = function; break;
 				}
 		}
 
 		void Button::use(sf::Event& event)
 		{
-			if (this->m_Sprite.getGlobalBounds().contains((float)event.mouseButton.x, (float)event.mouseButton.y))
-				for (unsigned i = 0; i < this->m_Functions.size(); ++i)
-					if(this->m_Functions[i] != nullptr)
-						this->m_Functions[i]();
+			if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
+				for (unsigned i = 0; i < this->functions.size(); ++i)
+					if(this->functions[i] != nullptr)
+						this->functions[i]();
 		}
 	}
 }

@@ -10,46 +10,93 @@ namespace pi
 
 		Slider::Slider()
 		{
-			for (auto &i : this->m_Functions)
+			for (auto &i : this->functions)
 				i = nullptr;
-			this->m_Enable = false;			
+			this->enable = false;
+			this->scale = { 0.2f, 1.2f };
 		}
 
 		void Slider::setTexture(sf::Texture& sliderTexture, sf::Texture& rateTexture)
 		{
-			this->m_SliderTexture = sliderTexture;
-			this->m_RateTexture = rateTexture;
-			this->m_Sprite.setTexture(this->m_SliderTexture);
-			this->m_RateSprite.setTexture(this->m_RateTexture);
+			this->sliderTexture = sliderTexture;
+			this->rateTexture = rateTexture;
+			this->sprite.setTexture(this->sliderTexture);
+			this->rateSprite.setTexture(this->rateTexture);
+		}
+		
+		void Slider::setScale(const sf::Vector2f& scale)
+		{
+			this->scale = scale;
 		}
 
 		void Slider::setRect(const sf::Vector2f& position, const sf::Vector2f& size)
 		{
-			this->m_Position = position;
-			this->m_Size = size;
+			this->position = position;
+			this->size = size;
 			// Set scale for slider and rate
-			this->m_Sprite.setScale({ this->m_Size.x / this->m_SliderTexture.getSize().x, this->m_Size.y / this->m_SliderTexture.getSize().y });
-			this->m_RateSprite.setScale({ this->m_Size.x / static_cast<float>(this->m_RateTexture.getSize().x) * 0.2f, this->m_Size.y / static_cast<float>(this->m_RateTexture.getSize().y) * 1.2f });
+			this->sprite.setScale({ this->size.x / this->sliderTexture.getSize().x, this->size.y / this->sliderTexture.getSize().y });
+			this->rateSprite.setScale({ this->size.x / static_cast<float>(this->rateTexture.getSize().x) * scale.x, this->size.y / static_cast<float>(this->rateTexture.getSize().y) * scale.y });
 
 			// Multiplied scale with texture size
-			this->m_RateSize = { (this->m_Size.x / static_cast<float>(this->m_RateTexture.getSize().x) * 0.2f) * static_cast<float>(this->m_RateTexture.getSize().x),
-			(this->m_Size.y / static_cast<float>(this->m_RateTexture.getSize().y) * 1.2f) * static_cast<float>(this->m_RateTexture.getSize().y) };
+			this->rateSize = { (this->size.x / static_cast<float>(this->rateTexture.getSize().x) * scale.x) * static_cast<float>(this->rateTexture.getSize().x),
+			(this->size.y / static_cast<float>(this->rateTexture.getSize().y) * scale.y) * static_cast<float>(this->rateTexture.getSize().y) };
 
 			
 			// Set position for slider and rate
-			this->m_Sprite.setPosition(this->m_Position);
-			this->m_RateSprite.setPosition({ this->m_Position.x + (this->m_Size.x / 2) - (this->m_RateSize.x / 2), this->m_Position.y + (this->m_Size.y / 2) - (this->m_RateSize.y /2) });
+			this->sprite.setPosition(this->position);
+			this->ratePosition = { this->position.x + (this->size.x / 2) - (this->rateSize.x / 2), this->position.y + (this->size.y / 2) - (this->rateSize.y / 2) };
+			this->rateSprite.setPosition(this->ratePosition);
 		}
+
+		void Slider::addCallback(void function(Slider*))
+		{
+			for (unsigned i = 0; i < this->functions.size(); ++i)
+				if (this->functions[i] == nullptr)
+				{
+					this->functions[i] = function; break;
+				}
+		}
+
+		void Slider::selected(sf::Event& event)
+		{
+			if (this->rateSprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
+			{
+				this->enable = true;
+			}
+		}
+
+		void Slider::released()
+		{
+			this->enable = false;
+		}
+
+		// Virtual methods
 
 		void Slider::use(sf::Event& event)
 		{
+			if (this->enable)
+			{
+				if (event.mouseMove.x != this->ratePosition.x)
+				{
+					if (event.mouseMove.x >= position.x + size.x - (rateSize.x / 2))
+						ratePosition.x = position.x + size.x - rateSize.x;
+					else if (event.mouseMove.x <= position.x + (rateSize.x / 2))
+						ratePosition.x = position.x;
+					else
+						ratePosition.x = event.mouseMove.x - (rateSize.x / 2);
 
+					rateSprite.setPosition(ratePosition);
+					for (unsigned i = 0; i < this->functions.size(); ++i)
+						if (this->functions[i] != nullptr)
+							this->functions[i](this);
+				}
+			}
 		}
 
 		void Slider::update(sf::RenderWindow& window)
 		{
-			window.draw(this->m_Sprite);
-			window.draw(this->m_RateSprite);
+			window.draw(this->sprite);
+			window.draw(this->rateSprite);
 		}
 	}
 }

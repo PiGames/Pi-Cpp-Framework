@@ -34,9 +34,9 @@ namespace pi
 			// Slider section end
 
 		private:
-			std::array <pi::ui::Button*, 32> m_Buttons;
-			std::array <pi::ui::Checkbox*, 32> m_Checkboxs;
-			std::array <pi::ui::Slider*, 32> m_Sliders;
+			std::array <pi::ui::Button*, 32> buttons;
+			std::array <pi::ui::Checkbox*, 32> checkboxs;
+			std::array <pi::ui::Slider*, 32> sliders;
 		};
 	}
 }
