@@ -4,11 +4,14 @@
 #include <SFML/System/Vector2.hpp>
 #include "engine/pathfinder/PathFinder.hpp"
 
-class MoveableObject
+namespace pi
 {
-	std::queue<sf::Vector2f> targets;
-public:
+	class MoveableObject
+	{
+		std::queue<sf::Vector2f> targets;
+	public:
 	
-	void SetTargetTo(sf::Vector2f from, sf::Vector2f to);
-	bool IsMoving();
-};
+		void SetTargetTo(sf::Vector2f from, sf::Vector2f to);
+		bool IsMoving();
+	};	
+}
