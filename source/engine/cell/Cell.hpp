@@ -15,5 +15,5 @@ class Cell : public sf::Drawable, public pi::GameObject
 	static sf::Vector2f dimensions;
 
 public:
-	Cell(int id,sf::Texture *texture,sf::Vector2f position,sf::Vector2f worldSize,bool collideable);
+	Cell(int id = 0, sf::Texture *texture = nullptr, sf::Vector2f position = sf::Vector2f(0, 0), sf::Vector2f worldSize = sf::Vector2f(0, 0), bool collideable = false);
 };
