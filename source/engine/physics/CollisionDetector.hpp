@@ -15,7 +15,6 @@ namespace pi
 
 			BoxCollider* addBoxCollider(BoxCollider* boxCollider);
 
-			void refresh();
 			void update(float deltaTime);
 
 		private:

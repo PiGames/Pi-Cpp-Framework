@@ -1,93 +1,73 @@
 #pragma once
-
-#include <string>
-#include <typeindex>
-#include <typeinfo>
 #include <SFML/Graphics/Drawable.hpp>
+#include <string>
+#include <typeinfo>
+#include <typeindex>
 
 namespace pi
 {
 	class GameObject;
 
-	using UniqueType = std::type_index;
-
-	// Base Component class
-	class BaseComponent
+	enum class ComponentType
 	{
-		friend class GameObject;
-
-	public:
-		// gameObject - pointer to Game Object that owns this component
-		// child - poitner to component that inherits from Base Component
-		template<class T>
-		BaseComponent(GameObject* gameObject, T* child);
-		virtual ~BaseComponent() = default;
-		// Sets Component's name
-		// name - name
-		void setName(const std::string& name);
-
-		// Returns Component's name
-		std::string getName();
-		// Returns pointer to Component's owning Game Object
-		GameObject* getGameObject();
-
-		operator bool() const;
-
-	protected:
-		std::string name;
-		UniqueType type;
-		GameObject* gameObject;
+		Updatable = 0,
+		Drawable
 	};
-	
-	// Drawable Component class - draws sf::Drawables on screen
-	// Don't forget to overwrite:
-	// (private)
-	// void draw(sf::RenderTarget&, sf::RenderStates) const
-	class DrawableComponent :
-		public BaseComponent,
+
+	// Component class 
+	// You can add it to Game Object
+	// Component Type should not be changed in other places than Component's constructor!
+	// Private methods to override:
+	// void update(float)
+	// virtual void draw(sf::RenderTarget&, sf::RenderStates) const
+	// Public:
+	// ComponentType getComponentType()
+	class Component : 
 		public sf::Drawable
 	{
+		friend class ComponentCache;
+		friend class GameObject;
+
+	private:
+		virtual void update(float);
+		virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
+
 	public:
-		// gameObject - pointer to Game Object that owns this component
-		// child - poitner to component that inherits from Drawable Component
+		// Component class constructor
+		// gameObject - reference to owning Game Object
+		// component - component
 		template<class T>
-		DrawableComponent(GameObject* gameObject, T* child);
+		Component(GameObject& gameObject, T* component) noexcept;
+		virtual ~Component();
+
+		Component(Component&&) = delete;
+		Component& operator=(Component&&) = delete;
+
+		// Returns reference to owning Game Object
+		auto& getGameObject();
+		// Returns Component type
+		virtual ComponentType getComponentType() = 0;
+		// Returns reference to Component's name
+		auto& getName();
+		// Returns Component's unique type id
+		std::type_index getUniqueType();
+
+		// Sets Component name
+		void setName(std::string&& name);
+
+	protected:
+		GameObject& gameObject;
+		std::string name;
+	
+	private:
+		std::type_index uniqueType;
 	};
 
-	// Updatable Component class - updates component in game loop
-	// Don't forget to overwrite:
-	// void update(float)
-	class UpdatableComponent :
-		public BaseComponent
-	{
-	public:
-		// gameObject - pointer to Game Object that owns this component
-		// child - poitner to component that inherits from Updatable Component
-		template<class T>
-		UpdatableComponent(GameObject* gameObject, T* child);
-
-		// Updates Component's logic
-		// deltaTime - frame time in seconds
-		virtual void update(float deltaTime) = 0;
-	};
-
-
 	template<class T>
-	inline BaseComponent::BaseComponent(GameObject* gameObject, T* child) :
-		type(typeid(T))
+	inline Component::Component(GameObject & gameObject, T * component) noexcept :
+		gameObject(gameObject),
+		uniqueType(typeid(T))
 	{
-		this->name = "<unnamed component>";
-		// Game Object cannot be nullptr! In future here will be assert
-		this->gameObject = gameObject;
-	}
-
-	template<class T>
-	inline DrawableComponent::DrawableComponent(GameObject * gameObject, T * child) :BaseComponent(gameObject, child)
-	{
-	}
-
-	template<class T>
-	inline UpdatableComponent::UpdatableComponent(GameObject * gameObject, T * child) :BaseComponent(gameObject, child)
-	{
+		this->name = "<unnamed Component>";
 	}
 }

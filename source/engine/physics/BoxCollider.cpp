@@ -4,11 +4,11 @@ namespace pi
 {
 	namespace phy
 	{
-		BoxCollider::BoxCollider(GameObject * gameObject) : UpdatableComponent(gameObject, this)
+		BoxCollider::BoxCollider(GameObject& gameObject) : Component(gameObject, this)
 		{
-			this->rigidbodyAttachedTo = gameObject->getComponent<Rigidbody>();
+			this->rigidbodyAttachedTo = gameObject.getComponent<Rigidbody>();
 			this->offset = sf::Vector2f(0, 0);
-			this->rect = sf::FloatRect(gameObject->getPosition().x, gameObject->getPosition().y, 0, 0);
+			this->rect = sf::FloatRect(gameObject.getPosition().x, gameObject.getPosition().y, 0, 0);
 		}
 
 		const auto & BoxCollider::getCollidersCollidedWith()
@@ -37,8 +37,13 @@ namespace pi
 
 		void BoxCollider::update(float)
 		{
-			this->rect.left = this->gameObject->getPosition().x + this->offset.x;
-			this->rect.top = this->gameObject->getPosition().y + this->offset.y;
+			this->rect.left = this->gameObject.getPosition().x + this->offset.x;
+			this->rect.top = this->gameObject.getPosition().y + this->offset.y;
+		}
+
+		ComponentType BoxCollider::getComponentType()
+		{
+			return ComponentType::Updatable;
 		}
 	}
 }

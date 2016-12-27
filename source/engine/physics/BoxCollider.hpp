@@ -14,12 +14,12 @@ namespace pi
 		class Rigidbody;
 
 		class BoxCollider final:
-			public UpdatableComponent
+			public Component
 		{
 			friend class CollisionDetector;
 
 		public:
-			BoxCollider(GameObject* gameObject);
+			BoxCollider(GameObject& gameObject);
 
 			const auto& getCollidersCollidedWith();
 
@@ -28,6 +28,8 @@ namespace pi
 			void setRigidbody(Rigidbody * rigidbody);
 
 			void update(float);
+
+			ComponentType getComponentType();
 
 		private:
 			Rigidbody * rigidbodyAttachedTo;

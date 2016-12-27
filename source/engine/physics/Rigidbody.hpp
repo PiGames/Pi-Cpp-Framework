@@ -13,12 +13,12 @@ namespace pi
 		class BoxCollider;
 
 		class Rigidbody final:
-			public UpdatableComponent
+			public Component
 		{
 			friend class CollisionDetector;
 
 		public:
-			Rigidbody(GameObject* gameObject);
+			Rigidbody(GameObject& gameObject);
 
 			sf::Vector2f getVelocity();
 
@@ -28,6 +28,8 @@ namespace pi
 
 			void update(float deltaTime);
 			BoxCollider* addBoxCollider(BoxCollider* boxCollider);
+
+			ComponentType getComponentType();
 
 		private:
 			const static std::uint8_t MAX_COLLIDERS_COUNT = 8;

@@ -4,10 +4,10 @@ namespace pi
 {
 	namespace phy
 	{
-		Rigidbody::Rigidbody(GameObject* gameObject) : UpdatableComponent(gameObject, this)
+		Rigidbody::Rigidbody(GameObject& gameObject) : Component(gameObject, this)
 		{
 			this->colliders.fill(nullptr);
-			this->position = gameObject->getPosition();
+			this->position = gameObject.getPosition();
 			this->velocity = sf::Vector2f(0, 0);
 		}
 
@@ -33,11 +33,7 @@ namespace pi
 
 		void Rigidbody::update(float deltaTime)
 		{
-			gameObject->setPosition(this->position + velocity * deltaTime);
-
-			for (auto* ptr : this->colliders)
-				if (ptr && !(*ptr))
-					ptr = nullptr;
+			this->gameObject.setPosition(this->position + velocity * deltaTime);
 		}
 
 		BoxCollider * Rigidbody::addBoxCollider(BoxCollider * boxCollider)
@@ -51,6 +47,11 @@ namespace pi
 				}
 
 			return nullptr;
+		}
+
+		ComponentType Rigidbody::getComponentType()
+		{
+			return ComponentType::Updatable;
 		}
 	}
 }

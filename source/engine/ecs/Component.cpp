@@ -2,22 +2,36 @@
 
 namespace pi
 {
-	void BaseComponent::setName(const std::string & name)
+	void Component::update(float)
 	{
-		this->name = name;
 	}
 
-	std::string BaseComponent::getName()
+	void Component::draw(sf::RenderTarget &, sf::RenderStates) const
+	{
+	}
+
+	Component::~Component()
+	{
+	}
+
+	auto& Component::getGameObject()
+	{
+		return this->gameObject;
+	}
+
+	auto& Component::getName()
 	{
 		return this->name;
 	}
-	GameObject * BaseComponent::getGameObject()
+
+	std::type_index Component::getUniqueType()
 	{
-		return gameObject;
+		return this->uniqueType;
 	}
 
-	BaseComponent::operator bool() const
+	void Component::setName(std::string && name)
 	{
-		return (gameObject != nullptr) ? true:false;
+		this->name = name;
 	}
 }
+

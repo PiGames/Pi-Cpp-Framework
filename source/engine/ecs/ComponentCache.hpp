@@ -1,65 +1,74 @@
 #pragma once
-
-#include <array>
-#include <memory>
-
-#include <SFML/Graphics/RenderWindow.hpp>
 #include "Component.hpp"
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <memory>
+#include <array>
 
 namespace pi
 {
-	// Component Cache
-	// Use it if you want to add component to your Game Object
-	class ComponentCache
+	class ComponentCache final:
+		public sf::Drawable
 	{
+	private:
+		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
 	public:
 		ComponentCache();
 
-		// Returns Component from cache
-		// Added component must inherit from Updatable or Drawable Component
+		ComponentCache(ComponentCache&&) = delete;
+		ComponentCache& operator=(ComponentCache&&) = delete;
+	
 		template<class T, class ...Args>
-		T* getComponent(Args&& ...args);
-
-		// Refreshes cache - resets unused Components 
-		// Call it when you delete Entities to free cache
-		void refresh();
-		// Updates Updatable Components
-		// deltaTime - frame time in seconds
+		T* get(Args&& ...args);
+	
 		void update(float deltaTime);
-		// Draws Drawable Components
-		void draw(sf::RenderTarget& target, sf::RenderStates states);
 
 	private:
 		static const std::uint16_t MAX_COMPONENT_COUNT = 1024;
 
-		std::array<std::unique_ptr<UpdatableComponent>, MAX_COMPONENT_COUNT> updatableComponents;
-		std::array<std::unique_ptr<DrawableComponent>, MAX_COMPONENT_COUNT> drawableComponents;
+		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> silent;
+		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> updatable;
+		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> drawable;
 	};
 
+
 	template<class T, class ...Args>
-	inline T * ComponentCache::getComponent(Args&& ...args)
+	inline T * ComponentCache::get(Args&& ...args)
 	{
-		if(!std::is_base_of<BaseComponent, T>::value || !std::is_base_of<UpdatableComponent, T>::value || !std::is_base_of<DrawableComponent, T>::value)
+		if (!std::is_base_of<Component, T>::value)
 			return nullptr;
-		if (std::is_same<BaseComponent, T> || std::is_same<DrawableComponent, T> || std::is_same<DrawableComponent, T>)
-			return nullptr;
+	
+		T* component = new T(args...);
 
-		if(std::is_base_of<UpdatableComponent, T>::value)
-			for(auto& ptr : this->updatableComponents)
-				if (!ptr)
+		if (t->getComponentType() == ComponentType::Silent)
+			for(auto& silent : this->silent)
+				if (!silent)
 				{
-					ptr.reset(new T(args));
+					silent.reset(component);
 
-					return dynamic_cast<T*>(ptr.get());
+					return component;
 				}
 
-		else if(std::is_base_of<DrawableComponent, T>::value)
-			for(auto& ptr : this->drawableComponents)
-				if (!ptr)
+		else if (t->getComponentType() == ComponentType::Updatable)
+			for (auto& updatable : this->updatable)
+				if (!updatable)
 				{
-					ptr.reset(new T(args));
+					updatable.reset(component);
 
-					return dynamic_cast<T*>(ptr.get());
+					return component;
 				}
+
+		else if (t->getComponentType() == ComponentType::Drawable)
+			for (auto& drawable : this->drawable)
+				if (!drawable)
+				{
+					drawable.reset(component);
+
+					return component;
+				}
+
+		delete component;
+
+		return nullptr;
 	}
 }

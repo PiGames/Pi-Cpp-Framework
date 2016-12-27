@@ -22,13 +22,6 @@ namespace pi
 			return nullptr;
 		}
 
-		void CollisionDetector::refresh()
-		{
-			for (auto* ptr : this->colliders)
-				if (ptr && !(*ptr))
-					ptr = nullptr;
-		}
-
 		void CollisionDetector::update(float deltaTime)
 		{
 			// First clean colliders
