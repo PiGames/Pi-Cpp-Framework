@@ -12,6 +12,7 @@ namespace pi
 	{
 		class BoxCollider;
 
+		// Rigidbody Component class
 		class Rigidbody final:
 			public Component
 		{
@@ -20,13 +21,20 @@ namespace pi
 		public:
 			Rigidbody(GameObject& gameObject);
 
+			// Returns velocity of Rigidbody
 			sf::Vector2f getVelocity();
 
-			void setPosition(sf::Vector2f position);
-			void setVeclocity(sf::Vector2f velocity);
-			void addVelocity(sf::Vector2f force);
+			// Sets Rigidbody position
+			void setPosition(sf::Vector2f&& position);
+			// Sets Rigidbody velocity
+			void setVeclocity(sf::Vector2f&& velocity);
+			// Adds force to current Rigidbody velocity
+			void addVelocity(sf::Vector2f&& force);
 
 			void update(float deltaTime);
+			// Adds Box Collider to Rigidbody
+			// Returns pointer to that Box Collider
+			// Also returns nullptr if there is more than 8 colliders attached
 			BoxCollider* addBoxCollider(BoxCollider* boxCollider);
 
 			ComponentType getComponentType();

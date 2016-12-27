@@ -13,6 +13,8 @@ namespace pi
 	{
 		class Rigidbody;
 
+		// Box Collider Component
+		// Attach it to RigidBody Component!
 		class BoxCollider final:
 			public Component
 		{
@@ -21,10 +23,13 @@ namespace pi
 		public:
 			BoxCollider(GameObject& gameObject);
 
+			// Returns const std::vector of pointers to BoxColliders that collided with this Collider
 			const auto& getCollidersCollidedWith();
-
-			void setOffset(sf::Vector2f offset);
-			void setSize(sf::Vector2f size);
+			// Returns offset relative to RigidBody position
+			void setOffset(sf::Vector2f&& offset);
+			// Returns Collider size
+			void setSize(sf::Vector2f&& size);
+			// Returns Rigidbody that this Collider is attached
 			void setRigidbody(Rigidbody * rigidbody);
 
 			void update(float);
