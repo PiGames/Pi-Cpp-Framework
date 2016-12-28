@@ -42,7 +42,6 @@ namespace pi
 
 	private:
 		static std::ofstream file;
-		static unsigned messageCounter;
 	};
 }
 

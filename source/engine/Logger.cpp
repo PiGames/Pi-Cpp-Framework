@@ -4,8 +4,6 @@ namespace pi
 {
 	void Logger::init(const std::string& outputFileName)
 	{
-		messageCounter = 0;
-
 		if (file.is_open())
 			return;
 
@@ -28,8 +26,6 @@ namespace pi
 
 	void Logger::log(const std::string& message, MessageType messageType, OutputType outputType)
 	{
-		++messageCounter;	
-
 		std::string typeText = "";
 		std::string output = "";
 

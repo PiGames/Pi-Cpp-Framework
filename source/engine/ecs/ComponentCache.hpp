@@ -10,7 +10,7 @@ namespace pi
 	using enable_if = typename std::enable_if<CONDITION::value>::type;
 
 	// Component Cache class
-	class ComponentCache final:
+	class ComponentCache final :
 		public sf::Drawable
 	{
 	private:
@@ -21,7 +21,7 @@ namespace pi
 
 		ComponentCache(ComponentCache&&) = delete;
 		ComponentCache& operator=(ComponentCache&&) = delete;
-	
+
 		// Returns pointer to added Component
 		// Also returns nullptr if there is more than 1024 Components of ComponentType
 		template <typename T, enable_if<std::is_base_of<Component, T>>..., class ...Args>
@@ -30,40 +30,45 @@ namespace pi
 			if (!std::is_base_of<Component, T>::value)
 				return nullptr;
 
-			T* component = new T(args...);
+			T component(args...);
 
-			if(t->getComponentType() == ComponentType::Both)
-				for(auto& both : this->both)
-					if (!both)
-					{
-						both.reset(component);
 
-						return component;
-					}
-
-			else if (t->getComponentType() == ComponentType::Updatable)
+			if (component.getComponentType() == ComponentType::Updatable)
+			{
 				for (auto& updatable : this->updatable)
 					if (!updatable)
 					{
-						updatable.reset(component);
+						updatable.reset(new T(args...));
 
-						return component;
+						return dynamic_cast<T*>(updatable.get());
 					}
+			}
 
-			else if (t->getComponentType() == ComponentType::Drawable)
+			if (component.getComponentType() == ComponentType::Drawable)
+			{
 				for (auto& drawable : this->drawable)
 					if (!drawable)
 					{
-						drawable.reset(component);
+						drawable.reset(new T(args...));
 
-						return component;
+						return dynamic_cast<T*>(drawable.get());
 					}
+			}
 
-			delete component;
+			if (component.getComponentType() == ComponentType::Both)
+			{
+				for (auto& both : this->both)
+					if (!both)
+					{
+						both.reset(new T(args...));
+
+						return dynamic_cast<T*>(both.get());
+					}
+			}
 
 			return nullptr;
 		}
-	
+
 		void update(float deltaTime);
 
 	private:
