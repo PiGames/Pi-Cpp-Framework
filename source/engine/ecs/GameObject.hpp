@@ -23,6 +23,12 @@ namespace pi
 		// Returns reference to it position
 		sf::Vector2f& getPosition();
 
+		//Returns vector of unit position
+		std::vector<sf::Vector2i>& getUnitPosition();
+
+		//Sets unit position
+		void setUnitPosition(std::vector<sf::Vector2i> unitPos);
+
 		// Sets its name
 		void setName(const std::string& name);
 		// Sets its position
@@ -84,5 +90,6 @@ namespace pi
 		std::string name;
 		sf::Vector2f position;
 		std::vector<Component*> components;
+		std::vector<sf::Vector2i> unitPosition;
 	};
 }

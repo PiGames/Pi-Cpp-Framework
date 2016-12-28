@@ -18,6 +18,17 @@ namespace pi
 		return this->position;
 	}
 
+	std::vector<sf::Vector2i>& GameObject::getUnitPosition()
+	{
+		return this->unitPosition;
+
+	}
+
+	void GameObject::setUnitPosition(std::vector<sf::Vector2i> unitPos)
+	{
+		unitPosition = unitPos;
+	}
+
 	void GameObject::setName(const std::string& name)
 	{
 		this->name = name;
