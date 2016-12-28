@@ -9,7 +9,14 @@ Math::~Math()
 {
 }
 
-double Math::PerlinNoise(double x, double y, double z)
+float Math::Sign(float x)
+{
+    if(x>0) return 1;
+    if(x<0) return -1;
+    return 0;
+}
+
+void Math::PerlinNoiseInit()
 {
     perlinPermutationVector = {
 		151,160,137,91,90,15,131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,
@@ -26,6 +33,11 @@ double Math::PerlinNoise(double x, double y, double z)
 		138,236,205,93,222,114,67,29,24,72,243,141,128,195,78,66,215,61,156,180 };
 
 	perlinPermutationVector.insert(perlinPermutationVector.end(), perlinPermutationVector.begin(), perlinPermutationVector.end());
+}
+
+double Math::PerlinNoise(double x, double y, double z)
+{
+
 
 	// Find the unit cube that contains the point
 	int X = (int) floor(x) & 255;

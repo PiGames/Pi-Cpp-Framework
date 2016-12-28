@@ -13,6 +13,8 @@ class Math
         virtual ~Math();
 
         static double PerlinNoise(double x, double y, double z);
+        static void PerlinNoiseInit();
+        static float Sign(float x);
     protected:
 
     private:
