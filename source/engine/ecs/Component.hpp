@@ -8,8 +8,14 @@ namespace pi
 {
 	class GameObject;
 
+	// Component types:
+	// Dry - not 'real' component, only added - nothing updates or draws, probably only a flag
+	// Updatable - only updates, not draws
+	// Drawable - only draws, not updates
+	// Both - updates and draws
 	enum class ComponentType
 	{
+		Dry = -1,
 		Updatable = 0,
 		Drawable,
 		Both

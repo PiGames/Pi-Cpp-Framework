@@ -32,6 +32,16 @@ namespace pi
 
 			T component(args...);
 
+			if (component.getComponentType() == ComponentType::Dry)
+			{
+				for(auto& dry : this->dry)
+					if (!dry)
+					{
+						dry.reset(new T(args...));
+
+						return dynamic_cast<T*>(dry.get());
+					}
+			}
 
 			if (component.getComponentType() == ComponentType::Updatable)
 			{
@@ -74,6 +84,7 @@ namespace pi
 	private:
 		static const std::uint16_t MAX_COMPONENT_COUNT = 1024;
 
+		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> dry;
 		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> updatable;
 		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> drawable;
 		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> both;
