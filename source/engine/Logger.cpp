@@ -2,6 +2,8 @@
 
 namespace pi
 {
+	std::ofstream Logger::file;
+
 	void Logger::init(const std::string& outputFileName)
 	{
 		if (file.is_open())
