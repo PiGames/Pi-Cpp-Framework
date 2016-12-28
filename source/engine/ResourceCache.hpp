@@ -17,7 +17,7 @@ namespace pi
 		virtual ~ResourceCache() = default;
 	
 		// Returns reference to given resource
-		virtual T& get(std::string&& key) = 0;
+		virtual T& get(const std::string& key) = 0;
 
 	protected:
 		// Returns special resource version if error occures in get method
@@ -47,7 +47,7 @@ namespace pi
 		// Returns Fallback Color
 		void setFallbackColor(sf::Color color);
 
-		sf::Texture& get(std::string&& path);
+		sf::Texture& get(const std::string& path);
 	
 	private:
 		sf::Color fallbackColor;

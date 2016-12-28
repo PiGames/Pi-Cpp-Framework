@@ -24,9 +24,9 @@ namespace pi
 		sf::Vector2f& getPosition();
 
 		// Sets its name
-		void setName(std::string&& name);
+		void setName(const std::string& name);
 		// Sets its position
-		void setPosition(sf::Vector2f&& position);
+		void setPosition(const sf::Vector2f& position);
 
 		// Adds Component to Game Object
 		// Don't forget to use Component Cache!

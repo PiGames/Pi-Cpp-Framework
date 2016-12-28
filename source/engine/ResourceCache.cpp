@@ -29,7 +29,7 @@ namespace pi
 		this->fallbackColor = color;
 	}
 
-	sf::Texture& TextureCache::get(std::string&& path)
+	sf::Texture& TextureCache::get(const std::string& path)
 	{
 		if (path.empty())
 			return *handleError();

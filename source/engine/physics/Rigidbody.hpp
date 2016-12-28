@@ -25,11 +25,11 @@ namespace pi
 			sf::Vector2f getVelocity();
 
 			// Sets Rigidbody position
-			void setPosition(sf::Vector2f&& position);
+			void setPosition(const sf::Vector2f& position);
 			// Sets Rigidbody velocity
-			void setVeclocity(sf::Vector2f&& velocity);
+			void setVeclocity(const sf::Vector2f& velocity);
 			// Adds force to current Rigidbody velocity
-			void addVelocity(sf::Vector2f&& force);
+			void addVelocity(const sf::Vector2f& force);
 
 			void update(float deltaTime);
 			// Adds Box Collider to Rigidbody

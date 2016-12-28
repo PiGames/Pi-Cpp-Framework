@@ -16,7 +16,7 @@ namespace pi
 			return this->collidersCollidedWith;
 		}
 
-		void BoxCollider::setOffset(sf::Vector2f&& offset)
+		void BoxCollider::setOffset(const sf::Vector2f& offset)
 		{
 			this->offset = offset;
 
@@ -24,7 +24,7 @@ namespace pi
 			this->rect.top = this->offset.y;
 		}
 
-		void BoxCollider::setSize(sf::Vector2f&& size)
+		void BoxCollider::setSize(const sf::Vector2f& size)
 		{
 			this->rect.width = size.x;
 			this->rect.height = size.y;

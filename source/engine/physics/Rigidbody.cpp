@@ -16,17 +16,17 @@ namespace pi
 			return this->velocity;
 		}
 
-		void Rigidbody::setPosition(sf::Vector2f&& position)
+		void Rigidbody::setPosition(const sf::Vector2f& position)
 		{
 			this->position = position;
 		}
 
-		void Rigidbody::setVeclocity(sf::Vector2f&& velocity)
+		void Rigidbody::setVeclocity(const sf::Vector2f& velocity)
 		{
 			this->velocity = velocity;
 		}
 
-		void Rigidbody::addVelocity(sf::Vector2f&& force)
+		void Rigidbody::addVelocity(const sf::Vector2f& force)
 		{
 			this->velocity += force;
 		}

@@ -26,9 +26,9 @@ namespace pi
 			// Returns const std::vector of pointers to BoxColliders that collided with this Collider
 			const auto& getCollidersCollidedWith();
 			// Returns offset relative to RigidBody position
-			void setOffset(sf::Vector2f&& offset);
+			void setOffset(const sf::Vector2f& offset);
 			// Returns Collider size
-			void setSize(sf::Vector2f&& size);
+			void setSize(const sf::Vector2f& size);
 			// Returns Rigidbody that this Collider is attached
 			void setRigidbody(Rigidbody * rigidbody);
 

@@ -4,11 +4,11 @@ namespace pi
 {
 	void ComponentCache::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	{
-		for (auto& drawable : this->drawable)
+		for (const auto& drawable : this->drawable)
 			if (drawable)
 				target.draw(*drawable, states);
 
-		for (auto& both : this->both)
+		for (const auto& both : this->both)
 			if (both)
 				target.draw(*both, states);
 	}

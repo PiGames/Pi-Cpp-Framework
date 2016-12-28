@@ -18,12 +18,12 @@ namespace pi
 		return this->position;
 	}
 
-	void GameObject::setName(std::string && name)
+	void GameObject::setName(const std::string& name)
 	{
 		this->name = name;
 	}
 
-	void GameObject::setPosition(sf::Vector2f && position)
+	void GameObject::setPosition(const sf::Vector2f& position)
 	{
 		this->position = position;
 	}
