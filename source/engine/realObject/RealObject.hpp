@@ -9,17 +9,9 @@ namespace pi
 	{
 		std::vector<sf::Vector2i> unitPosition;
 
-		bool collideable;
-
 	public:
-		//Constructor | dafault: flag(false), unitPos(sf::Vector2i(0,0))
-		RealObject(bool collisionFlag = false, std::vector<sf::Vector2i> unitPos = std::vector<sf::Vector2i>{ sf::Vector2i(0,0) });
-
-		//Returns true if object is collideable
-		bool IsCollideable();
-
-		//Sets collideable
-		void SetCollideableFlag(bool type);
+		//unitPos(sf::Vector2i(0,0))
+		RealObject(std::vector<sf::Vector2i> unitPos = std::vector<sf::Vector2i>{ sf::Vector2i(0,0) });
 
 		//Returns vector of unit position
 		std::vector<sf::Vector2i> GetUnitPosition();

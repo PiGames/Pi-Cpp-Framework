@@ -13,7 +13,7 @@ namespace pi
 		PathfinderAttributes(GameObject& gameObject);
 		
 		ComponentType getComponentType();
-
+		
 		// Adds flag to flag container
 		// name - flag name
 		// status - true or false
@@ -23,6 +23,11 @@ namespace pi
 		bool getFlag(const std::string& name);
 		// returns true if flag of given name exist
 		bool hasFlag(const std::string& name);
+
+		static struct FLAGS
+		{
+			static const std::string COLLIDABLE;
+		};
 
 	private:
 		std::unordered_map<std::string, bool> flags;

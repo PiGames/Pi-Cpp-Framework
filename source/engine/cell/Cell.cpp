@@ -15,6 +15,8 @@ namespace pi
 		object.setTexture(*texture);
 		object.setTextureRect(sf::IntRect(ID*Cell::dimensions.x, 0, Cell::dimensions.x, Cell::dimensions.y));
 		object.setOrigin(object.getGlobalBounds().width / 2.0f, object.getGlobalBounds().height / 2.0f);
-	}
 
+		this->addComponent(PathfinderAttributes(*this));
+		this->getComponent<PathfinderAttributes>()->addFlag(PathfinderAttributes::FLAGS::COLLIDABLE, false);
+	}
 }

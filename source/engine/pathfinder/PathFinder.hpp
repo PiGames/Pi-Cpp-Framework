@@ -5,6 +5,7 @@
 #include <iostream>
 #include <algorithm>
 #include "engine/cell/Cell.hpp"
+#include "PatfinderAttributes.hpp"
 
 namespace pi
 {

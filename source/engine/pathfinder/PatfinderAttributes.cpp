@@ -2,6 +2,10 @@
 
 namespace pi
 {
+	struct PathfinderAttributes::FLAGS;
+	const std::string PathfinderAttributes::FLAGS::COLLIDABLE;
+
+
 	PathfinderAttributes::PathfinderAttributes(GameObject & gameObject) : Component(gameObject, this)
 	{
 	}
