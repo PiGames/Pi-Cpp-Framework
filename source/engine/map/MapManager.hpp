@@ -2,6 +2,7 @@
 
 #include "engine/cell/Cell.hpp"
 #include "engine/ecs/GameObject.hpp"
+#include "engine/Config.hpp"
 
 namespace pi
 {

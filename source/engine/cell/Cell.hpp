@@ -5,6 +5,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 #include "engine/ecs/GameObject.hpp"
 #include "engine/pathfinder/PatfinderAttributes.hpp"
+#include "engine/Config.hpp"
 
 namespace pi
 {

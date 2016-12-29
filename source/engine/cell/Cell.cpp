@@ -17,6 +17,6 @@ namespace pi
 		object.setOrigin(object.getGlobalBounds().width / 2.0f, object.getGlobalBounds().height / 2.0f);
 
 		this->addComponent(PathfinderAttributes(*this));
-		this->getComponent<PathfinderAttributes>()->addFlag(PathfinderAttributes::FLAGS::COLLIDABLE, false);
+		this->getComponent<PathfinderAttributes>()->addFlag(constants::pathfinder::flagNames::COLLIDABLE, false);
 	}
 }

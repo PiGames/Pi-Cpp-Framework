@@ -24,11 +24,6 @@ namespace pi
 		// returns true if flag of given name exist
 		bool hasFlag(const std::string& name);
 
-		static struct FLAGS
-		{
-			static const std::string COLLIDABLE;
-		};
-
 	private:
 		std::unordered_map<std::string, bool> flags;
 	};
