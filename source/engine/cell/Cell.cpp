@@ -2,6 +2,9 @@
 
 namespace pi
 {
+	sf::Vector2i *Cell::unitWorldSize;
+	sf::Vector2f *Cell::cellDimensions;
+
 	void Cell::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	{
 		target.draw(object, states);

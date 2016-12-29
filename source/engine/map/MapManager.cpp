@@ -2,7 +2,7 @@
 
 namespace pi
 {
-
+	sf::Vector2f MapManager::cellDimensions;
 	sf::Vector2i MapManager::unitWorldSize;
 	Cell* MapManager::surface;
 	std::vector<pi::GameObject> MapManager::objects;
