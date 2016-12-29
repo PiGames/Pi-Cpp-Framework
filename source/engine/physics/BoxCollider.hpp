@@ -9,7 +9,7 @@
 
 namespace pi
 {
-	namespace phy
+	namespace physic
 	{
 		class Rigidbody;
 

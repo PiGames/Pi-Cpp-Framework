@@ -3,10 +3,11 @@
 #include "BoxCollider.hpp"
 #include "Rigidbody.hpp"
 #include "engine/ecs/GameObject.hpp"
+#include "engine/Config.hpp"
 
 namespace pi
 {
-	namespace phy
+	namespace physic
 	{
 		// Collision Detector class
 		class CollisionDetector final
@@ -21,9 +22,7 @@ namespace pi
 			void update(float deltaTime);
 
 		private:
-			const static std::uint16_t MAX_COLLIDERS_COUNT = 512;
-
-			std::array<BoxCollider*, MAX_COLLIDERS_COUNT> colliders;
+			std::array<BoxCollider*, constants::physic::collisionDetector::MAX_COLLIDERS> colliders;
 		};
 	}
 }

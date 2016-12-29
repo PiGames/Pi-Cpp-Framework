@@ -2,7 +2,7 @@
 
 namespace pi
 {
-	namespace phy
+	namespace physic
 	{
 		CollisionDetector::CollisionDetector()
 		{

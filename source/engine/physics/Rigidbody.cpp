@@ -2,7 +2,7 @@
 
 namespace pi
 {
-	namespace phy
+	namespace physic
 	{
 		Rigidbody::Rigidbody(GameObject& gameObject) : Component(gameObject, this)
 		{

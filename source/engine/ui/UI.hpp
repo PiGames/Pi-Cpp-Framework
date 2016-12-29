@@ -4,6 +4,7 @@
 #include "Button.hpp"
 #include "Checkbox.hpp"
 #include "Slider.hpp"
+#include "engine/Config.hpp"
 
 #include <array>
 
@@ -38,9 +39,9 @@ namespace pi
 			// Slider section end
 
 		private:
-			std::array <pi::ui::Button*, 32> buttons;
-			std::array <pi::ui::Checkbox*, 32> checkboxs;
-			std::array <pi::ui::Slider*, 32> sliders;
+			std::array <pi::ui::Button*, constants::ui::MAX_UIELEMENTS> buttons;
+			std::array <pi::ui::Checkbox*, constants::ui::MAX_UIELEMENTS> checkboxs;
+			std::array <pi::ui::Slider*, constants::ui::MAX_UIELEMENTS> sliders;
 		};
 	}
 }

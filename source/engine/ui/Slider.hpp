@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Element.hpp"
+#include "engine/Config.hpp"
 
 #include <array>
 
@@ -38,7 +39,7 @@ namespace pi
 			sf::Texture sliderTexture, rateTexture;
 			sf::Sprite rateSprite;
 			sf::Vector2f ratePosition, rateSize, scale;
-			std::array <void(*)(Slider*), 8 > functions;
+			std::array <void(*)(Slider*), constants::ui::MAX_CALLBACKS > functions;
 			bool enable;
 		};
 	}

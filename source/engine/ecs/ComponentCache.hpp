@@ -1,5 +1,6 @@
 #pragma once
 #include "Component.hpp"
+#include "engine/Config.hpp"
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <memory>
 #include <array>
@@ -82,11 +83,9 @@ namespace pi
 		void update(float deltaTime);
 
 	private:
-		static const std::uint16_t MAX_COMPONENT_COUNT = 1024;
-
-		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> dry;
-		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> updatable;
-		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> drawable;
-		std::array<std::unique_ptr<Component>, MAX_COMPONENT_COUNT> both;
+		std::array<std::unique_ptr<Component>, constants::componentCache::MAX_COMPONENT_COUNT> dry;
+		std::array<std::unique_ptr<Component>, constants::componentCache::MAX_COMPONENT_COUNT> updatable;
+		std::array<std::unique_ptr<Component>, constants::componentCache::MAX_COMPONENT_COUNT> drawable;
+		std::array<std::unique_ptr<Component>, constants::componentCache::MAX_COMPONENT_COUNT> both;
 	};
 }

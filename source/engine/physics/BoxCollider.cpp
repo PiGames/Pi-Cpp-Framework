@@ -2,7 +2,7 @@
 
 namespace pi
 {
-	namespace phy
+	namespace physic
 	{
 		BoxCollider::BoxCollider(GameObject& gameObject) : Component(gameObject, this)
 		{

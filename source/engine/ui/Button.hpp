@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Element.hpp"
+#include "engine/Config.hpp"
 
 #include <array>
 
@@ -28,7 +29,7 @@ namespace pi
 
 		private:
 			sf::Texture texture;
-			std::array <void(*)(), 8> functions;
+			std::array <void(*)(), constants::ui::MAX_CALLBACKS> functions;
 		};
 	}
 }

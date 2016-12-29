@@ -4,11 +4,12 @@
 
 #include "engine/ecs/Component.hpp"
 #include "engine/ecs/GameObject.hpp"
+#include "engine/Config.hpp"
 #include "BoxCollider.hpp"
 
 namespace pi
 {
-	namespace phy
+	namespace physic
 	{
 		class BoxCollider;
 
@@ -40,9 +41,7 @@ namespace pi
 			ComponentType getComponentType();
 
 		private:
-			const static std::uint8_t MAX_COLLIDERS_COUNT = 8;
-
-			std::array<BoxCollider*, MAX_COLLIDERS_COUNT> colliders;
+			std::array<BoxCollider*, constants::physic::rigidbody::MAX_COLLIDERS> colliders;
 			sf::Vector2f position;
 			sf::Vector2f velocity;
 		};

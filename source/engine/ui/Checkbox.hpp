@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Element.hpp"
+#include "engine/Config.hpp"
 
 #include <array>
 
@@ -33,8 +34,8 @@ namespace pi
 			
 		private:
 			sf::Texture *texture, textureOn, textureOff;
-			std::array <void(*)(), 8> functionsOff;
-			std::array <void(*)(), 8> functionsOn;
+			std::array <void(*)(), constants::ui::MAX_CALLBACKS> functionsOff;
+			std::array <void(*)(), constants::ui::MAX_CALLBACKS> functionsOn;
 			bool enable;
 
 			void Enable();
