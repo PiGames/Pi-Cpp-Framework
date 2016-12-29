@@ -1,10 +1,9 @@
-#ifndef WORLDGENERATOR_H
-#define WORLDGENERATOR_H
+#pragma once
 
 #include <cstdarg>
 #include <iostream>
 #include <cmath>
-#include "Math.hpp"
+#include "engine/Math.hpp"
 
 class WorldGenerator
 {
@@ -13,13 +12,11 @@ class WorldGenerator
         virtual ~WorldGenerator();
 
         float * Generate(int width, int height, int seed, int accuracy);
-
     protected:
 
     private:
         int actualTextureNumber = 1;
         int width,height, accuracy = 6;
-        clock_t start;
 
         void doMagicalStuff(float* mainTex, float* finalTex, int width, int height);
         inline float calculateWeight(int i);
@@ -28,5 +25,3 @@ class WorldGenerator
 
 
 };
-
-#endif // WORLDGENERATOR_H

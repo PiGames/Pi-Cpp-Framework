@@ -1,5 +1,4 @@
-#ifndef MATH_H
-#define MATH_H
+#pragma once
 
 #include <vector>
 #include <algorithm>
@@ -25,4 +24,3 @@ class Math
         static double grad(int hash, double x, double y, double z);
 };
 
-#endif // MATH_H

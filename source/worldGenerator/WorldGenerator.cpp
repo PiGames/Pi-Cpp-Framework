@@ -1,4 +1,4 @@
-#include "WorldGenerator.h"
+#include "WorldGenerator.hpp"
 
 WorldGenerator::WorldGenerator()
 {
