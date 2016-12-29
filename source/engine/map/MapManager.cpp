@@ -15,9 +15,10 @@ namespace pi
 		collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
 	}
 
-	void MapManager::Init(sf::Vector2i uWorldSize)
+	void MapManager::Init(sf::Vector2i uWorldSize, sf::Vector2f celldimensions)
 	{
 		unitWorldSize = uWorldSize;
+		cellDimensions = celldimensions;
 		createArrays();
 		SurfaceCollisionMapUpdate();
 	}
@@ -36,6 +37,15 @@ namespace pi
 		
 		for (auto& var : object->getUnitPosition())
 			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE) && flag;
+	}
+
+	sf::Vector2f & MapManager::GetCellDimensions()
+	{
+		return cellDimensions;
+	}
+	sf::Vector2i & MapManager::GetUnitWorldSize()
+	{
+		return unitWorldSize;
 	}
 }
 

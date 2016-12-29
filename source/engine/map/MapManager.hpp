@@ -19,16 +19,24 @@ namespace pi
 
 		static sf::Vector2i unitWorldSize;
 
+		static sf::Vector2f cellDimensions;
+
 	public:
 
 		//Initialization (on the begining of game process)
-		static void Init(sf::Vector2i uWorldSize);
+		static void Init(sf::Vector2i uWorldSize, sf::Vector2f celldimensions);
 
-		//Updating the whole collision map (Only from surface) | Don't overuse this method!
+		//Updatesthe whole collision map (Only from surface) | Don't overuse this method!
 		static void SurfaceCollisionMapUpdate();
 
-		//Updating units which have represantion on given object 
+		//Updates units which have represantion on given object 
 		static void UpdateSingleUnits(GameObject* object);
+
+		//Returns cell dimensions (in px)
+		static sf::Vector2f& GetCellDimensions();
+
+		//Returns unit world size (in units)
+		static sf::Vector2i& GetUnitWorldSize();
 	};
 
 }

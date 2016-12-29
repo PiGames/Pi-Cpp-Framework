@@ -2,8 +2,6 @@
 
 namespace pi
 {
-	sf::Vector2f Cell::dimensions;
-
 	void Cell::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	{
 		target.draw(object, states);
@@ -13,7 +11,7 @@ namespace pi
 		:ID(id)
 	{
 		object.setTexture(*texture);
-		object.setTextureRect(sf::IntRect(ID*Cell::dimensions.x, 0, Cell::dimensions.x, Cell::dimensions.y));
+		object.setTextureRect(sf::IntRect(ID*MapManager::GetCellDimensions().x, 0, MapManager::GetCellDimensions().x, MapManager::GetCellDimensions().y));
 		object.setOrigin(object.getGlobalBounds().width / 2.0f, object.getGlobalBounds().height / 2.0f);
 
 		this->addComponent(PathfinderAttributes(*this));
