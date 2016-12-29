@@ -41,7 +41,7 @@ namespace pi
 		void Button::addCallback(void function())
 		{
 			for (unsigned i = 0; i < this->functions.size(); ++i)
-				if (this->functions[i] == nullptr)
+				if (!this->functions[i])
 				{
 					this->functions[i] = function; break;
 				}
@@ -51,7 +51,7 @@ namespace pi
 		{
 			if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
 				for (unsigned i = 0; i < this->functions.size(); ++i)
-					if(this->functions[i] != nullptr)
+					if(this->functions[i])
 						this->functions[i]();
 		}
 	}

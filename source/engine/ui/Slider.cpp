@@ -51,7 +51,7 @@ namespace pi
 		void Slider::addCallback(void function(Slider*))
 		{
 			for (unsigned i = 0; i < this->functions.size(); ++i)
-				if (this->functions[i] == nullptr)
+				if (!this->functions[i])
 				{
 					this->functions[i] = function; break;
 				}
@@ -63,6 +63,13 @@ namespace pi
 			{
 				this->enable = true;
 			}
+		}
+
+		void Slider::callback()
+		{
+			for (unsigned i = 0; i < this->functions.size(); ++i)
+				if (this->functions[i])
+					this->functions[i](this);
 		}
 
 		void Slider::released()
@@ -86,9 +93,6 @@ namespace pi
 						ratePosition.x = event.mouseMove.x - (rateSize.x / 2);
 
 					rateSprite.setPosition(ratePosition);
-					for (unsigned i = 0; i < this->functions.size(); ++i)
-						if (this->functions[i] != nullptr)
-							this->functions[i](this);
 				}
 			}
 		}

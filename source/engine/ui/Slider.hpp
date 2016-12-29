@@ -3,8 +3,6 @@
 #include "Element.hpp"
 #include "engine/Config.hpp"
 
-#include <array>
-
 namespace pi
 {
 	namespace ui
@@ -19,6 +17,7 @@ namespace pi
 			void setTexture(sf::Texture&, sf::Texture&);
 			void setScale(const sf::Vector2f&);
 			void setRect(const sf::Vector2f&, const sf::Vector2f&);
+			
 			// Get
 			const bool getEnable() const { return this->enable; }
 			
@@ -27,19 +26,20 @@ namespace pi
 			float scalePositionOfRateToReal(float number) const { return (this->ratePosition.x - this->position.x) / (this->size.x - this->rateSize.x) * number; }
 			// section Functions for functions in array end
 			
-			void addCallback(void(Slider*));
+			void addCallback(void (Slider*));
 
 			void selected(sf::Event&);
+			void callback();
 			void released();
 
-			virtual void use(sf::Event&) override;
-			virtual void update(sf::RenderWindow&) override;
+			virtual void use(sf::Event&) final override;
+			virtual void update(sf::RenderWindow&) final override;
 
 		private:
 			sf::Texture sliderTexture, rateTexture;
 			sf::Sprite rateSprite;
 			sf::Vector2f ratePosition, rateSize, scale;
-			std::array <void(*)(Slider*), constants::ui::MAX_CALLBACKS > functions;
+			std::array <void(*)(Slider*), constants::ui::MAX_CALLBACKS> functions;
 			bool enable;
 		};
 	}

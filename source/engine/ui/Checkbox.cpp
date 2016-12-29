@@ -58,7 +58,7 @@ namespace pi
 		void Checkbox::addCallbackOn(void function())
 		{
 			for (unsigned i = 0; i < this->functionsOn.size(); ++i)
-				if (this->functionsOn[i] == nullptr)
+				if (!this->functionsOn[i])
 				{
 					this->functionsOn[i] = function; break;
 				}
@@ -92,7 +92,7 @@ namespace pi
 			this->texture = &this->textureOn;
 			this->sprite.setTexture(*texture);
 			for (unsigned i = 0; i < this->functionsOn.size(); ++i)
-				if (this->functionsOn[i] != nullptr)
+				if (this->functionsOn[i])
 					this->functionsOn[i]();
 		}
 
@@ -102,7 +102,7 @@ namespace pi
 			this->texture = &this->textureOff;
 			this->sprite.setTexture(*texture);
 			for (unsigned i = 0; i < this->functionsOff.size(); ++i)
-				if (this->functionsOff[i] != nullptr)
+				if (this->functionsOff[i])
 					this->functionsOff[i]();
 		}
 	}

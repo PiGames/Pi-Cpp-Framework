@@ -3,8 +3,6 @@
 #include "Element.hpp"
 #include "engine/Config.hpp"
 
-#include <array>
-
 namespace pi
 {
 	namespace ui
@@ -25,7 +23,7 @@ namespace pi
 
 			void addCallback(void());
 
-			virtual void use(sf::Event& event) override;
+			virtual void use(sf::Event& event) final override;
 
 		private:
 			sf::Texture texture;

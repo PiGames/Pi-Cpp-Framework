@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <memory>
+#include <array>
 
 
 namespace pi
