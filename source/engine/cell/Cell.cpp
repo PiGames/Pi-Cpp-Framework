@@ -11,10 +11,16 @@ namespace pi
 		:ID(id)
 	{
 		object.setTexture(*texture);
-		object.setTextureRect(sf::IntRect(ID*MapManager::GetCellDimensions().x, 0, MapManager::GetCellDimensions().x, MapManager::GetCellDimensions().y));
+		object.setTextureRect(sf::IntRect(ID*cellDimensions->x, 0, cellDimensions->x, cellDimensions->y));
 		object.setOrigin(object.getGlobalBounds().width / 2.0f, object.getGlobalBounds().height / 2.0f);
 
 		this->addComponent(PathfinderAttributes(*this));
 		this->getComponent<PathfinderAttributes>()->addFlag(constants::pathfinder::flagNames::COLLIDABLE, false);
+	}
+
+	void Cell::Init(sf::Vector2i * uWorldSize, sf::Vector2f * celldimensions)
+	{
+		cellDimensions = celldimensions;
+		unitWorldSize = uWorldSize;
 	}
 }
