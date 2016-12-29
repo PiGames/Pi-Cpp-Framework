@@ -23,10 +23,10 @@ namespace pi
 		//Initialization (on the begining of game process)
 		static void Init(sf::Vector2i uWorldSize);
 
-		//Updating the whole collision map | Don't overuse this method!
-		static void CompleteCollisionMapUpdate();
+		//Updating the whole collision map (Only from surface) | Don't overuse this method!
+		static void SurfaceCollisionMapUpdate();
 
-		//Updating 1 unit of collision map
+		//Updating units which have represantion on given object 
 		static void UpdateSingleUnits(GameObject* object);
 	};
 

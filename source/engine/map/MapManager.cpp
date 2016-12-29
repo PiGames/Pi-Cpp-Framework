@@ -19,20 +19,15 @@ namespace pi
 	{
 		unitWorldSize = uWorldSize;
 		createArrays();
-		CompleteCollisionMapUpdate();
+		SurfaceCollisionMapUpdate();
 	}
 
-	void MapManager::CompleteCollisionMapUpdate()
+	void MapManager::SurfaceCollisionMapUpdate()
 	{
-		for (size_t i = 0; i < unitWorldSize.x*unitWorldSize.x; i++) //to do improve 
+		for (size_t i = 0; i < unitWorldSize.x*unitWorldSize.x; i++)
 		{
 			collisionMap[i] = surface[i].getComponent<PathfinderAttributes>()->getFlag(PathfinderAttributes::FLAGS::COLLIDABLE);
 		}
-
-		for(auto &var:objects)
-			for (auto &prev : var.getUnitPosition())
-				collisionMap[prev.y*unitWorldSize.x + prev.x] = surface[prev.y*unitWorldSize.x + prev.x].getComponent<PathfinderAttributes>()->getFlag(PathfinderAttributes::FLAGS::COLLIDABLE) && var.getComponent<PathfinderAttributes>()->getFlag(PathfinderAttributes::FLAGS::COLLIDABLE);
-
 	}
 
 	void MapManager::UpdateSingleUnits(GameObject* object)
