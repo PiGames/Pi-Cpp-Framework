@@ -4,12 +4,11 @@
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 #include "engine/ecs/GameObject.hpp"
-#include "engine/realObject/RealObject.hpp"
 #include "engine/pathfinder/PatfinderAttributes.hpp"
 
 namespace pi
 {
-	class Cell : public sf::Drawable, public pi::GameObject, public pi::RealObject
+	class Cell : public sf::Drawable, public pi::GameObject
 	{
 		const int ID;
 		sf::Sprite object;
