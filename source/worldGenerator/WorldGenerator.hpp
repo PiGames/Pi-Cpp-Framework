@@ -5,13 +5,15 @@
 #include <cmath>
 #include "engine/Math.hpp"
 
-class WorldGenerator
+namespace pi 
 {
-    public:
-       static float * Generate(int width, int height, int seed, int accuracy);
-    protected:
+	class WorldGenerator
+	{
+	public:
+		static float * Generate(int width, int height, int seed, int accuracy);
+	protected:
 
-    private:
+	private:
 		static int actualTextureNumber; //= 1;
 		static int width, height, accuracy;// = 6;
 
@@ -19,4 +21,6 @@ class WorldGenerator
 		static inline float calculateWeight(int i);
 		static void bilinearInterpolation(int sourceWidth, int sourceHeight, int destWidth, int destHeight, float* source, float* newImage);
 		static void changeContrast(float* source, int width, int height, float power);
-};
+	};
+
+}
