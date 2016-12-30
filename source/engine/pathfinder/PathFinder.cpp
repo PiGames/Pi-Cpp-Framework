@@ -6,8 +6,8 @@ namespace pi
 	std::vector<Cell>* PathFinder::mapImitation::cells;
 	std::vector<int> PathFinder::mapImitation::weights;
 
-	sf::Vector2f PathFinder::cellDimensions;
-	sf::Vector2i PathFinder::mapSize;
+	sf::Vector2f *PathFinder::cellDimensions;
+	sf::Vector2i *PathFinder::mapSize;
 
 
 	void PathFinder::clearTargets(std::queue<sf::Vector2f>* targets)
@@ -17,25 +17,25 @@ namespace pi
 
 	sf::Vector2i PathFinder::convertPositionToUnitSystem(sf::Vector2f data)
 	{
-		return sf::Vector2i(data.x / cellDimensions.x, data.y / cellDimensions.y);
+		return sf::Vector2i(data.x / cellDimensions->x, data.y / cellDimensions->y);
 	}
 
 	bool PathFinder::isInMap(const sf::Vector2i& position)
 	{
-		return !(position.x<0 || position.x > mapSize.x - 1 || position.y<0 || position.y > mapSize.y - 1);
+		return !(position.x<0 || position.x > mapSize->x - 1 || position.y<0 || position.y > mapSize->y - 1);
 	}
 
 	void PathFinder::transitionToNeighbor(sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<sf::Vector2f> *targets)
 	{
 		*currentlyConsidered = *neighbor;
-		targets->push(sf::Vector2f(currentlyConsidered->x*cellDimensions.x, currentlyConsidered->y*cellDimensions.y));
+		targets->push(sf::Vector2f(currentlyConsidered->x*cellDimensions->x, currentlyConsidered->y*cellDimensions->y));
 	}
 
 	void PathFinder::categorizeCells(sf::Vector2i * neighbor, sf::Vector2i * currentlyConsidered, std::queue<Cell*> *Q, short direction)
 	{
 		std::pair<sf::Vector2i, sf::Vector2i> alternate;
 
-		if (isInMap(*neighbor) && !(&(*(mapImitation::cells))[mapSize.x*neighbor->y + neighbor->x])->getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE) && mapImitation::weights[mapSize.x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
+		if (isInMap(*neighbor) && !(&(*(mapImitation::cells))[mapSize->x*neighbor->y + neighbor->x])->getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE) && mapImitation::weights[mapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
 		{
 			switch (direction)
 			{
@@ -93,7 +93,7 @@ namespace pi
 
 		for (auto &var : list)
 		{
-			targets->push(sf::Vector2f(var.x + cellDimensions.x / 2, var.y + cellDimensions.y / 2));
+			targets->push(sf::Vector2f(var.x + cellDimensions->x / 2, var.y + cellDimensions->y / 2));
 		}
 
 	}
@@ -112,8 +112,8 @@ namespace pi
 
 	void PathFinder::enterFirstElementToQueue(std::queue<Cell*> *Q, sf::Vector2i *fromPos)
 	{
-		Q->push(&((*(mapImitation::cells))[fromPos->y*mapSize.x + fromPos->x]));
-		mapImitation::weights[fromPos->y*mapSize.x + fromPos->x] = PathFinder::CellState::START_POSITION;
+		Q->push(&((*(mapImitation::cells))[fromPos->y*mapSize->x + fromPos->x]));
+		mapImitation::weights[fromPos->y*mapSize->x + fromPos->x] = PathFinder::CellState::START_POSITION;
 	}
 
 	void PathFinder::tourTheMap(std::queue<Cell*> *Q, sf::Vector2i *toPos)
@@ -139,7 +139,7 @@ namespace pi
 
 	bool PathFinder::foundLowerWeight(sf::Vector2i *currentlyConsidered, sf::Vector2i *neighbor, std::queue<sf::Vector2f>* targets)
 	{
-		if (isInMap(*neighbor) && mapImitation::weights[neighbor->y*mapSize.x + neighbor->x] == mapImitation::weights[currentlyConsidered->y*mapSize.x + currentlyConsidered->x] - 1) //TOP LEFT
+		if (isInMap(*neighbor) && mapImitation::weights[neighbor->y*mapSize->x + neighbor->x] == mapImitation::weights[currentlyConsidered->y*mapSize->x + currentlyConsidered->x] - 1) //TOP LEFT
 		{
 			transitionToNeighbor(neighbor, currentlyConsidered, targets);
 			return true;
@@ -153,7 +153,7 @@ namespace pi
 		{
 			sf::Vector2i currentlyConsidered = *toPos;
 
-			targets->push(sf::Vector2f(currentlyConsidered.x*cellDimensions.x, currentlyConsidered.y*cellDimensions.y));
+			targets->push(sf::Vector2f(currentlyConsidered.x*cellDimensions->x, currentlyConsidered.y*cellDimensions->y));
 
 			bool sthChangedFlag = true;
 
@@ -184,25 +184,25 @@ namespace pi
 
 	void PathFinder::increaseWeight(sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<Cell*> *Q)
 	{
-		mapImitation::weights[mapSize.x*neighbor->y + neighbor->x] = mapImitation::weights[mapSize.x*currentlyConsidered->y + currentlyConsidered->x] + 1;
+		mapImitation::weights[mapSize->x*neighbor->y + neighbor->x] = mapImitation::weights[mapSize->x*currentlyConsidered->y + currentlyConsidered->x] + 1;
 		addToQueueSearch(Q, neighbor);
 	}
 
 	void PathFinder::addToQueueSearch(std::queue<Cell*>* Q, sf::Vector2i * neighbor)
 	{
-		Q->push(&((*(mapImitation::cells))[mapSize.x*neighbor->y + neighbor->x]));
+		Q->push(&((*(mapImitation::cells))[mapSize->x*neighbor->y + neighbor->x]));
 	}
 
 	bool PathFinder::isCellBlocking(sf::Vector2i * currentlyConsidered, sf::Vector2i * singleAlternate)
 	{
 		if (!isInMap(sf::Vector2i(currentlyConsidered->x + singleAlternate->x, currentlyConsidered->y + singleAlternate->y)))
 			return false;
-		else if (!(*(mapImitation::cells))[mapSize.x*(currentlyConsidered->y + singleAlternate->y) + currentlyConsidered->x + singleAlternate->x].getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE))
+		else if (!(*(mapImitation::cells))[mapSize->x*(currentlyConsidered->y + singleAlternate->y) + currentlyConsidered->x + singleAlternate->x].getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE))
 			return false;
 		return true;
 	}
 
-	void PathFinder::Init(std::vector<Cell> *cells, sf::Vector2f cellDim, sf::Vector2i worldSize)
+	void PathFinder::Init(std::vector<Cell> *cells, sf::Vector2f *cellDim, sf::Vector2i *worldSize)
 	{
 		mapImitation::cells = cells;
 		cellDimensions = cellDim;
@@ -214,8 +214,8 @@ namespace pi
 		clearTargets(targets);
 
 		//Converting real coordinates of points to i | j system
-		sf::Vector2i toPosUnit = sf::Vector2i(to.x / cellDimensions.x, to.y / cellDimensions.y);
-		sf::Vector2i fromPosUnit = sf::Vector2i(from.x / cellDimensions.x, from.y / cellDimensions.y);
+		sf::Vector2i toPosUnit = sf::Vector2i(to.x / cellDimensions->x, to.y / cellDimensions->y);
+		sf::Vector2i fromPosUnit = sf::Vector2i(from.x / cellDimensions->x, from.y / cellDimensions->y);
 
 		std::queue<Cell*> Q;
 
