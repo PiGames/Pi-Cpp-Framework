@@ -37,7 +37,6 @@ namespace pi
 			bool enable, descriptionEnable;
 			float time;
 
-			static const std::uint8_t MAX_NUMBER_OF_THE_ELEMENTS = 32;
 			struct ListStruct
 			{
 				void(*function)();
