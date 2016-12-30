@@ -1,14 +1,7 @@
 #include "WorldGenerator.hpp"
 
-WorldGenerator::WorldGenerator()
-{
-    //ctor
-}
-
-WorldGenerator::~WorldGenerator()
-{
-    //dtor
-}
+int WorldGenerator::actualTextureNumber = 1;
+int WorldGenerator::width, WorldGenerator::height, WorldGenerator::accuracy= 6;
 
 float WorldGenerator::calculateWeight(int i)
 {
@@ -47,9 +40,9 @@ void WorldGenerator::changeContrast(float* source, int width, int height, float 
 
 float * WorldGenerator::Generate(int width, int height, int seed, int accurancy)
 {
-        this->height = height;
-        this->width = width;
-        this->accuracy = accurancy;
+        height = height;
+        width = width;
+        accuracy = accurancy;
 
         float * basicTex = new float[width*height];
         float * finalTex = new float[width*height];
@@ -123,20 +116,20 @@ void WorldGenerator::doMagicalStuff(float* mainTex, float* finalTex, int width, 
 
         actualTextureNumber++;
 
-        float* newTex = new float[this->width*this->height];
-        bilinearInterpolation(width/2,height/2,this->width,this->height,smallNewTex,newTex);
+        float* newTex = new float[width*height];
+        bilinearInterpolation(width/2,height/2,width,height,smallNewTex,newTex);
 
-        for (int y = 0; y < this->height; y++)
+        for (int y = 0; y < height; y++)
         {
-            for (int x = 0; x < this->width; x++)
+            for (int x = 0; x < width; x++)
             {
-                float newValue = newTex[y*this->width+x]*calculateWeight(actualTextureNumber) + finalTex[y*this->width+x];
-                finalTex[y * this->width + x] = newValue;
+                float newValue = newTex[y*width+x]*calculateWeight(actualTextureNumber) + finalTex[y*width+x];
+                finalTex[y *width + x] = newValue;
             }
         }
         delete smallNewTex;
 
-        if (actualTextureNumber < this->accuracy)
+        if (actualTextureNumber < accuracy)
         {
             doMagicalStuff(smallNewTexCopy,finalTex,width/4,height/4);
         }
