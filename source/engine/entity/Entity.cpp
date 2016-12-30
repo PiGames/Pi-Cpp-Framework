@@ -10,7 +10,8 @@ namespace pi
 	{
 	}
 
-	void Entity::draw(sf::RenderTarget&)
+
+	void Entity::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	{
 	}
 

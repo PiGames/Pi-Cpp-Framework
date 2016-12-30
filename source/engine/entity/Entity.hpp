@@ -7,6 +7,8 @@
 
 #pragma once
 #include <string>
+#include <SFML/Graphics/Drawable.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
 
 namespace sf
 {
@@ -19,7 +21,7 @@ namespace pi
 	// public methods to override:
 	// void update(float dt)
 	// void draw(RenderTarget&)
-	class Entity
+	class Entity : public sf::Drawable
 	{
 	public:
 		Entity(const std::string& name = "<unnamed Entity>");
@@ -28,11 +30,12 @@ namespace pi
 		// Updates Entity
 		// deltaTime
 		virtual void update(float);
+
 		// Draws Entity
 		// Render Target
 		// Render States
-		virtual void draw(sf::RenderTarget&);
-		
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
 		// Returns reference to Entity name
 		std::string& getName();
 
