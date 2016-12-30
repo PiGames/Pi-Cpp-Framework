@@ -1,5 +1,10 @@
 #pragma once
 
+/*
+	Disabling warning C4458 - "declaration of 'x' hides class member".
+*/
+#pragma warning(disable:4458)
+
 #include <string>
 
 namespace pi
