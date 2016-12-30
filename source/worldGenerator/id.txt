@@ -1,0 +1,3 @@
+stone
+grass
+water
