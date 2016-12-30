@@ -25,7 +25,7 @@ namespace pi
 
 	void MapManager::SurfaceCollisionMapUpdate()
 	{
-		for (size_t i = 0; i < unitWorldSize.x*unitWorldSize.x; i++)
+		for (int i = 0; i < unitWorldSize.x*unitWorldSize.x; i++)
 		{
 			collisionMap[i] = surface[i].getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE);
 		}
