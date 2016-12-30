@@ -6,42 +6,12 @@
 #include <algorithm>
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
+#include "engine/map/MapManager.hpp"
 
 namespace pi
 {
 	class PathFinder final
 	{
-		static struct mapImitation
-		{
-		public:
-			static std::vector<Cell>* cells;
-			static std::vector<int> weights;
-		};
-
-		static enum CellState
-		{
-			NOT_VISITED = -1,
-			START_POSITION = 0
-		};
-
-		static enum	Direction
-		{
-			NORTH = 0,
-			NORTH_EAST = 1,
-			EAST = 2,
-			SOUTH_EAST = 3,
-			SOUTH = 4,
-			SOUTH_WEST = 5,
-			WEST = 6,
-			NORTH_WEST = 7
-		};
-
-		//Real value of single cell
-		static sf::Vector2f cellDimensions;
-
-		//Map size represented by i|j system
-		static sf::Vector2i mapSize;
-
 		//Clearing targets queue
 		static void clearTargets(std::queue<sf::Vector2f>* targets);
 
@@ -97,6 +67,37 @@ namespace pi
 
 		//Filling targets queue by points which represents way to "to" point
 		static void FillTargetsQueue(sf::Vector2f from, sf::Vector2f to, std::queue<sf::Vector2f> *targets);
-	};
+	
+		static struct mapImitation
+		{
+		public:
+			static std::vector<Cell>* cells;
+			static std::vector<int> weights;
+		};
 
+		static enum CellState
+		{
+			NOT_VISITED = -1,
+			START_POSITION = 0
+		};
+
+		static enum	Direction
+		{
+			NORTH = 0,
+			NORTH_EAST = 1,
+			EAST = 2,
+			SOUTH_EAST = 3,
+			SOUTH = 4,
+			SOUTH_WEST = 5,
+			WEST = 6,
+			NORTH_WEST = 7
+		};
+
+		//Real value of single cell
+		static sf::Vector2f cellDimensions;
+
+		//Map size represented by i|j system
+		static sf::Vector2i mapSize;
+
+	};
 }

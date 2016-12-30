@@ -11,15 +11,7 @@ namespace pi
 {
 	class Cell : public sf::Drawable, public pi::GameObject
 	{
-		const int ID;
-		sf::Sprite object;
-
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-
-
-		static sf::Vector2i *unitWorldSize;
-
-		static sf::Vector2f *cellDimensions;
 
 	public:
 		Cell(int id = 0, sf::Texture *texture = nullptr, sf::Vector2f position = sf::Vector2f(0, 0), sf::Vector2f worldSize = sf::Vector2f(0, 0), bool collideable = false);
@@ -27,6 +19,15 @@ namespace pi
 		//Initialization (on the begining of game process)
 		static void Init(sf::Vector2i *uWorldSize, sf::Vector2f *celldimensions);
 
+	private:
+
+		const int ID;
+
+		sf::Sprite object;
+
+		static sf::Vector2i *unitWorldSize;
+
+		static sf::Vector2f *cellDimensions;
 	};
 
 }

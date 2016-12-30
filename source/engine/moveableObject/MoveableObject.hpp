@@ -8,10 +8,15 @@ namespace pi
 {
 	class MoveableObject
 	{
-		std::queue<sf::Vector2f> targets;
 	public:
-	
+		//Sets target and use pathfinder
 		void SetTargetTo(sf::Vector2f from, sf::Vector2f to);
+
+		//Returns state of moving
 		bool IsMoving();
+		 
+	private:
+
+		std::queue<sf::Vector2f> targets;
 	};	
 }
