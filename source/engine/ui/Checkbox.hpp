@@ -23,7 +23,7 @@ namespace pi
 			sf::Texture getTexture() const { return *this->texture; }
 			sf::Texture getTextureOn() const { return this->textureOn; }
 			sf::Texture getTextureOff() const { return this->textureOff; }
-			const bool getEnable() const { return this->enable; }
+			const bool getEnable() const { return this->isEnable; }
 
 			void addCallbackOn(void());
 			void addCallbackOff(void());
@@ -34,7 +34,7 @@ namespace pi
 			sf::Texture *texture, textureOn, textureOff;
 			std::array <void(*)(), constants::ui::MAX_CALLBACKS> functionsOff;
 			std::array <void(*)(), constants::ui::MAX_CALLBACKS> functionsOn;
-			bool enable;
+			bool isEnable;
 
 			void Enable();
 			void Disable();

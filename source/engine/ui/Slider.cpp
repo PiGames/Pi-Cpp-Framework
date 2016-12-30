@@ -12,7 +12,7 @@ namespace pi
 		{
 			for (auto &i : this->functions)
 				i = nullptr;
-			this->enable = false;
+			this->isSelected = false;
 			this->scale = { 0.2f, 1.2f };
 		}
 
@@ -61,7 +61,7 @@ namespace pi
 		{
 			if (this->rateSprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
 			{
-				this->enable = true;
+				this->isSelected = true;
 			}
 		}
 
@@ -74,14 +74,14 @@ namespace pi
 
 		void Slider::released()
 		{
-			this->enable = false;
+			this->isSelected = false;
 		}
 
 		// Virtual methods
 
 		void Slider::use(sf::Event& event)
 		{
-			if (this->enable)
+			if (this->isSelected)
 			{
 				if (event.mouseMove.x != this->ratePosition.x)
 				{

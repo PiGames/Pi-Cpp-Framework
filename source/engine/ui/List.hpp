@@ -22,7 +22,7 @@ namespace pi
 			// Get
 			sf::Texture getTexture() const { return this->texture; }
 			unsigned getListLenght() const { return this->listLenght; }
-			bool getEnable() const { return this->enable; }
+			bool getEnable() const { return this->isOpen; }
 
 			void addElement(void(), sf::Texture&, sf::Text&);
 			void description(sf::Event&);
@@ -34,13 +34,13 @@ namespace pi
 			sf::Texture texture;
 			sf::RectangleShape cloud;
 			unsigned listLenght, descriptionLenght;
-			bool enable, drawDescription;
+			bool isOpen, drawDescription;
 			float time;
 
 			struct ListStruct
 			{
 				void(*function)();
-				sf::Texture texture;
+				sf::Texture* texture;
 				sf::Sprite sprite;
 				sf::Text text;
 				sf::Vector2f position;

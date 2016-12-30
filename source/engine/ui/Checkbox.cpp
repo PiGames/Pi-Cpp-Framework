@@ -12,18 +12,18 @@ namespace pi
 				i = nullptr;
 			for (auto &i : this->functionsOff)
 				i = nullptr;
-			this->enable = false;
+			this->isEnable = false;
 		}
 
 		void Checkbox::setTexture(sf::Texture& textureOff, sf::Texture& textureOn)
 		{
 			this->textureOff = textureOn;
 			this->textureOn = textureOff;
-			if (!this->enable)
+			if (!this->isEnable)
 			{
 				this->texture = &this->textureOff;
 			}
-			else if (this->enable)
+			else if (this->isEnable)
 			{
 				this->texture = &this->textureOn;
 			}
@@ -52,7 +52,7 @@ namespace pi
 
 		void Checkbox::setEnable(bool enable)
 		{
-			this->enable = enable;
+			this->isEnable = enable;
 		}
 
 		void Checkbox::addCallbackOn(void function())
@@ -77,9 +77,9 @@ namespace pi
 		{
 			if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
 			{
-				if (!this->enable)
+				if (!this->isEnable)
 					this->Enable();
-				else if (this->enable)
+				else if (this->isEnable)
 					this->Disable();
 			}
 		}
@@ -88,7 +88,7 @@ namespace pi
 
 		void Checkbox::Enable()
 		{
-			this->enable = true;
+			this->isEnable = true;
 			this->texture = &this->textureOn;
 			this->sprite.setTexture(*texture);
 			for (unsigned i = 0; i < this->functionsOn.size(); ++i)
@@ -98,7 +98,7 @@ namespace pi
 
 		void Checkbox::Disable()
 		{
-			this->enable = false;
+			this->isEnable = false;
 			this->texture = &this->textureOff;
 			this->sprite.setTexture(*texture);
 			for (unsigned i = 0; i < this->functionsOff.size(); ++i)

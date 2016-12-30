@@ -19,7 +19,7 @@ namespace pi
 			void setRect(const sf::Vector2f&, const sf::Vector2f&);
 			
 			// Get
-			const bool getEnable() const { return this->enable; }
+			const bool getSelected() const { return this->isSelected; }
 			
 			// section Functions for functions in array start
 			float scalePositionOfRate() const { return (this->ratePosition.x - this->position.x) / (this->size.x - this->rateSize.x); }
@@ -40,7 +40,7 @@ namespace pi
 			sf::Sprite rateSprite;
 			sf::Vector2f ratePosition, rateSize, scale;
 			std::array <void(*)(Slider*), constants::ui::MAX_CALLBACKS> functions;
-			bool enable;
+			bool isSelected;
 		};
 	}
 }
