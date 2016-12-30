@@ -84,7 +84,7 @@ namespace pi
 				}
 				else // if description is disable
 				{
-					for (float i = 0; i < time; ++i)
+					for (float t = 0; t < time; ++t)
 					{
 						for (unsigned i = 0; i < list.size(); ++i)
 						{
