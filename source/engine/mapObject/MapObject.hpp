@@ -2,6 +2,9 @@
 
 #include "SFML\System\Vector2.hpp"
 #include "engine\entity\Entity.hpp"
+#include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/RenderStates.hpp>
+#include <SFML/Graphics/Sprite.hpp>
 #include <vector>
 
 namespace pi
@@ -15,6 +18,8 @@ namespace pi
 
 		std::vector<sf::Vector2i>& GetUnitPosition();
 
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
 	private:
 
 		//position (in px)
@@ -22,5 +27,7 @@ namespace pi
 		
 		//vector of unit position (in unit system)
 		std::vector<sf::Vector2i> unitPosition;
+
+		sf::Sprite object;
 	};
 }
