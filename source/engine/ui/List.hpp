@@ -34,7 +34,7 @@ namespace pi
 			sf::Texture texture;
 			sf::RectangleShape cloud;
 			unsigned listLenght, descriptionLenght;
-			bool enable, descriptionEnable;
+			bool enable, drawDescription;
 			float time;
 
 			struct ListStruct

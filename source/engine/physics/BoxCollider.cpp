@@ -9,6 +9,8 @@ namespace pi
 			this->rigidbodyAttachedTo = gameObject.getComponent<Rigidbody>();
 			this->offset = sf::Vector2f(0, 0);
 			this->rect = sf::FloatRect(gameObject.getPosition().x, gameObject.getPosition().y, 0, 0);
+	
+			callbacks.fill(nullptr);
 		}
 
 		const auto & BoxCollider::getCollidersCollidedWith()
@@ -34,6 +36,14 @@ namespace pi
 		{
 			this->rigidbodyAttachedTo = rigidbody;
 		}
+
+		void BoxCollider::addCallback(void(*callback)(BoxCollider &other))
+		{
+			for (auto& call : this->callbacks)
+				if (call == nullptr)
+					call = callback;
+		}
+
 
 		void BoxCollider::update(float)
 		{

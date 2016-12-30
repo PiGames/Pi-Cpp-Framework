@@ -52,8 +52,6 @@ namespace pi
 			// List section end
 
 		private:
-			static const std::uint8_t MAX_NUMBER_OF_THE_ELEMENTS = 32;
-
 			sf::RenderWindow* window;
 			std::array <pi::ui::Button*, constants::ui::MAX_UIELEMENTS> buttons;
 			std::array <pi::ui::Checkbox*, constants::ui::MAX_UIELEMENTS> checkboxs;

@@ -3,6 +3,7 @@
 #include <vector>
 
 #include "Rigidbody.hpp"
+#include "engine/Config.hpp"
 #include "engine/ecs/Component.hpp"
 #include "engine/ecs/GameObject.hpp"
 
@@ -31,6 +32,8 @@ namespace pi
 			void setSize(const sf::Vector2f& size);
 			// Returns Rigidbody that this Collider is attached
 			void setRigidbody(Rigidbody * rigidbody);
+			// Adds callback (function) if collider collided
+			void addCallback(void(*callback)(BoxCollider& other));
 
 			void update(float);
 
@@ -42,6 +45,8 @@ namespace pi
 			sf::FloatRect rect;
 
 			std::vector<BoxCollider*> collidersCollidedWith;
+			std::array<void(*)(BoxCollider& other), constants::physic::boxCollider::MAX_CALLBACKS> callbacks;
+
 		};
 	}
 }

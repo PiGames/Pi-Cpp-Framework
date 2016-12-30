@@ -27,6 +27,11 @@ namespace pi
 
 		namespace physic
 		{
+			namespace boxCollider
+			{
+				constexpr std::uint8_t MAX_CALLBACKS = 8;
+			}
+
 			namespace collisionDetector
 			{
 				constexpr std::uint16_t MAX_COLLIDERS = 512;

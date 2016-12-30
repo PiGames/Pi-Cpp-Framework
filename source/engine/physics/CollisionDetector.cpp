@@ -71,6 +71,12 @@ namespace pi
 						{
 							collRB->collidersCollidedWith.push_back(collB);
 							collB->collidersCollidedWith.push_back(collRB);
+
+							for (auto& call : collRB->callbacks)
+								call(*collB);
+
+							for (auto& call : collB->callbacks)
+								call(*collRB);
 						}
 					}
 			}

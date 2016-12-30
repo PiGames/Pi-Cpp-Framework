@@ -9,7 +9,7 @@ namespace pi
 		List::List()
 		{
 			this->enable = false;
-			this->descriptionEnable = false;
+			this->drawDescription = false;
 			this->listLenght = 0;
 		}
 
@@ -67,16 +67,16 @@ namespace pi
 			if (this->enable)
 			{	
 				
-				if (this->descriptionEnable) // if description is enable
+				if (this->drawDescription) // if description is enable
 				{
-					this->descriptionEnable = false;
+					this->drawDescription = false;
 					for (unsigned i = 0; i < list.size(); ++i)
 					{
 						if (this->list[i])
 							if (this->list[i]->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y)))
 							{
 								this->descriptionLenght = i;
-								this->descriptionEnable = true;
+								this->drawDescription = true;
 								this->cloud.setPosition({ static_cast<float>(event.mouseMove.x) + 2.f, static_cast<float>(event.mouseMove.y) - this->cloud.getSize().y });
 								this->list[descriptionLenght]->text.setPosition({ static_cast<float>(event.mouseMove.x) + 10.f, static_cast<float>(event.mouseMove.y) - this->cloud.getSize().y + 10.f });
 							}
@@ -92,7 +92,7 @@ namespace pi
 								if (this->list[i]->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y)))
 								{
 									this->descriptionLenght = i;
-									this->descriptionEnable = true;
+									this->drawDescription = true;
 									this->cloud.setPosition({ static_cast<float>(event.mouseMove.x) + 2.f, static_cast<float>(event.mouseMove.y) - this->cloud.getSize().y });
 									this->list[descriptionLenght]->text.setPosition({ static_cast<float>(event.mouseMove.x) + 10.f, static_cast<float>(event.mouseMove.y) - this->cloud.getSize().y + 10.f });
 								}
@@ -136,7 +136,7 @@ namespace pi
 						window.draw(this->list[i]->sprite);
 
 			// Description
-			if (this->descriptionEnable)
+			if (this->drawDescription)
 			{
 				window.draw(this->cloud);
 				window.draw(list[descriptionLenght]->text);
