@@ -2,11 +2,8 @@
 
 #include <SFML/System/Vector2.hpp>
 #include <queue>
-#include <iostream>
-#include <algorithm>
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
-#include "engine/map/MapManager.hpp"
 
 namespace pi
 {

@@ -1,6 +1,5 @@
 #pragma once
 
-#include "engine/ecs/GameObject.hpp"
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
 
