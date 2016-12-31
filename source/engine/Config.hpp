@@ -32,5 +32,11 @@ namespace pi
 			constexpr std::uint8_t DEAFULT_NUMBER_OF_LINES = 18;
 			constexpr std::uint8_t DEAFULT_TEXT_SIZE_IN_LINE = 80;
 		}
+
+		namespace worldconstructor
+		{
+			const std::string CELL = "Cell";
+			const std::string TEXTURE_FILE_PATH = "data/textures/textureAtlas.png";
+		}
 	}
 }
