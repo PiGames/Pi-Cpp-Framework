@@ -8,26 +8,18 @@ namespace pi
 
 		UI::UI()
 		{
-			for (auto &i : this->buttons)
-				i = nullptr;
-			for (auto &i : this->checkboxs)
-				i = nullptr;
-			for (auto &i : this->sliders)
-				i = nullptr;
-			for (auto &i : this->lists)
-				i = nullptr;
+			this->buttons.fill(nullptr);
+			this->checkboxs.fill(nullptr);
+			this->sliders.fill(nullptr);
+			this->lists.fill(nullptr);
 		}
 
 		UI::UI(sf::RenderWindow& window)
 		{
-			for (auto &i : this->buttons)
-				i = nullptr;
-			for (auto &i : this->checkboxs)
-				i = nullptr;
-			for (auto &i : this->sliders)
-				i = nullptr;
-			for (auto &i : this->lists)
-				i = nullptr;
+			this->buttons.fill(nullptr);
+			this->checkboxs.fill(nullptr);
+			this->sliders.fill(nullptr);
+			this->lists.fill(nullptr);
 			this->window = &window;
 		}
 

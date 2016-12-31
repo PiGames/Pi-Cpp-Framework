@@ -10,8 +10,8 @@ namespace pi
 
 		Slider::Slider()
 		{
-			for (auto &i : this->functions)
-				i = nullptr;
+			this->functions.fill(nullptr);
+
 			this->isSelected = false;
 			this->scale = { 0.2f, 1.2f };
 		}

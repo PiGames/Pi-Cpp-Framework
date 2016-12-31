@@ -8,10 +8,8 @@ namespace pi
 
 		Checkbox::Checkbox()
 		{
-			for (auto &i : this->functionsOn)
-				i = nullptr;
-			for (auto &i : this->functionsOff)
-				i = nullptr;
+			this->functionsOn.fill(nullptr);
+			this->functionsOff.fill(nullptr);
 			this->isEnable = false;
 		}
 

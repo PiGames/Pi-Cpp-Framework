@@ -8,8 +8,7 @@ namespace pi
 
 		Button::Button()
 		{
-			for(auto &i : this->functions)
-				i = nullptr;
+			this->functions.fill(nullptr);
 		}
 
 		void Button::setTexture(sf::Texture& texture)
