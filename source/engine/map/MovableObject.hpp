@@ -6,7 +6,7 @@
 
 namespace pi
 {
-	class MoveableObject
+	class MovableObject
 	{
 	public:
 		//Sets target and use pathfinder

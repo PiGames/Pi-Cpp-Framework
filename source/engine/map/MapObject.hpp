@@ -1,11 +1,11 @@
 #pragma once
 
-#include "SFML\System\Vector2.hpp"
-#include "engine\entity\Entity.hpp"
+#include "SFML/System/Vector2.hpp"
+#include "engine/entity/Entity.hpp"
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/Sprite.hpp>
-#include "engine\collidableObject\CollidableObject.hpp"
+#include "CollidableObject.hpp"
 #include <vector>
 
 namespace pi
