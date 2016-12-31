@@ -23,6 +23,12 @@ namespace pi
 	// void draw(RenderTarget&)
 	class Entity : public sf::Drawable
 	{
+	private:
+		// Draws Entity
+		// Render Target
+		// Render States
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+	
 	public:
 		Entity(const std::string& name = "<unnamed Entity>");
 		virtual ~Entity() = default;
@@ -30,11 +36,6 @@ namespace pi
 		// Updates Entity
 		// deltaTime
 		virtual void update(float);
-
-		// Draws Entity
-		// Render Target
-		// Render States
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 		// Returns reference to Entity name
 		std::string& getName();
