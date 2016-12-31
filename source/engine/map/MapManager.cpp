@@ -15,7 +15,7 @@ namespace pi
 		collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
 	}
 
-	void MapManager::Init(sf::Vector2i uWorldSize, sf::Vector2f celldimensions)
+	void MapManager::Init(sf::Vector2i uWorldSize, const sf::Vector2f& celldimensions)
 	{
 		unitWorldSize = uWorldSize;
 		cellDimensions = celldimensions;

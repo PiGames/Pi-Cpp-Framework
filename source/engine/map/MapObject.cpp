@@ -2,7 +2,7 @@
 
 namespace pi
 {
-	MapObject::MapObject(const std::string & name, sf::Vector2f pos, std::vector<sf::Vector2i> uPos, bool collidableFlag)
+	MapObject::MapObject(const std::string & name, const sf::Vector2f& pos, std::vector<sf::Vector2i> uPos, bool collidableFlag)
 		:position(pos),unitPosition(uPos),Entity(name), CollidableObject(collidableFlag)
 	{ 
 

@@ -13,7 +13,7 @@ namespace pi
 		static void clearTargets(std::queue<sf::Vector2f>* targets);
 
 		//Converting real coordinates of point to i|j system
-		static sf::Vector2i convertPositionToUnitSystem(sf::Vector2f data);
+		static sf::Vector2i convertPositionToUnitSystem(const sf::Vector2f& data);
 
 		//Checking that point (represented by i|j system) is in map
 		static bool isInMap(const sf::Vector2i& position);
@@ -63,7 +63,7 @@ namespace pi
 		static void Init(std::vector<Cell> *cells, sf::Vector2f *cellDim, sf::Vector2i *worldSize);
 
 		//Filling targets queue by points which represents way to "to" point
-		static void FillTargetsQueue(sf::Vector2f from, sf::Vector2f to, std::queue<sf::Vector2f> *targets);
+		static void FillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets);
 	
 		static struct mapImitation
 		{

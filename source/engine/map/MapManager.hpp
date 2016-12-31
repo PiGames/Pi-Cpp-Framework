@@ -12,7 +12,7 @@ namespace pi
 
 	public:
 		//Initialization (on the begining of game process)
-		static void Init(sf::Vector2i uWorldSize, sf::Vector2f celldimensions);
+		static void Init(sf::Vector2i uWorldSize, const sf::Vector2f& celldimensions);
 
 		//Updatesthe whole collision map (Only from surface) | Don't overuse this method!
 		static void SurfaceCollisionMapUpdate();

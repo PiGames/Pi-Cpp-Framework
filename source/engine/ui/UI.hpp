@@ -21,7 +21,7 @@ namespace pi
 			void setWindow(sf::RenderWindow&);
 			
 			const float getPercent(float procent, float number) const { return number * procent / 100; }
-			const sf::Vector2u getWindowSize() const { return this->window->getSize(); }
+			const sf::Vector2u& getWindowSize() const { return this->window->getSize(); }
 
 			// Buttons section start
 			void addButton(pi::ui::Button&);

@@ -2,7 +2,7 @@
 
 namespace pi
 {
-	void MovableObject::SetTargetTo(sf::Vector2f from, sf::Vector2f to)
+	void MovableObject::SetTargetTo(const sf::Vector2f& from, const sf::Vector2f& to)
 	{
 		PathFinder::FillTargetsQueue(from,to,&targets);
 	}

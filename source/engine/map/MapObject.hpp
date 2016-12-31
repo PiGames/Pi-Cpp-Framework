@@ -18,7 +18,7 @@ namespace pi
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	public:
-		MapObject(const std::string& name = "<unnamed Entity>", sf::Vector2f pos = { 0,0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i(0,0) },bool collidableFlag=false);
+		MapObject(const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i(0,0) },bool collidableFlag=false);
 		
 		//Returns real position (in px)
 		sf::Vector2f& GetPosition();

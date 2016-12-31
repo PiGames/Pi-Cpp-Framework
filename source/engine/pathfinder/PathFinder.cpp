@@ -15,7 +15,7 @@ namespace pi
 		while (!targets->empty()) targets->pop();
 	}
 
-	sf::Vector2i PathFinder::convertPositionToUnitSystem(sf::Vector2f data)
+	sf::Vector2i PathFinder::convertPositionToUnitSystem(const sf::Vector2f& data)
 	{
 		return sf::Vector2i(data.x / cellDimensions->x, data.y / cellDimensions->y);
 	}
@@ -209,7 +209,7 @@ namespace pi
 		mapSize = worldSize;
 	}
 
-	void PathFinder::FillTargetsQueue(sf::Vector2f from, sf::Vector2f to, std::queue<sf::Vector2f> *targets)
+	void PathFinder::FillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets)
 	{
 		clearTargets(targets);
 
