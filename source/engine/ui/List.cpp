@@ -47,7 +47,7 @@ namespace pi
 
 		void List::addElement(std::function<void()> function, sf::Texture& texture, sf::Text& text)
 		{
-			if (this->listLenght < 32u)
+			if (this->listLenght < constants::ui::MAX_UIELEMENTS)
 				if (!this->list[listLenght])
 				{
 					this->list[listLenght].reset(new ListStruct);
