@@ -37,6 +37,7 @@ namespace pi
 		{
 			constexpr auto CELL = "Cell";
 			constexpr auto TEXTURE_FILE_PATH = "data/textures/textureAtlas.png";
+			constexpr auto ID_FILE_PATH = "id.txt";
 		}
 	}
 }

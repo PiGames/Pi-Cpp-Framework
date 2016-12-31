@@ -17,7 +17,7 @@ namespace pi
 
 	void WorldConstructor::loadCellTypes()
 	{
-		std::ifstream input("id.txt");
+		std::ifstream input(constants::worldconstructor::ID_FILE_PATH);
 		int tempID;
 
 		while (input >> tempID) id.push_back(tempID);
