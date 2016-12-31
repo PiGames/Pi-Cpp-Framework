@@ -2,6 +2,9 @@
 
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
+#include "SFML/System/Vector2.hpp"
+#include <vector>
+#include <memory>
 
 namespace pi
 {
@@ -20,6 +23,8 @@ namespace pi
 		//Updates units which have represantion on given object 
 		static void UpdateSingleUnits(MapObject* object);
 
+		static void AddCell(uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false);
+
 		//Returns cell dimensions (in px)
 		static sf::Vector2f& GetCellDimensions();
 
@@ -28,7 +33,8 @@ namespace pi
 
 	private:
 
-		static Cell *surface;
+		//static Cell *surface;
+		static std::vector<Cell> surface;
 
 		static std::vector<MapObject> objects;
 

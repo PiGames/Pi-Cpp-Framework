@@ -4,18 +4,17 @@ namespace pi
 {
 	sf::Vector2f MapManager::cellDimensions;
 	sf::Vector2i MapManager::unitWorldSize;
-	Cell* MapManager::surface;
+	std::vector<Cell> MapManager::surface;
 	std::vector<MapObject> MapManager::objects;
 	bool* MapManager::collisionMap;
 
 
 	void MapManager::createArrays()
 	{
-		surface = new Cell[unitWorldSize.x*unitWorldSize.y];
 		collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
 	}
 
-	void MapManager::Init(sf::Vector2i uWorldSize, const sf::Vector2f& celldimensions)
+	void MapManager::Init(sf::Vector2i uWorldSize, const sf::Vector2f&  celldimensions)
 	{
 		unitWorldSize = uWorldSize;
 		cellDimensions = celldimensions;
@@ -37,6 +36,11 @@ namespace pi
 		
 		for (auto& var : object->GetUnitPosition())
 			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].IsCollidable() && flag;
+	}
+
+	void MapManager::AddCell(uint8_t number = 0, int id, sf::Texture * texture, const std::string & name, bool collidableFlag)
+	{
+		surface.push_back(Cell(id, texture, name, sf::Vector2f((number - number / unitWorldSize.x)*cellDimensions.x, (number / unitWorldSize.x)*cellDimensions.y), std::vector<sf::Vector2i>() = { sf::Vector2i(0,0) }, collidableFlag));
 	}
 
 	sf::Vector2f & MapManager::GetCellDimensions()
