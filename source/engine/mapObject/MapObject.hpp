@@ -12,6 +12,11 @@ namespace pi
 {
 	class MapObject : public Entity, public CollidableObject
 	{
+	protected:
+
+		//Draws object
+		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+
 	public:
 		MapObject(const std::string& name = "<unnamed Entity>", sf::Vector2f pos = { 0,0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i(0,0) },bool collidableFlag=false);
 		
@@ -21,10 +26,9 @@ namespace pi
 		//Returns vector of unit position (in unit system)
 		std::vector<sf::Vector2i>& GetUnitPosition();
 
-		//Draws object
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		
 
-	private:
+	protected:
 
 		//position (in px)
 		sf::Vector2f position; 
