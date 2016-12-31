@@ -6,7 +6,7 @@
 
 namespace pi
 {
-	class Interpreter final
+	class WorldConstructor final
 	{
 		//Loades cell types to a vector of cells' ID
 		static void loadCellTypes();
