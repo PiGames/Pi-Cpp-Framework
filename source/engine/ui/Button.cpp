@@ -37,7 +37,7 @@ namespace pi
 			this->sprite.setScale({ this->size.x / this->texture.getSize().x, this->size.y / this->texture.getSize().y });
 		}
 
-		void Button::addCallback(void function())
+		void Button::addCallback(std::function<void()> function)
 		{
 			for (unsigned i = 0; i < this->functions.size(); ++i)
 				if (!this->functions[i])

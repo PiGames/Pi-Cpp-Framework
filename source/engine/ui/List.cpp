@@ -45,7 +45,7 @@ namespace pi
 			this->time = time;
 		}
 
-		void List::addElement(void function(), sf::Texture& texture, sf::Text& text)
+		void List::addElement(std::function<void()> function, sf::Texture& texture, sf::Text& text)
 		{
 			if (this->listLenght < 32u)
 				if (!this->list[listLenght])

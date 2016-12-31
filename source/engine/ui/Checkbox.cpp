@@ -53,7 +53,7 @@ namespace pi
 			this->isEnable = enable;
 		}
 
-		void Checkbox::addCallbackOn(void function())
+		void Checkbox::addCallbackOn(std::function<void()> function)
 		{
 			for (unsigned i = 0; i < this->functionsOn.size(); ++i)
 				if (!this->functionsOn[i])
@@ -62,10 +62,10 @@ namespace pi
 				}
 		}
 
-		void Checkbox::addCallbackOff(void function())
+		void Checkbox::addCallbackOff(std::function<void()> function)
 		{
 			for (unsigned i = 0; i < this->functionsOff.size(); ++i)
-				if (this->functionsOff[i] == nullptr)
+				if (!this->functionsOff[i])
 				{
 					this->functionsOff[i] = function; break;
 				}

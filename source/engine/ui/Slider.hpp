@@ -26,7 +26,7 @@ namespace pi
 			float scalePositionOfRateToReal(float number) const { return (this->ratePosition.x - this->position.x) / (this->size.x - this->rateSize.x) * number; }
 			// section Functions for functions in array end
 			
-			void addCallback(void (Slider*));
+			void addCallback(std::function<void(Slider*)>);
 
 			void selected(sf::Event&);
 			void callback();
@@ -39,7 +39,7 @@ namespace pi
 			sf::Texture sliderTexture, rateTexture;
 			sf::Sprite rateSprite;
 			sf::Vector2f ratePosition, rateSize, scale;
-			std::array <void(*)(Slider*), constants::ui::MAX_CALLBACKS> functions;
+			std::array <std::function<void(Slider*)>, constants::ui::MAX_CALLBACKS> functions;
 			bool isSelected;
 		};
 	}

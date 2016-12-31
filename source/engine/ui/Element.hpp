@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include <array>
-
+#include <functional>
 
 namespace pi
 {

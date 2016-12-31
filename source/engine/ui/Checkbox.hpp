@@ -25,15 +25,15 @@ namespace pi
 			sf::Texture getTextureOff() const { return this->textureOff; }
 			const bool getEnable() const { return this->isEnable; }
 
-			void addCallbackOn(void());
-			void addCallbackOff(void());
+			void addCallbackOn(std::function<void()>);
+			void addCallbackOff(std::function<void()>);
 
 			virtual void use(sf::Event& event) final override;
 			
 		private:
 			sf::Texture *texture, textureOn, textureOff;
-			std::array <void(*)(), constants::ui::MAX_CALLBACKS> functionsOff;
-			std::array <void(*)(), constants::ui::MAX_CALLBACKS> functionsOn;
+			std::array <std::function<void()>, constants::ui::MAX_CALLBACKS> functionsOff;
+			std::array <std::function<void()>, constants::ui::MAX_CALLBACKS> functionsOn;
 			bool isEnable;
 
 			void Enable();

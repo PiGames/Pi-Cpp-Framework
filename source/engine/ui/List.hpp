@@ -24,7 +24,7 @@ namespace pi
 			unsigned getListLenght() const { return this->listLenght; }
 			bool getEnable() const { return this->isOpen; }
 
-			void addElement(void(), sf::Texture&, sf::Text&);
+			void addElement(std::function<void()>, sf::Texture&, sf::Text&);
 			void description(sf::Event&);
 
 			virtual void use(sf::Event&) final override;
@@ -39,7 +39,7 @@ namespace pi
 
 			struct ListStruct
 			{
-				void(*function)();
+				std::function<void()> function;
 				sf::Texture* texture;
 				sf::Sprite sprite;
 				sf::Text text;

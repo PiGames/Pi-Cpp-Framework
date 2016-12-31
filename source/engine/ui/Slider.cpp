@@ -48,7 +48,7 @@ namespace pi
 			this->rateSprite.setPosition(this->ratePosition);
 		}
 
-		void Slider::addCallback(void function(Slider*))
+		void Slider::addCallback(std::function<void(Slider*)> function)
 		{
 			for (unsigned i = 0; i < this->functions.size(); ++i)
 				if (!this->functions[i])

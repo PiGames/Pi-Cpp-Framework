@@ -21,13 +21,13 @@ namespace pi
 			// Get
 			sf::Texture getTexture() const { return this->texture; }
 
-			void addCallback(void());
+			void addCallback(std::function<void()>);
 
 			virtual void use(sf::Event& event) final override;
 
 		private:
 			sf::Texture texture;
-			std::array <void(*)(), constants::ui::MAX_CALLBACKS> functions;
+			std::array <std::function<void()>, constants::ui::MAX_CALLBACKS> functions;
 		};
 	}
 }
