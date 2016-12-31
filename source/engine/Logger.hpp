@@ -1,5 +1,6 @@
 #pragma once
 
+#include "engine/console/Console.hpp"
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -11,7 +12,7 @@ namespace pi
 	class Logger final
 	{
 	public: 
-		enum MessageType
+		enum class MessageType
 		{
 			Separator = 0,
 			Info,
@@ -20,7 +21,7 @@ namespace pi
 			Assert
 		};
 
-		enum OutputType
+		enum class OutputType
 		{
 			Console = 0,
 			File,
@@ -37,11 +38,12 @@ namespace pi
 		Logger() = delete;
 
 		// Initializes Logger file 
-		static void init(const std::string& outputFileName = "output.txt");
+		static void init(const std::string& outputFileName = "output.txt", Console* console = nullptr);
 		static void log(const std::string& message, MessageType messageType = MessageType::Info, OutputType outputType = OutputType::Console);
 
 	private:
 		static std::ofstream file;
+		static Console* console;
 	};
 }
 
