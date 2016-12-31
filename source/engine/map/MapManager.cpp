@@ -5,7 +5,7 @@ namespace pi
 	sf::Vector2f MapManager::cellDimensions;
 	sf::Vector2i MapManager::unitWorldSize;
 	Cell* MapManager::surface;
-	std::vector<pi::GameObject> MapManager::objects;
+	std::vector<MapObject> MapManager::objects;
 	bool* MapManager::collisionMap;
 
 
@@ -27,16 +27,16 @@ namespace pi
 	{
 		for (int i = 0; i < unitWorldSize.x*unitWorldSize.x; i++)
 		{
-			collisionMap[i] = surface[i].getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE);
+			collisionMap[i] = surface[i].IsCollidable();
 		}
 	}
 
-	void MapManager::UpdateSingleUnits(GameObject* object)
+	void MapManager::UpdateSingleUnits(MapObject* object)
 	{
-		bool flag = object->getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE);
+		bool flag = object->IsCollidable();
 		
-		for (auto& var : object->getUnitPosition())
-			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE) && flag;
+		for (auto& var : object->GetUnitPosition())
+			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].IsCollidable() && flag;
 	}
 
 	sf::Vector2f & MapManager::GetCellDimensions()

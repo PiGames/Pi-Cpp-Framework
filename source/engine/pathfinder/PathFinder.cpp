@@ -35,7 +35,7 @@ namespace pi
 	{
 		std::pair<sf::Vector2i, sf::Vector2i> alternate;
 
-		if (isInMap(*neighbor) && !(&(*(mapImitation::cells))[mapSize->x*neighbor->y + neighbor->x])->getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE) && mapImitation::weights[mapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
+		if (isInMap(*neighbor) && !(&(*(mapImitation::cells))[mapSize->x*neighbor->y + neighbor->x])->IsCollidable() && mapImitation::weights[mapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
 		{
 			switch (direction)
 			{
@@ -125,7 +125,7 @@ namespace pi
 
 		while (!Q->empty())
 		{
-			currentlyConsidered = sf::Vector2i(convertPositionToUnitSystem(Q->front()->getPosition()));
+			currentlyConsidered = sf::Vector2i(convertPositionToUnitSystem(Q->front()->GetPosition()));
 			Q->pop();
 			for (size_t direction = 0; direction < neighbours.size(); direction++)
 			{
@@ -197,7 +197,7 @@ namespace pi
 	{
 		if (!isInMap(sf::Vector2i(currentlyConsidered->x + singleAlternate->x, currentlyConsidered->y + singleAlternate->y)))
 			return false;
-		else if (!(*(mapImitation::cells))[mapSize->x*(currentlyConsidered->y + singleAlternate->y) + currentlyConsidered->x + singleAlternate->x].getComponent<PathfinderAttributes>()->getFlag(constants::pathfinder::flagNames::COLLIDABLE))
+		else if (!(*(mapImitation::cells))[mapSize->x*(currentlyConsidered->y + singleAlternate->y) + currentlyConsidered->x + singleAlternate->x].IsCollidable())
 			return false;
 		return true;
 	}

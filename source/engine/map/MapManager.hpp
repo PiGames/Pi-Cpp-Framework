@@ -18,7 +18,7 @@ namespace pi
 		static void SurfaceCollisionMapUpdate();
 
 		//Updates units which have represantion on given object 
-		static void UpdateSingleUnits(GameObject* object);
+		static void UpdateSingleUnits(MapObject* object);
 
 		//Returns cell dimensions (in px)
 		static sf::Vector2f& GetCellDimensions();
@@ -30,7 +30,7 @@ namespace pi
 
 		static Cell *surface;
 
-		static std::vector<GameObject> objects;
+		static std::vector<MapObject> objects;
 
 		//true - collidable unit
 		//false - not collidable unit
