@@ -9,8 +9,9 @@ namespace pi
 {
 	class Math
 	{
-	public:
 		Math();
+
+	public:
 		virtual ~Math();
 
 		static double PerlinNoise(double x, double y, double z);

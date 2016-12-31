@@ -9,6 +9,8 @@ namespace pi
 {
 	class PathFinder final
 	{
+		PathFinder();
+
 		//Clearing targets queue
 		static void clearTargets(std::queue<sf::Vector2f>* targets);
 

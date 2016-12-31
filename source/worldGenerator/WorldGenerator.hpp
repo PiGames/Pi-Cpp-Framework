@@ -9,6 +9,7 @@ namespace pi
 {
 	class WorldGenerator
 	{
+		WorldGenerator();
 	public:
 		static float * Generate(int width, int height, int seed, int accuracy);
 	protected:

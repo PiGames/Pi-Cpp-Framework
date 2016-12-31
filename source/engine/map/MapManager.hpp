@@ -13,6 +13,8 @@ namespace pi
 
 		static void createArrays();
 
+		MapManager();
+
 	public:
 		//Initialization (on the begining of game process)
 		static void Init(sf::Vector2i uWorldSize, const sf::Vector2f& celldimensions);

@@ -38,7 +38,7 @@ namespace pi
 			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].IsCollidable() && flag;
 	}
 
-	void MapManager::AddCell(uint8_t number = 0, int id, sf::Texture * texture, const std::string & name, bool collidableFlag)
+	void MapManager::AddCell(uint8_t number, int id, sf::Texture * texture, const std::string & name, bool collidableFlag)
 	{
 		surface.push_back(Cell(id, texture, name, sf::Vector2f((number - number / unitWorldSize.x)*cellDimensions.x, (number / unitWorldSize.x)*cellDimensions.y), std::vector<sf::Vector2i>() = { sf::Vector2i(0,0) }, collidableFlag));
 	}

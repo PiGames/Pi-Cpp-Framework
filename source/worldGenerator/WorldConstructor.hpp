@@ -9,6 +9,9 @@ namespace pi
 {
 	class WorldConstructor final
 	{
+		WorldConstructor();
+
+		//Returns type of Cell
 		static uint8_t getCellID(uint8_t number);
 
 		//Add single cell
