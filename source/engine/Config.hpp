@@ -15,7 +15,7 @@ namespace pi
 		{
 			namespace flagNames
 			{
-				const std::string COLLIDABLE = "COLLIDABLE";
+				constexpr auto COLLIDABLE = "COLLIDABLE";
 			}
 		}
 
@@ -35,8 +35,8 @@ namespace pi
 
 		namespace worldconstructor
 		{
-			const std::string CELL = "Cell";
-			const std::string TEXTURE_FILE_PATH = "data/textures/textureAtlas.png";
+			constexpr auto CELL = "Cell";
+			constexpr auto TEXTURE_FILE_PATH = "data/textures/textureAtlas.png";
 		}
 	}
 }
