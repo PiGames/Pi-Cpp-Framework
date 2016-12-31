@@ -8,7 +8,6 @@ namespace pi
 		this->isOpen = false;
 		this->numberOfLines = constants::console::DEAFULT_NUMBER_OF_LINES;
 		this->textSizeInLine = constants::console::DEAFULT_TEXT_SIZE_IN_LINE;
-		this->commandArrayLenght = 0;
 		// Text settings
 		this->text.setFillColor(sf::Color::White);
 		this->text.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
@@ -19,6 +18,10 @@ namespace pi
 		this->input.setPosition({ 20.f, this->window->getSize().y / 2 - 20.f });
 
 		this->input.setString("|");
+
+		// Shape
+		this->shape.setPosition({ 0, 0 });
+		this->shape.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) / 2 });
 	}
 	
 	Console::Console(sf::RenderWindow& window)
@@ -28,7 +31,6 @@ namespace pi
 		this->isOpen = false;
 		this->numberOfLines = constants::console::DEAFULT_NUMBER_OF_LINES;;
 		this->textSizeInLine = constants::console::DEAFULT_TEXT_SIZE_IN_LINE;
-		this->commandArrayLenght = 0;
 		// Text settings
 		this->text.setFillColor(sf::Color::White);
 		this->text.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
@@ -39,6 +41,10 @@ namespace pi
 		this->input.setPosition({ 20.f, this->window->getSize().y / 2 - 20.f });
 
 		this->input.setString("|");
+
+		// Shape
+		this->shape.setPosition({ 0, 0 });
+		this->shape.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) / 2 });
 	}
 
 	void Console::setWindow(sf::RenderWindow& window)
@@ -47,14 +53,22 @@ namespace pi
 		this->window = &window;
 	}
 	
-	void Console::setTexture(sf::Texture& texture)
+	void Console::setTexture(const sf::Texture& texture)
 	{
-		this->texture = texture;
-		this->sprite.setTexture(this->texture);
-		this->sprite.setPosition({ 0, 0 });
-		this->sprite.setScale({ static_cast<float>(this->window->getSize().x) / static_cast<float>(this->texture.getSize().x), static_cast<float>(this->window->getSize().y) / static_cast<float>(this->texture.getSize().y) / 2.f });
+		this->shape.setTexture(&texture);
 	}
 
+	void Console::setFillColor(const sf::Color& fill)
+	{
+		this->shape.setFillColor(fill);
+		
+	}
+
+	void Console::setOutlineColor(const sf::Color& outline)
+	{
+		this->shape.setOutlineColor(outline);
+	}
+	
 	void Console::setTextColor(const sf::Color& color)
 	{
 		this->text.setFillColor(color);
@@ -78,11 +92,9 @@ namespace pi
 		this->textSizeInLine = size;
 	}
 
-	void Console::addCommand(void function())
+	void Console::addCommand(Command& command)
 	{
-		this->command[commandArrayLenght].reset(new Command);
-		this->command[commandArrayLenght]->function = function;
-		commandArrayLenght++;
+		this->commands.push_back(command);
 	}
 
 	void Console::run()
@@ -152,11 +164,11 @@ namespace pi
 			this->input.setString(this->input.getString().substring(0, this->input.getString().getSize() - 1) + static_cast<char>(event.text.unicode) + "|");
 	}
 
-	void Console::log(std::string tekst)
+	void Console::log(const std::string& message)
 	{
+		std::string tekst = message;
 		for (unsigned size = 0; size < this->numberOfLines; ++size)
 		{
-
 			if (tekst.size() <= this->textSizeInLine * size)
 			{
 				for (unsigned write = 1; write <= size; ++write)
@@ -191,7 +203,7 @@ namespace pi
 	{
 		if (this->isOpen)
 		{
-			this->window->draw(sprite);
+			this->window->draw(shape);
 			this->window->draw(text);
 			this->window->draw(input);
 		}
