@@ -19,11 +19,6 @@ namespace pi
 			}
 		}
 
-		namespace componentCache
-		{
-			constexpr std::uint16_t MAX_COMPONENT_COUNT = 1024;
-		}
-
 		namespace ui
 		{
 			constexpr std::uint8_t MAX_CALLBACKS = 8;
@@ -36,25 +31,6 @@ namespace pi
 			constexpr std::uint8_t DEAFULT_TEXT_SIZE = 12;
 			constexpr std::uint8_t DEAFULT_NUMBER_OF_LINES = 18;
 			constexpr std::uint8_t DEAFULT_TEXT_SIZE_IN_LINE = 80;
-		}
-
-
-		namespace physic
-		{
-			namespace boxCollider
-			{
-				constexpr std::uint8_t MAX_CALLBACKS = 8;
-			}
-
-			namespace collisionDetector
-			{
-				constexpr std::uint16_t MAX_COLLIDERS = 512;
-			}
-
-			namespace rigidbody
-			{
-				constexpr std::uint8_t MAX_COLLIDERS = 8;
-			}
 		}
 	}
 }

@@ -10,11 +10,6 @@
 #include <SFML/Graphics/Drawable.hpp>
 #include <SFML/Graphics/RenderStates.hpp>
 
-namespace sf
-{
-	class RenderTarget;
-}
-
 namespace pi
 {
 	// virtual class Entity
