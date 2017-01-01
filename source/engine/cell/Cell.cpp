@@ -14,7 +14,7 @@ namespace pi
 		object.setOrigin(object.getGlobalBounds().width / 2.0f, object.getGlobalBounds().height / 2.0f);
 	}
 
-	void Cell::Init(sf::Vector2i * uWorldSize, sf::Vector2f * celldimensions)
+	void Cell::init(sf::Vector2i * uWorldSize, sf::Vector2f * celldimensions)
 	{
 		cellDimensions = celldimensions;
 		unitWorldSize = uWorldSize;

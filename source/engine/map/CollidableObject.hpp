@@ -10,10 +10,10 @@ namespace pi
 		CollidableObject(bool flag = false);
 
 		//Returns flag
-		bool IsCollidable();
+		bool isCollidable();
 
 		//Sets collidable flag
-		void SetCollidable(bool flag);
+		void setCollidable(bool flag);
 
 	private:
 		bool collidableFlag;

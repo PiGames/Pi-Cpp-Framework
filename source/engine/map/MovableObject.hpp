@@ -10,10 +10,10 @@ namespace pi
 	{
 	public:
 		//Sets target and use pathfinder
-		void SetTargetTo(const sf::Vector2f& from, const sf::Vector2f& to);
+		void setTargetTo(const sf::Vector2f& from, const sf::Vector2f& to);
 
 		//Returns state of moving
-		bool IsMoving();
+		bool isMoving();
 		 
 	private:
 

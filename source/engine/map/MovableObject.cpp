@@ -2,12 +2,12 @@
 
 namespace pi
 {
-	void MovableObject::SetTargetTo(const sf::Vector2f& from, const sf::Vector2f& to)
+	void MovableObject::setTargetTo(const sf::Vector2f& from, const sf::Vector2f& to)
 	{
-		PathFinder::FillTargetsQueue(from,to,&targets);
+		PathFinder::fillTargetsQueue(from,to,&targets);
 	}
 
-	bool MovableObject::IsMoving()
+	bool MovableObject::isMoving()
 	{
 		return !targets.empty();
 	}

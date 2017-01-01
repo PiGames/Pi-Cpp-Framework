@@ -35,7 +35,7 @@ namespace pi
 	{
 		std::pair<sf::Vector2i, sf::Vector2i> alternate;
 
-		if (isInMap(*neighbor) && !(&(*(mapImitation::cells))[mapSize->x*neighbor->y + neighbor->x])->IsCollidable() && mapImitation::weights[mapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
+		if (isInMap(*neighbor) && !(&(*(mapImitation::cells))[mapSize->x*neighbor->y + neighbor->x])->isCollidable() && mapImitation::weights[mapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
 		{
 			switch (direction)
 			{
@@ -125,7 +125,7 @@ namespace pi
 
 		while (!Q->empty())
 		{
-			currentlyConsidered = sf::Vector2i(convertPositionToUnitSystem(Q->front()->GetPosition()));
+			currentlyConsidered = sf::Vector2i(convertPositionToUnitSystem(Q->front()->getPosition()));
 			Q->pop();
 			for (size_t direction = 0; direction < neighbours.size(); direction++)
 			{
@@ -197,19 +197,19 @@ namespace pi
 	{
 		if (!isInMap(sf::Vector2i(currentlyConsidered->x + singleAlternate->x, currentlyConsidered->y + singleAlternate->y)))
 			return false;
-		else if (!(*(mapImitation::cells))[mapSize->x*(currentlyConsidered->y + singleAlternate->y) + currentlyConsidered->x + singleAlternate->x].IsCollidable())
+		else if (!(*(mapImitation::cells))[mapSize->x*(currentlyConsidered->y + singleAlternate->y) + currentlyConsidered->x + singleAlternate->x].isCollidable())
 			return false;
 		return true;
 	}
 
-	void PathFinder::Init(std::vector<Cell> *cells, sf::Vector2f *cellDim, sf::Vector2i *worldSize)
+	void PathFinder::init(std::vector<Cell> *cells, sf::Vector2f *cellDim, sf::Vector2i *worldSize)
 	{
 		mapImitation::cells = cells;
 		cellDimensions = cellDim;
 		mapSize = worldSize;
 	}
 
-	void PathFinder::FillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets)
+	void PathFinder::fillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets)
 	{
 		clearTargets(targets);
 

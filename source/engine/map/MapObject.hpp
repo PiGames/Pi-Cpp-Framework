@@ -21,10 +21,10 @@ namespace pi
 		MapObject(const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i(0,0) },bool collidableFlag=false);
 		
 		//Returns real position (in px)
-		sf::Vector2f& GetPosition();
+		sf::Vector2f& getPosition();
 
 		//Returns vector of unit position (in unit system)
-		std::vector<sf::Vector2i>& GetUnitPosition();
+		std::vector<sf::Vector2i>& getUnitPosition();
 
 		
 

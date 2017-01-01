@@ -8,12 +8,12 @@ namespace pi
 
 	}
 
-	sf::Vector2f & MapObject::GetPosition()
+	sf::Vector2f & MapObject::getPosition()
 	{
 		return position;
 	}
 
-	std::vector<sf::Vector2i>& MapObject::GetUnitPosition()
+	std::vector<sf::Vector2i>& MapObject::getUnitPosition()
 	{
 		return unitPosition;
 	}

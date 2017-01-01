@@ -12,7 +12,7 @@ namespace pi
 		Cell(int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i(0,0) }, bool collidableFlag = false);
 
 		//Initialization (on the begining of game process)
-		static void Init(sf::Vector2i *uWorldSize, sf::Vector2f *celldimensions);
+		static void init(sf::Vector2i *uWorldSize, sf::Vector2f *celldimensions);
 
 	private:
 

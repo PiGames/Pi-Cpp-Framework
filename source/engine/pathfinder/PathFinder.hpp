@@ -62,10 +62,10 @@ namespace pi
 	public:
 
 		//Initialization (on the begining of game process)
-		static void Init(std::vector<Cell> *cells, sf::Vector2f *cellDim, sf::Vector2i *worldSize);
+		static void init(std::vector<Cell> *cells, sf::Vector2f *cellDim, sf::Vector2i *worldSize);
 
 		//Filling targets queue by points which represents way to "to" point
-		static void FillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets);
+		static void fillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets);
 	
 		static struct mapImitation
 		{

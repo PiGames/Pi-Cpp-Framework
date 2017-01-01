@@ -14,40 +14,40 @@ namespace pi
 		collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
 	}
 
-	void MapManager::Init(sf::Vector2i uWorldSize, const sf::Vector2f&  celldimensions)
+	void MapManager::init(sf::Vector2i uWorldSize, const sf::Vector2f&  celldimensions)
 	{
 		unitWorldSize = uWorldSize;
 		cellDimensions = celldimensions;
 		createArrays();
-		SurfaceCollisionMapUpdate();
+		surfaceCollisionMapUpdate();
 	}
 
-	void MapManager::SurfaceCollisionMapUpdate()
+	void MapManager::surfaceCollisionMapUpdate()
 	{
 		for (int i = 0; i < unitWorldSize.x*unitWorldSize.x; ++i)
 		{
-			collisionMap[i] = surface[i].IsCollidable();
+			collisionMap[i] = surface[i].isCollidable();
 		}
 	}
 
-	void MapManager::UpdateSingleUnits(MapObject* object)
+	void MapManager::updateSingleUnits(MapObject* object)
 	{
-		bool flag = object->IsCollidable();
+		bool flag = object->isCollidable();
 		
-		for (auto& var : object->GetUnitPosition())
-			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].IsCollidable() && flag;
+		for (auto& var : object->getUnitPosition())
+			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].isCollidable() && flag;
 	}
 
-	void MapManager::AddCell(uint8_t number, int id, sf::Texture * texture, const std::string & name, bool collidableFlag)
+	void MapManager::addCell(uint8_t number, int id, sf::Texture * texture, const std::string & name, bool collidableFlag)
 	{
 		surface.push_back(Cell(id, texture, name, sf::Vector2f((number - number / unitWorldSize.x)*cellDimensions.x, (number / unitWorldSize.x)*cellDimensions.y), std::vector<sf::Vector2i>() = { sf::Vector2i(number - number / unitWorldSize.x,number / unitWorldSize.x) }, collidableFlag));
 	}
 
-	sf::Vector2f & MapManager::GetCellDimensions()
+	sf::Vector2f & MapManager::getCellDimensions()
 	{
 		return cellDimensions;
 	}
-	sf::Vector2i & MapManager::GetUnitWorldSize()
+	sf::Vector2i & MapManager::getUnitWorldSize()
 	{
 		return unitWorldSize;
 	}

@@ -6,12 +6,12 @@ namespace pi
 	{
 	}
 
-	bool CollidableObject::IsCollidable()
+	bool CollidableObject::isCollidable()
 	{
 		return collidableFlag;
 	}
 
-	void CollidableObject::SetCollidable(bool flag)
+	void CollidableObject::setCollidable(bool flag)
 	{
 		collidableFlag = flag;
 	}
