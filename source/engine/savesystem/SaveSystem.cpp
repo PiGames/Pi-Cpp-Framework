@@ -86,7 +86,7 @@ namespace pi
 
 				//Delete tabs and spaces
 				unsigned int j = 0;
-				for (unsigned int i = 0; i < line.size(); i++)
+				for (unsigned int i = 0; i < line.size(); ++i)
 				{
 					if (line[i] == ' ' || line[i] == '\t')
 					{
@@ -103,7 +103,7 @@ namespace pi
 
 				std::string name;
 				std::string value;
-				for (unsigned int i = 0; i < line.size(); i++)
+				for (unsigned int i = 0; i < line.size(); ++i)
 				{
 					
 					if (line[i] == ';')

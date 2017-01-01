@@ -29,7 +29,7 @@ namespace pi
 
 		loadCellTypes();
 		
-		for (uint8_t i = 0; i < width*height; i++)
+		for (uint8_t i = 0; i < width*height; ++i)
 			constructSingleCell(i,textureCache);
 	}
 

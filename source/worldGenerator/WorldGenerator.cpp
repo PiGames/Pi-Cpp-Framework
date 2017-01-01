@@ -8,7 +8,7 @@ namespace pi
 	float WorldGenerator::calculateWeight(int i)
 	{
 		float v = 0.5f;
-		for (int j = 0; j < 6 - i; j++)
+		for (int j = 0; j < 6 - i; ++j)
 		{
 			v = v / 2.f;
 		}
@@ -18,7 +18,7 @@ namespace pi
 	void WorldGenerator::changeContrast(float* source, int width, int height, float power)
 	{
 		int * LUT = new int[255];
-		for (int i = 0; i < 256; i++)
+		for (int i = 0; i < 256; ++i)
 		{
 			float newValue = (power*(i - 127) + 127);
 			if (newValue > 255)
@@ -29,9 +29,9 @@ namespace pi
 				LUT[i] = newValue;
 		}
 
-		for (int i = 0; i < height; i++)
+		for (int i = 0; i < height; ++i)
 		{
-			for (int j = 0; j < width; j++)
+			for (int j = 0; j < width; ++j)
 			{
 				int index = (i*width + j);
 				source[index] = ((float)LUT[(int)(source[index] * 255)] / 255.f);
@@ -63,8 +63,8 @@ namespace pi
 		doMagicalStuff(basicTex, finalTex, width, height);
 		changeContrast(finalTex, width, height, 5.f);
 
-		return finalTex;
 		delete basicTex;
+		return finalTex;
 
 	}
 
@@ -73,9 +73,9 @@ namespace pi
 		float ratiox = (float)sourceWidth / (float)destWidth;
 		float ratioy = (float)sourceHeight / (float)destHeight;
 
-		for (int i = 0; i < destHeight; i++)
+		for (int i = 0; i < destHeight; ++i)
 		{
-			for (int j = 0; j < destWidth; j++)
+			for (int j = 0; j < destWidth; ++j)
 			{
 				float x = j*ratiox;
 				float y = i*ratioy;

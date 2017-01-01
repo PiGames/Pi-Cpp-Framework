@@ -106,7 +106,7 @@ namespace pi
 
 	void PathFinder::setWeightsVectorAsNotVisited()
 	{
-		for (size_t i = 0; i < mapImitation::cells->size(); i++)
+		for (size_t i = 0; i < mapImitation::cells->size(); ++i)
 			mapImitation::weights.emplace_back(PathFinder::CellState::NOT_VISITED);
 	}
 

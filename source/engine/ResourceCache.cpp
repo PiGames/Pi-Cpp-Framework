@@ -59,7 +59,7 @@ namespace pi
 		{
 			if (!fontDataPtr[i])
 			{
-				i++;
+				++i;
 				encodedCounter++;
 			}
 
