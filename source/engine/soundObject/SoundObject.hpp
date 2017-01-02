@@ -24,7 +24,7 @@ namespace pi
 		
 		//Returns number of sound with given name
 		//returns -1 value if sound doesn't exist
-		uint8_t getNumberOfSound(std::string name);
+		int8_t getNumberOfSound(std::string name);
 		
 		//Erase sound with given name
 		//returns false if sound doesn't exist

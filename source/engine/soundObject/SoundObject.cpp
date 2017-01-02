@@ -26,7 +26,7 @@ namespace pi
 		return (sounds.find(name) != sounds.end());
 	}
 
-	uint8_t SoundObject::getNumberOfSound(std::string name)
+	int8_t SoundObject::getNumberOfSound(std::string name)
 	{
 		auto itr = sounds.find(name);
 		

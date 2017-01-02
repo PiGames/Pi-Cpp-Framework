@@ -39,5 +39,11 @@ namespace pi
 			constexpr auto TEXTURE_FILE_PATH = "data/textures/textureAtlas.png";
 			constexpr auto ID_FILE_PATH = "id.txt";
 		}
+
+		namespace SoundSystem
+		{
+			constexpr auto SOUND_PATH = "data/sound/";
+			constexpr auto SOUND_FORMAT = ".ogg";
+		}
 	}
 }
