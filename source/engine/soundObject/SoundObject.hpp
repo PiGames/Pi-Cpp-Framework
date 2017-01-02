@@ -8,7 +8,7 @@
 
 namespace pi
 {
-	class SoundableObject
+	class SoundObject
 	{
 	public:
 
@@ -16,7 +16,7 @@ namespace pi
 		//returns false if sound with given name exist 
 		//or sound isn't in source folder
 		//returns true if sound has been added
-		bool emplace_sound(std::string name);
+		bool emplaceSound(std::string name);
 		
 		//Returns false if sound with given name doesn't exist
 		//returns true if sound with given name exist
@@ -29,7 +29,12 @@ namespace pi
 		//Erase sound with given name
 		//returns false if sound doesn't exist
 		//returns true if sound has been removed
-		 bool erase_sound(std::string name);
+		bool eraseSound(std::string name);
+
+		 //Plays sound with given name
+		 //returns false if sound doesn't exist
+		 //returns true if sound is being played succesfully
+		 bool playSound(std::string name);
 	
 	private:
 
