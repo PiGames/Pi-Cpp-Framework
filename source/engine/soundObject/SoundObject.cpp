@@ -38,7 +38,7 @@ namespace pi
 	{
 		auto soundIterator = sounds.find(name);
 		if (soundIterator == sounds.end()) return false;
-		uint8_t number = soundIterator->second;
+		int8_t number = soundIterator->second;
 
 		auto soundSourceIterator = soundSource.begin() + soundIterator->second;
 

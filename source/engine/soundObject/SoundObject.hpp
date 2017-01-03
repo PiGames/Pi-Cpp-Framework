@@ -38,7 +38,7 @@ namespace pi
 	
 	private:
 
-		std::map<std::string, int> sounds;
+		std::map<std::string, int8_t> sounds;
 
 		std::vector<std::pair<sf::Sound, sf::SoundBuffer>> soundSource;
 	};
