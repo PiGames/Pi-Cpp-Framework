@@ -113,7 +113,7 @@ namespace pi
 	{
 		if (event.key.code == sf::Keyboard::Return)
 		{
-			if (this->input.getString().getSize() < textSizeInLine) // Input text one row
+			if (this->input.getString().getSize() <= textSizeInLine) // Input text one row
 			{
 				// First lane
 				for (unsigned i = 0; i < this->line.size() - 1; ++i)
@@ -121,13 +121,18 @@ namespace pi
 				this->line[line.size() - 1] = this->input.getString().substring(0, this->input.getString().getSize() - 1);
 
 				// Write all string array in console text
-				this->input.setString("|");
 				this->text.setString("");
 				for (auto &i : this->line)
 					this->text.setString(this->text.getString() + i + "\n");
+
+				// Command induction
+				this->commandInduction(this->input.getString());
+
+				this->input.setString("|");
 			}
 			else if (this->input.getString().getSize() < this->textSizeInLine * 2) // Input text two row
 			{
+				this->input.setString(this->input.getString().substring(0, this->input.getString().getSize() - 1));
 				// First lane
 				for (unsigned i = 0; i < this->line.size() - 1; ++i)
 					this->line[i] = this->line[i + 1];
@@ -136,13 +141,18 @@ namespace pi
 				// Second lane
 				for (unsigned i = 0; i < this->line.size() - 1; ++i)
 					this->line[i] = this->line[i + 1];
-				this->line[line.size() - 1] = this->input.getString().substring(this->textSizeInLine + 1, this->textSizeInLine * 2 - 1);
+				this->line[line.size() - 1] = this->input.getString().substring(this->textSizeInLine, this->textSizeInLine * 2 - 1);
 
 				// Write all string array in console text
-				this->input.setString("|");
+				
 				this->text.setString("");
 				for (auto &i : this->line)
 					this->text.setString(this->text.getString() + i + "\n");
+
+				// Command induction
+				this->commandInduction(this->input.getString());
+
+				this->input.setString("|");
 			}
 		}
 		else if (event.key.code == sf::Keyboard::BackSpace)
@@ -206,6 +216,68 @@ namespace pi
 			this->window->draw(shape);
 			this->window->draw(text);
 			this->window->draw(input);
+		}
+	}
+
+	// Private
+
+	inline void Console::commandInduction(std::string inputString)
+	{
+		if (inputString.find("\n") == std::string::npos) // If one lane
+		{
+			// Create variables if one lane
+			std::string argument;
+			size_t spacePositionFirst, spacePositionSecond;
+
+			// No space
+			while (inputString.find("  ") != std::string::npos)
+			{
+				inputString.erase(inputString.find("  "), 1);
+			}
+
+			for (auto &i : this->commands)
+			{
+				if (i.induction == inputString.substr(0, inputString.find(" ")))
+				{
+					i.args.clear();
+					spacePositionFirst = inputString.find(" ");
+					spacePositionSecond = inputString.find(" ", spacePositionFirst + 1);
+					if (spacePositionSecond != std::string::npos)
+					{
+						do
+						{
+							argument = inputString.substr(spacePositionFirst + 1, spacePositionSecond - spacePositionFirst);
+							inputString = inputString.substr(spacePositionSecond, inputString.size());
+							// This IF is just for security
+							if(argument != " ")
+								i.args.push_back(argument);
+
+							spacePositionFirst = inputString.find(" ");
+							spacePositionSecond = inputString.find(" ", spacePositionFirst + 1);
+						} while (spacePositionSecond != std::string::npos);
+					}
+
+					if (spacePositionFirst != std::string::npos)
+					{
+						argument = inputString.substr(spacePositionFirst + 1, inputString.size());
+						// This IF is just for security
+						if (argument != " ")
+							i.args.push_back(argument);
+					}
+
+					i.function(this, &i);
+				}
+				else if (i.induction == inputString.substr(0, inputString.size() - 1))
+				{
+					i.args.clear();
+					i.function(this, &i);
+				}
+			}
+		}
+		else // If more 
+		{
+			inputString.erase(inputString.find("\n"), 2);
+			this->commandInduction(inputString);
 		}
 	}
 }

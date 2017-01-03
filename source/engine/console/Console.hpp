@@ -12,9 +12,12 @@
 
 namespace pi
 {
+	class Console;
+	struct Command;
+
 	struct Command
 	{
-		std::function<void()> function;
+		std::function<void(Console*, Command*)> function;
 		std::string induction;
 		std::vector<std::string> args;
 	};
@@ -42,6 +45,7 @@ namespace pi
 		void key(sf::Event&);
 		void write(sf::Event&);
 		void log(const std::string&);
+		
 		void update();
 
 	private:
@@ -53,5 +57,7 @@ namespace pi
 		unsigned numberOfLines, textSizeInLine;
 		std::array <std::string, constants::console::DEAFULT_NUMBER_OF_LINES> line;
 		std::vector <Command> commands;
+
+		inline void commandInduction(std::string);
 	};
 }
