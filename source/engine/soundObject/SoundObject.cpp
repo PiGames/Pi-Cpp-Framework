@@ -5,11 +5,17 @@ namespace pi
 	bool SoundObject::emplaceSound(std::string name)
 	{
 		if (sounds.find(name) != sounds.end())
+		{
+			Logger::log(constants::error::soundSystem::ALREADY_EXIST, Logger::MessageType::Warning, Logger::OutputType::Both);
 			return false;
-
+		}
+			
 		sf::SoundBuffer soundBuffer;
-		if (!soundBuffer.loadFromFile(constants::SoundSystem::SOUND_PATH+name+constants::SoundSystem::SOUND_FORMAT))
+		if (!soundBuffer.loadFromFile(constants::soundSystem::SOUND_PATH + name + constants::soundSystem::SOUND_FORMAT))
+		{
+			Logger::log(constants::error::soundSystem::DOES_NOT_EXIST_IN_FOLDER, Logger::MessageType::Warning, Logger::OutputType::Both);
 			return false;
+		}
 
 		sf::Sound sound;
 		sound.setBuffer(soundBuffer);
@@ -30,14 +36,24 @@ namespace pi
 	{
 		auto itr = sounds.find(name);
 		
-		if (itr == sounds.end()) return -1;
+		if (itr == sounds.end())
+		{
+			Logger::log(constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both);
+			return -1;
+		}
 		else return itr->second;
 	}
 
 	bool SoundObject::eraseSound(std::string name)
 	{
 		auto soundIterator = sounds.find(name);
-		if (soundIterator == sounds.end()) return false;
+
+		if (soundIterator == sounds.end())
+		{
+			Logger::log(constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both);
+			return false;
+		}
+
 		int8_t number = soundIterator->second;
 
 		auto soundSourceIterator = soundSource.begin() + soundIterator->second;

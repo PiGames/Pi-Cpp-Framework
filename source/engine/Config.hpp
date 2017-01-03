@@ -33,17 +33,27 @@ namespace pi
 			constexpr std::uint8_t DEAFULT_TEXT_SIZE_IN_LINE = 80;
 		}
 
-		namespace worldconstructor
+		namespace worldConstructor
 		{
 			constexpr auto CELL = "Cell";
 			constexpr auto TEXTURE_FILE_PATH = "data/textures/textureAtlas.png";
 			constexpr auto ID_FILE_PATH = "id.txt";
 		}
 
-		namespace SoundSystem
+		namespace soundSystem
 		{
 			constexpr auto SOUND_PATH = "data/sound/";
 			constexpr auto SOUND_FORMAT = ".ogg";
+		}
+
+		namespace error
+		{
+			namespace soundSystem
+			{
+				constexpr auto ALREADY_EXIST = "Sound with given name exist now";
+				constexpr auto DOES_NOT_EXIST_IN_FOLDER = "Sound with given name isn't in source folder";
+				constexpr auto DOES_NOT_EXIST_IN_SYSTEM = "Sound with given name doesn't exist in system. Firstly you need add it to system. Use emplaceSound (std::string name)";
+			}
 		}
 	}
 }

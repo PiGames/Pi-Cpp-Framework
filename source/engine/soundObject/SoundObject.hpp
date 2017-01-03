@@ -3,6 +3,7 @@
 #include <SFML/Audio/SoundBuffer.hpp>
 #include <SFML/Audio/Sound.hpp>
 #include "engine/Config.hpp"
+#include "engine/Logger.hpp"
 #include <map>
 #include <vector>
 
