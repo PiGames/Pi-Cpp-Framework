@@ -15,7 +15,7 @@ namespace pi
 	class Console;
 	struct Command;
 
-	struct Command
+	struct Command 
 	{
 		std::function<void(Console*, Command*)> function;
 		std::string induction;
@@ -29,15 +29,18 @@ namespace pi
 		Console(sf::RenderWindow&);
 		~Console() = default;
 
+		Console& operator =(const Console&) = delete;
+		Console(const Console&) = delete;
+
 		void setWindow(sf::RenderWindow&);
 		void setTexture(const sf::Texture&);
 		void setFillColor(const sf::Color&);
-		void setOutlineColor(const sf::Color& outline);
+		void setOutlineColor(const sf::Color&);
 
 		void setTextColor(const sf::Color&);
 		void setTextFont(sf::Font&);
-		void setTextSize(unsigned);
-		void setTextSizeInLine(unsigned);
+		void setTextSize(const unsigned&);
+		void setTextSizeInLine(const unsigned&);
 
 		void addCommand(Command&);
 
@@ -51,12 +54,11 @@ namespace pi
 	private:
 		sf::RectangleShape shape;
 		sf::RenderWindow* window;
-		bool isOpen;
-
 		sf::Text text, input;
-		unsigned numberOfLines, textSizeInLine;
 		std::array <std::string, constants::console::DEAFULT_NUMBER_OF_LINES> line;
 		std::vector <Command> commands;
+		unsigned numberOfLines, textSizeInLine;
+		bool isOpen;
 
 		inline void commandInduction(std::string);
 	};

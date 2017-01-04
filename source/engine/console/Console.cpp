@@ -81,13 +81,13 @@ namespace pi
 		this->input.setFont(font);
 	}
 
-	void Console::setTextSize(unsigned size)
+	void Console::setTextSize(const unsigned& size)
 	{
 		this->text.setCharacterSize(size);
 		this->input.setCharacterSize(size);
 	}
 
-	void Console::setTextSizeInLine(unsigned size)
+	void Console::setTextSizeInLine(const unsigned& size)
 	{
 		this->textSizeInLine = size;
 	}
@@ -126,7 +126,7 @@ namespace pi
 					this->text.setString(this->text.getString() + i + "\n");
 
 				// Command induction
-				this->commandInduction(this->input.getString());
+				this->commandInduction(this->input.getString().substring(0, this->input.getString().getSize() - 1));
 
 				this->input.setString("|");
 			}
@@ -150,7 +150,7 @@ namespace pi
 					this->text.setString(this->text.getString() + i + "\n");
 
 				// Command induction
-				this->commandInduction(this->input.getString());
+				this->commandInduction(this->input.getString().substring(0, this->input.getString().getSize() - 1));
 
 				this->input.setString("|");
 			}
@@ -188,12 +188,12 @@ namespace pi
 
 					if (write < size) // Whatever else line option
 					{
-						this->line[line.size() - 1] = tekst.substr(0, this->textSizeInLine - 1);
-						tekst = tekst.substr(this->textSizeInLine, tekst.size() - 1);
+						this->line[line.size() - 1] = tekst.substr(0, this->textSizeInLine);
+						tekst = tekst.substr(this->textSizeInLine, std::string::npos);
 					}
 					else // Last line option
 					{
-						this->line[line.size() - 1] = tekst.substr(0, tekst.size() - 1);
+						this->line[line.size() - 1] = tekst.substr(0, std::string::npos);
 
 						// Write all string array in console text
 						this->text.setString("");
@@ -231,9 +231,7 @@ namespace pi
 
 			// No space
 			while (inputString.find("  ") != std::string::npos)
-			{
 				inputString.erase(inputString.find("  "), 1);
-			}
 
 			for (auto &i : this->commands)
 			{
@@ -246,8 +244,9 @@ namespace pi
 					{
 						do
 						{
-							argument = inputString.substr(spacePositionFirst + 1, spacePositionSecond - spacePositionFirst);
-							inputString = inputString.substr(spacePositionSecond, inputString.size());
+							argument = inputString.substr(spacePositionFirst + 1, spacePositionSecond - spacePositionFirst - 1);
+							inputString = inputString.substr(spacePositionSecond, std::string::npos);
+
 							// This IF is just for security
 							if(argument != " ")
 								i.args.push_back(argument);
@@ -259,7 +258,8 @@ namespace pi
 
 					if (spacePositionFirst != std::string::npos)
 					{
-						argument = inputString.substr(spacePositionFirst + 1, inputString.size());
+						argument = inputString.substr(spacePositionFirst + 1, std::string::npos);
+
 						// This IF is just for security
 						if (argument != " ")
 							i.args.push_back(argument);
