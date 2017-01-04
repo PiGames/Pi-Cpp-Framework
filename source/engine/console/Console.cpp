@@ -81,13 +81,13 @@ namespace pi
 		this->input.setFont(font);
 	}
 
-	void Console::setTextSize(const unsigned& size)
+	void Console::setTextSize(const unsigned size)
 	{
 		this->text.setCharacterSize(size);
 		this->input.setCharacterSize(size);
 	}
 
-	void Console::setTextSizeInLine(const unsigned& size)
+	void Console::setTextSizeInLine(const unsigned size)
 	{
 		this->textSizeInLine = size;
 	}

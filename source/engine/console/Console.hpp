@@ -28,28 +28,47 @@ namespace pi
 		Console();
 		Console(sf::RenderWindow&);
 		~Console() = default;
-
+		
 		Console& operator =(const Console&) = delete;
 		Console(const Console&) = delete;
-
-		void setWindow(sf::RenderWindow&);
-		void setTexture(const sf::Texture&);
-		void setFillColor(const sf::Color&);
-		void setOutlineColor(const sf::Color&);
-
-		void setTextColor(const sf::Color&);
-		void setTextFont(sf::Font&);
-		void setTextSize(const unsigned&);
-		void setTextSizeInLine(const unsigned&);
-
-		void addCommand(Command&);
-
-		void run();
-		void key(sf::Event&);
-		void write(sf::Event&);
-		void log(const std::string&);
 		
+		// CONSOLE VIEV FUNCTIONS START
+		// Set window handle
+		// YOU MUST USE IT IF YOU DIDN'T USE THIS CONSTRUCTOR -> Console(sf::RenderWindow&);
+		void setWindow(sf::RenderWindow&);
+		// Set console texture
+		void setTexture(const sf::Texture&);
+		// Set console fill color
+		void setFillColor(const sf::Color&);
+		// Set console outline color
+		void setOutlineColor(const sf::Color&);
+		// CONSOLE VIEV FUNCTIONS END
+		
+		// TEXT SECTION START
+		// Set text color in all lines
+		void setTextColor(const sf::Color&);
+		// Set text font in all lines
+		void setTextFont(sf::Font&);
+		// Set text size in all lines
+		void setTextSize(const unsigned);
+		// Set max number of characters in all lines
+		void setTextSizeInLine(const unsigned);
+		// TEXT SECTION END
+		
+		// CONSOLE FUNCTIONS START
+		// Add command to commands vector
+		void addCommand(Command&);
+		// On-Off console
+		void run();
+		// Checks whether user click baskskape or enter
+		void key(sf::Event&);
+		// Checks what user write on keyboard
+		void write(sf::Event&);
+		// Write logs in console
+		void log(const std::string&);
+		// Just update console
 		void update();
+		// CONSOLE FUNCTIONS END
 
 	private:
 		sf::RectangleShape shape;
