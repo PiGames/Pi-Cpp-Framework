@@ -2,8 +2,8 @@
 
 namespace pi
 {
-	StaticObject::StaticObject(std::vector<sf::Vector2i> uPos, bool collidableFlag)
-		:unitPosition(uPos), CollidableObject(collidableFlag)
+	StaticObject::StaticObject(const std::string& name, const sf::Vector2f& pos, std::vector<sf::Vector2i> uPos, bool collidableFlag)
+		:MapObject(name,pos), CollidableObject(collidableFlag), unitPosition(uPos)
 	{
 	}
 
