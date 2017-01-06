@@ -3,21 +3,21 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <unordered_map>
 
 namespace pi
 {
 	struct Var
 	{
-		std::string name;
-		std::string value;
+
 	};
 
 	class SaveSystem
 	{
 	private:
-		std::vector<Var> vars;
+		std::unordered_map<std::string, std::string> variables;
 		
-		bool isValid(std::string);
+		bool checkComment(std::string);
 	public:
 		SaveSystem();
 
@@ -32,18 +32,18 @@ namespace pi
 		/ @param unsigned int varID
 		/ @return Var
 		*/
-		Var getVariable(int);
+		std::string getVariable(int);
 		/*
 		/ Get var from vector by name
 		/ @param unsigned int varName
 		/ @return Var
 		*/
-		Var getVariable(std::string);
+		std::string getVariable(const std::string&);
 		/*
 		/ Get vector with vars
 		/ @return std::vector<Var>
 		*/
-		std::vector<Var> getVariables();
+		std::unordered_map<std::string, std::string> getVariables();
 		/*
 		/ Update var in vector by id
 		/ @param unsigned int varID
