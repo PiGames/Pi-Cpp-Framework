@@ -2,7 +2,7 @@
 
 #include <fstream>
 #include "engine/map/MapManager.hpp"
-#include "WorldGenerator.hpp"
+#include "WorldHeightmapGenerator.hpp"
 #include "engine/ResourceCache.hpp"
 
 namespace pi

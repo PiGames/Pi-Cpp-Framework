@@ -18,7 +18,7 @@ namespace pi
 		//Returns state of moving
 		bool canMove();
 
-		//Returns false if 
+		//Move object in direction of first target
 		void Move();
 		 
 	private:
