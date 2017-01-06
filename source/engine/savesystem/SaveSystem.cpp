@@ -9,42 +9,44 @@ namespace pi
 
 	void SaveSystem::addVariable(std::string name, std::string value)
 	{
-		Var toAdd;
-		toAdd.name = name;
-		toAdd.value = value;
-		this->vars.push_back(toAdd);
+		this->variables.insert({ name, value });
 	}
 
-	Var SaveSystem::getVariable(int index)
+	std::string SaveSystem::getVariable(int index)
 	{
-		return this->vars[index];
+		std::size_t i = 0;
+		for (auto& toReturn : this->variables)
+		{
+			if (i == index)
+				return toReturn.second;
+			i++;
+		}
+	}
+	
+	std::string SaveSystem::getVariable(const std::string& index)
+	{
+		auto toReturn = this->variables.find(index);
+		if (toReturn != this->variables.end())
+		{
+			return toReturn->second;
+		}
 	}
 
 	bool SaveSystem::updateVariable(unsigned int index, std::string value)
 	{
-		if (this->vars.size() < index)
-			return false;
 
-		this->vars[index].value = value;
 		return true;
 	}
 
 	bool SaveSystem::updateVariable(std::string index, std::string value)
 	{
-		for (auto& toupdate : this->vars)
-		{
-			if (toupdate.name == index)
-			{
-				toupdate.value = value;
-				return true;
-			}
-		}
+
 		return false;
 	}
 
-	std::vector<Var> SaveSystem::getVariables()
+	std::unordered_map<std::string, std::string> SaveSystem::getVariables()
 	{
-		return this->vars;
+		return this->variables;
 	}
 
 	bool SaveSystem::saveToFile(std::string path)
@@ -56,15 +58,25 @@ namespace pi
 			return false;
 		else
 		{
-			for (auto tosave : this->vars)
+			for (auto tosave : this->variables)
 			{
-				file << tosave.name << " = " << tosave.value << ";" << std::endl;
+				file << tosave.first << " = " << tosave.second << ";" << std::endl;
 			}
 
 			file.close();
 		}
 
 		return true;
+	}
+
+	bool SaveSystem::checkComment(std::string buffer)
+	{
+		for (unsigned int i = 0; i < buffer.size(); i++) 
+			if (buffer[i] == '#') 
+				return true;
+			
+		
+		return false;
 	}
 
 	bool SaveSystem::loadFromFile(std::string path)
@@ -79,54 +91,53 @@ namespace pi
 		else
 		{
 			std::string line;
-
 			while (!file.eof())
 			{
 				getline(file, line);
-
-				//Delete tabs and spaces
-				unsigned int j = 0;
-				for (unsigned int i = 0; i < line.size(); ++i)
+				if(!checkComment(line))
 				{
-					if (line[i] == ' ' || line[i] == '\t')
+					//Delete tabs, spaces and ';'
+					std::size_t j = 0;
+					for (std::size_t i = 0; i < line.size(); i++)
 					{
-						j = i + 1;
-						while (j < line.size() && (line[j] == ' '))
-							++j;
+						if (line[i] == ';')
+						{
+							std::size_t found = line.find_first_of(';');
+							while (found != i)
+							{
+								if (line[i] == line[found])
+									continue;
+								else
+									line.erase(found, 1);
+							}
+						}
+						if (line[i] == ' ' || line[i] == '\t')
+						{
+							j = i + 1;
+							while (j < line.size() && (line[j] == ' '))
+								++j;
 
-						if (j == i)
-							line.erase(i, 1);
-						else
-							line.erase(i, j - i);
+							if (j == i)
+								line.erase(i, 1);
+							else
+								line.erase(i, j - i);
+						}
 					}
-				}		
 
-				std::string name;
-				std::string value;
-				for (unsigned int i = 0; i < line.size(); ++i)
-				{
-					
-					if (line[i] == ';')
-						continue;
-					else if (line[i] == '#') //Comment
-						break;
-
-					if (line[i] == '=')
+					std::string name;
+					std::string value;
+					for (std::size_t i = 0; i < line.size(); i++)
 					{
-						name = line.substr(0, i);
-						value = line.substr(i + 1, line.size() - i - 2);
+						if (line[i] == '=')
+						{
+							name = line.substr(0, i);
+							value = line.substr(i + 1, line.size() - i - 2);
 
-						//std::cout << value << std::endl;
-
-						Var toAdd;
-						toAdd.name = name;
-						toAdd.value = value;
-
-						this->vars.push_back(toAdd);
+							this->variables.insert({ name, value });
+						}
 					}
 				}
 			}
-
 			file.close();
 		}
 		return true;
@@ -134,7 +145,7 @@ namespace pi
 
 	void SaveSystem::clear()
 	{
-		this->vars.clear();
+		this->variables.clear();
 	}
 }
 

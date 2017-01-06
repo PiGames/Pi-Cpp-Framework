@@ -12,12 +12,12 @@ namespace pi
 
 	void WorldConstructor::constructSingleCell(uint8_t number, TextureCache * textureCache)
 	{
-		MapManager::addCell(number, getCellID(number),&textureCache->get(constants::worldconstructor::TEXTURE_FILE_PATH), constants::worldconstructor::CELL);
+		MapManager::addCell(number, getCellID(number),&textureCache->get(constants::worldConstructor::TEXTURE_FILE_PATH), constants::worldConstructor::CELL);
 	}
 
 	void WorldConstructor::loadCellTypes()
 	{
-		std::ifstream input(constants::worldconstructor::ID_FILE_PATH);
+		std::ifstream input(constants::worldConstructor::ID_FILE_PATH);
 		int tempID;
 
 		while (input >> tempID) id.push_back(tempID);
