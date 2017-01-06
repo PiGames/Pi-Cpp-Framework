@@ -7,7 +7,7 @@ namespace pi
 	sf::Vector2f *Cell::cellDimensions;
 
 	Cell::Cell(int id, sf::Texture * texture, const std::string & name, const sf::Vector2f& pos, std::vector<sf::Vector2i> uPos, bool collidableFlag)
-		:MapObject(name,pos,uPos,collidableFlag), ID(id)
+		:MapObject(name,pos),StaticObject(uPos,collidableFlag), ID(id)
 	{
 		object.setTexture(*texture);
 		object.setTextureRect(sf::IntRect(ID*cellDimensions->x, 0, cellDimensions->x, cellDimensions->y));

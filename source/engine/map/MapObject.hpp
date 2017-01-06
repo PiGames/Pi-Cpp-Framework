@@ -10,7 +10,7 @@
 
 namespace pi
 {
-	class MapObject : public Entity, public CollidableObject
+	class MapObject : public Entity
 	{
 	protected:
 
@@ -18,23 +18,15 @@ namespace pi
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	public:
-		MapObject(const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i(0,0) },bool collidableFlag=false);
+		MapObject(const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 });
 		
 		//Returns real position (in px)
-		sf::Vector2f& getPosition();
-
-		//Returns vector of unit position (in unit system)
-		std::vector<sf::Vector2i>& getUnitPosition();
-
-		
+		sf::Vector2f& getPosition();	
 
 	protected:
 
 		//position (in px)
 		sf::Vector2f position; 
-		
-		//vector of unit position (in unit system)
-		std::vector<sf::Vector2i> unitPosition;
 
 		sf::Sprite object;
 	};

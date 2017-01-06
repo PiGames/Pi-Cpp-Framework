@@ -30,7 +30,7 @@ namespace pi
 		}
 	}
 
-	void MapManager::updateSingleUnits(MapObject* object)
+	void MapManager::updateSingleUnits(StaticObject* object)
 	{
 		bool flag = object->isCollidable();
 		

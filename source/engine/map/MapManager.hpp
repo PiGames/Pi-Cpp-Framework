@@ -3,6 +3,7 @@
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
 #include "SFML/System/Vector2.hpp"
+#include "engine/map/StaticObject.hpp"
 #include <vector>
 #include <memory>
 
@@ -23,7 +24,7 @@ namespace pi
 		static void surfaceCollisionMapUpdate();
 
 		//Updates units which have represantion on given object 
-		static void updateSingleUnits(MapObject* object);
+		static void updateSingleUnits(StaticObject* object);
 
 		static void addCell(uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false);
 
