@@ -13,29 +13,41 @@ namespace pi
 			List();
 			~List() = default;
 
-			// Set
-			void setTexture(sf::Texture&);
+			List& operator =(const List&) = delete;
+			List(const List& element) = delete;
+
+			// VIEV FUNCTIONS START
+			// Set list texture
+			void setTexture(const sf::Texture&);
+			// Set list position
 			void setPosition(const sf::Vector2f&);
+			// Set list size
 			void setSize(const sf::Vector2f&);
+			// Set list position and size
 			void setRect(const sf::Vector2f&, const sf::Vector2f&);
-			void setDescription(sf::RectangleShape&, float);
-			// Get
-			sf::Texture getTexture() const { return this->texture; }
-			unsigned getListLenght() const { return this->listLenght; }
-			bool getEnable() const { return this->isOpen; }
+			// Set description shape and her delay time
+			void setDescription(const sf::RectangleShape&, const float);
+			// VIEV FUNCTIONS END
 
+			// GET START
+			// Get list head texture
+			const sf::Texture getTexture() const { return this->texture; }
+			// Get list lenght
+			const unsigned getListLenght() const { return this->listLenght; }
+			// Get list open - yes or no
+			const bool getOpen() const { return this->isOpen; }
+			// GET END
+
+			// Add list element, his function, texture and text for description
 			void addElement(std::function<void()>, sf::Texture&, sf::Text&);
-			void description(sf::Event&);
-
-			virtual void use(sf::Event&) final override;
-			virtual void update(sf::RenderWindow&) final override;
 
 		private:
 			sf::Texture texture;
-			sf::RectangleShape cloud;
+			sf::RectangleShape descriptionShape;
+			sf::Vector2i mousePosition;
 			unsigned listLenght, descriptionLenght;
-			bool isOpen, drawDescription;
-			float time;
+			float realTime, delayTime;
+			bool isOpen, drawDescription, cursorOnList;
 
 			struct ListStruct
 			{
@@ -46,6 +58,11 @@ namespace pi
 				sf::Vector2f position;
 			};
 			std::array <std::unique_ptr<ListStruct>, constants::ui::MAX_UIELEMENTS> list;
+
+			// VIRTUAL FUNCTIONS START
+			void use(sf::Event&) final;
+			void update(sf::RenderWindow&) final;
+			// VIRTUAL FUNCTIONS END
 		};
 	}
 }

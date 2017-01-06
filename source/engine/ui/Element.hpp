@@ -12,17 +12,29 @@ namespace pi
 		class Element
 		{
 		public:
-			// Standart gets
-			const sf::Vector2f& getPosition() const { return this->position; }
-			const sf::Vector2f& getSize() const { return this->size; }
-			// Standart UI functions
-			virtual void use(sf::Event&) = 0;
-			virtual void update(sf::RenderWindow&);
+
+			friend class UI;
+
+			// STANDART UI GETS START
+			// Return element position
+			const sf::Vector2f getPosition() const { return this->position; }
+			// Return element size
+			const sf::Vector2f getSize() const { return this->size; }
+			// STANDART UI GETS END
 
 		protected:
-			// Standarts UI
+			// STANDART UI FUNCTIONS START
+			// Use element
+			virtual void use(sf::Event&) = 0;
+			// Update element
+			virtual void update(sf::RenderWindow&);
+			// STANDART UI FUNCTIONS END
+
+			// STANDART UI VARIABLES START
 			sf::Sprite sprite;
 			sf::Vector2f position, size;
+			std::string type;
+			// STANDART UI VARIABLES END
 		};
 	}
 }

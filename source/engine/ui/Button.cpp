@@ -9,9 +9,10 @@ namespace pi
 		Button::Button()
 		{
 			this->functions.fill(nullptr);
+			this->type = "BUTTON";
 		}
 
-		void Button::setTexture(sf::Texture& texture)
+		void Button::setTexture(const sf::Texture& texture)
 		{
 			this->texture = texture;
 			this->sprite.setTexture(this->texture);
@@ -39,19 +40,20 @@ namespace pi
 
 		void Button::addCallback(std::function<void()> function)
 		{
-			for (unsigned i = 0; i < this->functions.size(); ++i)
-				if (!this->functions[i])
+			for (auto &i : this->functions)
+				if (!i)
 				{
-					this->functions[i] = function; break;
+					i = function; break;
 				}
 		}
 
 		void Button::use(sf::Event& event)
 		{
-			if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
-				for (unsigned i = 0; i < this->functions.size(); ++i)
-					if(this->functions[i])
-						this->functions[i]();
+			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+				if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
+					for (auto &i : this->functions)
+						if(i)
+							i();
 		}
 	}
 }

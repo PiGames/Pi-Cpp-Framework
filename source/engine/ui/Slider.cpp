@@ -11,12 +11,15 @@ namespace pi
 		Slider::Slider()
 		{
 			this->functions.fill(nullptr);
-
 			this->isSelected = false;
+			this->checkingInRealMode = false;
 			this->scale = { 0.2f, 1.2f };
+			this->realTime = 0;
+			this->delayTime = 40.f;
+			this->type = "SLIDER";
 		}
 
-		void Slider::setTexture(sf::Texture& sliderTexture, sf::Texture& rateTexture)
+		void Slider::setTexture(const sf::Texture& sliderTexture, const sf::Texture& rateTexture)
 		{
 			this->sliderTexture = sliderTexture;
 			this->rateTexture = rateTexture;
@@ -50,49 +53,73 @@ namespace pi
 
 		void Slider::addCallback(std::function<void(Slider*)> function)
 		{
-			for (unsigned i = 0; i < this->functions.size(); ++i)
-				if (!this->functions[i])
+			for (auto &i : this->functions)
+				if (!i)
 				{
-					this->functions[i] = function; break;
+					i = function; break;
 				}
 		}
 
-		void Slider::selected(sf::Event& event)
+		void Slider::setCheckingInRealMode(const bool isEnable)
 		{
-			if (this->rateSprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
-			{
-				this->isSelected = true;
-			}
+			this->checkingInRealMode = isEnable;
 		}
 
-		void Slider::callback()
+		void Slider::setDelayTime(const float time)
 		{
-			for (unsigned i = 0; i < this->functions.size(); ++i)
-				if (this->functions[i])
-					this->functions[i](this);
-		}
-
-		void Slider::released()
-		{
-			this->isSelected = false;
+			this->delayTime = time;
 		}
 
 		// Virtual methods
 
 		void Slider::use(sf::Event& event)
 		{
-			if (this->isSelected)
+			if (event.type == sf::Event::MouseMoved)
 			{
-				if (event.mouseMove.x != this->ratePosition.x)
+				if (this->isSelected)
 				{
-					if (event.mouseMove.x >= position.x + size.x - (rateSize.x / 2))
-						ratePosition.x = position.x + size.x - rateSize.x;
-					else if (event.mouseMove.x <= position.x + (rateSize.x / 2))
-						ratePosition.x = position.x;
-					else
-						ratePosition.x = event.mouseMove.x - (rateSize.x / 2);
+					if (event.mouseMove.x != this->ratePosition.x)
+					{
+						if (event.mouseMove.x >= this->position.x + this->size.x - (this->rateSize.x / 2))
+							this->ratePosition.x = this->position.x + this->size.x - this->rateSize.x;
+						else if (event.mouseMove.x <= this->position.x + (this->rateSize.x / 2))
+							this->ratePosition.x = this->position.x;
+						else
+							this->ratePosition.x = event.mouseMove.x - (this->rateSize.x / 2);
 
-					rateSprite.setPosition(ratePosition);
+						this->rateSprite.setPosition(this->ratePosition);
+
+						// If checkingInRealMode - true
+						if (this->checkingInRealMode)
+						{
+							if (this->realTime >= this->delayTime)
+							{
+								for (auto &i : this->functions)
+									if (i)
+										i(this);
+								this->realTime = 0;
+							}
+							else
+								this->realTime++;
+						}
+					}
+				}
+			}
+			else if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+			{
+				if (this->rateSprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
+					this->isSelected = true;
+			}
+			else if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+			{
+				if (this->isSelected)
+				{
+					this->isSelected = false;
+					// If checkingInRealMode - false
+					if (!this->checkingInRealMode)
+						for (auto &i : this->functions)
+							if (i)
+								i(this);
 				}
 			}
 		}

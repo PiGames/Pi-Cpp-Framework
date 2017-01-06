@@ -18,45 +18,53 @@ namespace pi
 			UI(sf::RenderWindow&);
 			~UI() = default;
 
+			UI& operator =(const UI&) = delete;
+			UI(const UI&) = delete;
+
+			// Set window handle for UI
 			void setWindow(sf::RenderWindow&);
 			
+			// Get number procent
 			const float getPercent(float procent, float number) const { return number * procent / 100; }
-			const sf::Vector2u& getWindowSize() const { return this->window->getSize(); }
+			// Get window size - MUST USED setWindow or special constructor
+			const sf::Vector2u getWindowSize() const { return this->window->getSize(); }
+
+			// Add element to base
+			template<typename T>
+			void add(T& element)
+			{
+				for (auto &i : this->elements)
+					if (!i)
+					{
+						i = &element; break;
+					}
+			}
 
 			// Buttons section start
-			void addButton(pi::ui::Button&);
 			void useButtons(sf::Event&);
 			void updateButtons(sf::RenderWindow&);
 			// Buttons section end
 
 			// Chechbox section start
-			void addCheckbox(pi::ui::Checkbox&);
 			void useCheckboxs(sf::Event&);
 			void updateCheckboxs(sf::RenderWindow&);
 			// Chechbox section end
 
 			// Slider section start
-			void addSlider(pi::ui::Slider&);
 			void useSliders(sf::Event&);
 			void updateSliders(sf::RenderWindow&);
-			void selectedSliders(sf::Event&);
-			void callbackSliders();
-			void releasedSliders();
 			// Slider section end
 
 			// List section start
-			void addList(pi::ui::List&);
 			void useLists(sf::Event&);
 			void updateLists(sf::RenderWindow&);
-			void descripitonLists(sf::Event&);
 			// List section end
 
 		private:
 			sf::RenderWindow* window;
-			std::array <pi::ui::Button*, constants::ui::MAX_UIELEMENTS> buttons;
-			std::array <pi::ui::Checkbox*, constants::ui::MAX_UIELEMENTS> checkboxs;
-			std::array <pi::ui::Slider*, constants::ui::MAX_UIELEMENTS> sliders;
-			std::array <pi::ui::List*, constants::ui::MAX_UIELEMENTS> lists;
+			unsigned elementArrayLenght;
+
+			std::array <Element*, constants::ui::MAX_UIELEMENTS * constants::ui::NUMBER_OF_UI_ELEMENTS> elements;
 		};
 	}
 }
