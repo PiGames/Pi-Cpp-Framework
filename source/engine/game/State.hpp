@@ -37,7 +37,7 @@ namespace pi
 		/*
 			Runs state loop
 
-			@returns id of state that is requested to change to (-1 (changable in Config.hpp) is reserved for exit)
+			@return id of state that is requested to change to (-1 (changable in Config.hpp) is reserved for exit)
 		*/
 		virtual short run() = 0;
 

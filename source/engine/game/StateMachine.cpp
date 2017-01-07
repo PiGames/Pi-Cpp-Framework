@@ -17,7 +17,8 @@ namespace pi
 	{
 		if (!states.size())
 		{
-			Logger::log("StateMachine: Cannot run, no states", Logger::MessageType::Error);
+			Logger::log(constants::error::stateMachine::NO_STATES, Logger::MessageType::Error);
+			
 			return;
 		}
 
@@ -36,7 +37,7 @@ namespace pi
 				
 				if (result == this->states.end())
 				{
-					Logger::log("StateMachine: Cannot switch states, switching to " + std::to_string(this->emergencyState) + "!", Logger::MessageType::Warning, Logger::OutputType::Console);
+					Logger::log(constants::error::stateMachine::CANNOT_SWITCH + std::to_string(this->emergencyState), Logger::MessageType::Warning, Logger::OutputType::Console);
 
 					this->currentState = emergencyState;
 				}

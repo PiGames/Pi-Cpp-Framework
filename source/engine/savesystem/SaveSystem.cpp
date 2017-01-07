@@ -6,41 +6,35 @@ namespace pi
 	{
 	}
 
-	void SaveSystem::addVariable(std::string name, std::string value)
+	void SaveSystem::addVariable(const std::string& name, const std::string& value)
 	{
-		this->variables.insert({ name, value });
-	}
-
-	std::string SaveSystem::getVariable(int index)
-	{
-		std::size_t i = 0;
-		for (auto& toReturn : this->variables)
-		{
-			if (i == index)
-				return toReturn.second;
-			i++;
-		}
+		this->variables[name] = value;
 	}
 	
-	std::string SaveSystem::getVariable(const std::string& index)
+	std::string SaveSystem::getVariable(const std::string& name)
 	{
-		auto toReturn = this->variables.find(index);
-		if (toReturn != this->variables.end())
-		{
-			return toReturn->second;
-		}
+		auto find = this->variables.find(name);
+
+		if (find == this->variables.end())
+			return "@error";
+
+		return this->variables[name];
 	}
 
-	bool SaveSystem::updateVariable(unsigned int index, std::string value)
+	bool SaveSystem::updateVariable(const std::string& name, const std::string& value)
 	{
+		auto find = this->variables.find(name);
+
+		if (find == this->variables.end())
+		{
+			Logger::log(constants::error::saveSystem::CANNOT_UPDATE_CANNOT_FOUND + name, Logger::MessageType::Error);
+			
+			return false;
+		}
+
+		this->variables[name] = value;
 
 		return true;
-	}
-
-	bool SaveSystem::updateVariable(std::string index, std::string value)
-	{
-
-		return false;
 	}
 
 	std::unordered_map<std::string, std::string> SaveSystem::getVariables()
@@ -48,97 +42,107 @@ namespace pi
 		return this->variables;
 	}
 
-	bool SaveSystem::saveToFile(std::string path)
+	bool SaveSystem::saveToFile(const std::string& path)
 	{
-		std::fstream file;
+		std::ofstream file;
 
 		file.open(path, std::ios::out);
-		if (file.good() == false)
-			return false;
-		else
+		if (!file.good())
 		{
-			for (auto tosave : this->variables)
-			{
-				file << tosave.first << " = " << tosave.second << ";" << std::endl;
-			}
+			Logger::log(constants::error::saveSystem::CANNOT_SAVE + path, Logger::MessageType::Error);
 
 			file.close();
+
+			return false;
 		}
+		
+		
+		for (auto& var : this->variables)
+		{
+			file << var.first << " = " << var.second << "\n";
+		}
+
+		file.close();
 
 		return true;
 	}
 
-	bool SaveSystem::checkComment(std::string buffer)
+	bool SaveSystem::checkComment(const std::string& buffer)
 	{
-		for (unsigned int i = 0; i < buffer.size(); i++) 
-			if (buffer[i] == '#') 
-				return true;
+		if (buffer[0] == constants::saveSystem::COMMENT)
+			return true;
 			
-		
 		return false;
 	}
 
-	bool SaveSystem::loadFromFile(std::string path)
+	bool SaveSystem::load(const std::string & path, std::vector<std::string>& raw)
 	{
+		std::ifstream file;
+		std::string temp;
+
+		file.open(path);
+		if (!file.is_open())
+		{
+			Logger::log(constants::error::saveSystem::CANNOT_OPEN + path, Logger::MessageType::Error);
+
+			return false;
+		}
+		
+		while (!file.eof())
+		{
+			std::getline(file, temp);
+
+			raw.push_back(temp);
+		}
+
+		file.close();
+
+		return true;
+	}
+
+	void SaveSystem::parse(std::vector<std::string>& raw)
+	{
+		for (auto& line : raw)
+		{
+			if (checkComment(line))
+				continue;
+
+			removeSpaces(line);
+			split(line);
+		}
+	}
+
+	void SaveSystem::removeSpaces(std::string& line)
+	{
+		line.erase(std::remove(line.begin(), line.end(), ' '), line.end());
+	}
+
+	void SaveSystem::split(const std::string& line)
+	{
+		auto equalPosition = line.find('=');
+		std::string name;
+		std::string value;
+
+		if (equalPosition == line.npos)
+			return;
+
+		name = line.substr(0, equalPosition);
+		value = line.substr(equalPosition + 1, line.size());
+
+		this->variables[name] = value;
+	}
+
+	bool SaveSystem::loadFromFile(const std::string& file)
+	{
+		std::vector<std::string> raw;
+
 		clear();
 
-		std::fstream file;
-
-		file.open(path, std::ios::in);
-		if (file.good() == false)
+		if (!load(file, raw))
 			return false;
-		else
-		{
-			std::string line;
-			while (!file.eof())
-			{
-				getline(file, line);
-				if(!checkComment(line))
-				{
-					//Delete tabs, spaces and ';'
-					std::size_t j = 0;
-					for (std::size_t i = 0; i < line.size(); i++)
-					{
-						if (line[i] == ';')
-						{
-							std::size_t found = line.find_first_of(';');
-							while (found != i)
-							{
-								if (line[i] == line[found])
-									continue;
-								else
-									line.erase(found, 1);
-							}
-						}
-						if (line[i] == ' ' || line[i] == '\t')
-						{
-							j = i + 1;
-							while (j < line.size() && (line[j] == ' '))
-								++j;
 
-							if (j == i)
-								line.erase(i, 1);
-							else
-								line.erase(i, j - i);
-						}
-					}
+		parse(raw);
 
-					std::string name;
-					std::string value;
-					for (std::size_t i = 0; i < line.size(); i++)
-					{
-						if (line[i] == '=')
-						{
-							name = line.substr(0, i);
-							value = line.substr(i + 1, line.size() - i - 2);
-
-							this->variables.insert({ name, value });
-						}
-					}
-				}
-			}
-			file.close();
-		}
 		return true;
 	}
 

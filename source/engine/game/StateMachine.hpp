@@ -25,9 +25,9 @@ namespace pi
 		using enable_if = typename std::enable_if<CONDITION::value>::type;
 
 		/*
-		 StateMachine constructor
+			StateMachine constructor
 		 
-		 @param number of state that state machine will start (menu state for example)
+			@param number of state that state machine will start (menu state for example)
 		*/
 		StateMachine(unsigned short stateToStart = 0);
 		
@@ -40,6 +40,7 @@ namespace pi
 		
 		/*
 			Adds State to StateMachine with specified id
+
 			@param id of state; cannot be same as previulsy added (you cannot have more than one state of given 'n' number)
 		*/
 		template<class T, enable_if<std::is_base_of<State, T>>...>
@@ -57,7 +58,9 @@ namespace pi
 			states[id] = std::make_unique<State>(new T());
 		}
 
-		// Runs state machine
+		/*
+			Runs state machine
+		*/
 		void run();
 
 	private:

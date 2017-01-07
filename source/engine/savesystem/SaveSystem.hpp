@@ -1,43 +1,35 @@
 #pragma once
 
-#include <iostream>
 #include <fstream>
 #include <string>
-#include <vector>
 #include <unordered_map>
+
+#include "engine/Logger.hpp"
 
 namespace pi
 {
-	struct Var
-	{
-
-	};
-
 	class SaveSystem
 	{
 	private:
-		std::unordered_map<std::string, std::string> variables;
-		
-		bool checkComment(std::string);
+		bool checkComment(const std::string&);
+		bool load(const std::string&, std::vector<std::string>&);
+		void parse(std::vector<std::string>&);
+		void removeSpaces(std::string&);
+		void split(const std::string&);
+
 	public:
 		SaveSystem();
 
 		/*
-		/ Add new var to vector
+		/ Add new var to vector, also overwrites old one
 		/ @param string varName
 		/ @param string varValue
 		*/
-		void addVariable(std::string, std::string);
-		/*
-		/ Get var from vector by id
-		/ @param unsigned int varID
-		/ @return Var
-		*/
-		std::string getVariable(int);
+		void addVariable(const std::string&, const std::string&);
 		/*
 		/ Get var from vector by name
-		/ @param unsigned int varName
-		/ @return Var
+		/ @param string varName
+		/ @return variable data or "@error"
 		*/
 		std::string getVariable(const std::string&);
 		/*
@@ -46,32 +38,30 @@ namespace pi
 		*/
 		std::unordered_map<std::string, std::string> getVariables();
 		/*
-		/ Update var in vector by id
-		/ @param unsigned int varID
-		/ @param string newValue
-		*/
-		bool updateVariable(unsigned int, std::string);
-		/*
 		/ Update var in vector by name
 		/ @param string varName
 		/ @param string newValue
+		/ @return bool ('true' if updated properly)
 		*/
-		bool updateVariable(std::string, std::string);
+		bool updateVariable(const std::string&, const std::string&);
 		/*
 		/ Save to file
 		/ @param string PathFile
-		/ @return bool ('true' if save properly)
+		/ @return bool ('true' if saved properly)
 		*/
-		bool saveToFile(std::string);
+		bool saveToFile(const std::string&);
 		/*
 		/ Parse from file
 		/ @param string PathFile
 		/ @return bool ('true' if parse properly)
 		*/
-		bool loadFromFile(std::string);
+		bool loadFromFile(const std::string&);
 		/*
 		/ Clear vars vector
 		*/
 		void clear();
+
+	private:
+		std::unordered_map<std::string, std::string> variables;
 	};
 }

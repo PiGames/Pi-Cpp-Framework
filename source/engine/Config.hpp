@@ -52,13 +52,31 @@ namespace pi
 			constexpr std::int8_t EXIT_STATE = -1;
 		}
 
+		namespace saveSystem
+		{
+			constexpr char COMMENT = '#';
+		}
+
 		namespace error
 		{
 			namespace soundSystem
 			{
-				constexpr auto ALREADY_EXIST = "Sound with given name exist now";
+				constexpr auto ALREADY_EXIST = "Sound with given name already exist ";
 				constexpr auto DOES_NOT_EXIST_IN_FOLDER = "Sound with given name isn't in source folder";
 				constexpr auto DOES_NOT_EXIST_IN_SYSTEM = "Sound with given name doesn't exist in system. Firstly you need add it to system. Use emplaceSound (std::string name)";
+			}
+
+			namespace stateMachine
+			{
+				constexpr auto NO_STATES = "StateMachine: Cannot run, no states";
+				constexpr auto CANNOT_SWITCH = "StateMachine: Cannot switch states, switching to ";
+			}
+
+			namespace saveSystem
+			{
+				constexpr auto CANNOT_OPEN = "SaveSystem: Cannot open file: ";
+				constexpr auto CANNOT_SAVE = "SaveSystem: Cannot save to file: ";
+				constexpr auto CANNOT_UPDATE_CANNOT_FOUND = "SaveSystem: Cannot update variable, cannot find: ";
 			}
 		}
 	}

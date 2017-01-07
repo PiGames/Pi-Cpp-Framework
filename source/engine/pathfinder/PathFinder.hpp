@@ -11,6 +11,7 @@ namespace pi
 {
 	class PathFinder final
 	{
+	private:
 		PathFinder();
 
 		//Clearing targets queue
