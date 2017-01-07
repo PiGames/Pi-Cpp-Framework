@@ -21,7 +21,11 @@ namespace pi
 
 	bool MovableObject::move()
 	{
-		if (!canMove()) return false;
+		if (!canMove())
+		{
+			Logger::log(constants::error::movableObject::WRONG_USE_MOVE, Logger::MessageType::Warning, Logger::OutputType::Console);
+			return false;
+		}
 
 		makeStep();
 		if (isNearTarget()) targets.pop();
@@ -41,7 +45,6 @@ namespace pi
 
 	bool MovableObject::isNearTarget()
 	{
-		//to do
-		return false;
+		return Math::distance(object.getPosition(), targets.front()) < MapManager::getCellDimensions().x;
 	}
 }

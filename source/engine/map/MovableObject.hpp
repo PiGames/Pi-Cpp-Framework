@@ -3,6 +3,9 @@
 #include <queue>
 #include <SFML/System/Vector2.hpp>
 #include "engine/pathfinder/PathFinder.hpp"
+#include "engine/map/MapManager.hpp"
+#include "engine/Logger.hpp"
+#include "engine/Math.hpp"
 
 namespace pi
 {
@@ -12,16 +15,18 @@ namespace pi
 
 		MovableObject(const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 }, float speed = 1.f);
 
+		//Returns state of moving
+		bool canMove();
+
 		//Sets target and use pathfinder
 		void setTargetTo(const sf::Vector2f& from, const sf::Vector2f& to);
 
 		//Move object in direction of first target
+		//returns false if object isn't moving now
+		//returns true if object has done step
 		bool move();
 		 
 	private:
-
-		//Returns state of moving
-		bool canMove();
 
 		//Makes single step
 		void makeStep();

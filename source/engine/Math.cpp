@@ -22,6 +22,11 @@ namespace pi
 		return 0;
 	}
 
+	float Math::distance(sf::Vector2f first, sf::Vector2f second)
+	{
+		return std::sqrt(std::pow(first.x - second.x, 2) + std::pow(first.y - second.y, 2));
+	}
+
 	void Math::PerlinNoiseInit()
 	{
 		perlinPermutationVector = {

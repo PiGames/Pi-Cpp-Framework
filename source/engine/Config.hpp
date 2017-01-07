@@ -59,6 +59,11 @@ namespace pi
 
 		namespace error
 		{
+			namespace movableObject
+			{
+				constexpr auto WRONG_USE_MOVE = "Wrong use of move() method. Firstly make sure that object is moving.";
+			}
+
 			namespace soundSystem
 			{
 				constexpr auto ALREADY_EXIST = "Sound with given name already exist ";
