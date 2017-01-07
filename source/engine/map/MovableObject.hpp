@@ -19,7 +19,7 @@ namespace pi
 		bool canMove();
 
 		//Move object in direction of first target
-		void Move();
+		void move();
 		 
 	private:
 
