@@ -21,4 +21,11 @@ namespace pi
 
 		this->window = window;
 	}
+	void State::setConsolePointer(Console * console)
+	{
+		if (console == nullptr)
+			Logger::log("States console is setting using nullptr", pi::Logger::MessageType::Warning);
+
+		this->console = console;
+	}
 }

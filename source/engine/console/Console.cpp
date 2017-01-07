@@ -15,13 +15,13 @@ namespace pi
 
 		this->input.setFillColor(sf::Color::White);
 		this->input.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
-		this->input.setPosition({ 20.f, this->window->getSize().y / 2 - 20.f });
+	//	this->input.setPosition({ 20.f, this->window->getSize().y / 2 - 20.f });
 
 		this->input.setString("|");
 
 		// Shape
 		this->shape.setPosition({ 0, 0 });
-		this->shape.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) / 2 });
+	//	this->shape.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) / 2 });
 	}
 	
 	Console::Console(sf::RenderWindow& window)
@@ -176,10 +176,10 @@ namespace pi
 
 	void Console::log(const std::string& message)
 	{
-		std::string tekst = message;
+		std::string text = message;
 		for (unsigned size = 0; size < this->numberOfLines; ++size)
 		{
-			if (tekst.size() <= this->textSizeInLine * size)
+			if (text.size() <= this->textSizeInLine * size)
 			{
 				for (unsigned write = 1; write <= size; ++write)
 				{
@@ -188,12 +188,12 @@ namespace pi
 
 					if (write < size) // Whatever else line option
 					{
-						this->line[line.size() - 1] = tekst.substr(0, this->textSizeInLine);
-						tekst = tekst.substr(this->textSizeInLine, std::string::npos);
+						this->line[line.size() - 1] = text.substr(0, this->textSizeInLine);
+						text = text.substr(this->textSizeInLine, std::string::npos);
 					}
 					else // Last line option
 					{
-						this->line[line.size() - 1] = tekst.substr(0, std::string::npos);
+						this->line[line.size() - 1] = text.substr(0, std::string::npos);
 
 						// Write all string array in console text
 						this->text.setString("");

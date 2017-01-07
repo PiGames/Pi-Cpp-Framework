@@ -35,6 +35,12 @@ namespace pi
 		void setWindowPointer(sf::RenderWindow* window);
 
 		/*
+			Sets console pointer
+
+			@param pointer to Console
+		*/
+		void setConsolePointer(Console* console);
+		/*
 			Runs state loop
 
 			@return id of state that is requested to change to (-1 (changable in Config.hpp) is reserved for exit)
@@ -43,5 +49,6 @@ namespace pi
 
 	protected:
 		sf::RenderWindow * window;
+		Console * console;
 	};
 }

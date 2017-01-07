@@ -11,6 +11,13 @@ namespace pi
 {
 	namespace constants
 	{
+		namespace version
+		{
+			constexpr std::uint8_t MAJOR = 0;
+			constexpr std::uint8_t MINOR = 1;
+			constexpr std::uint8_t RELEASE = 0;
+		}
+
 		namespace pathfinder
 		{
 			namespace flagNames

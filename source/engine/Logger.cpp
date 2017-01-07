@@ -11,10 +11,6 @@ namespace pi
 			return;
 
 		Logger::file.open(outputFileName);
-		Logger::file << "";
-		Logger::file.close();
-
-		Logger::file.open(outputFileName, std::ios::app);
 	
 		Logger::console = console;
 	}
