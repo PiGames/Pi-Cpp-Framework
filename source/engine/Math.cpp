@@ -2,19 +2,23 @@
 
 namespace pi
 {
-	static std::vector<int> perlinPermutationVector;
+	namespace
+	{
+		static std::vector<int> perlinPermutationVector;
+	}
+
 	Math::Math()
 	{
 	}
 
-	Math::~Math()
-	{
-	}
 
 	float Math::Sign(float x)
 	{
-		if (x > 0) return 1;
-		if (x < 0) return -1;
+		if (x > 0) 
+			return 1;
+		if (x < 0)
+			return -1;
+
 		return 0;
 	}
 
@@ -39,8 +43,6 @@ namespace pi
 
 	double Math::PerlinNoise(double x, double y, double z)
 	{
-
-
 		// Find the unit cube that contains the point
 		int X = (int)floor(x) & 255;
 		int Y = (int)floor(y) & 255;
@@ -78,15 +80,18 @@ namespace pi
 		return (res + 1.0) / 2.0;
 	}
 
-	double Math::fade(double t) {
+	double Math::fade(double t) 
+	{
 		return t * t * t * (t * (t * 6 - 15) + 10);
 	}
 
-	double Math::lerp(double t, double a, double b) {
+	double Math::lerp(double t, double a, double b) 
+	{
 		return a + t * (b - a);
 	}
 
-	double Math::grad(int hash, double x, double y, double z) {
+	double Math::grad(int hash, double x, double y, double z)
+	{
 		int h = hash & 15;
 		// Convert lower 4 bits of hash into 12 gradient directions
 		double u = h < 8 ? x : y,
