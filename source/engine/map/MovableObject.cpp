@@ -19,7 +19,17 @@ namespace pi
 		return !targets.empty();
 	}
 
-	void MovableObject::move()
+	bool MovableObject::move()
+	{
+		if (!canMove()) return false;
+
+		makeStep();
+		if (isNearTarget()) targets.pop();
+
+		return true;
+	}
+
+	void MovableObject::makeStep()
 	{
 		sf::Vector2f direction = targets.front() - this->position;
 
@@ -27,5 +37,11 @@ namespace pi
 		sf::Vector2f vector(direction.x / magnitude, direction.y / magnitude);
 
 		this->position += vector * moveSpeed /* * delta time */;
+	}
+
+	bool MovableObject::isNearTarget()
+	{
+		//to do
+		return false;
 	}
 }

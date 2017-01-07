@@ -15,13 +15,19 @@ namespace pi
 		//Sets target and use pathfinder
 		void setTargetTo(const sf::Vector2f& from, const sf::Vector2f& to);
 
+		//Move object in direction of first target
+		bool move();
+		 
+	private:
+
 		//Returns state of moving
 		bool canMove();
 
-		//Move object in direction of first target
-		void move();
-		 
-	private:
+		//Makes single step
+		void makeStep();
+
+		//Checks distance to front target
+		bool isNearTarget();
 
 		std::queue<sf::Vector2f> targets;
 
