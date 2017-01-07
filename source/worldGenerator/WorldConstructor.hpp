@@ -1,8 +1,9 @@
 #pragma once
 
 #include <fstream>
-#include "engine/map/MapManager.hpp"
+
 #include "WorldHeightmapGenerator.hpp"
+#include "engine/map/MapManager.hpp"
 #include "engine/ResourceCache.hpp"
 
 namespace pi

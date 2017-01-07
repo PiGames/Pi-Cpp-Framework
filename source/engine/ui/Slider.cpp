@@ -1,7 +1,5 @@
 #include "Slider.hpp"
 
-
-
 namespace pi
 {
 	namespace ui

@@ -1,46 +1,70 @@
 #pragma once
+
+#include <functional>
+#include <memory>
+#include <map>
+
 #include "State.hpp"
+#include "engine/Config.hpp"
 
-
-// State Machine
-// (used by Game class)
-// Starting state should be Menu 
-// Usually starting state number - 0
-
-class StateMachine
+namespace pi
 {
-	friend class Game;
-public:
-	// StateMachine constructor (default)
-	// stateToStart = 0	- number of state to start
-	StateMachine(unsigned short stateToStart = 0);
-	~StateMachine();
-	// Add State to StateMachine with specified id
-	// Usage: stateMachine.AddState< MenuState >((int)StateEnums::MenuState, "resrc/menu.config")
-	// id						- id of state (cannot be the same as added previous)
-	// resourceCachePath		- path to resource cache
-	template<class T>
-	inline void AddState(unsigned short id, const std::string & resourceCachePath)
+	/*
+	 State Machine class
+	 (used by Game class)
+	 Starting state should be Menu 
+	 Usually starting state number - 0
+	 State no. -1 (changable in Config.hpp) is reserved for state machine suicide, so you can use it in Menu state for example
+	*/
+	class StateMachine final
 	{
-		static_assert(std::is_base_of<State, T>::value, "State is not base of T");
+		friend class Game;
 
-		for (auto it = m_states.begin(); it != m_states.end(); ++it)
+	public:
+		template<typename CONDITION>
+		using enable_if = typename std::enable_if<CONDITION::value>::type;
+
+		/*
+		 StateMachine constructor
+		 
+		 @param number of state that state machine will start (menu state for example)
+		*/
+		StateMachine(unsigned short stateToStart = 0);
+		
+		/*
+			Sets state id for errorus situations; if state request to change state that doesnt exist
+
+			@param emergency state id
+		*/
+		void setEmergencyStateID(short id);
+		
+		/*
+			Adds State to StateMachine with specified id
+			@param id of state; cannot be same as previulsy added (you cannot have more than one state of given 'n' number)
+		*/
+		template<class T, enable_if<std::is_base_of<State, T>>...>
+		void addState(short id)
 		{
-			if (it->first == id)
-			{
-				Logger::Log("StateMachine: Cannot add state, found same state id! ID: " + std::to_string(id), Logger::MessageType::Error, Logger::Output::All);
+			auto result = states.find(id);
 
-				return;
+			if (result != states.end())
+			{
+					Logger::log("StateMachine: Cannot add state, found same state id! ID: " + std::to_string(id), Logger::MessageType::Error, Logger::OutputType::All);
+
+					return;
 			}
+
+			states[id] = std::make_unique<State>(new T());
 		}
 
-		m_states[id] = new T(resourceCachePath);
-	}
-	// Runs state machine
-	void run();
+		// Runs state machine
+		void run();
 
-private:
-	unsigned short currentState;
-	std::map<unsigned short, State*> m_states;
-};
+	private:
+		short currentState;
+		short emergencyState;
+		std::map<short, std::unique_ptr<State>> states;
+	};
 
+
+}

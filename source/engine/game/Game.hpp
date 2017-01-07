@@ -1,8 +1,10 @@
 #pragma once
 
-
-class Game final
+namespace pi
 {
-public:
-	void run();
-};
+	class Game final
+	{
+	public:
+		void run();
+	};
+}

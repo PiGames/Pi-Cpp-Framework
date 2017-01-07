@@ -1,5 +1,8 @@
 #include "Game.hpp"
 
-void Game::run()
+namespace pi
 {
+	void Game::run()
+	{
+	}
 }

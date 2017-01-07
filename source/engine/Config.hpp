@@ -47,6 +47,11 @@ namespace pi
 			constexpr auto SOUND_FORMAT = ".ogg";
 		}
 
+		namespace stateMachine
+		{
+			constexpr std::int8_t EXIT_STATE = -1;
+		}
+
 		namespace error
 		{
 			namespace soundSystem

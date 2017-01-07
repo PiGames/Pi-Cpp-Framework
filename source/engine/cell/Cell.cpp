@@ -1,6 +1,5 @@
 #include "Cell.hpp"
 
-
 namespace pi
 {
 	sf::Vector2i *Cell::unitWorldSize;

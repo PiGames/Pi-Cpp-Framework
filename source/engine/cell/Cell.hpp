@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "engine/map/MapObject.hpp"
 #include "engine/Config.hpp"
 #include "engine/map/StaticObject.hpp"

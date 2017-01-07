@@ -1,6 +1,5 @@
 #include "SaveSystem.hpp"
 
-
 namespace pi
 {
 	SaveSystem::SaveSystem()

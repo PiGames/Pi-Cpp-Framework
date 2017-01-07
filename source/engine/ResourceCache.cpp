@@ -1,6 +1,5 @@
 #include "ResourceCache.hpp"
 
-
 namespace pi
 {
 	std::unique_ptr<sf::Texture> TextureCache::handleError()

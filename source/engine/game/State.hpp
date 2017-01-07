@@ -1,19 +1,47 @@
 #pragma once
 
-#include <SFML\Graphics\RenderWindow.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 
-#include "engine/ResourceCache.hpp"
+#include "engine/Logger.hpp"
 
-class State
+namespace pi
 {
-public:
-	State(const std::string& resourceCacheConfig);
-	virtual ~State();
+	/*
+		State class
+	*/
+	class State
+	{
+		friend class StateMachine;
 
-	void setWindowPointer(sf::RenderWindow* window);
+	private:
+		/*
+			State Machine calls this method before run method, you don't need to override it
+		*/
+		virtual void onActivation();
+		/*
+			State Machine calls this method before switching to other one (after run method), you don't need to override it
+		*/
+		virtual void onDeactivation();
 
-	virtual void run();
-protected:
-	unsigned stateID;
-};
+	public:
+		State();
+		virtual ~State() = default;
 
+		/*
+			Sets window pointer
+
+			@param pointer to window
+		*/
+		void setWindowPointer(sf::RenderWindow* window);
+
+		/*
+			Runs state loop
+
+			@returns id of state that is requested to change to (-1 (changable in Config.hpp) is reserved for exit)
+		*/
+		virtual short run() = 0;
+
+	protected:
+		sf::RenderWindow * window;
+	};
+}
