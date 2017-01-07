@@ -1,11 +1,13 @@
 #pragma once
 
+#include <memory>
+#include <vector>
+
+#include <SFML/System/Vector2.hpp>
+
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
-#include "SFML/System/Vector2.hpp"
 #include "engine/map/StaticObject.hpp"
-#include <vector>
-#include <memory>
 
 namespace pi
 {

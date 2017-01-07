@@ -1,7 +1,9 @@
 #pragma once
 
-#include <SFML/System/Vector2.hpp>
 #include <queue>
+
+#include <SFML/System/Vector2.hpp>
+
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
 

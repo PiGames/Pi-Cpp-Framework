@@ -1,12 +1,12 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <memory>
 #include <array>
 #include <vector>
 #include <string>
 #include <functional>
 
+#include <SFML/Graphics.hpp>
 
 #include "engine/Config.hpp"
 

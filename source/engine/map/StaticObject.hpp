@@ -1,9 +1,11 @@
 #pragma once
 
+#include <vector>
+
 #include <SFML/System/Vector2.hpp>
+
 #include "CollidableObject.hpp"
 #include "MapObject.hpp"
-#include <vector>
 
 namespace pi
 {

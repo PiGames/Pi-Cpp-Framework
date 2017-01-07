@@ -1,6 +1,8 @@
 #pragma once
-#include "../ResourceCache.hpp"
+
 #include <SFML\Graphics\RenderWindow.hpp>
+
+#include "engine/ResourceCache.hpp"
 
 class State
 {

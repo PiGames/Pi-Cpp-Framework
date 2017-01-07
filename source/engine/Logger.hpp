@@ -1,9 +1,10 @@
 #pragma once
 
-#include "engine/console/Console.hpp"
 #include <fstream>
 #include <iostream>
 #include <string>
+
+#include "engine/console/Console.hpp"
 
 namespace pi
 {
