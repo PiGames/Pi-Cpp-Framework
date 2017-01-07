@@ -43,7 +43,7 @@ namespace pi
 
 	}
 
-	float * WorldHeightmapGenerator::Generate(int width, int height, int seed, int accurancy)
+	float * WorldHeightmapGenerator::generate(int width, int height, int seed, int accurancy)
 	{
 		WorldHeightmapGenerator::height = height;
 		WorldHeightmapGenerator::width = width;

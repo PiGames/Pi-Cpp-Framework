@@ -25,7 +25,7 @@ namespace pi
 
 	void WorldConstructor::constructWorld(int width, int height, int seed, int accuracy, TextureCache * textureCache)
 	{
-		heightMap = WorldHeightmapGenerator::Generate(width,height,seed,accuracy);
+		heightMap = WorldHeightmapGenerator::generate(width,height,seed,accuracy);
 
 		loadCellTypes();
 		

@@ -10,10 +10,11 @@ namespace pi
 {
 	class WorldHeightmapGenerator
 	{
+	private:
 		WorldHeightmapGenerator();
+	
 	public:
-		static float * Generate(int width, int height, int seed, int accuracy);
-	protected:
+		static float * generate(int width, int height, int seed, int accuracy);
 
 	private:
 		static int actualHeightmapNumber; //= 1;
