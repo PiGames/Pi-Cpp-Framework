@@ -77,16 +77,16 @@ namespace pi
 				if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
 				{
 					if (!this->isEnable)
-						this->Enable();
+						this->enable();
 					else if (this->isEnable)
-						this->Disable();
+						this->disable();
 				}
 			}
 		}
 
 		// Private
 
-		void Checkbox::Enable()
+		void Checkbox::enable()
 		{
 			this->isEnable = true;
 			this->texture = &this->textureOn;
@@ -96,7 +96,7 @@ namespace pi
 					i();
 		}
 
-		void Checkbox::Disable()
+		void Checkbox::disable()
 		{
 			this->isEnable = false;
 			this->texture = &this->textureOff;

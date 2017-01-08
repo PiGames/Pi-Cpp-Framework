@@ -13,7 +13,7 @@ namespace pi
 			Checkbox();
 			~Checkbox() = default;
 
-			// VIEV FUNCTIONS START
+			// VIEW FUNCTIONS START
 			// Set checkbox textures when on and off
 			void setTexture(const sf::Texture&, const sf::Texture&);
 			// Set checkbox position
@@ -48,8 +48,8 @@ namespace pi
 			std::array <std::function<void()>, constants::ui::MAX_CALLBACKS> functionsOn;
 			bool isEnable;
 
-			void Enable();
-			void Disable();
+			void enable();
+			void disable();
 
 			// VIRTUAL FUNCTIONS START
 			void use(sf::Event& event) final;
