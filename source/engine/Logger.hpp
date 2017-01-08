@@ -34,7 +34,6 @@ namespace pi
 		static void logToConsole(const std::string& message);
 
 	public:
-
 		// Logger class is static - you cannot make Logger object
 		Logger() = delete;
 

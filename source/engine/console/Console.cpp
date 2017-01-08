@@ -2,6 +2,16 @@
 
 namespace pi
 {
+	void Console::draw(sf::RenderTarget& target, sf::RenderStates state) const
+	{
+		if (this->isOpen)
+		{
+			target.draw(shape);
+			target.draw(text);
+			target.draw(input);
+		}
+	}
+
 	Console::Console()
 	{
 		// Default settings
@@ -15,12 +25,15 @@ namespace pi
 
 		this->input.setFillColor(sf::Color::White);
 		this->input.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
+		//	this->input.setPosition({ 20.f, this->window->getSize().y / 2 - 20.f });
+
 		this->input.setString("|");
 
 		// Shape
 		this->shape.setPosition({ 0, 0 });
+		//	this->shape.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) / 2 });
 	}
-	
+
 	Console::Console(const sf::Vector2u& size)
 	{
 		// Default settings
@@ -51,23 +64,18 @@ namespace pi
 		this->input.setPosition({ 20.f, this->windowSize.y / 2 - 20.f });
 		this->shape.setSize({ static_cast<float>(this->windowSize.x), static_cast<float>(this->windowSize.y) / 2 });
 	}
-	
-	void Console::setTexture(const sf::Texture& texture)
-	{
-		this->shape.setTexture(&texture);
-	}
 
 	void Console::setFillColor(const sf::Color& fill)
 	{
 		this->shape.setFillColor(fill);
-		
+
 	}
 
 	void Console::setOutlineColor(const sf::Color& outline)
 	{
 		this->shape.setOutlineColor(outline);
 	}
-	
+
 	void Console::setTextColor(const sf::Color& color)
 	{
 		this->text.setFillColor(color);
@@ -96,16 +104,19 @@ namespace pi
 		this->commands.push_back(command);
 	}
 
-	void Console::run()
+	void Console::toggle()
 	{
-		if (!this->isOpen)
-		{
-			this->isOpen = true;
-		}
-		else if (this->isOpen)
-		{
-			this->isOpen = false;
-		}
+		this->isOpen = !this->isOpen;
+	}
+
+	void Console::show()
+	{
+		this->isOpen = true;
+	}
+
+	void Console::hide()
+	{
+		this->isOpen = false;
 	}
 
 	void Console::key(sf::Event& event)
@@ -143,7 +154,7 @@ namespace pi
 				this->line[line.size() - 1] = this->input.getString().substring(this->textSizeInLine, this->textSizeInLine * 2 - 1);
 
 				// Write all string array in console text
-				
+
 				this->text.setString("");
 				for (auto &i : this->line)
 					this->text.setString(this->text.getString() + i + "\n");
@@ -169,16 +180,16 @@ namespace pi
 			this->input.setString(this->input.getString().substring(0, this->input.getString().getSize() - 1) + static_cast<char>(event.text.unicode) + "|");
 		else if (this->input.getString().getSize() == this->textSizeInLine) // Jump to next row
 			this->input.setString(this->input.getString().substring(0, this->input.getString().getSize() - 1) + "\n" + static_cast<char>(event.text.unicode) + "|");
-		else if(this->input.getString().getSize() < this->textSizeInLine * 2) // Write in second row
+		else if (this->input.getString().getSize() < this->textSizeInLine * 2) // Write in second row
 			this->input.setString(this->input.getString().substring(0, this->input.getString().getSize() - 1) + static_cast<char>(event.text.unicode) + "|");
 	}
 
 	void Console::log(const std::string& message)
 	{
-		std::string tekst = message;
+		std::string text = message;
 		for (unsigned size = 0; size < this->numberOfLines; ++size)
 		{
-			if (tekst.size() <= this->textSizeInLine * size)
+			if (text.size() <= this->textSizeInLine * size)
 			{
 				for (unsigned write = 1; write <= size; ++write)
 				{
@@ -187,12 +198,12 @@ namespace pi
 
 					if (write < size) // Whatever else line option
 					{
-						this->line[line.size() - 1] = tekst.substr(0, this->textSizeInLine);
-						tekst = tekst.substr(this->textSizeInLine, std::string::npos);
+						this->line[line.size() - 1] = text.substr(0, this->textSizeInLine);
+						text = text.substr(this->textSizeInLine, std::string::npos);
 					}
 					else // Last line option
 					{
-						this->line[line.size() - 1] = tekst.substr(0, std::string::npos);
+						this->line[line.size() - 1] = text.substr(0, std::string::npos);
 
 						// Write all string array in console text
 						this->text.setString("");
@@ -206,16 +217,6 @@ namespace pi
 			}
 		}
 
-	}
-
-	void Console::update(sf::RenderWindow& window)
-	{
-		if (this->isOpen)
-		{
-			window.draw(shape);
-			window.draw(text);
-			window.draw(input);
-		}
 	}
 
 	// Private
@@ -247,7 +248,7 @@ namespace pi
 							inputString = inputString.substr(spacePositionSecond, std::string::npos);
 
 							// This IF is just for security
-							if(argument != " ")
+							if (argument != " ")
 								i.args.push_back(argument);
 
 							spacePositionFirst = inputString.find(" ");

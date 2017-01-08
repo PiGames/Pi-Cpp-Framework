@@ -2,20 +2,19 @@
 
 namespace pi
 {
-	std::unique_ptr<sf::Texture> TextureCache::handleError()
+	sf::Texture& TextureCache::handleError()
 	{
-		auto texture = std::make_unique<sf::Texture>();
-		sf::Image image;
-
-		image.create(32u, 32u, this->fallbackColor);
-		texture->loadFromImage(image);
-
-		return std::move(texture);
+		return this->errorTexture;
 	}
 
 	TextureCache::TextureCache()
 	{
 		this->fallbackColor = sf::Color::Magenta;
+		
+		sf::Image image;
+		image.create(32, 32u, this->fallbackColor);
+
+		this->errorTexture.loadFromImage(image);
 	}
 
 	sf::Color TextureCache::getFallbackColor()
@@ -28,9 +27,9 @@ namespace pi
 		this->fallbackColor = color;
 	}
 
-	std::unique_ptr<sf::Font> FontCache::handleError()
+	sf::Font& FontCache::handleError()
 	{
-		return std::move(std::make_unique<sf::Font>(errorFont));
+		return errorFont;
 	}
 
 	FontCache::FontCache()

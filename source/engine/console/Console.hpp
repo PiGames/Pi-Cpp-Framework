@@ -1,12 +1,12 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <memory>
 #include <array>
 #include <vector>
 #include <string>
 #include <functional>
 
+#include <SFML/Graphics.hpp>
 
 #include "engine/Config.hpp"
 
@@ -15,35 +15,37 @@ namespace pi
 	class Console;
 	struct Command;
 
-	struct Command 
+	struct Command
 	{
 		std::function<void(Console*, Command*)> function;
 		std::string induction;
 		std::vector<std::string> args;
 	};
 
-	class Console final
+	class Console final :
+		public sf::Drawable
 	{
+	private:
+		void draw(sf::RenderTarget&, sf::RenderStates) const;
+
 	public:
 		Console();
 		Console(const sf::Vector2u&);
 		~Console() = default;
-		
+
 		Console& operator =(const Console&) = delete;
 		Console(const Console&) = delete;
-		
+
 		// CONSOLE VIEV FUNCTIONS START
 		// Set window handle
 		// YOU MUST USE IT IF YOU DIDN'T USE THIS CONSTRUCTOR -> Console(sf::RenderWindow&);
 		void setWindowSize(const sf::Vector2u&);
-		// Set console texture
-		void setTexture(const sf::Texture&);
 		// Set console fill color
 		void setFillColor(const sf::Color&);
 		// Set console outline color
 		void setOutlineColor(const sf::Color&);
 		// CONSOLE VIEV FUNCTIONS END
-		
+
 		// TEXT SECTION START
 		// Set text color in all lines
 		void setTextColor(const sf::Color&);
@@ -54,20 +56,22 @@ namespace pi
 		// Set max number of characters in all lines
 		void setTextSizeInLine(const unsigned);
 		// TEXT SECTION END
-		
+
 		// CONSOLE FUNCTIONS START
 		// Add command to commands vector
 		void addCommand(Command&);
 		// On-Off console
-		void run();
+		void toggle();
+		// Shows console
+		void show();
+		// Hides console
+		void hide();
 		// Checks whether user click baskskape or enter
 		void key(sf::Event&);
 		// Checks what user write on keyboard
 		void write(sf::Event&);
 		// Write logs in console
 		void log(const std::string&);
-		// Just update console
-		void update(sf::RenderWindow&);
 		// CONSOLE FUNCTIONS END
 
 	private:

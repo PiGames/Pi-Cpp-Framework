@@ -1,19 +1,16 @@
 #include <iostream>
-#include "engine\savesystem\SaveSystem.hpp"
+
+#include "engine/game/Game.hpp"
+#include "states/PlayState.hpp"
 
 int main()
 {
-	std::cout << "Mars Colony \ncreated by PiGames \n";
-	
-	
-	
-	auto MyCfg = pi::SaveSystem();
+	pi::Game game({ 800,600 }, "Mars Colony", 60u);
 
-	MyCfg.loadFromFile("data/save_2.txt");
-	MyCfg.addVariable("Kills", "5002");
-	MyCfg.saveToFile("data/save_3.txt");
-	
-	
-	std::cin.get();
+	pi::Logger::log("Mars Colony v" + std::to_string(pi::constants::version::MAJOR) + "." + std::to_string(pi::constants::version::MINOR) + "." + std::to_string(pi::constants::version::RELEASE), pi::Logger::MessageType::Info, pi::Logger::OutputType::Both);
+
+	game.addState<mc::PlayState>((short)mc::States::Play);
+	game.run();
+
 	return 0;
 }
