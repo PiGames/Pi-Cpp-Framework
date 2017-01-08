@@ -107,16 +107,19 @@ namespace pi
 		this->commands.push_back(command);
 	}
 
-	void Console::run()
+	void Console::toggle()
 	{
-		if (!this->isOpen)
-		{
-			this->isOpen = true;
-		}
-		else if (this->isOpen)
-		{
-			this->isOpen = false;
-		}
+		this->isOpen = !this->isOpen;
+	}
+
+	void Console::show()
+	{
+		this->isOpen = true;
+	}
+
+	void Console::hide()
+	{
+		this->isOpen = false;
 	}
 
 	void Console::key(sf::Event& event)

@@ -2,6 +2,7 @@
 
 #include "States.hpp"
 #include "engine/game/State.hpp"
+#include "engine/ResourceCache.hpp"
 
 namespace mc
 {
@@ -12,5 +13,8 @@ namespace mc
 		PlayState();
 
 		short run();
+
+	private:
+		pi::FontCache fonts;
 	};
 }

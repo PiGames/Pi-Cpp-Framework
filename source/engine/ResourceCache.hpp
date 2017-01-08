@@ -23,7 +23,7 @@ namespace pi
 
 	protected:
 		// Returns special resource version if error occures in get method
-		virtual std::unique_ptr<T> handleError() = 0;
+		virtual T& handleError() = 0;
 
 	protected:
 		std::unordered_map<std::string, std::unique_ptr<T>> resources;
@@ -38,7 +38,7 @@ namespace pi
 	inline T & ResourceCache<T>::get(const std::string & path)
 	{
 		if (path.empty())
-			return *handleError();
+			return handleError();
 
 		// Try to find T in cache
 		{
@@ -53,7 +53,7 @@ namespace pi
 			auto resource = std::make_unique<T>();
 
 			if (!resource->loadFromFile(path))
-				return *handleError();
+				return handleError();
 
 			this->resources[path] = std::move(resource);
 
@@ -66,7 +66,7 @@ namespace pi
 		public ResourceCache<sf::Texture>
 	{
 	private:
-		std::unique_ptr<sf::Texture> handleError();
+		sf::Texture& handleError();
 
 	public:
 		TextureCache();
@@ -78,13 +78,14 @@ namespace pi
 
 	private:
 		sf::Color fallbackColor;
+		sf::Texture errorTexture;
 	};
 
 	class FontCache final :
 		public ResourceCache<sf::Font>
 	{
 	private:
-		std::unique_ptr<sf::Font> handleError();
+		sf::Font& handleError();
 
 	public:
 		FontCache();

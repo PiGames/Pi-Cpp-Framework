@@ -63,7 +63,11 @@ namespace pi
 		// Add command to commands vector
 		void addCommand(Command&);
 		// On-Off console
-		void run();
+		void toggle();
+		// Shows console
+		void show();
+		// Hides console
+		void hide();
 		// Checks whether user click baskskape or enter
 		void key(sf::Event&);
 		// Checks what user write on keyboard
