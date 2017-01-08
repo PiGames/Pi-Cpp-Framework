@@ -62,6 +62,9 @@ namespace pi
 		//Checking that a cell is an obstacle or not
 		static bool isCellBlocking(sf::Vector2i * currentlyConsidered, sf::Vector2i *singleAlternate);
 
+		//Checks that target is unreachable
+		static bool targetIsUnreachable(const sf::Vector2f& to);
+
 	public:
 
 		//Initialization (on the begining of game process)
@@ -99,7 +102,7 @@ namespace pi
 		static sf::Vector2f *cellDimensions;
 
 		//Map size represented by i|j system
-		static sf::Vector2i *mapSize;
+		static sf::Vector2i *unitMapSize;
 
 	};
 }
