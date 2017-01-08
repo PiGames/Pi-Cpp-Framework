@@ -50,12 +50,12 @@ namespace pi
 
 			if (result != states.end())
 			{
-					Logger::log("StateMachine: Cannot add state, found same state id! ID: " + std::to_string(id), Logger::MessageType::Error, Logger::OutputType::All);
+					Logger::log("StateMachine: Cannot add state, found same state id! ID: " + std::to_string(id), Logger::MessageType::Error, Logger::OutputType::Both);
 
 					return;
 			}
 
-			states[id] = std::make_unique<State>(new T());
+			states[id].reset(new T());
 		}
 
 		/*

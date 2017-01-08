@@ -22,8 +22,12 @@ namespace pi
 		std::vector<std::string> args;
 	};
 
-	class Console final
+	class Console final :
+		public sf::Drawable
 	{
+	private:
+		void draw(sf::RenderTarget&, sf::RenderStates) const;
+
 	public:
 		Console();
 		Console(sf::RenderWindow&);
@@ -66,8 +70,6 @@ namespace pi
 		void write(sf::Event&);
 		// Write logs in console
 		void log(const std::string&);
-		// Just update console
-		void update();
 		// CONSOLE FUNCTIONS END
 
 	private:

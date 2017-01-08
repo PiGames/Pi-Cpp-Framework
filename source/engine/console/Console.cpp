@@ -2,6 +2,16 @@
 
 namespace pi
 {
+	void Console::draw(sf::RenderTarget& target, sf::RenderStates state) const
+	{
+		if (this->isOpen)
+		{
+			target.draw(shape);
+			target.draw(text);
+			target.draw(input);
+		}
+	}
+
 	Console::Console()
 	{
 		// Default settings
@@ -207,16 +217,6 @@ namespace pi
 			}
 		}
 
-	}
-
-	void Console::update()
-	{
-		if (this->isOpen)
-		{
-			this->window->draw(shape);
-			this->window->draw(text);
-			this->window->draw(input);
-		}
 	}
 
 	// Private

@@ -21,10 +21,11 @@ namespace pi
 		Game(sf::Vector2u screenSize, const std::string& title, unsigned fps);
 
 		template<class T, enable_if<std::is_base_of<State, T>>...>
-		void AddState(unsigned short id)
+		void addState(unsigned short id)
 		{
-			m_stateMachine.addState<T>(id);
-			m_stateMachine.states[id]->setWindowPointer(&m_window);
+			stateMachine.addState<T>(id);
+			stateMachine.states[id]->setWindowPointer(&window);
+			stateMachine.states[id]->setConsolePointer(&console);
 		}
 
 		void run();
