@@ -13,7 +13,7 @@ namespace pi
 			Button();
 			~Button() = default;
 			
-			// VIEV FUNCTIONS START
+			// VIEW FUNCTIONS START
 			// Set button texture
 			void setTexture(const sf::Texture&);
 			// Set button position
@@ -22,7 +22,7 @@ namespace pi
 			void setSize(const sf::Vector2f&);
 			// Set button postition and size
 			void setRect(const sf::Vector2f&, const sf::Vector2f&);
-			// VIEV FUNCTIONS END
+			// VIEW FUNCTIONS END
 
 			// GET START
 			// Get button texture

@@ -16,7 +16,7 @@ namespace pi
 			List& operator =(const List&) = delete;
 			List(const List& element) = delete;
 
-			// VIEV FUNCTIONS START
+			// VIEW FUNCTIONS START
 			// Set list texture
 			void setTexture(const sf::Texture&);
 			// Set list position
@@ -27,7 +27,7 @@ namespace pi
 			void setRect(const sf::Vector2f&, const sf::Vector2f&);
 			// Set description shape and her delay time
 			void setDescription(const sf::RectangleShape&, const float);
-			// VIEV FUNCTIONS END
+			// VIEW FUNCTIONS END
 
 			// GET START
 			// Get list head texture

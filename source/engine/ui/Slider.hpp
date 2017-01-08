@@ -13,14 +13,14 @@ namespace pi
 			Slider();
 			~Slider() = default;
 
-			// VIEV FUNCTIONS START
+			// VIEW FUNCTIONS START
 			// Set slider and rate texture
 			void setTexture(const sf::Texture&, const sf::Texture&);
 			// Set scale slider and rate
 			void setScale(const sf::Vector2f&);
 			// Set position and size
 			void setRect(const sf::Vector2f&, const sf::Vector2f&);
-			// VIEV FUNCTIONS END
+			// VIEW FUNCTIONS END
 
 			// GET START
 			// If user click rate and not relase mouse button 

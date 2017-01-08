@@ -36,7 +36,7 @@ namespace pi
 		Console& operator =(const Console&) = delete;
 		Console(const Console&) = delete;
 
-		// CONSOLE VIEV FUNCTIONS START
+		// CONSOLE VIEW FUNCTIONS START
 		// Set window handle
 		// YOU MUST USE IT IF YOU DIDN'T USE THIS CONSTRUCTOR -> Console(sf::RenderWindow&);
 		void setWindowSize(const sf::Vector2u&);
@@ -44,7 +44,7 @@ namespace pi
 		void setFillColor(const sf::Color&);
 		// Set console outline color
 		void setOutlineColor(const sf::Color&);
-		// CONSOLE VIEV FUNCTIONS END
+		// CONSOLE VIEW FUNCTIONS END
 
 		// TEXT SECTION START
 		// Set text color in all lines

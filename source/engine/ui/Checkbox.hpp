@@ -24,7 +24,7 @@ namespace pi
 			void setRect(const sf::Vector2f&, const sf::Vector2f&);
 			// Set On-Off
 			void setEnable(const bool);
-			// VIEV FUNCTIONS END
+			// VIEW FUNCTIONS END
 
 			// GET START
 			// Get checkbox texture

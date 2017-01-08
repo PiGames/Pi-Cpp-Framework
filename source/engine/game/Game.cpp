@@ -7,7 +7,9 @@ namespace pi
 		this->window.create({ screenSize.x, screenSize.y }, title, sf::Style::Close);
 		this->window.setFramerateLimit(fps);
 
-		this->console.setWindow(this->window);
+		this->console.setWindowSize(this->window.getSize());
+		this->console.setFillColor({ 255,255,255, 100 });
+		this->console.setTextColor({ 0,0,0,255 });
 
 		Logger::init("log.txt", &console);
 	}
