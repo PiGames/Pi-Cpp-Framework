@@ -15,19 +15,16 @@ namespace pi
 
 		this->input.setFillColor(sf::Color::White);
 		this->input.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
-		this->input.setPosition({ 20.f, this->window->getSize().y / 2 - 20.f });
-
 		this->input.setString("|");
 
 		// Shape
 		this->shape.setPosition({ 0, 0 });
-		this->shape.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) / 2 });
 	}
 	
-	Console::Console(sf::RenderWindow& window)
+	Console::Console(const sf::Vector2u& size)
 	{
 		// Default settings
-		this->window = &window;
+		this->windowSize = size;
 		this->isOpen = false;
 		this->numberOfLines = constants::console::DEAFULT_NUMBER_OF_LINES;;
 		this->textSizeInLine = constants::console::DEAFULT_TEXT_SIZE_IN_LINE;
@@ -38,19 +35,21 @@ namespace pi
 
 		this->input.setFillColor(sf::Color::White);
 		this->input.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
-		this->input.setPosition({ 20.f, this->window->getSize().y / 2 - 20.f });
+		this->input.setPosition({ 20.f, this->windowSize.y / 2 - 20.f });
 
 		this->input.setString("|");
 
 		// Shape
 		this->shape.setPosition({ 0, 0 });
-		this->shape.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) / 2 });
+		this->shape.setSize({ static_cast<float>(this->windowSize.x), static_cast<float>(this->windowSize.y) / 2 });
 	}
 
-	void Console::setWindow(sf::RenderWindow& window)
+	void Console::setWindowSize(const sf::Vector2u& size)
 	{
 		// Default settings
-		this->window = &window;
+		this->windowSize = size;
+		this->input.setPosition({ 20.f, this->windowSize.y / 2 - 20.f });
+		this->shape.setSize({ static_cast<float>(this->windowSize.x), static_cast<float>(this->windowSize.y) / 2 });
 	}
 	
 	void Console::setTexture(const sf::Texture& texture)
@@ -209,13 +208,13 @@ namespace pi
 
 	}
 
-	void Console::update()
+	void Console::update(sf::RenderWindow& window)
 	{
 		if (this->isOpen)
 		{
-			this->window->draw(shape);
-			this->window->draw(text);
-			this->window->draw(input);
+			window.draw(shape);
+			window.draw(text);
+			window.draw(input);
 		}
 	}
 

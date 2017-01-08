@@ -1,12 +1,12 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include <memory>
 #include <array>
 #include <vector>
 #include <string>
 #include <functional>
 
-#include <SFML/Graphics.hpp>
 
 #include "engine/Config.hpp"
 
@@ -26,7 +26,7 @@ namespace pi
 	{
 	public:
 		Console();
-		Console(sf::RenderWindow&);
+		Console(const sf::Vector2u&);
 		~Console() = default;
 		
 		Console& operator =(const Console&) = delete;
@@ -35,7 +35,7 @@ namespace pi
 		// CONSOLE VIEV FUNCTIONS START
 		// Set window handle
 		// YOU MUST USE IT IF YOU DIDN'T USE THIS CONSTRUCTOR -> Console(sf::RenderWindow&);
-		void setWindow(sf::RenderWindow&);
+		void setWindowSize(const sf::Vector2u&);
 		// Set console texture
 		void setTexture(const sf::Texture&);
 		// Set console fill color
@@ -67,12 +67,12 @@ namespace pi
 		// Write logs in console
 		void log(const std::string&);
 		// Just update console
-		void update();
+		void update(sf::RenderWindow&);
 		// CONSOLE FUNCTIONS END
 
 	private:
 		sf::RectangleShape shape;
-		sf::RenderWindow* window;
+		sf::Vector2u windowSize;
 		sf::Text text, input;
 		std::array <std::string, constants::console::DEAFULT_NUMBER_OF_LINES> line;
 		std::vector <Command> commands;
