@@ -36,7 +36,7 @@ namespace pi
 				for (auto &i : this->elements)
 					if (!i)
 					{
-						i = &element; break;
+						i.reset(&element); break;
 					}
 			}
 
@@ -64,7 +64,7 @@ namespace pi
 			sf::RenderWindow* window;
 			unsigned elementArrayLenght;
 
-			std::array <Element*, constants::ui::MAX_UIELEMENTS * constants::ui::NUMBER_OF_UI_ELEMENTS> elements;
+			std::array <std::unique_ptr<Element>, constants::ui::MAX_UIELEMENTS * constants::ui::NUMBER_OF_UI_ELEMENTS> elements;
 		};
 	}
 }

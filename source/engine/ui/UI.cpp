@@ -28,7 +28,7 @@ namespace pi
 		{
 			for(auto &i : this->elements)
 				if (i)
-					if(i->type == "BUTTON")
+					if(i->type == ElementType::button)
 						i->use(event);
 		}
 
@@ -36,7 +36,7 @@ namespace pi
 		{
 			for (auto &i : this->elements)
 				if (i)
-					if (i->type == "BUTTON")
+					if (i->type == ElementType::button)
 						i->update(window);
 		}
 
@@ -46,7 +46,7 @@ namespace pi
 		{
 			for (auto &i : this->elements)
 				if (i)
-					if (i->type == "CHECKBOX")
+					if (i->type == ElementType::checkbox)
 						i->use(event);
 		}
 
@@ -54,7 +54,7 @@ namespace pi
 		{
 			for (auto &i : this->elements)
 				if (i)
-					if (i->type == "CHECKBOX")
+					if (i->type == ElementType::checkbox)
 						i->update(window);
 		}
 
@@ -64,7 +64,7 @@ namespace pi
 		{
 			for (auto &i : this->elements)
 				if (i)
-					if (i->type == "SLIDER")
+					if (i->type == ElementType::slider)
 						i->use(event);
 		}
 
@@ -72,7 +72,7 @@ namespace pi
 		{
 			for (auto &i : this->elements)
 				if (i)
-					if (i->type == "SLIDER")
+					if (i->type == ElementType::slider)
 						i->update(window);
 		}
 
@@ -82,7 +82,7 @@ namespace pi
 		{
 			for (auto &i : this->elements)
 				if (i)
-					if (i->type == "LIST")
+					if (i->type == ElementType::list)
 						i->use(event);
 		}
 
@@ -90,7 +90,7 @@ namespace pi
 		{
 			for (auto &i : this->elements)
 				if (i)
-					if (i->type == "LIST")
+					if (i->type == ElementType::list)
 						i->update(window);
 		}
 		

@@ -15,7 +15,7 @@ namespace pi
 			this->realTime = 0;
 			this->listLenght = 0;
 			this->descriptionLenght = 0;
-			this->type = "LIST";
+			this->type = ElementType::list;
 		}
 
 		void List::setTexture(const sf::Texture& texture)

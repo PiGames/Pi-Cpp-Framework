@@ -9,7 +9,7 @@ namespace pi
 		Button::Button()
 		{
 			this->functions.fill(nullptr);
-			this->type = "BUTTON";
+			this->type = ElementType::button;
 		}
 
 		void Button::setTexture(const sf::Texture& texture)

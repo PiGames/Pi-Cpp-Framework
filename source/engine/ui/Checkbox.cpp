@@ -11,7 +11,7 @@ namespace pi
 			this->functionsOn.fill(nullptr);
 			this->functionsOff.fill(nullptr);
 			this->isEnable = false;
-			this->type = "CHECKBOX";
+			this->type = ElementType::checkbox;
 		}
 
 		void Checkbox::setTexture(const sf::Texture& textureOff, const sf::Texture& textureOn)

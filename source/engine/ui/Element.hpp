@@ -10,6 +10,14 @@ namespace pi
 {
 	namespace ui
 	{
+		enum ElementType
+		{
+			button,
+			checkbox,
+			slider,
+			list
+		};
+
 		class Element
 		{
 		public:
@@ -34,7 +42,7 @@ namespace pi
 			// STANDART UI VARIABLES START
 			sf::Sprite sprite;
 			sf::Vector2f position, size;
-			std::string type;
+			ElementType type;
 			// STANDART UI VARIABLES END
 		};
 	}

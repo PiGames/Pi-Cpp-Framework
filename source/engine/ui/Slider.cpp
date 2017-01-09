@@ -14,7 +14,7 @@ namespace pi
 			this->scale = { 0.2f, 1.2f };
 			this->realTime = 0;
 			this->delayTime = 40.f;
-			this->type = "SLIDER";
+			this->type = ElementType::slider;
 		}
 
 		void Slider::setTexture(const sf::Texture& sliderTexture, const sf::Texture& rateTexture)
