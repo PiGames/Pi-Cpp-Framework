@@ -12,9 +12,10 @@ namespace pi
 			this->type = ElementType::button;
 		}
 
-		void Button::setTexture(const sf::Texture& texture)
+		void Button::setTexture(const sf::Texture& texture, const sf::Texture& relase)
 		{
 			this->texture = texture;
+			this->relaseTexture = relase;
 			this->sprite.setTexture(this->texture);
 		}
 
@@ -49,11 +50,37 @@ namespace pi
 
 		void Button::use(sf::Event& event)
 		{
-			if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
-				if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
+			if (!this->isClicked)
+			{
+				if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+				{
+					if (this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseButton.x), static_cast<float>(event.mouseButton.y)))
+					{
+						this->isClicked = true;
+						this->sprite.setTexture(this->relaseTexture);
+					}
+				}
+			}
+			else if (this->isClicked)
+			{
+				if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left)
+				{
 					for (auto &i : this->functions)
-						if(i)
+						if (i)
 							i();
+
+					this->isClicked = false;
+					this->sprite.setTexture(this->texture);
+				}
+				else if (event.type == sf::Event::MouseMoved)
+				{
+						if (!this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y)))
+						{
+							this->isClicked = false;
+							this->sprite.setTexture(this->texture);
+						}
+				}
+			}
 		}
 	}
 }

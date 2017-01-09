@@ -15,7 +15,7 @@ namespace pi
 			
 			// VIEW FUNCTIONS START
 			// Set button texture
-			void setTexture(const sf::Texture&);
+			void setTexture(const sf::Texture&, const sf::Texture&);
 			// Set button position
 			void setPosition(const sf::Vector2f&);
 			// Set button size
@@ -33,8 +33,9 @@ namespace pi
 			void addCallback(std::function<void()>);
 
 		private:
-			sf::Texture texture;
+			sf::Texture texture, relaseTexture;
 			std::array <std::function<void()>, constants::ui::MAX_CALLBACKS> functions;
+			bool isClicked;
 
 			// VIRTUAL FUNCTIONS START
 			void use(sf::Event& event) final;
