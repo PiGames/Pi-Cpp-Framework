@@ -10,10 +10,9 @@ namespace pi
 {
 	class Math final
 	{
-	private:
-		Math();
-
 	public:
+		Math() = delete;
+
 		static double PerlinNoise(double x, double y, double z);
 		static void PerlinNoiseInit();
 		static float Sign(float x);

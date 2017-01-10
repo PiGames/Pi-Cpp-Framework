@@ -12,8 +12,6 @@ namespace pi
 	class PathFinder final
 	{
 	private:
-		PathFinder();
-
 		//Clearing targets queue
 		static void clearTargets(std::queue<sf::Vector2f>* targets);
 
@@ -66,6 +64,7 @@ namespace pi
 		static bool targetIsUnreachable(const sf::Vector2f& to);
 
 	public:
+		PathFinder() = delete;
 
 		//Initialization (on the begining of game process)
 		static void init(std::vector<Cell> *cells, sf::Vector2f *cellDim, sf::Vector2i *worldSize);

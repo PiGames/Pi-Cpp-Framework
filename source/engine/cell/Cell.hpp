@@ -17,9 +17,7 @@ namespace pi
 	private:
 
 		const int ID;
-
 		static sf::Vector2i *unitWorldSize;
-
 		static sf::Vector2f *cellDimensions;
 	};
 

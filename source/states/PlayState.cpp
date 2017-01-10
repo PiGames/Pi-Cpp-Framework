@@ -18,13 +18,15 @@ namespace mc
 			{
 				if (ev.type == sf::Event::Closed)
 					return (short)States::Exit;
-
-				if (ev.key.code == sf::Keyboard::Key::F1)
-					console->show();
-
-				if (ev.key.code == sf::Keyboard::Key::F2)
+				
+				if (ev.key.code == sf::Keyboard::Escape)
 					console->hide();
 			}
+
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LAlt) &&
+				sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F1))
+				console->show();
+
 
 			window->clear(sf::Color::Blue);
 

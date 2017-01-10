@@ -8,6 +8,8 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/Font.hpp>
 
+#include "Logger.hpp"
+
 namespace pi
 {
 	// Template for Resource Cache - use it to store your resources 
@@ -35,10 +37,14 @@ namespace pi
 	}
 
 	template<class T>
-	inline T & ResourceCache<T>::get(const std::string & path)
+	inline T& ResourceCache<T>::get(const std::string & path)
 	{
 		if (path.empty())
+		{
+			Logger::log(constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error);
+
 			return handleError();
+		}
 
 		// Try to find T in cache
 		{
@@ -53,7 +59,11 @@ namespace pi
 			auto resource = std::make_unique<T>();
 
 			if (!resource->loadFromFile(path))
+			{
+				Logger::log(constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error);
+				
 				return handleError();
+			}
 
 			this->resources[path] = std::move(resource);
 

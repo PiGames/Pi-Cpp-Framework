@@ -90,6 +90,12 @@ namespace pi
 				constexpr auto CANNOT_SAVE = "SaveSystem: Cannot save to file: ";
 				constexpr auto CANNOT_UPDATE_CANNOT_FOUND = "SaveSystem: Cannot update variable, cannot find: ";
 			}
+
+			namespace resourceCache
+			{
+				constexpr auto CANNOT_GET_NO_PATH = "ResourceCache: cannot return proper resource, no name has given";
+				constexpr auto CANNOT_GET_CANNOT_LOAD = "ResourceCache: cannot return proper resource, cannot load from path: ";
+			}
 		}
 	}
 }

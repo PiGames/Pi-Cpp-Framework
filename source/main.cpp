@@ -2,6 +2,7 @@
 
 #include "engine/game/Game.hpp"
 #include "states/PlayState.hpp"
+#include <SFML/Graphics.hpp>
 
 int main()
 {

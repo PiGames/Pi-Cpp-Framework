@@ -34,10 +34,10 @@ namespace pi
 		//returns true if sound has been removed
 		bool eraseSound(std::string name);
 
-		 //Plays sound with given name
-		 //returns false if sound doesn't exist
-		 //returns true if sound is being played succesfully
-		 bool playSound(std::string name);
+		//Plays sound with given name
+		//returns false if sound doesn't exist
+		//returns true if sound is being played succesfully
+		bool playSound(std::string name);
 	
 	private:
 

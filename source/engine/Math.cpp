@@ -7,10 +7,6 @@ namespace pi
 		static std::vector<int> perlinPermutationVector;
 	}
 
-	Math::Math()
-	{
-	}
-
 
 	float Math::Sign(float x)
 	{
