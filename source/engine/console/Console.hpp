@@ -51,8 +51,6 @@ namespace pi
 		void setTextColor(const sf::Color&);
 		// Set text font in all lines
 		void setTextFont(sf::Font&);
-		// Set text size in all lines
-		void setTextSize(const unsigned);
 		// Set max number of characters in all lines
 		void setTextSizeInLine(const unsigned);
 		// TEXT SECTION END

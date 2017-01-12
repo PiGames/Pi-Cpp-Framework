@@ -21,7 +21,7 @@ namespace pi
 		// Text settings
 		this->text.setFillColor(sf::Color::White);
 		this->text.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
-		this->text.setPosition({ 0, 0 });
+		this->text.setPosition({ 2.f, 0 });
 
 		this->input.setFillColor(sf::Color::White);
 		this->input.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
@@ -43,12 +43,12 @@ namespace pi
 		this->textSizeInLine = constants::console::DEAFULT_TEXT_SIZE_IN_LINE;
 		// Text settings
 		this->text.setFillColor(sf::Color::White);
-		this->text.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
-		this->text.setPosition({ 0, 0 });
+		this->text.setCharacterSize(this->windowSize.y / 50);
+		this->text.setPosition({ 2.f, 0 });
 
 		this->input.setFillColor(sf::Color::White);
-		this->input.setCharacterSize(constants::console::DEAFULT_TEXT_SIZE);
-		this->input.setPosition({ 20.f, this->windowSize.y / 2 - 20.f });
+		this->input.setCharacterSize(this->windowSize.y / 50);
+		this->input.setPosition({ 2.f, this->windowSize.y / 2 - 60.f });
 
 		this->input.setString("|");
 
@@ -61,7 +61,9 @@ namespace pi
 	{
 		// Default settings
 		this->windowSize = size;
-		this->input.setPosition({ 20.f, this->windowSize.y / 2 - 20.f });
+		this->input.setPosition({ 2.f, this->windowSize.y / 2 - 60.f });
+		this->text.setCharacterSize(this->windowSize.y / 50);
+		this->input.setCharacterSize(this->windowSize.y / 50);
 		this->shape.setSize({ static_cast<float>(this->windowSize.x), static_cast<float>(this->windowSize.y) / 2 });
 	}
 
@@ -86,12 +88,6 @@ namespace pi
 	{
 		this->text.setFont(font);
 		this->input.setFont(font);
-	}
-
-	void Console::setTextSize(const unsigned size)
-	{
-		this->text.setCharacterSize(size);
-		this->input.setCharacterSize(size);
 	}
 
 	void Console::setTextSizeInLine(const unsigned size)

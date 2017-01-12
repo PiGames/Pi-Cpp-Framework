@@ -37,7 +37,7 @@ namespace pi
 		{
 			constexpr std::uint8_t MAX_COMMANDS = 32;
 			constexpr std::uint8_t DEAFULT_TEXT_SIZE = 12;
-			constexpr std::uint8_t DEAFULT_NUMBER_OF_LINES = 18;
+			constexpr std::uint8_t DEAFULT_NUMBER_OF_LINES = 19;
 			constexpr std::uint8_t DEAFULT_TEXT_SIZE_IN_LINE = 80;
 		}
 
