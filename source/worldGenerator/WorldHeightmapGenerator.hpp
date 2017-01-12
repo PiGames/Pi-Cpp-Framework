@@ -17,13 +17,15 @@ namespace pi
 		static float * generate(int width, int height, int seed, int accuracy);
 
 	private:
-		static int actualHeightmapNumber; //= 1;
-		static int width;
-		static int height;
-		static int accuracy;// = 6;
+		// Submaps to generate, 6 by default
+		static std::uint8_t subMapsToGenerate;
+		// 1 by default
+		static std::uint8_t alreadyGeneratedSubMapsCount;
+		static std::uint16_t width;
+		static std::uint16_t height;
 
+		static inline float calculateWeight(std::uint8_t i);
 		static void mergeMaps(float* mainTex, float* finalTex, int width, int height);
-		static inline float calculateWeight(int i);
 		static void bilinearInterpolation(int sourceWidth, int sourceHeight, int destWidth, int destHeight, float* source, float* newImage);
 		static void changeContrast(float* source, int width, int height, float power);
 	};

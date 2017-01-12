@@ -2,15 +2,15 @@
 
 namespace pi
 {
-	int WorldHeightmapGenerator::actualHeightmapNumber = 1;
-	int WorldHeightmapGenerator::width;
-	int WorldHeightmapGenerator::height;
-	int WorldHeightmapGenerator::accuracy = 6;
+	std::uint8_t WorldHeightmapGenerator::subMapsToGenerate = 6;
+	std::uint8_t WorldHeightmapGenerator::alreadyGeneratedSubMapsCount = 1;
+	std::uint16_t WorldHeightmapGenerator::width;
+	std::uint16_t WorldHeightmapGenerator::height;
 
-	float WorldHeightmapGenerator::calculateWeight(int i)
+	float WorldHeightmapGenerator::calculateWeight(std::uint8_t i)
 	{
 		float valueToReturn = 0.5f;
-		for (int j = 0; j < 6 - i; ++j)
+		for (int j = 0; j < WorldHeightmapGenerator::subMapsToGenerate - i; ++j)
 		{
 			valueToReturn = valueToReturn / 2.f;
 		}
@@ -19,8 +19,9 @@ namespace pi
 
 	void WorldHeightmapGenerator::changeContrast(float* source, int width, int height, float power)
 	{
-		int * lookUpTable = new int[255];
-		for (int i = 0; i < 256; ++i)
+		std::uint8_t * lookUpTable = new std::uint8_t[256];
+
+		for (std::uint16_t i = 0; i < 256; ++i)
 		{
 			float newValue = (power*(i - 127) + 127);
 			if (newValue > 255)
@@ -31,15 +32,15 @@ namespace pi
 				lookUpTable[i] = newValue;
 		}
 
-		for (int i = 0; i < height; ++i)
+		for (std::uint16_t i = 0; i < height; ++i)
 		{
-			for (int j = 0; j < width; ++j)
+			for (std::uint16_t j = 0; j < width; ++j)
 			{
-				int index = (i*width + j);
+				std::uint16_t index = (i*width + j);
 				source[index] = ((float)lookUpTable[(int)(source[index] * 255)] / 255.f);
 			}
 		}
-		delete lookUpTable;
+		delete[] lookUpTable;
 
 	}
 
@@ -47,15 +48,15 @@ namespace pi
 	{
 		WorldHeightmapGenerator::height = height;
 		WorldHeightmapGenerator::width = width;
-		WorldHeightmapGenerator::accuracy = accurancy;
+		WorldHeightmapGenerator::subMapsToGenerate = accurancy;
 
 		float * secondaryHeightmap = new float[width*height];
 		float * finalHeightmap = new float[width*height];
 
 		Math::PerlinNoiseInit();
-		for (int y = 0; y < height; y++)
+		for (int y = 0; y < height; ++y)
 		{
-			for (int x = 0; x < width; x++)
+			for (int x = 0; x < width; ++x)
 			{
 				float heightValue = Math::PerlinNoise(x / (float)width * seed, y / (float)height * seed, 1);
 				secondaryHeightmap[y*width + x] = heightValue;
@@ -66,7 +67,7 @@ namespace pi
 		mergeMaps(secondaryHeightmap, finalHeightmap, width, height);
 		changeContrast(finalHeightmap, width, height, 5.f);
 
-		delete secondaryHeightmap;
+		delete[] secondaryHeightmap;
 		return finalHeightmap;
 
 	}
@@ -119,28 +120,30 @@ namespace pi
 
 
 
-		actualHeightmapNumber++;
+		alreadyGeneratedSubMapsCount++;
 
 		float* newTex = new float[WorldHeightmapGenerator::width*WorldHeightmapGenerator::height];
-		bilinearInterpolation(width / 2, height / 2, WorldHeightmapGenerator::width, WorldHeightmapGenerator::height, smallerPartOfMainHeightmap, newTex);
+		bilinearInterpolation(width / 2, height / 2, WorldHeightmapGenerator::width, WorldHeightmapGenerator::height, 
+			smallerPartOfMainHeightmap, newTex);
 
 		for (int y = 0; y < WorldHeightmapGenerator::height; y++)
 		{
 			for (int x = 0; x < WorldHeightmapGenerator::width; x++)
 			{
-				float newValue = newTex[y*WorldHeightmapGenerator::width + x] * calculateWeight(actualHeightmapNumber) + finalHeightmap[y*WorldHeightmapGenerator::width + x];
+				float newValue = newTex[y*WorldHeightmapGenerator::width + x] * 
+					calculateWeight(alreadyGeneratedSubMapsCount) + finalHeightmap[y*WorldHeightmapGenerator::width + x];
 				finalHeightmap[y * WorldHeightmapGenerator::width + x] = newValue;
 			}
 		}
-		delete smallerPartOfMainHeightmap;
+		delete[] smallerPartOfMainHeightmap;
 
-		if (actualHeightmapNumber < WorldHeightmapGenerator::accuracy)
+		if (alreadyGeneratedSubMapsCount < WorldHeightmapGenerator::subMapsToGenerate)
 		{
 			mergeMaps(smallerPartOfMainHeightmapCopy, finalHeightmap, width / 4, height / 4);
 		}
 		else
 		{
-			delete smallerPartOfMainHeightmapCopy;
+			delete[] smallerPartOfMainHeightmapCopy;
 		}
 
 	}
