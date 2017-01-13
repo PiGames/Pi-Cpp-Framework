@@ -182,8 +182,14 @@ namespace pi
 
 	void Console::log(const std::string& message)
 	{
+		std::string text;
 		if (message.find("\n") != std::string::npos)
+		{
 			this->log(message.substr(message.find("\n") + 2, std::string::npos));
+			text = message.substr(0, message.find("\n"));
+		}
+		else
+			text = message;
 		std::string text = message.substr(0, message.find("\n"));
 		for (unsigned size = 0; size < this->numberOfLines; ++size)
 		{
