@@ -51,5 +51,15 @@ namespace pi
 	{
 		return unitWorldSize;
 	}
+
+	std::vector<Cell>& MapManager::getSurface()
+	{
+		return surface;
+	}
+
+	std::vector<MapObject>& MapManager::getMapObjects()
+	{
+		return objects;
+	}
 }
 

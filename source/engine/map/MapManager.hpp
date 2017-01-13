@@ -36,9 +36,14 @@ namespace pi
 		//Returns unit world size (in units)
 		static sf::Vector2i& getUnitWorldSize();
 
+		//Returns reference to surface
+		std::vector<Cell> &getSurface();
+		
+		//Returns reference to objects
+		std::vector<MapObject> &getMapObjects();
+
 	private:
 
-		//static Cell *surface;
 		static std::vector<Cell> surface;
 
 		static std::vector<MapObject> objects;
