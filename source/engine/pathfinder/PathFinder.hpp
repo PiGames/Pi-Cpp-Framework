@@ -13,25 +13,25 @@ namespace pi
 	class PathFinder final
 	{
 	private:
-		//Clearing targets queue
+		//Clears targets queue
 		static void clearTargets(std::queue<sf::Vector2f>* targets);
 
-		//Checking that point (represented by i|j system) is in map
+		//Checksthat point (represented by i|j system) is in map
 		static bool isInMap(const sf::Vector2i& position);
 
-		//Reversing queue to the final form of targets
+		//Revers queue to the final form of targets
 		static void reverse(std::queue<sf::Vector2f> *targets);
 
-		//Set neighbor as currently considered cell (when neighbor has got lower weight than currently considered cell)
+		//Sets neighbor as currently considered cell (when neighbor has got lower weight than currently considered cell)
 		static void transitionToNeighbor(sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<sf::Vector2f> *targets);
 
-		//Rating cells by weights system and optional adding it to queue
+		//Ratings cells by weights system and optional adding it to queue
 		static void categorizeCells(sf::Vector2i *w, sf::Vector2i *v, std::queue<Cell*> *Q, short direction);
 
 		//basic treatments to start a pathfinding process
 		static void initialTreatments(std::queue<Cell*> *Q, sf::Vector2i *fromPos);
 
-		//Reset value of map <=> set all weights at "NOT_VISITED"
+		//Resets value of map <=> set all weights at "NOT_VISITED"
 		static void setWeightsVectorAsNotVisited();
 
 		//Init first element in queue to start pathfinding process
@@ -43,19 +43,19 @@ namespace pi
 		//Returns true if cell with lower weight has been found
 		static bool foundLowerWeight(sf::Vector2i *currentlyConsidered, sf::Vector2i *neighbor, std::queue<sf::Vector2f> *targets);
 
-		//Finding a way to back to start point
+		//Finds a way to back to start point
 		static void establishingRoad(std::queue<Cell*> *Q, std::queue<sf::Vector2f> *targets, sf::Vector2i *toPos, sf::Vector2i *fromPos);
 
-		//Searching a cell which has got lower weight than currently considered cell
+		//Searches a cell which has got lower weight than currently considered cell
 		static void searchLowerWeight(sf::Vector2i *currentlyConsidered, sf::Vector2i *fromPos, bool *sthChangedFlag, std::queue<sf::Vector2f> *targets);
 
-		//Increasing weight of cell and calling addToQueueSearch() method
+		//Increases weight of cell and calling addToQueueSearch() method
 		static void increaseWeight(sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<Cell*> *Q);
 
-		//Add cordinates fo cell to queue search
+		//Adds cordinates fo cell to queue search
 		static void	addToQueueSearch(std::queue<Cell*> *Q, sf::Vector2i *neighbor);
 
-		//Checking that a cell is an obstacle or not
+		//Checks that a cell is an obstacle or not
 		static bool isCellBlocking(sf::Vector2i * currentlyConsidered, sf::Vector2i *singleAlternate);
 
 		//Checks that target is unreachable
