@@ -182,7 +182,9 @@ namespace pi
 
 	void Console::log(const std::string& message)
 	{
-		std::string text = message;
+		if (message.find("\n") != std::string::npos)
+			this->log(message.substr(message.find("\n") + 2, std::string::npos));
+		std::string text = message.substr(0, message.find("\n"));
 		for (unsigned size = 0; size < this->numberOfLines; ++size)
 		{
 			if (text.size() <= this->textSizeInLine * size)
@@ -212,7 +214,6 @@ namespace pi
 				break;
 			}
 		}
-
 	}
 
 	// Private
