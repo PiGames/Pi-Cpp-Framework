@@ -25,8 +25,12 @@ namespace pi
 		//returns false if object isn't moving now
 		//returns true if object has done step
 		bool move();
+
+		sf::Vector2f& getCurrentStep();
 		 
 	private:
+
+		void ComputeStep();
 
 		//Makes single step
 		void makeStep();
@@ -37,5 +41,7 @@ namespace pi
 		std::queue<sf::Vector2f> targets;
 
 		const float moveSpeed;
+
+		sf::Vector2f CurrentStep;
 	};	
 }

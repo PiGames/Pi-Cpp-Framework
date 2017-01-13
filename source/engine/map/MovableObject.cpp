@@ -27,20 +27,29 @@ namespace pi
 			return false;
 		}
 
+		ComputeStep();
 		makeStep();
 		if (isNearTarget()) targets.pop();
 
 		return true;
 	}
 
-	void MovableObject::makeStep()
+	sf::Vector2f& MovableObject::getCurrentStep()
+	{
+		return CurrentStep;
+	}
+
+	void MovableObject::ComputeStep()
 	{
 		sf::Vector2f direction = targets.front() - this->position;
 
 		float magnitude = std::sqrt((direction.x * direction.x) + (direction.y + direction.y));
-		sf::Vector2f vector(direction.x / magnitude, direction.y / magnitude);
+		CurrentStep = sf::Vector2f(direction.x / magnitude, direction.y / magnitude)*moveSpeed;
+	}
 
-		this->position += vector * moveSpeed /* * delta time */;
+	void MovableObject::makeStep()
+	{
+		this->position += CurrentStep;
 	}
 
 	bool MovableObject::isNearTarget()
