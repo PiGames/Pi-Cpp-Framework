@@ -13,6 +13,16 @@ namespace pi
 		return position;
 	}
 
+	const float MapObject::getWidth()
+	{
+		return object.getGlobalBounds().width;
+	}
+
+	const float MapObject::getHeight()
+	{
+		return object.getGlobalBounds().height;
+	}
+
 	void MapObject::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	{
 		target.draw(object, states);

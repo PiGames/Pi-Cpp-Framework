@@ -25,6 +25,12 @@ namespace pi
 		//Returns real position (in px)
 		sf::Vector2f& getPosition();	
 
+		//Returns width of object (in px)
+		const float getWidth();
+
+		//Returns height of object (in px)
+		const float getHeight();
+
 	protected:
 
 		//position (in px)
