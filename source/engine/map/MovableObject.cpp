@@ -4,7 +4,8 @@ namespace pi
 {
 	MovableObject::MovableObject(const std::string& name, const sf::Vector2f& pos , float speed ) :
 		MapObject(name,pos),
-		moveSpeed(speed)
+		moveSpeed(speed),
+		isMoving(false)
 	{
 
 	}
@@ -27,9 +28,20 @@ namespace pi
 			return false;
 		}
 
-		ComputeStep();
+		if (!isMoving) 
+			ComputeStep();
+
 		makeStep();
-		if (isNearTarget()) targets.pop();
+
+		if (isNearTarget())
+		{
+			targets.pop();
+			ComputeStep();
+		}
+
+		if (!isMoving) isMoving = true;
+
+		if (targets.empty())isMoving = false;
 
 		return true;
 	}

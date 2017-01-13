@@ -38,6 +38,8 @@ namespace pi
 		//Checks distance to front target
 		bool isNearTarget();
 
+		bool isMoving;
+
 		std::queue<sf::Vector2f> targets;
 
 		const float moveSpeed;
