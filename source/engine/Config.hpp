@@ -6,6 +6,7 @@
 #pragma warning(disable:4458)
 
 #include <string>
+#include <map>
 
 namespace pi
 {
@@ -24,6 +25,28 @@ namespace pi
 			{
 				constexpr auto COLLIDABLE = "COLLIDABLE";
 			}
+		}
+
+		namespace mapManager
+		{
+			const std::map<std::string, std::pair<int8_t, int8_t>> unitDirections =
+			{ {"NORTH",std::pair<int8_t,int8_t>(0,-1)},
+			  {"NORTH_EAST",std::pair<int8_t,int8_t>(1,-1)}, 
+			  { "EAST",std::pair<int8_t,int8_t>(1,0)},
+			  { "SOUTH_EAST",std::pair<int8_t,int8_t>(1,1)},
+			  { "SOUTH",std::pair<int8_t,int8_t>(0,1)},
+			  { "SOUTH_WEST",std::pair<int8_t,int8_t>(-1,1)},
+			  { "WEST",std::pair<int8_t,int8_t>(-1,0)},
+			  { "NORT_WEST",std::pair<int8_t,int8_t>(-1,-1)} };
+
+			constexpr auto NORTH = "NORTH";
+			constexpr auto NORTH_EAST = "NORTH_EAST";
+			constexpr auto EAST = "EAST";
+			constexpr auto SOUTH_EAST = "SOUTH_EAST";
+			constexpr auto SOUTH = "SOUTH";
+			constexpr auto SOUTH_WEST = "SOUTH_WEST";
+			constexpr auto WEST = "WEST";
+			constexpr auto NORTH_WEST = "NORTH_WEST";
 		}
 
 		namespace ui
