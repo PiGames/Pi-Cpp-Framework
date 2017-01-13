@@ -31,16 +31,13 @@ namespace pi
 
 			// Add element to base
 			template<typename T>
-			T* add()
+			void add(T& element)
 			{
 				for (auto &i : this->elements)
 					if (!i)
 					{
-						i.reset(new T);
-						return dynamic_cast<T*>(i.get());
-						break;
+						i.reset(&element); break;
 					}
-				return nullptr;
 			}
 
 			// Buttons section start
