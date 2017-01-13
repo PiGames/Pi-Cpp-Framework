@@ -6,6 +6,7 @@
 
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
+#include "engine/Math.hpp"
 
 namespace pi
 {
@@ -14,9 +15,6 @@ namespace pi
 	private:
 		//Clearing targets queue
 		static void clearTargets(std::queue<sf::Vector2f>* targets);
-
-		//Converting real coordinates of point to i|j system
-		static sf::Vector2i convertPositionToUnitSystem(const sf::Vector2f& data);
 
 		//Checking that point (represented by i|j system) is in map
 		static bool isInMap(const sf::Vector2i& position);

@@ -15,10 +15,6 @@ namespace pi
 		while (!targets->empty()) targets->pop();
 	}
 
-	sf::Vector2i PathFinder::convertPositionToUnitSystem(const sf::Vector2f& data)
-	{
-		return sf::Vector2i(data.x / cellDimensions->x, data.y / cellDimensions->y);
-	}
 
 	bool PathFinder::isInMap(const sf::Vector2i& position)
 	{
@@ -125,7 +121,7 @@ namespace pi
 
 		while (!Q->empty())
 		{
-			currentlyConsidered = sf::Vector2i(convertPositionToUnitSystem(Q->front()->getPosition()));
+			currentlyConsidered = sf::Vector2i(Math::convertPositionToUnitSystem(Q->front()->getPosition(),cellDimensions));
 			Q->pop();
 			for (size_t direction = 0; direction < neighbours.size(); direction++)
 			{
@@ -204,7 +200,7 @@ namespace pi
 
 	bool PathFinder::targetIsUnreachable(const sf::Vector2f & to)
 	{
-		sf::Vector2i unitTarget = convertPositionToUnitSystem(to);
+		sf::Vector2i unitTarget = Math::convertPositionToUnitSystem(to,cellDimensions);
 		return !((*mapImitation::cells)[unitMapSize->x*unitTarget.y + unitTarget.x].isCollidable());
 	}
 
