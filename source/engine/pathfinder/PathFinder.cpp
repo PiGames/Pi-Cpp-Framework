@@ -35,38 +35,38 @@ namespace pi
 		{
 			switch (direction)
 			{
-			case PathFinder::Direction::NORTH:
-			case PathFinder::Direction::EAST:
-			case PathFinder::Direction::SOUTH:
-			case PathFinder::Direction::WEST: increaseWeight(neighbor, currentlyConsidered, Q); break;
+				case PathFinder::Direction::NORTH:
+				case PathFinder::Direction::EAST:
+				case PathFinder::Direction::SOUTH:
+				case PathFinder::Direction::WEST: increaseWeight(neighbor, currentlyConsidered, Q); break;
 
-			case PathFinder::Direction::NORTH_EAST:
-			{
-				alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST); 
-				alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
-				break;
-			}
+				case PathFinder::Direction::NORTH_EAST:
+				{
+					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST); 
+					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
+					break;
+				}
+	
+				case PathFinder::Direction::SOUTH_EAST:
+				{
+					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST);
+					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
+					break;
+				}
 
-			case PathFinder::Direction::SOUTH_EAST:
-			{
-				alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST);
-				alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
-				break;
-			}
+				case PathFinder::Direction::SOUTH_WEST:
+				{
+					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
+					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
+					break;
+				}
 
-			case PathFinder::Direction::SOUTH_WEST:
-			{
-				alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
-				alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
-				break;
-			}
-
-			case PathFinder::Direction::NORTH_WEST:
-			{
-				alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
-				alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
-				break;
-			}
+				case PathFinder::Direction::NORTH_WEST:
+				{
+					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
+					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
+					break;
+				}
 			}
 
 			if (!isCellBlocking(currentlyConsidered, &alternate.first) && !isCellBlocking(currentlyConsidered, &alternate.second))
