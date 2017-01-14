@@ -8,6 +8,7 @@
 #include "engine/cell/Cell.hpp"
 #include "engine/Config.hpp"
 #include "engine/map/StaticObject.hpp"
+#include "engine/Logger.hpp"
 
 namespace pi
 {
@@ -41,6 +42,12 @@ namespace pi
 		
 		//Returns reference to objects
 		std::vector<MapObject> &getMapObjects();
+
+		//Returns state of map unit
+		bool isCollidableUnit(uint16_t number);
+
+		//Returns state of map unit
+		bool isCollidableUnit(sf::Vector2i unitPosition);
 
 	private:
 

@@ -123,6 +123,11 @@ namespace pi
 				constexpr auto CANNOT_GET_NO_PATH = "ResourceCache: cannot return proper resource, no name has given";
 				constexpr auto CANNOT_GET_CANNOT_LOAD = "ResourceCache: cannot return proper resource, cannot load from path: ";
 			}
+
+			namespace mapManager
+			{
+				constexpr auto OUT_OF_MAP = "Given position is out of the map";
+			}
 		}
 	}
 }

@@ -61,5 +61,29 @@ namespace pi
 	{
 		return objects;
 	}
+
+	bool MapManager::isCollidableUnit(uint16_t number)
+	{
+		if (number > unitWorldSize.x*unitWorldSize.y || number < 0)
+		{
+			Logger::log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
+			return true;
+		}
+		
+		return collisionMap[number];
+	}
+
+	bool MapManager::isCollidableUnit(sf::Vector2i unitPosition)
+	{
+
+		if (unitPosition.y*unitWorldSize.x + unitPosition.x > unitWorldSize.x*unitWorldSize.y ||
+			unitPosition.x<0 || unitPosition.y<0)
+		{
+			Logger::log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
+			return true;
+		}
+
+		return collisionMap[unitPosition.y*unitWorldSize.x + unitPosition.x];
+	}
 }
 
