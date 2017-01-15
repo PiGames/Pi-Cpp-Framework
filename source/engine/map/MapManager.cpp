@@ -43,6 +43,12 @@ namespace pi
 		surface.push_back(Cell(id, texture, name, sf::Vector2f((number - number / unitWorldSize.x)*cellDimensions.x, (number / unitWorldSize.x)*cellDimensions.y), std::vector<sf::Vector2i>() = { sf::Vector2i(number - number / unitWorldSize.x,number / unitWorldSize.x) }, collidableFlag));
 	}
 
+	void MapManager::addStaticObject(StaticObject staticObject)
+	{
+		staticObjects.push_back(staticObject);
+		updateSingleUnits(&staticObject);
+	}
+
 	sf::Vector2f & MapManager::getCellDimensions()
 	{
 		return cellDimensions;

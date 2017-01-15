@@ -31,6 +31,8 @@ namespace pi
 
 		static void addCell(uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false);
 
+		static void addStaticObject(StaticObject staticObject);
+
 		//Returns cell dimensions (in px)
 		static sf::Vector2f& getCellDimensions();
 
