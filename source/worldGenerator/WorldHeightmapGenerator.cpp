@@ -123,14 +123,14 @@ namespace pi
 		alreadyGeneratedSubMapsCount++;
 
 		float* newTex = new float[WorldHeightmapGenerator::width*WorldHeightmapGenerator::height];
-		bilinearInterpolation(width / 2, height / 2, WorldHeightmapGenerator::width, WorldHeightmapGenerator::height, 
+		bilinearInterpolation(width / 2, height / 2, WorldHeightmapGenerator::width, WorldHeightmapGenerator::height,
 			smallerPartOfMainHeightmap, newTex);
 
 		for (int y = 0; y < WorldHeightmapGenerator::height; y++)
 		{
 			for (int x = 0; x < WorldHeightmapGenerator::width; x++)
 			{
-				float newValue = newTex[y*WorldHeightmapGenerator::width + x] * 
+				float newValue = newTex[y*WorldHeightmapGenerator::width + x] *
 					calculateWeight(alreadyGeneratedSubMapsCount) + finalHeightmap[y*WorldHeightmapGenerator::width + x];
 				finalHeightmap[y * WorldHeightmapGenerator::width + x] = newValue;
 			}

@@ -35,38 +35,38 @@ namespace pi
 		{
 			switch (direction)
 			{
-				case PathFinder::Direction::NORTH:
-				case PathFinder::Direction::EAST:
-				case PathFinder::Direction::SOUTH:
-				case PathFinder::Direction::WEST: increaseWeight(neighbor, currentlyConsidered, Q); break;
+			case PathFinder::Direction::NORTH:
+			case PathFinder::Direction::EAST:
+			case PathFinder::Direction::SOUTH:
+			case PathFinder::Direction::WEST: increaseWeight(neighbor, currentlyConsidered, Q); break;
 
-				case PathFinder::Direction::NORTH_EAST:
-				{
-					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST); 
-					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
-					break;
-				}
-	
-				case PathFinder::Direction::SOUTH_EAST:
-				{
-					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST);
-					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
-					break;
-				}
+			case PathFinder::Direction::NORTH_EAST:
+			{
+				alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST);
+				alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
+				break;
+			}
 
-				case PathFinder::Direction::SOUTH_WEST:
-				{
-					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
-					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
-					break;
-				}
+			case PathFinder::Direction::SOUTH_EAST:
+			{
+				alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST);
+				alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
+				break;
+			}
 
-				case PathFinder::Direction::NORTH_WEST:
-				{
-					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
-					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
-					break;
-				}
+			case PathFinder::Direction::SOUTH_WEST:
+			{
+				alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
+				alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
+				break;
+			}
+
+			case PathFinder::Direction::NORTH_WEST:
+			{
+				alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
+				alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
+				break;
+			}
 			}
 
 			if (!isCellBlocking(currentlyConsidered, &alternate.first) && !isCellBlocking(currentlyConsidered, &alternate.second))
@@ -194,13 +194,13 @@ namespace pi
 		if (!isInMap(sf::Vector2i(currentlyConsidered->x + singleAlternate->x, currentlyConsidered->y + singleAlternate->y)))
 			return false;
 		else if (!MapManager::isCollidableUnit(sf::Vector2i(currentlyConsidered->y + singleAlternate->y, currentlyConsidered->x + singleAlternate->x)));
-			return false;
+		return false;
 		return true;
 	}
 
 	bool PathFinder::targetIsUnreachable(const sf::Vector2f & to)
 	{
-		sf::Vector2i unitTarget = Math::convertPositionToUnitSystem(to,cellDimensions);
+		sf::Vector2i unitTarget = Math::convertPositionToUnitSystem(to, cellDimensions);
 		return !MapManager::isCollidableUnit(unitTarget);
 	}
 

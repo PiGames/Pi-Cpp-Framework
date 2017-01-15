@@ -10,7 +10,7 @@ namespace pi
 	{
 		this->variables[name] = value;
 	}
-	
+
 	std::string SaveSystem::getVariable(const std::string& name)
 	{
 		auto find = this->variables.find(name);
@@ -28,7 +28,7 @@ namespace pi
 		if (find == this->variables.end())
 		{
 			Logger::log(constants::error::saveSystem::CANNOT_UPDATE_CANNOT_FOUND + name, Logger::MessageType::Error);
-			
+
 			return false;
 		}
 
@@ -55,8 +55,8 @@ namespace pi
 
 			return false;
 		}
-		
-		
+
+
 		for (auto& var : this->variables)
 		{
 			file << var.first << " = " << var.second << "\n";
@@ -71,7 +71,7 @@ namespace pi
 	{
 		if (buffer[0] == constants::saveSystem::COMMENT)
 			return true;
-			
+
 		return false;
 	}
 
@@ -87,7 +87,7 @@ namespace pi
 
 			return false;
 		}
-		
+
 		while (!file.eof())
 		{
 			std::getline(file, temp);

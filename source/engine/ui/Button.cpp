@@ -74,11 +74,11 @@ namespace pi
 				}
 				else if (event.type == sf::Event::MouseMoved)
 				{
-						if (!this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y)))
-						{
-							this->isClicked = false;
-							this->sprite.setTexture(this->texture);
-						}
+					if (!this->sprite.getGlobalBounds().contains(static_cast<float>(event.mouseMove.x), static_cast<float>(event.mouseMove.y)))
+					{
+						this->isClicked = false;
+						this->sprite.setTexture(this->texture);
+					}
 				}
 			}
 		}

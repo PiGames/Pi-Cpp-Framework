@@ -26,9 +26,9 @@ namespace pi
 
 		void UI::useButtons(sf::Event& event)
 		{
-			for(auto &i : this->elements)
+			for (auto &i : this->elements)
 				if (i)
-					if(i->type == ElementType::button)
+					if (i->type == ElementType::button)
 						i->use(event);
 		}
 
@@ -93,6 +93,6 @@ namespace pi
 					if (i->type == ElementType::list)
 						i->update(window);
 		}
-		
+
 	}
 }

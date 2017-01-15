@@ -22,7 +22,7 @@ namespace pi
 		WorldConstructor() = delete;
 
 		//Creates a world (width x height) with given seed and accuracy
-		static void constructWorld(int width, int height, int seed, int accuracy,TextureCache * textureCache);
+		static void constructWorld(int width, int height, int seed, int accuracy, TextureCache * textureCache);
 
 	private:
 		static float* heightMap;

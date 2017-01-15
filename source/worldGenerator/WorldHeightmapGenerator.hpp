@@ -10,7 +10,7 @@ namespace pi
 {
 	class WorldHeightmapGenerator
 	{
-	
+
 	public:
 		WorldHeightmapGenerator() = delete;
 

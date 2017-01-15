@@ -27,7 +27,7 @@ namespace pi
 		bool move();
 
 		sf::Vector2f& getCurrentStep();
-		 
+
 	private:
 
 		void ComputeStep();
@@ -45,5 +45,5 @@ namespace pi
 		const float moveSpeed;
 
 		sf::Vector2f CurrentStep;
-	};	
+	};
 }

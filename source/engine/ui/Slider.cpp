@@ -24,7 +24,7 @@ namespace pi
 			this->sprite.setTexture(this->sliderTexture);
 			this->rateSprite.setTexture(this->rateTexture);
 		}
-		
+
 		void Slider::setScale(const sf::Vector2f& scale)
 		{
 			this->scale = scale;
@@ -42,7 +42,7 @@ namespace pi
 			this->rateSize = { (this->size.x / static_cast<float>(this->rateTexture.getSize().x) * scale.x) * static_cast<float>(this->rateTexture.getSize().x),
 			(this->size.y / static_cast<float>(this->rateTexture.getSize().y) * scale.y) * static_cast<float>(this->rateTexture.getSize().y) };
 
-			
+
 			// Set position for slider and rate
 			this->sprite.setPosition(this->position);
 			this->ratePosition = { this->position.x + (this->size.x / 2) - (this->rateSize.x / 2), this->position.y + (this->size.y / 2) - (this->rateSize.y / 2) };

@@ -11,7 +11,7 @@ namespace pi
 			return;
 
 		Logger::file.open(outputFileName);
-	
+
 		Logger::console = console;
 	}
 
@@ -59,18 +59,18 @@ namespace pi
 
 		switch (outputType)
 		{
-			case OutputType::Console:
-				Logger::logToConsole(output);
-				break;
+		case OutputType::Console:
+			Logger::logToConsole(output);
+			break;
 
-			case OutputType::File:
-				Logger::logToFile(output);
-				break;
+		case OutputType::File:
+			Logger::logToFile(output);
+			break;
 
-			case OutputType::Both:
-				Logger::logToConsole(output);
-				Logger::logToFile(output);
-				break;
+		case OutputType::Both:
+			Logger::logToConsole(output);
+			Logger::logToFile(output);
+			break;
 		}
 	}
 }

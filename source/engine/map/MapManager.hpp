@@ -17,9 +17,9 @@ namespace pi
 
 		static void createArrays();
 
-		MapManager();
-
 	public:
+		MapManager() = delete;
+
 		//Initialization (on the begining of game process)
 		static void init(sf::Vector2i uWorldSize, const sf::Vector2f& celldimensions);
 
@@ -41,7 +41,7 @@ namespace pi
 
 		//Returns reference to surface
 		static std::vector<Cell> &getSurface();
-		
+
 		//Returns reference to objects
 		static std::vector<StaticObject> &getStaticObjects();
 

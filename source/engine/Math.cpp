@@ -15,7 +15,7 @@ namespace pi
 
 	float Math::Sign(float x)
 	{
-		if (x > 0) 
+		if (x > 0)
 			return 1;
 		if (x < 0)
 			return -1;
@@ -86,12 +86,12 @@ namespace pi
 		return (res + 1.0) / 2.0;
 	}
 
-	double Math::fade(double t) 
+	double Math::fade(double t)
 	{
 		return t * t * t * (t * (t * 6 - 15) + 10);
 	}
 
-	double Math::lerp(double t, double a, double b) 
+	double Math::lerp(double t, double a, double b)
 	{
 		return a + t * (b - a);
 	}

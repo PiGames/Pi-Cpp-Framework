@@ -21,9 +21,9 @@ namespace pi
 
 	public:
 		MapObject(const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 });
-		
+
 		//Returns real position (in px)
-		sf::Vector2f& getPosition();	
+		sf::Vector2f& getPosition();
 
 		//Returns width of object (in px)
 		const float getWidth();
@@ -34,7 +34,7 @@ namespace pi
 	protected:
 
 		//position (in px)
-		sf::Vector2f position; 
+		sf::Vector2f position;
 
 		sf::Sprite object;
 	};

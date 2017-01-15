@@ -3,8 +3,8 @@
 namespace pi
 {
 	MapObject::MapObject(const std::string & name, const sf::Vector2f& pos)
-		:position(pos),Entity(name)
-	{ 
+		:position(pos), Entity(name)
+	{
 
 	}
 

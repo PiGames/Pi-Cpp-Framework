@@ -12,7 +12,7 @@ namespace pi
 	// First, initialize it with init() method, then use log() to log messages
 	class Logger final
 	{
-	public: 
+	public:
 		enum class MessageType
 		{
 			Separator = 0,

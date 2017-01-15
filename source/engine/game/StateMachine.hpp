@@ -12,7 +12,7 @@ namespace pi
 	/*
 	 State Machine class
 	 (used by Game class)
-	 Starting state should be Menu 
+	 Starting state should be Menu
 	 Usually starting state number - 0
 	 State no. -1 (changable in Config.hpp) is reserved for state machine suicide, so you can use it in Menu state for example
 	*/
@@ -26,18 +26,18 @@ namespace pi
 
 		/*
 			StateMachine constructor
-		 
+
 			@param number of state that state machine will start (menu state for example)
 		*/
 		StateMachine(unsigned short stateToStart = 0);
-		
+
 		/*
 			Sets state id for errorus situations; if state request to change state that doesnt exist
 
 			@param emergency state id
 		*/
 		void setEmergencyStateID(short id);
-		
+
 		/*
 			Adds State to StateMachine with specified id
 
@@ -50,9 +50,9 @@ namespace pi
 
 			if (result != states.end())
 			{
-					Logger::log("StateMachine: Cannot add state, found same state id! ID: " + std::to_string(id), Logger::MessageType::Error, Logger::OutputType::Both);
+				Logger::log("StateMachine: Cannot add state, found same state id! ID: " + std::to_string(id), Logger::MessageType::Error, Logger::OutputType::Both);
 
-					return;
+				return;
 			}
 
 			states[id].reset(new T());

@@ -18,7 +18,7 @@ namespace mc
 			{
 				if (ev.type == sf::Event::Closed)
 					return (short)States::Exit;
-				
+
 				if (ev.key.code == sf::Keyboard::Escape)
 					console->hide();
 			}

@@ -101,7 +101,7 @@ namespace pi
 			this->isEnable = false;
 			this->texture = &this->textureOff;
 			this->sprite.setTexture(*texture);
-			for(auto &i : this->functionsOff)
+			for (auto &i : this->functionsOff)
 				if (i)
 					i();
 		}

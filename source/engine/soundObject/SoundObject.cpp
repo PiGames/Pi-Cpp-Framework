@@ -9,7 +9,7 @@ namespace pi
 			Logger::log(constants::error::soundSystem::ALREADY_EXIST, Logger::MessageType::Warning, Logger::OutputType::Both);
 			return false;
 		}
-			
+
 		sf::SoundBuffer soundBuffer;
 		if (!soundBuffer.loadFromFile(constants::soundSystem::SOUND_PATH + name + constants::soundSystem::SOUND_FORMAT))
 		{
@@ -22,8 +22,8 @@ namespace pi
 
 		soundSource.push_back(std::pair<sf::Sound, sf::SoundBuffer>(sound, soundBuffer));
 
-		sounds.emplace(name,sounds.size());
-		
+		sounds.emplace(name, sounds.size());
+
 		return true;
 	}
 
@@ -35,7 +35,7 @@ namespace pi
 	int8_t SoundObject::getNumberOfSound(std::string name)
 	{
 		auto itr = sounds.find(name);
-		
+
 		if (itr == sounds.end())
 		{
 			Logger::log(constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both);

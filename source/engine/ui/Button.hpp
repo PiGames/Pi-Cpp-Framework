@@ -12,7 +12,7 @@ namespace pi
 		public:
 			Button();
 			~Button() = default;
-			
+
 			// VIEW FUNCTIONS START
 			// Set button texture
 			void setTexture(const sf::Texture&, const sf::Texture&);

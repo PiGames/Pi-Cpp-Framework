@@ -12,7 +12,7 @@ namespace pi
 
 	void WorldConstructor::constructSingleCell(uint8_t number, TextureCache * textureCache)
 	{
-		MapManager::addCell(number, getCellID(number),&textureCache->get(constants::worldConstructor::TEXTURE_FILE_PATH), constants::worldConstructor::CELL);
+		MapManager::addCell(number, getCellID(number), &textureCache->get(constants::worldConstructor::TEXTURE_FILE_PATH), constants::worldConstructor::CELL);
 	}
 
 	void WorldConstructor::loadCellTypes()
@@ -25,12 +25,12 @@ namespace pi
 
 	void WorldConstructor::constructWorld(int width, int height, int seed, int accuracy, TextureCache * textureCache)
 	{
-		heightMap = WorldHeightmapGenerator::generate(width,height,seed,accuracy);
+		heightMap = WorldHeightmapGenerator::generate(width, height, seed, accuracy);
 
 		loadCellTypes();
-		
+
 		for (uint8_t i = 0; i < width*height; ++i)
-			constructSingleCell(i,textureCache);
+			constructSingleCell(i, textureCache);
 	}
 
 }

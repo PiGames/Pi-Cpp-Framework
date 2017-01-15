@@ -19,7 +19,7 @@ namespace pi
 	public:
 		ResourceCache();
 		virtual ~ResourceCache() = default;
-	
+
 		// Returns reference to given resource
 		virtual T& get(const std::string& path);
 
@@ -61,7 +61,7 @@ namespace pi
 			if (!resource->loadFromFile(path))
 			{
 				Logger::log(constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error);
-				
+
 				return handleError();
 			}
 
@@ -72,7 +72,7 @@ namespace pi
 	}
 
 
-	class TextureCache final:
+	class TextureCache final :
 		public ResourceCache<sf::Texture>
 	{
 	private:

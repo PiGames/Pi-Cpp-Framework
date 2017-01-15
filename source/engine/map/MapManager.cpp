@@ -33,7 +33,7 @@ namespace pi
 	void MapManager::updateSingleUnits(StaticObject* object)
 	{
 		bool flag = object->isCollidable();
-		
+
 		for (auto& var : object->getUnitPosition())
 			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].isCollidable() || flag;
 	}
@@ -75,7 +75,7 @@ namespace pi
 			Logger::log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
 			return true;
 		}
-		
+
 		return collisionMap[number];
 	}
 
@@ -83,7 +83,7 @@ namespace pi
 	{
 
 		if (unitPosition.y*unitWorldSize.x + unitPosition.x > unitWorldSize.x*unitWorldSize.y ||
-			unitPosition.x<0 || unitPosition.y<0)
+			unitPosition.x < 0 || unitPosition.y < 0)
 		{
 			Logger::log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
 			return true;

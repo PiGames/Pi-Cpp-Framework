@@ -23,7 +23,7 @@ namespace pi
 
 			// Set window handle for UI
 			void setWindow(sf::RenderWindow&);
-			
+
 			// Get number procent
 			const float getPercent(float procent, float number) const { return number * procent / 100; }
 			// Get window size - MUST USED setWindow or special constructor

@@ -25,7 +25,7 @@ namespace pi
 		// Render Target
 		// Render States
 		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	
+
 	public:
 		Entity(const std::string& name = "<unnamed Entity>");
 		virtual ~Entity() = default;
