@@ -184,10 +184,7 @@ namespace pi
 	{
 		std::string text;
 		if (message.find("\n") != std::string::npos)
-		{
-			this->log(message.substr(message.find("\n") + 2, std::string::npos));
 			text = message.substr(0, message.find("\n"));
-		}
 		else
 			text = message;
 
@@ -220,6 +217,9 @@ namespace pi
 				break;
 			}
 		}
+
+		if (message.find("\n") != std::string::npos)
+			this->log(message.substr(message.find("\n") + 1, std::string::npos));
 	}
 
 	// Private
