@@ -190,7 +190,7 @@ namespace pi
 		}
 		else
 			text = message;
-		std::string text = message.substr(0, message.find("\n"));
+
 		for (unsigned size = 0; size < this->numberOfLines; ++size)
 		{
 			if (text.size() <= this->textSizeInLine * size)
