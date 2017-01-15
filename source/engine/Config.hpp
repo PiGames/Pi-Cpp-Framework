@@ -8,6 +8,8 @@
 #include <string>
 #include <map>
 
+#include <SFML/System/Vector2.hpp>
+
 namespace pi
 {
 	namespace constants

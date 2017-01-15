@@ -3,7 +3,7 @@
 namespace pi
 {
 	struct PathFinder::mapImitation;
-	std::vector<Cell>* PathFinder::mapImitation::cells;
+	//std::vector<Cell>* PathFinder::mapImitation::cells;
 	std::vector<int> PathFinder::mapImitation::weights;
 
 	sf::Vector2f *PathFinder::cellDimensions;
@@ -27,11 +27,11 @@ namespace pi
 		targets->push(sf::Vector2f(currentlyConsidered->x*cellDimensions->x, currentlyConsidered->y*cellDimensions->y));
 	}
 
-	void PathFinder::categorizeCells(sf::Vector2i * neighbor, sf::Vector2i * currentlyConsidered, std::queue<Cell*> *Q, short direction)
+	void PathFinder::categorizeCells(sf::Vector2i * neighbor, sf::Vector2i * currentlyConsidered, std::queue<sf::Vector2i> *Q, short direction)
 	{
 		std::pair<sf::Vector2i, sf::Vector2i> alternate;
 
-		if (isInMap(*neighbor) && !(&(*(mapImitation::cells))[unitMapSize->x*neighbor->y + neighbor->x])->isCollidable() && mapImitation::weights[unitMapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
+		if (isInMap(*neighbor) && !MapManager::isCollidableUnit(*neighbor) && mapImitation::weights[unitMapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
 		{
 			switch (direction)
 			{
@@ -94,7 +94,7 @@ namespace pi
 
 	}
 
-	void PathFinder::initialTreatments(std::queue<Cell*>* Q, sf::Vector2i * fromPos)
+	void PathFinder::initialTreatments(std::queue<sf::Vector2i>* Q, sf::Vector2i * fromPos)
 	{
 		setWeightsVectorAsNotVisited();
 		enterFirstElementToQueue(Q, fromPos);
@@ -102,17 +102,17 @@ namespace pi
 
 	void PathFinder::setWeightsVectorAsNotVisited()
 	{
-		for (size_t i = 0; i < mapImitation::cells->size(); ++i)
+		for (size_t i = 0; i < unitMapSize->x*unitMapSize->y; ++i)
 			mapImitation::weights.emplace_back(PathFinder::CellState::NOT_VISITED);
 	}
 
-	void PathFinder::enterFirstElementToQueue(std::queue<Cell*> *Q, sf::Vector2i *fromPos)
+	void PathFinder::enterFirstElementToQueue(std::queue<sf::Vector2i> *Q, sf::Vector2i *fromPos)
 	{
-		Q->push(&((*(mapImitation::cells))[fromPos->y*unitMapSize->x + fromPos->x]));
+		Q->push(sf::Vector2i(*fromPos));
 		mapImitation::weights[fromPos->y*unitMapSize->x + fromPos->x] = PathFinder::CellState::START_POSITION;
 	}
 
-	void PathFinder::tourTheMap(std::queue<Cell*> *Q, sf::Vector2i *toPos)
+	void PathFinder::tourTheMap(std::queue<sf::Vector2i> *Q, sf::Vector2i *toPos)
 	{
 		sf::Vector2i currentlyConsidered;
 
@@ -121,7 +121,7 @@ namespace pi
 
 		while (!Q->empty())
 		{
-			currentlyConsidered = sf::Vector2i(Math::convertPositionToUnitSystem(Q->front()->getPosition(),cellDimensions));
+			currentlyConsidered = Q->front();
 			Q->pop();
 			for (size_t direction = 0; direction < neighbours.size(); direction++)
 			{
@@ -143,7 +143,7 @@ namespace pi
 		return false;
 	}
 
-	void PathFinder::establishingRoad(std::queue<Cell*> *Q, std::queue<sf::Vector2f> *targets, sf::Vector2i *toPos, sf::Vector2i *fromPos)
+	void PathFinder::establishingRoad(std::queue<sf::Vector2i> *Q, std::queue<sf::Vector2f> *targets, sf::Vector2i *toPos, sf::Vector2i *fromPos)
 	{
 		if (!Q->empty())//isn't empty <=> way has been found
 		{
@@ -178,22 +178,22 @@ namespace pi
 		}
 	}
 
-	void PathFinder::increaseWeight(sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<Cell*> *Q)
+	void PathFinder::increaseWeight(sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<sf::Vector2i> *Q)
 	{
 		mapImitation::weights[unitMapSize->x*neighbor->y + neighbor->x] = mapImitation::weights[unitMapSize->x*currentlyConsidered->y + currentlyConsidered->x] + 1;
 		addToQueueSearch(Q, neighbor);
 	}
 
-	void PathFinder::addToQueueSearch(std::queue<Cell*>* Q, sf::Vector2i * neighbor)
+	void PathFinder::addToQueueSearch(std::queue<sf::Vector2i>* Q, sf::Vector2i * neighbor)
 	{
-		Q->push(&((*(mapImitation::cells))[unitMapSize->x*neighbor->y + neighbor->x]));
+		Q->push(*neighbor);
 	}
 
 	bool PathFinder::isCellBlocking(sf::Vector2i * currentlyConsidered, sf::Vector2i * singleAlternate)
 	{
 		if (!isInMap(sf::Vector2i(currentlyConsidered->x + singleAlternate->x, currentlyConsidered->y + singleAlternate->y)))
 			return false;
-		else if (!(*(mapImitation::cells))[unitMapSize->x*(currentlyConsidered->y + singleAlternate->y) + currentlyConsidered->x + singleAlternate->x].isCollidable())
+		else if (!MapManager::isCollidableUnit(sf::Vector2i(currentlyConsidered->y + singleAlternate->y, currentlyConsidered->x + singleAlternate->x)));
 			return false;
 		return true;
 	}
@@ -201,12 +201,11 @@ namespace pi
 	bool PathFinder::targetIsUnreachable(const sf::Vector2f & to)
 	{
 		sf::Vector2i unitTarget = Math::convertPositionToUnitSystem(to,cellDimensions);
-		return !((*mapImitation::cells)[unitMapSize->x*unitTarget.y + unitTarget.x].isCollidable());
+		return !MapManager::isCollidableUnit(unitTarget);
 	}
 
-	void PathFinder::init(std::vector<Cell> *cells, sf::Vector2f *cellDim, sf::Vector2i *worldSize)
+	void PathFinder::init(sf::Vector2f *cellDim, sf::Vector2i *worldSize)
 	{
-		mapImitation::cells = cells;
 		cellDimensions = cellDim;
 		unitMapSize = worldSize;
 	}
@@ -222,7 +221,7 @@ namespace pi
 		sf::Vector2i toPosUnit = sf::Vector2i(to.x / cellDimensions->x, to.y / cellDimensions->y);
 		sf::Vector2i fromPosUnit = sf::Vector2i(from.x / cellDimensions->x, from.y / cellDimensions->y);
 
-		std::queue<Cell*> Q;
+		std::queue<sf::Vector2i> Q;
 
 		initialTreatments(&Q, &fromPosUnit);
 
