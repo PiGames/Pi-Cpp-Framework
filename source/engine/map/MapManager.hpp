@@ -38,22 +38,22 @@ namespace pi
 		static sf::Vector2i& getUnitWorldSize();
 
 		//Returns reference to surface
-		std::vector<Cell> &getSurface();
+		static std::vector<Cell> &getSurface();
 		
 		//Returns reference to objects
-		std::vector<MapObject> &getMapObjects();
+		static std::vector<StaticObject> &getStaticObjects();
 
 		//Returns state of map unit
-		bool isCollidableUnit(uint16_t number);
+		static bool isCollidableUnit(uint16_t number);
 
 		//Returns state of map unit
-		bool isCollidableUnit(sf::Vector2i unitPosition);
+		static bool isCollidableUnit(sf::Vector2i unitPosition);
 
 	private:
 
 		static std::vector<Cell> surface;
 
-		static std::vector<MapObject> objects;
+		static std::vector<StaticObject> staticObjects;
 
 		//true - collidable unit
 		//false - not collidable unit
