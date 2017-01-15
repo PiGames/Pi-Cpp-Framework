@@ -48,7 +48,7 @@ namespace pi
 
 		this->input.setFillColor(sf::Color::White);
 		this->input.setCharacterSize(this->windowSize.y / 50);
-		this->input.setPosition({ 2.f, this->windowSize.y / 2 - 60.f });
+		this->input.setPosition({ 2.f, this->windowSize.y / 2 - (this->windowSize.y / 20.f) });
 
 		this->input.setString("|");
 
@@ -61,7 +61,7 @@ namespace pi
 	{
 		// Default settings
 		this->windowSize = size;
-		this->input.setPosition({ 2.f, this->windowSize.y / 2 - 60.f });
+		this->input.setPosition({ 2.f, this->windowSize.y / 2 - (this->windowSize.y / 20.f) });
 		this->text.setCharacterSize(this->windowSize.y / 50);
 		this->input.setCharacterSize(this->windowSize.y / 50);
 		this->shape.setSize({ static_cast<float>(this->windowSize.x), static_cast<float>(this->windowSize.y) / 2 });
