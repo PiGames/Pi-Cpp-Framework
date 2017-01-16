@@ -41,7 +41,10 @@ namespace pi
 
 		if (!isMoving) isMoving = true;
 
+		if (isObstacleBlocking()) setTargetTo(object.getPosition(), clearAndGetLastTarget());
+
 		if (targets.empty())isMoving = false;
+
 
 		return true;
 	}
@@ -67,5 +70,22 @@ namespace pi
 	bool MovableObject::isNearTarget()
 	{
 		return Math::distance(object.getPosition(), targets.front()) < MapManager::getCellDimensions().x;
+	}
+
+	sf::Vector2f MovableObject::clearAndGetLastTarget()
+	{
+		sf::Vector2f last;
+		while (targets.size() > 1)targets.pop();
+
+		last = targets.front();
+		targets.pop();
+		
+		return last;
+	}
+
+	bool MovableObject::isObstacleBlocking()
+	{
+		return false;
+		//to do
 	}
 }

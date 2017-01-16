@@ -6,6 +6,7 @@
 #include "engine/map/MapManager.hpp"
 #include "engine/Logger.hpp"
 #include "engine/Math.hpp"
+#include "engine/Config.hpp"
 
 namespace pi
 {
@@ -27,7 +28,7 @@ namespace pi
 		bool move();
 
 		sf::Vector2f& getCurrentStep();
-
+		 
 	private:
 
 		void ComputeStep();
@@ -37,13 +38,18 @@ namespace pi
 
 		//Checks distance to front target
 		bool isNearTarget();
+		
+		//Clears targets' vector and returns last one
+		sf::Vector2f clearAndGetLastTarget();
 
 		bool isMoving;
+
+		bool isObstacleBlocking();
 
 		std::queue<sf::Vector2f> targets;
 
 		const float moveSpeed;
 
 		sf::Vector2f CurrentStep;
-	};
+	};	
 }

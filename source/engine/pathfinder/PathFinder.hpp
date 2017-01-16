@@ -69,11 +69,11 @@ namespace pi
 
 		//Filling targets queue by points which represents way to "to" point
 		static void fillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets);
-
+	
 		static struct mapImitation
 		{
 		public:
-			//	static std::vector<Cell>* cells;
+		//	static std::vector<Cell>* cells;
 			static std::vector<int> weights;
 		};
 

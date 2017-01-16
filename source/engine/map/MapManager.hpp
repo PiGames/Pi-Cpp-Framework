@@ -17,9 +17,9 @@ namespace pi
 
 		static void createArrays();
 
-	public:
-		MapManager() = delete;
+		MapManager();
 
+	public:
 		//Initialization (on the begining of game process)
 		static void init(sf::Vector2i uWorldSize, const sf::Vector2f& celldimensions);
 
@@ -41,7 +41,7 @@ namespace pi
 
 		//Returns reference to surface
 		static std::vector<Cell> &getSurface();
-
+		
 		//Returns reference to objects
 		static std::vector<StaticObject> &getStaticObjects();
 
@@ -50,6 +50,9 @@ namespace pi
 
 		//Returns state of map unit
 		static bool isCollidableUnit(sf::Vector2i unitPosition);
+
+		//Returns name direction of moving
+		static std::string setDirection(sf::Vector2f speed);
 
 	private:
 

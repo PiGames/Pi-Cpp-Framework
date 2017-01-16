@@ -33,7 +33,7 @@ namespace pi
 	void MapManager::updateSingleUnits(StaticObject* object)
 	{
 		bool flag = object->isCollidable();
-
+		
 		for (auto& var : object->getUnitPosition())
 			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].isCollidable() || flag;
 	}
@@ -75,7 +75,7 @@ namespace pi
 			Logger::log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
 			return true;
 		}
-
+		
 		return collisionMap[number];
 	}
 
@@ -83,13 +83,26 @@ namespace pi
 	{
 
 		if (unitPosition.y*unitWorldSize.x + unitPosition.x > unitWorldSize.x*unitWorldSize.y ||
-			unitPosition.x < 0 || unitPosition.y < 0)
+			unitPosition.x<0 || unitPosition.y<0)
 		{
 			Logger::log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
 			return true;
 		}
 
 		return collisionMap[unitPosition.y*unitWorldSize.x + unitPosition.x];
+	}
+
+	std::string MapManager::setDirection(sf::Vector2f speed)
+	{
+		if (speed.x == 0 && speed.y < 0) return constants::mapManager::nameDirections::NORTH;
+		if (speed.x == 0 && speed.y > 0) return constants::mapManager::nameDirections::SOUTH;
+		if (speed.x > 0 && speed.y == 0) return constants::mapManager::nameDirections::EAST;
+		if (speed.x < 0 && speed.y == 0) return constants::mapManager::nameDirections::WEST;
+
+		if (speed.x < 0 && speed.y < 0) return constants::mapManager::nameDirections::NORTH_WEST;
+		if (speed.x > 0 && speed.y < 0) return constants::mapManager::nameDirections::NORTH_EAST;
+		if (speed.x > 0 && speed.y > 0) return constants::mapManager::nameDirections::SOUTH_EAST;
+		if (speed.x < 0 && speed.y > 0) return constants::mapManager::nameDirections::SOUTH_WEST;
 	}
 }
 
