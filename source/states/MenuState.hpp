@@ -16,6 +16,16 @@ namespace mc
 
 		short run();
 	private:
+		// MenuState class variables
+		pi::ui::UI ui;
+		pi::ui::Button *playButton, *exitButton;
+		sf::Texture backgroundTexture, playTexture, exitTexture;
+		sf::RectangleShape background;
+		bool isInitialized;
+
+		// Initialize class
+		void initialize();
+
 		pi::FontCache fonts;
 	};
 }
