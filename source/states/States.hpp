@@ -10,6 +10,6 @@ namespace mc
 
 		// Temporary
 		Menu = 0,
-		Play = 0
+		Play = 1
 	};
 }

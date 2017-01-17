@@ -13,9 +13,9 @@ namespace mc
 	{
 		this->ui.setWindow(*window);
 
-		this->backgroundTexture.loadFromFile("background.jpg");
-		this->playTexture.loadFromFile("play.png");
-		this->exitTexture.loadFromFile("exit.png");
+		this->backgroundTexture.loadFromFile("data\\textures\\background.jpg");
+		this->playTexture.loadFromFile("data\\textures\\play.png");
+		this->exitTexture.loadFromFile("data\\textures\\exit.png");
 		this->console->setTextFont(fonts.get(""));
 
 		this->background.setPosition({ 0,0 });
@@ -25,17 +25,17 @@ namespace mc
 		this->playButton->setTexture(this->playTexture, this->playTexture);
 		this->playButton->setPosition({ this->ui.getPercent(72.f, static_cast<float>(this->ui.getWindowSize().x)), this->ui.getPercent(60.f, static_cast<float>(this->ui.getWindowSize().y)) });
 		this->playButton->setSize({ this->ui.getPercent(20.f, static_cast<float>(this->ui.getWindowSize().x)), this->ui.getPercent(15.f, static_cast<float>(this->ui.getWindowSize().y)) });
-		this->playButton->addCallback([]()->void
+		this->playButton->addCallback([=]()->void
 		{
-
+			this->isPlay = true;
 		});
 
 		this->exitButton->setTexture(this->exitTexture, this->exitTexture);
 		this->exitButton->setPosition({ this->ui.getPercent(72.f, static_cast<float>(this->ui.getWindowSize().x)), this->ui.getPercent(80.f, static_cast<float>(this->ui.getWindowSize().y)) });
 		this->exitButton->setSize({ this->ui.getPercent(20.f, static_cast<float>(this->ui.getWindowSize().x)), this->ui.getPercent(15.f, static_cast<float>(this->ui.getWindowSize().y)) });
-		this->exitButton->addCallback([]()->void
+		this->exitButton->addCallback([=]()->void
 		{
-
+			this->isExit = true;
 		});
 
 		this->isInitialized = true;
@@ -47,6 +47,9 @@ namespace mc
 
 		if (!isInitialized)
 			this->initialize();
+
+		this->isPlay = false;
+		this->isExit = false;
 
 		while (this->window->isOpen())
 		{
@@ -64,6 +67,11 @@ namespace mc
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LAlt) &&
 				sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F1))
 				this->console->show();
+
+			if(this->isPlay)
+				return (short)States::Play;
+			if(this->isExit)
+				return (short)States::Exit;
 
 			this->window->clear(sf::Color::Black);
 			this->window->draw(this->background);

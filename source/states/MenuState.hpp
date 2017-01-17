@@ -21,7 +21,7 @@ namespace mc
 		pi::ui::Button *playButton, *exitButton;
 		sf::Texture backgroundTexture, playTexture, exitTexture;
 		sf::RectangleShape background;
-		bool isInitialized;
+		bool isInitialized, isPlay, isExit;
 
 		// Initialize class
 		void initialize();
