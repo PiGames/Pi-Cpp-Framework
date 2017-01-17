@@ -92,7 +92,7 @@ namespace pi
 		return collisionMap[unitPosition.y*unitWorldSize.x + unitPosition.x];
 	}
 
-	std::string MapManager::setDirection(sf::Vector2f speed)
+	std::string MapManager::getNameDirection(sf::Vector2f speed)
 	{
 		if (speed.x == 0 && speed.y < 0) return constants::mapManager::nameDirections::NORTH;
 		if (speed.x == 0 && speed.y > 0) return constants::mapManager::nameDirections::SOUTH;
@@ -103,6 +103,17 @@ namespace pi
 		if (speed.x > 0 && speed.y < 0) return constants::mapManager::nameDirections::NORTH_EAST;
 		if (speed.x > 0 && speed.y > 0) return constants::mapManager::nameDirections::SOUTH_EAST;
 		if (speed.x < 0 && speed.y > 0) return constants::mapManager::nameDirections::SOUTH_WEST;
+	}
+
+	void MapManager::fillOverlappingToVector(std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction)
+	{
+		if (direction.x != 0 && direction.y != 0)
+		{
+			overlapping->emplace_back(direction.x, 0);
+			overlapping->emplace_back(0, direction.y);
+		}
+		else
+			overlapping->emplace_back(direction);
 	}
 }
 

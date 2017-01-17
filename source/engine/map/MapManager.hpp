@@ -52,7 +52,9 @@ namespace pi
 		static bool isCollidableUnit(sf::Vector2i unitPosition);
 
 		//Returns name direction of moving
-		static std::string setDirection(sf::Vector2f speed);
+		static std::string getNameDirection(sf::Vector2f speed);
+
+		static void fillOverlappingToVector(std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction);
 
 	private:
 
