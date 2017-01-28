@@ -8,7 +8,7 @@
 #include <SFML/Graphics/Sprite.hpp>
 
 #include "CollidableObject.hpp"
-#include "MapManager.hpp"
+//#include "MapManager.hpp"
 #include "engine/entity/Entity.hpp"
 
 namespace pi
@@ -34,9 +34,6 @@ namespace pi
 
 		//Sets position (in px)
 		void setPosition(sf::Vector2f position);
-
-		//Sets position (in unit system)
-		void setPosition(sf::Vector2i unitPosition);
 
 		//Shift of object
 		void move(sf::Vector2f shift);
