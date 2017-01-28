@@ -70,6 +70,12 @@ namespace pi
 			constexpr std::uint8_t DEAFULT_TEXT_SIZE_IN_LINE = 80;
 		}
 
+		namespace mouse
+		{
+			constexpr auto TEXTURE_PATH = "data/textures/path.jpg";
+			const sf::Vector2f dimensions = { 20,20 };
+		}
+
 		namespace worldConstructor
 		{
 			constexpr auto CELL = "Cell";

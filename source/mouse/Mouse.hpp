@@ -1,6 +1,8 @@
 #pragma once
 
 #include "engine/map/MapObject.hpp"
+#include "engine/ResourceCache.hpp"
+#include "engine/Config.hpp"
 
 namespace mc
 {
@@ -15,6 +17,5 @@ namespace mc
 		};
 
 		void setCursor(Mouse::TYPE type);
-
 	};
 }
