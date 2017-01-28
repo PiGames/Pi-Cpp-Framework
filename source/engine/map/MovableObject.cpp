@@ -69,7 +69,7 @@ namespace pi
 
 	bool MovableObject::isNearTarget()
 	{
-		return Math::distance(object.getPosition(), targets.front()) < MapManager::getCellDimensions().x;
+		return Math::distance(object.getPosition(), targets.front()) < constants::cell::CELL_DIMENSIONS.x;
 	}
 
 	sf::Vector2f MovableObject::clearAndGetLastTarget()

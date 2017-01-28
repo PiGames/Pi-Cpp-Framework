@@ -6,7 +6,6 @@ namespace pi
 	//std::vector<Cell>* PathFinder::mapImitation::cells;
 	std::vector<int> PathFinder::mapImitation::weights;
 
-	sf::Vector2f *PathFinder::cellDimensions;
 	sf::Vector2i *PathFinder::unitMapSize;
 
 
@@ -24,7 +23,7 @@ namespace pi
 	void PathFinder::transitionToNeighbor(sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<sf::Vector2f> *targets)
 	{
 		*currentlyConsidered = *neighbor;
-		targets->push(sf::Vector2f(currentlyConsidered->x*cellDimensions->x, currentlyConsidered->y*cellDimensions->y));
+		targets->push(sf::Vector2f(currentlyConsidered->x*constants::cell::CELL_DIMENSIONS.x, currentlyConsidered->y*constants::cell::CELL_DIMENSIONS.y));
 	}
 
 	void PathFinder::categorizeCells(sf::Vector2i * neighbor, sf::Vector2i * currentlyConsidered, std::queue<sf::Vector2i> *Q, short direction)
@@ -89,7 +88,7 @@ namespace pi
 
 		for (auto &var : list)
 		{
-			targets->push(sf::Vector2f(var.x + cellDimensions->x / 2, var.y + cellDimensions->y / 2));
+			targets->push(sf::Vector2f(var.x + constants::cell::CELL_DIMENSIONS.x / 2, var.y + constants::cell::CELL_DIMENSIONS.y / 2));
 		}
 
 	}
@@ -149,7 +148,7 @@ namespace pi
 		{
 			sf::Vector2i currentlyConsidered = *toPos;
 
-			targets->push(sf::Vector2f(currentlyConsidered.x*cellDimensions->x, currentlyConsidered.y*cellDimensions->y));
+			targets->push(sf::Vector2f(currentlyConsidered.x*constants::cell::CELL_DIMENSIONS.x, currentlyConsidered.y*constants::cell::CELL_DIMENSIONS.y));
 
 			bool sthChangedFlag = true;
 
@@ -200,13 +199,12 @@ namespace pi
 
 	bool PathFinder::targetIsUnreachable(const sf::Vector2f & to)
 	{
-		sf::Vector2i unitTarget = Math::convertPositionToUnitSystem(to,cellDimensions);
+		sf::Vector2i unitTarget = Math::convertPositionToUnitSystem(to,constants::cell::CELL_DIMENSIONS);
 		return !MapManager::isCollidableUnit(unitTarget);
 	}
 
-	void PathFinder::init(sf::Vector2f *cellDim, sf::Vector2i *worldSize)
+	void PathFinder::init( sf::Vector2i *worldSize)
 	{
-		cellDimensions = cellDim;
 		unitMapSize = worldSize;
 	}
 
@@ -218,8 +216,8 @@ namespace pi
 		clearTargets(targets);
 
 		//Converting real coordinates of points to i | j system
-		sf::Vector2i toPosUnit = sf::Vector2i(to.x / cellDimensions->x, to.y / cellDimensions->y);
-		sf::Vector2i fromPosUnit = sf::Vector2i(from.x / cellDimensions->x, from.y / cellDimensions->y);
+		sf::Vector2i toPosUnit = sf::Vector2i(to.x / constants::cell::CELL_DIMENSIONS.x, to.y / constants::cell::CELL_DIMENSIONS.y);
+		sf::Vector2i fromPosUnit = sf::Vector2i(from.x / constants::cell::CELL_DIMENSIONS.x, from.y / constants::cell::CELL_DIMENSIONS.y);
 
 		std::queue<sf::Vector2i> Q;
 

@@ -2,7 +2,6 @@
 
 namespace pi
 {
-	sf::Vector2f MapManager::cellDimensions;
 	sf::Vector2i MapManager::unitWorldSize;
 	std::vector<Cell> MapManager::surface;
 	std::vector<StaticObject> MapManager::staticObjects;
@@ -14,10 +13,9 @@ namespace pi
 		collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
 	}
 
-	void MapManager::init(sf::Vector2i uWorldSize, const sf::Vector2f&  celldimensions)
+	void MapManager::init(sf::Vector2i uWorldSize)
 	{
 		unitWorldSize = uWorldSize;
-		cellDimensions = celldimensions;
 		createArrays();
 		surfaceCollisionMapUpdate();
 	}
@@ -40,7 +38,7 @@ namespace pi
 
 	void MapManager::addCell(uint8_t number, int id, sf::Texture * texture, const std::string & name, bool collidableFlag)
 	{
-		surface.push_back(Cell(id, texture, name, sf::Vector2f((number - number / unitWorldSize.x)*cellDimensions.x, (number / unitWorldSize.x)*cellDimensions.y), std::vector<sf::Vector2i>() = { sf::Vector2i(number - number / unitWorldSize.x,number / unitWorldSize.x) }, collidableFlag));
+		surface.push_back(Cell(id, texture, name, sf::Vector2f((number - number / unitWorldSize.x)*constants::cell::CELL_DIMENSIONS.x, (number / unitWorldSize.x)*constants::cell::CELL_DIMENSIONS.y), std::vector<sf::Vector2i>() = { sf::Vector2i(number - number / unitWorldSize.x,number / unitWorldSize.x) }, collidableFlag));
 	}
 
 	void MapManager::addStaticObject(StaticObject staticObject)
@@ -49,10 +47,6 @@ namespace pi
 		updateSingleUnits(&staticObject);
 	}
 
-	sf::Vector2f & MapManager::getCellDimensions()
-	{
-		return cellDimensions;
-	}
 	sf::Vector2i & MapManager::getUnitWorldSize()
 	{
 		return unitWorldSize;

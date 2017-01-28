@@ -100,6 +100,11 @@ namespace pi
 			constexpr char COMMENT = '#';
 		}
 
+		namespace cell
+		{
+			const sf::Vector2f CELL_DIMENSIONS = { 64,64 };
+		}
+
 		namespace error
 		{
 			namespace movableObject

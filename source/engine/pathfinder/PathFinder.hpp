@@ -65,7 +65,7 @@ namespace pi
 		PathFinder() = delete;
 
 		//Initialization (on the begining of game process)
-		static void init(sf::Vector2f *cellDim, sf::Vector2i *worldSize);
+		static void init(sf::Vector2i *worldSize);
 
 		//Filling targets queue by points which represents way to "to" point
 		static void fillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets);
@@ -94,9 +94,6 @@ namespace pi
 			WEST = 6,
 			NORTH_WEST = 7
 		};
-
-		//Real value of single cell
-		static sf::Vector2f *cellDimensions;
 
 		//Map size represented by i|j system
 		static sf::Vector2i *unitMapSize;

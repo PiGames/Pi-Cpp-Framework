@@ -19,7 +19,7 @@ namespace pi
 		static float distance(sf::Vector2f first, sf::Vector2f second);
 
 		//Converts real coordinates of point to i|j system
-		static sf::Vector2i convertPositionToUnitSystem(const sf::Vector2f& data, sf::Vector2f* cellDimensions);
+		static sf::Vector2i convertPositionToUnitSystem(const sf::Vector2f& data, const sf::Vector2f& cellDimensions);
 
 	private:
 		static double fade(double t);

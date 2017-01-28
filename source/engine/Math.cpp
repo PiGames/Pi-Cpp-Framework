@@ -8,9 +8,9 @@ namespace pi
 	}
 
 
-	sf::Vector2i Math::convertPositionToUnitSystem(const sf::Vector2f& data, sf::Vector2f* cellDimensions)
+	sf::Vector2i Math::convertPositionToUnitSystem(const sf::Vector2f& data,const sf::Vector2f& cellDimensions)
 	{
-		return sf::Vector2i(data.x / cellDimensions->x, data.y / cellDimensions->y);
+		return sf::Vector2i(data.x / cellDimensions.x, data.y / cellDimensions.y);
 	}
 
 	float Math::Sign(float x)

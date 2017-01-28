@@ -21,7 +21,7 @@ namespace pi
 
 	public:
 		//Initialization (on the begining of game process)
-		static void init(sf::Vector2i uWorldSize, const sf::Vector2f& celldimensions);
+		static void init(sf::Vector2i uWorldSize);
 
 		//Updatesthe whole collision map (Only from surface) | Don't overuse this method!
 		static void surfaceCollisionMapUpdate();
@@ -32,9 +32,6 @@ namespace pi
 		static void addCell(uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false);
 
 		static void addStaticObject(StaticObject staticObject);
-
-		//Returns cell dimensions (in px)
-		static sf::Vector2f& getCellDimensions();
 
 		//Returns unit world size (in units)
 		static sf::Vector2i& getUnitWorldSize();
@@ -67,8 +64,6 @@ namespace pi
 		static bool *collisionMap;
 
 		static sf::Vector2i unitWorldSize;
-
-		static sf::Vector2f cellDimensions;
 	};
 
 }
