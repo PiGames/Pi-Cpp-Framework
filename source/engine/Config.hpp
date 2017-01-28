@@ -16,9 +16,9 @@ namespace pi
 	{
 		namespace version
 		{
-			constexpr std::uint8_t MAJOR = 0;
-			constexpr std::uint8_t MINOR = 1;
-			constexpr std::uint8_t RELEASE = 0;
+			constexpr uint8_t MAJOR = 0;
+			constexpr uint8_t MINOR = 1;
+			constexpr uint8_t RELEASE = 0;
 		}
 
 		namespace pathfinder
@@ -58,17 +58,17 @@ namespace pi
 
 		namespace ui
 		{
-			constexpr std::uint8_t MAX_CALLBACKS = 8;
-			constexpr std::uint8_t MAX_UIELEMENTS = 32;
-			constexpr std::uint8_t NUMBER_OF_UI_ELEMENTS = 4;
+			constexpr uint8_t MAX_CALLBACKS = 8;
+			constexpr uint8_t MAX_UIELEMENTS = 32;
+			constexpr uint8_t NUMBER_OF_UI_ELEMENTS = 4;
 		}
 
 		namespace console
 		{
-			constexpr std::uint8_t MAX_COMMANDS = 32;
-			constexpr std::uint8_t DEAFULT_TEXT_SIZE = 12;
-			constexpr std::uint8_t DEAFULT_NUMBER_OF_LINES = 19;
-			constexpr std::uint8_t DEAFULT_TEXT_SIZE_IN_LINE = 80;
+			constexpr uint8_t MAX_COMMANDS = 32;
+			constexpr uint8_t DEAFULT_TEXT_SIZE = 12;
+			constexpr uint8_t DEAFULT_NUMBER_OF_LINES = 19;
+			constexpr uint8_t DEAFULT_TEXT_SIZE_IN_LINE = 80;
 		}
 
 		namespace mouse
@@ -92,7 +92,7 @@ namespace pi
 
 		namespace stateMachine
 		{
-			constexpr std::int8_t EXIT_STATE = -1;
+			constexpr int8_t EXIT_STATE = -1;
 		}
 
 		namespace saveSystem

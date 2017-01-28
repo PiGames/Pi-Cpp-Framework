@@ -48,12 +48,12 @@ namespace pi
 
 		static const std::string base64Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
 
-		std::size_t encodedCounter = fontData.size() / 3 * 4;
-		std::size_t decodedCounter = 0;
+		size_t encodedCounter = fontData.size() / 3 * 4;
+		size_t decodedCounter = 0;
 
 		const char* fontDataPtr = reinterpret_cast<const char*>(fontDataBase64);
 
-		for (std::size_t i = 0; i < encodedCounter; i += 4)
+		for (size_t i = 0; i < encodedCounter; i += 4)
 		{
 			if (!fontDataPtr[i])
 			{

@@ -2,12 +2,12 @@
 
 namespace pi
 {
-	std::uint8_t WorldHeightmapGenerator::subMapsToGenerate = 6;
-	std::uint8_t WorldHeightmapGenerator::alreadyGeneratedSubMapsCount = 1;
-	std::uint16_t WorldHeightmapGenerator::width;
-	std::uint16_t WorldHeightmapGenerator::height;
+	uint8_t WorldHeightmapGenerator::subMapsToGenerate = 6;
+	uint8_t WorldHeightmapGenerator::alreadyGeneratedSubMapsCount = 1;
+	uint16_t WorldHeightmapGenerator::width;
+	uint16_t WorldHeightmapGenerator::height;
 
-	float WorldHeightmapGenerator::calculateWeight(std::uint8_t i)
+	float WorldHeightmapGenerator::calculateWeight(uint8_t i)
 	{
 		float valueToReturn = 0.5f;
 		for (int j = 0; j < WorldHeightmapGenerator::subMapsToGenerate - i; ++j)
@@ -19,9 +19,9 @@ namespace pi
 
 	void WorldHeightmapGenerator::changeContrast(float* source, int width, int height, float power)
 	{
-		std::uint8_t * lookUpTable = new std::uint8_t[256];
+		uint8_t * lookUpTable = new uint8_t[256];
 
-		for (std::uint16_t i = 0; i < 256; ++i)
+		for (uint16_t i = 0; i < 256; ++i)
 		{
 			float newValue = (power*(i - 127) + 127);
 			if (newValue > 255)
@@ -32,11 +32,11 @@ namespace pi
 				lookUpTable[i] = newValue;
 		}
 
-		for (std::uint16_t i = 0; i < height; ++i)
+		for (uint16_t i = 0; i < height; ++i)
 		{
-			for (std::uint16_t j = 0; j < width; ++j)
+			for (uint16_t j = 0; j < width; ++j)
 			{
-				std::uint16_t index = (i*width + j);
+				uint16_t index = (i*width + j);
 				source[index] = ((float)lookUpTable[(int)(source[index] * 255)] / 255.f);
 			}
 		}
