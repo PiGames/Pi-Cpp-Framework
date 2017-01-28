@@ -32,14 +32,15 @@ namespace pi
 		namespace mapManager
 		{
 			const std::map<std::string, sf::Vector2i> unitDirections =
-			{ {"NORTH",sf::Vector2i(0,-1)},
-			  {"NORTH_EAST",sf::Vector2i(1,-1)},
-			  { "EAST",sf::Vector2i(1,0)},
-			  { "SOUTH_EAST",sf::Vector2i(1,1)},
-			  { "SOUTH",sf::Vector2i(0,1)},
-			  { "SOUTH_WEST",sf::Vector2i(-1,1)},
-			  { "WEST",sf::Vector2i(-1,0)},
-			  { "NORT_WEST",sf::Vector2i(-1,-1)} };
+			{ {"NORTH",{0,-1}},
+			  {"NORTH_EAST",{1,-1}},
+			  { "EAST",{1,0}},
+			  { "SOUTH_EAST",{1,1}},
+			  { "SOUTH",{0,1} },
+			  { "SOUTH_WEST",{-1,1}},
+			  { "WEST",{-1,0}},
+			  { "NORT_WEST",{-1,-1}}
+		};
 
 			namespace nameDirections
 			{
