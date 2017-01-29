@@ -28,6 +28,11 @@ namespace pi
 		object.setPosition(position);
 	}
 
+	void MapObject::setPosition(sf::Vector2i position)
+	{
+		object.setPosition(position.x*constants::cell::CELL_DIMENSIONS.x, position.y*constants::cell::CELL_DIMENSIONS.y);
+	}
+
 	void MapObject::move(sf::Vector2f shift)
 	{
 		object.move(shift);
