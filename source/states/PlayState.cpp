@@ -10,7 +10,7 @@ namespace mc
 	{
 		sf::Event ev;
 
-		console->setTextFont(fonts.get(""));
+		console->setTextFont(fonts.get(pi::constants::state::CONSOLE_FONT));
 
 		while (window->isOpen())
 		{

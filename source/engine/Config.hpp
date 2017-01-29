@@ -29,6 +29,23 @@ namespace pi
 			}
 		}
 
+		namespace state
+		{
+			constexpr auto CONSOLE_FONT = "";
+
+			namespace menu
+			{
+				constexpr auto BG_PATH = "data/textures/background.jpg";
+				constexpr auto BUTTON_PLAY_PATH = "data/textures/play.png";
+				constexpr auto BUTTON_EXIT_PATH = "data/textures/exit.png";
+			}
+
+			namespace play
+			{
+				//...
+			}
+		}
+
 		namespace mapManager
 		{
 			const std::map<std::string, sf::Vector2i> unitDirections =

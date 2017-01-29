@@ -13,10 +13,10 @@ namespace mc
 	{
 		this->ui.setWindow(*window);
 
-		this->backgroundTexture.loadFromFile("data\\textures\\background.jpg");
-		this->playTexture.loadFromFile("data\\textures\\play.png");
-		this->exitTexture.loadFromFile("data\\textures\\exit.png");
-		this->console->setTextFont(fonts.get(""));
+		this->backgroundTexture.loadFromFile(pi::constants::state::menu::BG_PATH);
+		this->playTexture.loadFromFile(pi::constants::state::menu::BUTTON_PLAY_PATH);
+		this->exitTexture.loadFromFile(pi::constants::state::menu::BUTTON_EXIT_PATH);
+		this->console->setTextFont(fonts.get(pi::constants::state::CONSOLE_FONT));
 
 		this->background.setPosition({ 0,0 });
 		this->background.setSize({ static_cast<float>(this->window->getSize().x), static_cast<float>(this->window->getSize().y) });
