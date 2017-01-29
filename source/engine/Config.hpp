@@ -38,6 +38,8 @@ namespace pi
 				constexpr auto BG_PATH = "data/textures/background.jpg";
 				constexpr auto BUTTON_PLAY_PATH = "data/textures/play.png";
 				constexpr auto BUTTON_EXIT_PATH = "data/textures/exit.png";
+
+				constexpr auto MUSIC_MAIN_PATH = "data/music/menu.ogg";
 			}
 
 			namespace play

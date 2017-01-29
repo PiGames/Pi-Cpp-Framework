@@ -38,6 +38,9 @@ namespace mc
 			this->isExit = true;
 		});
 
+		this->music.openFromFile((std::string)pi::constants::state::menu::MUSIC_MAIN_PATH);
+		this->music.setLoop(true);
+
 		this->isInitialized = true;
 	}
 
@@ -50,6 +53,8 @@ namespace mc
 
 		this->isPlay = false;
 		this->isExit = false;
+
+		this->music.play();
 
 		while (this->window->isOpen())
 		{
@@ -68,10 +73,16 @@ namespace mc
 				sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F1))
 				this->console->show();
 
-			if(this->isPlay)
+			if (this->isPlay)
+			{
+				this->music.stop();
 				return (short)States::Play;
-			if(this->isExit)
+			}
+			if (this->isExit)
+			{
+				this->music.stop();
 				return (short)States::Exit;
+			}
 
 			this->window->clear(sf::Color::Black);
 			this->window->draw(this->background);

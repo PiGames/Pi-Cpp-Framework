@@ -4,7 +4,7 @@ namespace pi
 {
 	sf::Texture& TextureCache::handleError()
 	{
-		return this->errorTexture;
+		return this->error_resource;
 	}
 
 	TextureCache::TextureCache()
@@ -14,7 +14,7 @@ namespace pi
 		sf::Image image;
 		image.create(32, 32u, this->fallbackColor);
 
-		this->errorTexture.loadFromImage(image);
+		this->error_resource.loadFromImage(image);
 	}
 
 	sf::Color TextureCache::getFallbackColor()
@@ -29,7 +29,7 @@ namespace pi
 
 	sf::Font& FontCache::handleError()
 	{
-		return errorFont;
+		return error_resource;
 	}
 
 	FontCache::FontCache()
@@ -71,6 +71,6 @@ namespace pi
 			fontData[decodedCounter++] = static_cast<unsigned char>(((inputBlock[2] & 0x3) << 6) | inputBlock[3]);
 		}
 
-		errorFont.loadFromMemory(&fontData, fontData.size());
+		error_resource.loadFromMemory(&fontData, fontData.size());
 	}
 }

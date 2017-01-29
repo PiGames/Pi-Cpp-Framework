@@ -21,56 +21,53 @@ namespace pi
 		virtual ~ResourceCache() = default;
 
 		// Returns reference to given resource
-		virtual T& get(const std::string& path);
+		virtual T& get(const std::string& path)
+		{
+			if (path.empty())
+			{
+				Logger::log(constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error);
+
+				return handleError();
+			}
+
+			// Try to find T in cache
+			{
+				auto result = this->resources.find(path);
+
+				if (result != this->resources.end())
+					return *result->second;
+			}
+
+			// If cannot find it - trying to load it
+			{
+				auto resource = std::make_unique<T>();
+
+				if (!resource->loadFromFile(path))
+				{
+					Logger::log(constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error);
+
+					return handleError();
+				}
+
+				this->resources[path] = std::move(resource);
+
+				return *this->resources[path];
+			}
+		}
 
 	protected:
 		// Returns special resource version if error occures in get method
-		virtual T& handleError() = 0;
+		virtual T& handleError() { return error_resource; }
 
 	protected:
 		std::unordered_map<std::string, std::unique_ptr<T>> resources;
+		T error_resource;
 	};
 
 	template<class T>
 	inline ResourceCache<T>::ResourceCache()
 	{
 	}
-
-	template<class T>
-	inline T& ResourceCache<T>::get(const std::string & path)
-	{
-		if (path.empty())
-		{
-			Logger::log(constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error);
-
-			return handleError();
-		}
-
-		// Try to find T in cache
-		{
-			auto result = this->resources.find(path);
-
-			if (result != this->resources.end())
-				return *result->second;
-		}
-
-		// If cannot find it - trying to load it
-		{
-			auto resource = std::make_unique<T>();
-
-			if (!resource->loadFromFile(path))
-			{
-				Logger::log(constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error);
-
-				return handleError();
-			}
-
-			this->resources[path] = std::move(resource);
-
-			return *this->resources[path];
-		}
-	}
-
 
 	class TextureCache final :
 		public ResourceCache<sf::Texture>
@@ -88,7 +85,6 @@ namespace pi
 
 	private:
 		sf::Color fallbackColor;
-		sf::Texture errorTexture;
 	};
 
 	class FontCache final :
@@ -99,8 +95,5 @@ namespace pi
 
 	public:
 		FontCache();
-
-	private:
-		sf::Font errorFont;
 	};
 }

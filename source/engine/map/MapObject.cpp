@@ -38,7 +38,7 @@ namespace pi
 		object.move(shift);
 	}
 
-	void MapObject::draw(sf::RenderTarget & target, sf::RenderStates states) const
+	void MapObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		target.draw(object, states);
 	}

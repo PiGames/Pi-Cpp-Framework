@@ -1,5 +1,7 @@
 #pragma once
 
+#include <SFML/Audio/Music.hpp>
+
 #include "States.hpp"
 #include "engine/game/State.hpp"
 #include "engine/ResourceCache.hpp"
@@ -27,5 +29,6 @@ namespace mc
 		void initialize();
 
 		pi::FontCache fonts;
+		sf::Music music;
 	};
 }
