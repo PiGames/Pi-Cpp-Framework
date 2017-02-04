@@ -1,3 +1,4 @@
+// Created by: Condzi
 #pragma once
 
 #include <fstream>
@@ -8,7 +9,9 @@
 
 namespace pi
 {
-	class SaveSystem
+	// Class for managing save files
+	// In future probably changed to https://github.com/PiGames/SimpleINI
+	class SaveSystem final
 	{
 	private:
 		bool checkComment(const std::string&);

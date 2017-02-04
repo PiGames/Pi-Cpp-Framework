@@ -1,3 +1,4 @@
+// Created by: Condzi
 #pragma once
 
 #include <array>
@@ -69,6 +70,7 @@ namespace pi
 	{
 	}
 
+	// Returns 32x32 texture if cannot load correctly 
 	class TextureCache final :
 		public ResourceCache<sf::Texture>
 	{
@@ -87,6 +89,7 @@ namespace pi
 		sf::Color fallbackColor;
 	};
 
+	// Returns DejaVuSans if cannot lad correctly
 	class FontCache final :
 		public ResourceCache<sf::Font>
 	{

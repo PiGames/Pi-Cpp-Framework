@@ -1,10 +1,4 @@
-/*
-	Simple Entity-Inheritance system.
-	Motivation - ECS is too complex for our need. Or maybe too simple?
-
-	Usage - if you are using entity just simple inherit from Entity class.
-*/
-
+// Created by: Condzi
 #pragma once
 
 #include <string>
@@ -15,8 +9,9 @@
 namespace pi
 {
 	// virtual class Entity
+	// Inherit from it to make entity.
 	// public methods to override:
-	// void update(float dt)
+	// void update(float time)
 	// void draw(RenderTarget&)
 	class Entity : public sf::Drawable
 	{

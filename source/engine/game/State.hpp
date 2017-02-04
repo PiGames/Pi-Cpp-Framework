@@ -1,3 +1,4 @@
+// Created by: Condzi
 #pragma once
 
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -8,6 +9,10 @@ namespace pi
 {
 	/*
 		State class
+		Mehtods to override:
+		void onActivation()
+		void onDeactivation()
+		short run()
 	*/
 	class State
 	{
