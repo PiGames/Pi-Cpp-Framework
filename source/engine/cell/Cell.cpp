@@ -2,9 +2,6 @@
 
 namespace pi
 {
-	sf::Vector2i *Cell::unitWorldSize;
-	sf::Vector2f *Cell::cellDimensions;
-
 	Cell::Cell(int id, sf::Texture * texture, const std::string & name, const sf::Vector2f& pos, std::vector<sf::Vector2i> uPos, bool collidableFlag)
 		:StaticObject(name, pos, uPos, collidableFlag), ID(id)
 	{

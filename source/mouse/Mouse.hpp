@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include "engine/map/MapObject.hpp"
@@ -6,6 +7,8 @@
 
 namespace mc
 {
+	//Mouse class
+	//Represents mouse on the scene
 	class Mouse : public pi::MapObject
 	{
 	public:

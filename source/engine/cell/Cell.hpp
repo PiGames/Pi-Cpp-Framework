@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include "engine/map/MapObject.hpp"
@@ -6,6 +7,8 @@
 
 namespace pi
 {
+	//Cell class
+	//Represents a single cell on the map
 	class Cell : public StaticObject
 	{
 	public:
@@ -14,8 +17,6 @@ namespace pi
 	private:
 
 		const int ID;
-		static sf::Vector2i *unitWorldSize;
-		static sf::Vector2f *cellDimensions;
 	};
 
 }

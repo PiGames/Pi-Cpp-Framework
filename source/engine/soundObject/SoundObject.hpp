@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include <map>
@@ -11,6 +12,8 @@
 
 namespace pi
 {
+	//SoundObject class
+	//It is designed to administer short sounds
 	class SoundObject
 	{
 	public:

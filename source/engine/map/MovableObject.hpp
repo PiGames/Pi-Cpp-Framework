@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include <queue>
@@ -10,6 +11,8 @@
 
 namespace pi
 {
+	//MovableObject class
+	//Represents MapObject which is able to move
 	class MovableObject : public MapObject
 	{
 	public:

@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include <vector>
@@ -13,6 +14,10 @@
 
 namespace pi
 {
+	//MapObject class
+	//Represents a drawable object which is on the map
+	//It can be static/movable object
+	//If you want to create map object, firstly you need to create static/movable (which inherits from it)
 	class MapObject : public Entity
 	{
 	protected:

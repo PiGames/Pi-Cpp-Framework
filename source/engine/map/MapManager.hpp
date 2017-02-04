@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include <memory>
@@ -12,6 +13,8 @@
 
 namespace pi
 {
+	//class MapManager
+	//It administers a static part of map (surface <=> cells && other StaticObjects)
 	class MapManager
 	{
 

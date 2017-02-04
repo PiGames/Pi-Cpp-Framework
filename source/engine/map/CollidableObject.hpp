@@ -1,7 +1,10 @@
+// Created by: mvxxx
 #pragma once
 
 namespace pi
 {
+	//CollidableObject class
+	//It is addon to MapObject (properly StaticObject/MovableObject)
 	class CollidableObject
 	{
 	public:

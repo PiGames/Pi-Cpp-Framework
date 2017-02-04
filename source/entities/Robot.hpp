@@ -1,9 +1,12 @@
+// Created by: mvxxx
 #pragma once
 
 #include "engine/map/MovableObject.hpp"
 
 namespace mc
 {
+	//Robot class (main)
+	//Represents robot object
 	class Robot : public pi::MovableObject
 	{
 	public:

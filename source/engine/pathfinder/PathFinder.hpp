@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include <queue>
@@ -10,6 +11,8 @@
 
 namespace pi
 {
+	//PathFinder class
+	//It finds the best way to target
 	class PathFinder final
 	{
 	private:

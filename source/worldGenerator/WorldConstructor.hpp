@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include <fstream>
@@ -8,6 +9,8 @@
 
 namespace pi
 {
+	//WorldConstructor class
+	//It constructs world which is based on WorldHeightmapGenerator
 	class WorldConstructor final
 	{
 		//Returns type of Cell

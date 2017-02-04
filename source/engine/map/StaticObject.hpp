@@ -1,3 +1,4 @@
+// Created by: mvxxx
 #pragma once
 
 #include <vector>
@@ -9,6 +10,9 @@
 
 namespace pi
 {
+	//StaticObject class
+	//Represents MapObject which is not able to move
+	//It can be collidable but you can off it by object.setCollidable(false)
 	class StaticObject : public MapObject, public CollidableObject
 	{
 	public:
