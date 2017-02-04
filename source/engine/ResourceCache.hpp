@@ -81,7 +81,7 @@ namespace pi
 		// Sets Fallback Color
 		sf::Color getFallbackColor();
 		// Returns Fallback Color
-		void setFallbackColor(sf::Color color);
+		void setFallbackColor(const sf::Color& color);
 
 	private:
 		sf::Color fallbackColor;

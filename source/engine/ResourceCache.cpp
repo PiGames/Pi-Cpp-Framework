@@ -22,7 +22,7 @@ namespace pi
 		return this->fallbackColor;
 	}
 
-	void TextureCache::setFallbackColor(sf::Color color)
+	void TextureCache::setFallbackColor(const sf::Color& color)
 	{
 		this->fallbackColor = color;
 	}
