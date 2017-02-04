@@ -9,13 +9,7 @@ namespace pi
 		:StaticObject(name, pos, uPos, collidableFlag), ID(id)
 	{
 		object.setTexture(*texture);
-		object.setTextureRect(sf::IntRect(ID*cellDimensions->x, 0, cellDimensions->x, cellDimensions->y));
+		object.setTextureRect(sf::IntRect(ID*constants::cell::CELL_DIMENSIONS.x, 0, constants::cell::CELL_DIMENSIONS.x, constants::cell::CELL_DIMENSIONS.y));
 		object.setOrigin(object.getGlobalBounds().width / 2.0f, object.getGlobalBounds().height / 2.0f);
-	}
-
-	void Cell::init(sf::Vector2i * uWorldSize, sf::Vector2f * celldimensions)
-	{
-		cellDimensions = celldimensions;
-		unitWorldSize = uWorldSize;
 	}
 }
