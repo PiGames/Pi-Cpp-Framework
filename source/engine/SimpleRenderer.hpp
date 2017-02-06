@@ -18,20 +18,20 @@ namespace pi
 		SimpleRenderer() = delete;
 
 		template<class T, enable_if<std::is_base_of<sf::Drawable, T>>...>
-		void draw(sf::RenderTarget& window, const T& object)
+		static void draw(sf::RenderTarget& window, const T& object)
 		{
 			window.draw(object);
 		}
 	
 		template<class T, enable_if<std::is_base_of<sf::Drawable, T>>...>
-		void draw(sf::RenderTarget& window, const std::vector<T>& objects)
+		static void draw(sf::RenderTarget& window, const std::vector<T>& objects)
 		{
 			for (auto& obj : objects)
 				window.draw(obj);
 		}
 
 		// You can check if object is in window bounds and then draw it
-		bool isInWindowBounds(sf::RenderTarget& window, const sf::FloatRect& rect)
+		static bool isInWindowBounds(sf::RenderTarget& window, const sf::FloatRect& rect)
 		{
 			auto& view = window.getView();
 			sf::Vector2f offset{ view.getCenter().x - view.getSize().x / 2, view.getCenter().y - view.getSize().y / 2 };
