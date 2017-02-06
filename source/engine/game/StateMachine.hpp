@@ -22,8 +22,6 @@ namespace pi
 		friend class Game;
 
 	public:
-		template<typename CONDITION>
-		using enable_if = typename std::enable_if<CONDITION::value>::type;
 
 		/*
 			StateMachine constructor

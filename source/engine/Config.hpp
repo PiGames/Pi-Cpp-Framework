@@ -12,6 +12,9 @@
 
 namespace pi
 {
+	template<typename CONDITION>
+	using enable_if = typename std::enable_if<CONDITION::value>::type;
+
 	namespace constants
 	{
 		namespace version

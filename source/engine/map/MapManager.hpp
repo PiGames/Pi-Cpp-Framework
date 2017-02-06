@@ -17,6 +17,8 @@ namespace pi
 	//It administers a static part of map (surface <=> cells && other StaticObjects)
 	class MapManager
 	{
+		friend class MapRenderer;
+
 
 		static void createArrays();
 
