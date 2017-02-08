@@ -12,7 +12,7 @@ namespace pi
 {
 	// Use it to draw things on screen
 	// You can pass sf::Drawable object or vector of sf::Drawable as argument
-	static class SimpleRenderer
+	class SimpleRenderer final
 	{
 	public:
 		SimpleRenderer() = delete;
