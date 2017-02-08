@@ -116,6 +116,14 @@ namespace pi
 			}
 		}
 
+		namespace AI
+		{
+			enum SKILLS
+			{
+				//
+			}
+		}
+
 		namespace worldConstructor
 		{
 			constexpr auto CELL = "Cell";

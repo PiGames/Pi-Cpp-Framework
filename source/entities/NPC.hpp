@@ -2,6 +2,8 @@
 #pragma once
 
 #include "engine/map/MovableObject.hpp"
+#include "task/Task.hpp"
+#include <vector>
 
 namespace mc
 {
@@ -10,5 +12,17 @@ namespace mc
 	class NPC
 	{
 	public:
+
+		NPC();
+
+	private:
+
+		//Skills
+		std::vector<pi::constants::AI::SKILLS> skills;
+
+		//Tasks
+		std::vector<Task> tasks;
+
+		std::vector<pi::constants::AI::SKILLS> priorities;
 	};
 }

@@ -47,8 +47,6 @@ namespace pi
 
 		bool isMoving;
 
-		bool isObstacleBlocking();
-
 		std::queue<sf::Vector2f> targets;
 
 		const float moveSpeed;
