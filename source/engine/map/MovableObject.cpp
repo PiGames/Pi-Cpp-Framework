@@ -40,11 +40,7 @@ namespace pi
 		}
 
 		if (!isMoving) isMoving = true;
-
-		if (isObstacleBlocking()) setTargetTo(object.getPosition(), clearAndGetLastTarget());
-
 		if (targets.empty())isMoving = false;
-
 
 		return true;
 	}
@@ -83,15 +79,4 @@ namespace pi
 		return last;
 	}
 
-	bool MovableObject::isObstacleBlocking()
-	{
-		std::vector<sf::Vector2i> overlapping;
-
-		//MapManager::fillOverlappingToVector(&overlapping, constants::mapManager::unitDirections[MapManager::getNameDirection(CurrentStep)]);
-
-		for (auto&var : overlapping)
-			if (MapManager::isCollidableUnit(var)) return true;
-		
-		return false;
-	}
 }
