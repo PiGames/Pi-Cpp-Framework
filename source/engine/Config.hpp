@@ -99,6 +99,22 @@ namespace pi
 			constexpr auto TEXTURE_PATH = "data/textures/path.jpg";
 			const sf::Vector2f dimensions = { 20,20 };
 		}
+		
+		namespace task
+		{
+			enum CATEGORY
+			{
+				SECURITY=0
+			};
+			
+			namespace category
+			{
+				enum SECURITY
+				{
+					FIRE_FIGHTING = 0
+				};
+			}
+		}
 
 		namespace worldConstructor
 		{
