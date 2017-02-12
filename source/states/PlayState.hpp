@@ -3,6 +3,7 @@
 #include "States.hpp"
 #include "engine/game/State.hpp"
 #include "engine/ResourceCache.hpp"
+#include "entities/Player.hpp"
 
 namespace mc
 {

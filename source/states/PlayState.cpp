@@ -33,13 +33,13 @@ namespace mc
 				console->show();
 
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-				player.move(mc::Player::Rotation::UP);
+				player.move(mc::Player::Direction::UP);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
-				player.move(mc::Player::Rotation::RIGHT);
+				player.move(mc::Player::Direction::RIGHT);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-				player.move(mc::Player::Rotation::LEFT);
+				player.move(mc::Player::Direction::LEFT);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-				player.move(mc::Player::Rotation::DOWN);
+				player.move(mc::Player::Direction::DOWN);
 
 			window->clear(sf::Color::Blue);
 

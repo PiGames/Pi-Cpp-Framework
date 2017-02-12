@@ -2,7 +2,7 @@
 
 namespace mc
 {
-	Player::Player(const sf::Texture& texture, const std::string& name = "<unnamed Player>", const sf::Vector2f& position = { 0,0 }, float speed = 1.f)
+	Player::Player(const sf::Texture& texture, const std::string& name, const sf::Vector2f& position, float speed)
 	{
 		this->name = name;
 		this->position = position;
@@ -14,20 +14,20 @@ namespace mc
 	}
 
 
-	void Player::move(Rotation rotation)
+	void Player::move(Direction direction)
 	{
-		switch (rotation)
+		switch (direction)
 		{
-		case Rotation::UP:
+		case Direction::UP:
 			this->position.y += this->speed;
 			break;
-		case Rotation::LEFT:
+		case Direction::LEFT:
 			this->position.x -= this->speed;
 			break;
-		case Rotation::RIGHT:
+		case Direction::RIGHT:
 			this->position.x += this->speed;
 			break;
-		case Rotation::DOWN:
+		case Direction::DOWN:
 			this->position.y -= this->speed;
 			break;
 		}
