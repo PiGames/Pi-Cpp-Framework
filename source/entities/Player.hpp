@@ -1,7 +1,4 @@
 #pragma once
-#include <memory>
-#include <array>
-#include <functional>
 
 #include <SFML/Graphics.hpp>
 #include "engine/entity/Entity.hpp"
@@ -23,6 +20,8 @@ namespace mc
 		~Player() = default;
 
 		void move(Direction);
+		void update(sf::RenderWindow&);
+
 	private:
 		sf::Texture texture;
 		sf::Sprite sprite;

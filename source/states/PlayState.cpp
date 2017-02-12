@@ -4,7 +4,7 @@ namespace mc
 {
 	PlayState::PlayState()
 	{
-	}
+	}	
 
 	short PlayState::run()
 	{
@@ -12,7 +12,7 @@ namespace mc
 		sf::Texture texture;
 		texture.loadFromFile("player.png");
 		mc::Player player(texture);
-
+		
 		sf::Event ev;
 
 		console->setTextFont(fonts.get(pi::constants::state::CONSOLE_FONT));
@@ -31,7 +31,7 @@ namespace mc
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::LAlt) &&
 				sf::Keyboard::isKeyPressed(sf::Keyboard::Key::F1))
 				console->show();
-
+			
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
 				player.move(mc::Player::Direction::UP);
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
@@ -44,7 +44,7 @@ namespace mc
 			window->clear(sf::Color::Blue);
 
 			window->draw(*console);
-
+			player.update(*window);
 			window->display();
 		}
 

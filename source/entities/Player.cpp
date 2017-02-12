@@ -33,4 +33,9 @@ namespace mc
 		}
 		this->sprite.setPosition(this->position);
 	}
+
+	void Player::update(sf::RenderWindow& window)
+	{
+		window.draw(this->sprite);
+	}
 }
