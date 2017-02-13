@@ -2,8 +2,8 @@
 
 namespace mc
 {
-	Task::Task(pi::constants::task::CATEGORY category, uint8_t kind)
-		:category(category), kind(kind)
+	Task::Task(uint8_t _category, uint8_t _kind)
+		:category(_category), kind(_kind)
 	{
 	}
 
@@ -14,5 +14,10 @@ namespace mc
 	uint8_t Task::getKind()
 	{
 		return kind;
+	}
+
+	bool Task::operator==(const Task & second)
+	{
+		return this->kind == second.kind;
 	}
 }

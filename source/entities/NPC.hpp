@@ -3,6 +3,7 @@
 
 #include "engine/map/MovableObject.hpp"
 #include "task/Task.hpp"
+#include "task/TaskManager.hpp"
 #include <vector>
 
 namespace mc
@@ -18,11 +19,11 @@ namespace mc
 	private:
 
 		//Skills
-		std::vector<pi::constants::AI::SKILLS> skills;
+		std::vector<Task*> skills;
 
 		//Tasks
 		std::vector<Task> tasks;
 
-		std::vector<pi::constants::AI::SKILLS> priorities;
+		std::vector<Task*> priorities;
 	};
 }

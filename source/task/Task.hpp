@@ -10,15 +10,17 @@ namespace mc
 	class Task
 	{
 	public:
-		Task(pi::constants::task::CATEGORY category, uint8_t kind);
+		Task(uint8_t category, uint8_t kind);
 
 		uint8_t getCategory();
 
 		uint8_t getKind();
 
-	private:
-		const pi::constants::task::CATEGORY category;
+		bool operator==(const Task& second);
 
-		const uint8_t kind;
+	private:
+		const int8_t category;
+
+		const int8_t kind;
 	};
 }

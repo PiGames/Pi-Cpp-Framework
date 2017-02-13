@@ -99,29 +99,11 @@ namespace pi
 			constexpr auto TEXTURE_PATH = "data/textures/path.jpg";
 			const sf::Vector2f dimensions = { 20,20 };
 		}
-		
-		namespace task
-		{
-			enum CATEGORY
-			{
-				SECURITY=0
-			};
-			
-			namespace category
-			{
-				enum SECURITY
-				{
-					FIRE_FIGHTING = 0
-				};
-			}
-		}
 
-		namespace AI
+		namespace taskManager
 		{
-			enum SKILLS
-			{
-				//
-			}
+			constexpr auto ACTION_PATH = "data/AI/tasks/actions.txt";
+			constexpr auto CATEGORY_PATH = "data/AI/tasks/category.txt";
 		}
 
 		namespace worldConstructor
@@ -154,9 +136,20 @@ namespace pi
 
 		namespace error
 		{
+
+			namespace fileManager
+			{
+				constexpr auto WRONG_PATH = "Wrong path has been given at: ";
+			}
+
 			namespace movableObject
 			{
 				constexpr auto WRONG_USE_MOVE = "Wrong use of move() method. Firstly make sure that object is moving.";
+			}
+
+			namespace taskManager
+			{
+				constexpr auto CATEGORY_DOES_NOT_EXIST = "Category with given number does not exist";
 			}
 
 			namespace soundSystem
