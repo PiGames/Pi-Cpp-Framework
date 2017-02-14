@@ -13,6 +13,8 @@ namespace pi
 
 namespace mc
 {
+	class ColliderComponent;
+
 	struct CollisionInfo final
 	{
 		ColliderComponent* collider = nullptr;
