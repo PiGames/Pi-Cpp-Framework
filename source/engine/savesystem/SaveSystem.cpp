@@ -27,7 +27,7 @@ namespace pi
 
 		if (find == this->variables.end())
 		{
-			Logger::log(constants::error::saveSystem::CANNOT_UPDATE_CANNOT_FOUND + name, Logger::MessageType::Error);
+			Logger::Log(constants::error::saveSystem::CANNOT_UPDATE_CANNOT_FOUND + name, Logger::MessageType::Error);
 
 			return false;
 		}
@@ -49,7 +49,7 @@ namespace pi
 		file.open(path, std::ios::out);
 		if (!file.good())
 		{
-			Logger::log(constants::error::saveSystem::CANNOT_SAVE + path, Logger::MessageType::Error);
+			Logger::Log(constants::error::saveSystem::CANNOT_SAVE + path, Logger::MessageType::Error);
 
 			file.close();
 
@@ -83,7 +83,7 @@ namespace pi
 		file.open(path);
 		if (!file.is_open())
 		{
-			Logger::log(constants::error::saveSystem::CANNOT_OPEN + path, Logger::MessageType::Error);
+			Logger::Log(constants::error::saveSystem::CANNOT_OPEN + path, Logger::MessageType::Error);
 
 			return false;
 		}

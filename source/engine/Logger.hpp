@@ -38,8 +38,8 @@ namespace pi
 		Logger() = delete;
 
 		// Initializes Logger file 
-		static void init(const std::string& outputFileName = "output.txt", Console* console = nullptr);
-		static void log(const std::string& message, MessageType messageType = MessageType::Info, OutputType outputType = OutputType::Console);
+		static void Init(const std::string& outputFileName = "output.txt", Console* console = nullptr);
+		static void Log(const std::string& message, MessageType messageType = MessageType::Info, OutputType outputType = OutputType::Console);
 
 	private:
 		static std::ofstream file;

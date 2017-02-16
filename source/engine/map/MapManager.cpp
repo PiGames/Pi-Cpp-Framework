@@ -13,14 +13,14 @@ namespace pi
 		collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
 	}
 
-	void MapManager::init(sf::Vector2i uWorldSize)
+	void MapManager::Init(sf::Vector2i uWorldSize)
 	{
 		unitWorldSize = uWorldSize;
 		createArrays();
-		surfaceCollisionMapUpdate();
+		SurfaceCollisionMapUpdate();
 	}
 
-	void MapManager::surfaceCollisionMapUpdate()
+	void MapManager::SurfaceCollisionMapUpdate()
 	{
 		for (int i = 0; i < unitWorldSize.x*unitWorldSize.x; ++i)
 		{
@@ -28,7 +28,7 @@ namespace pi
 		}
 	}
 
-	void MapManager::updateSingleUnits(StaticObject* object)
+	void MapManager::UpdateSingleUnits(StaticObject* object)
 	{
 		bool flag = object->isCollidable();
 		
@@ -36,57 +36,57 @@ namespace pi
 			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].isCollidable() || flag;
 	}
 
-	void MapManager::addCell(uint8_t number, int id, sf::Texture * texture, const std::string & name, bool collidableFlag)
+	void MapManager::AddCell(uint8_t number, int id, sf::Texture * texture, const std::string & name, bool collidableFlag)
 	{
 		surface.push_back(Cell(id, texture, name, sf::Vector2f((number - number / unitWorldSize.x)*constants::cell::CELL_DIMENSIONS.x, (number / unitWorldSize.x)*constants::cell::CELL_DIMENSIONS.y), std::vector<sf::Vector2i>() = { sf::Vector2i(number - number / unitWorldSize.x,number / unitWorldSize.x) }, collidableFlag));
 	}
 
-	void MapManager::addStaticObject(StaticObject staticObject)
+	void MapManager::AddStaticObject(StaticObject staticObject)
 	{
 		staticObjects.push_back(staticObject);
-		updateSingleUnits(&staticObject);
+		UpdateSingleUnits(&staticObject);
 	}
 
-	sf::Vector2i & MapManager::getUnitWorldSize()
+	sf::Vector2i & MapManager::GetUnitWorldSize()
 	{
 		return unitWorldSize;
 	}
 
-	std::vector<Cell>& MapManager::getSurface()
+	std::vector<Cell>& MapManager::GetSurface()
 	{
 		return surface;
 	}
 
-	std::vector<StaticObject>& MapManager::getStaticObjects()
+	std::vector<StaticObject>& MapManager::GetStaticObjects()
 	{
 		return staticObjects;
 	}
 
-	bool MapManager::isCollidableUnit(uint16_t number)
+	bool MapManager::IsCollidableUnit(uint16_t number)
 	{
 		if (number > unitWorldSize.x*unitWorldSize.y || number < 0)
 		{
-			Logger::log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
+			Logger::Log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
 			return true;
 		}
 		
 		return collisionMap[number];
 	}
 
-	bool MapManager::isCollidableUnit(sf::Vector2i unitPosition)
+	bool MapManager::IsCollidableUnit(sf::Vector2i unitPosition)
 	{
 
 		if (unitPosition.y*unitWorldSize.x + unitPosition.x > unitWorldSize.x*unitWorldSize.y ||
 			unitPosition.x<0 || unitPosition.y<0)
 		{
-			Logger::log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
+			Logger::Log(constants::error::mapManager::OUT_OF_MAP, Logger::MessageType::Error, Logger::OutputType::Both);
 			return true;
 		}
 
 		return collisionMap[unitPosition.y*unitWorldSize.x + unitPosition.x];
 	}
 
-	std::string MapManager::getNameDirection(sf::Vector2f speed)
+	std::string MapManager::GetNameDirection(sf::Vector2f speed)
 	{
 		if (speed.x == 0 && speed.y < 0) return constants::mapManager::nameDirections::NORTH;
 		if (speed.x == 0 && speed.y > 0) return constants::mapManager::nameDirections::SOUTH;
@@ -99,7 +99,7 @@ namespace pi
 		if (speed.x < 0 && speed.y > 0) return constants::mapManager::nameDirections::SOUTH_WEST;
 	}
 
-	void MapManager::fillOverlappingToVector(std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction)
+	void MapManager::FillOverlappingToVector(std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction)
 	{
 		if (direction.x != 0 && direction.y != 0)
 		{

@@ -17,14 +17,14 @@ namespace pi
 	void pi::State::setWindowPointer(sf::RenderWindow * window)
 	{
 		if (window == nullptr)
-			Logger::log("States windows is setting using nullptr", pi::Logger::MessageType::Warning);
+			Logger::Log("States windows is setting using nullptr", pi::Logger::MessageType::Warning);
 
 		this->window = window;
 	}
 	void State::setConsolePointer(Console * console)
 	{
 		if (console == nullptr)
-			Logger::log("States console is setting using nullptr", pi::Logger::MessageType::Warning);
+			Logger::Log("States console is setting using nullptr", pi::Logger::MessageType::Warning);
 
 		this->console = console;
 	}

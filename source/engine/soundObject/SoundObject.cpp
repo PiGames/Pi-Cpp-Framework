@@ -6,14 +6,14 @@ namespace pi
 	{
 		if (sounds.find(name) != sounds.end())
 		{
-			Logger::log(constants::error::soundSystem::ALREADY_EXIST, Logger::MessageType::Warning, Logger::OutputType::Both);
+			Logger::Log(constants::error::soundSystem::ALREADY_EXIST, Logger::MessageType::Warning, Logger::OutputType::Both);
 			return false;
 		}
 
 		sf::SoundBuffer soundBuffer;
 		if (!soundBuffer.loadFromFile(constants::soundSystem::SOUND_PATH + name + constants::soundSystem::SOUND_FORMAT))
 		{
-			Logger::log(constants::error::soundSystem::DOES_NOT_EXIST_IN_FOLDER, Logger::MessageType::Warning, Logger::OutputType::Both);
+			Logger::Log(constants::error::soundSystem::DOES_NOT_EXIST_IN_FOLDER, Logger::MessageType::Warning, Logger::OutputType::Both);
 			return false;
 		}
 
@@ -38,7 +38,7 @@ namespace pi
 
 		if (itr == sounds.end())
 		{
-			Logger::log(constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both);
+			Logger::Log(constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both);
 			return -1;
 		}
 		else return itr->second;
@@ -50,7 +50,7 @@ namespace pi
 
 		if (soundIterator == sounds.end())
 		{
-			Logger::log(constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both);
+			Logger::Log(constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both);
 			return false;
 		}
 

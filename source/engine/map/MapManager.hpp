@@ -26,37 +26,37 @@ namespace pi
 
 	public:
 		//Initialization (on the begining of game process)
-		static void init(sf::Vector2i uWorldSize);
+		static void Init(sf::Vector2i uWorldSize);
 
 		//Updatesthe whole collision map (Only from surface) | Don't overuse this method!
-		static void surfaceCollisionMapUpdate();
+		static void SurfaceCollisionMapUpdate();
 
 		//Updates units which have represantion on given object 
-		static void updateSingleUnits(StaticObject* object);
+		static void UpdateSingleUnits(StaticObject* object);
 
-		static void addCell(uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false);
+		static void AddCell(uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false);
 
-		static void addStaticObject(StaticObject staticObject);
+		static void AddStaticObject(StaticObject staticObject);
 
 		//Returns unit world size (in units)
-		static sf::Vector2i& getUnitWorldSize();
+		static sf::Vector2i& GetUnitWorldSize();
 
 		//Returns reference to surface
-		static std::vector<Cell> &getSurface();
+		static std::vector<Cell> &GetSurface();
 		
 		//Returns reference to objects
-		static std::vector<StaticObject> &getStaticObjects();
+		static std::vector<StaticObject> &GetStaticObjects();
 
 		//Returns state of map unit
-		static bool isCollidableUnit(uint16_t number);
+		static bool IsCollidableUnit(uint16_t number);
 
 		//Returns state of map unit
-		static bool isCollidableUnit(sf::Vector2i unitPosition);
+		static bool IsCollidableUnit(sf::Vector2i unitPosition);
 
 		//Returns name direction of moving
-		static std::string getNameDirection(sf::Vector2f speed);
+		static std::string GetNameDirection(sf::Vector2f speed);
 
-		static void fillOverlappingToVector(std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction);
+		static void FillOverlappingToVector(std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction);
 
 	private:
 

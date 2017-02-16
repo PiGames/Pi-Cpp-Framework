@@ -68,10 +68,10 @@ namespace pi
 		PathFinder() = delete;
 
 		//Initialization (on the begining of game process)
-		static void init(sf::Vector2i *worldSize);
+		static void Init(sf::Vector2i *worldSize);
 
 		//Filling targets queue by points which represents way to "to" point
-		static void fillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets);
+		static void FillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets);
 	
 		static struct mapImitation
 		{

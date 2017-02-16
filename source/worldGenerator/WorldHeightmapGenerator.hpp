@@ -16,7 +16,7 @@ namespace pi
 		WorldHeightmapGenerator() = delete;
 
 		//	Generates the heightmap based on seed and accurancy
-		static float * generate(int width, int height, int seed, int accuracy);
+		static float * Generate(int width, int height, int seed, int accuracy);
 
 	private:
 		//	Submaps to generate, 6 by default

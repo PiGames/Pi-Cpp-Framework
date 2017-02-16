@@ -30,7 +30,7 @@ namespace pi
 	{
 		std::pair<sf::Vector2i, sf::Vector2i> alternate;
 
-		if (isInMap(*neighbor) && !MapManager::isCollidableUnit(*neighbor) && mapImitation::weights[unitMapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
+		if (isInMap(*neighbor) && !MapManager::IsCollidableUnit(*neighbor) && mapImitation::weights[unitMapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
 		{
 			switch (direction)
 			{
@@ -192,23 +192,23 @@ namespace pi
 	{
 		if (!isInMap(sf::Vector2i(currentlyConsidered->x + singleAlternate->x, currentlyConsidered->y + singleAlternate->y)))
 			return false;
-		else if (!MapManager::isCollidableUnit(sf::Vector2i(currentlyConsidered->y + singleAlternate->y, currentlyConsidered->x + singleAlternate->x)))
+		else if (!MapManager::IsCollidableUnit(sf::Vector2i(currentlyConsidered->y + singleAlternate->y, currentlyConsidered->x + singleAlternate->x)))
 			return false;
 		return true;
 	}
 
 	bool PathFinder::targetIsUnreachable(const sf::Vector2f & to)
 	{
-		sf::Vector2i unitTarget = Math::convertPositionToUnitSystem(to,constants::cell::CELL_DIMENSIONS);
-		return !MapManager::isCollidableUnit(unitTarget);
+		sf::Vector2i unitTarget = Math::ConvertPositionToUnitSystem(to,constants::cell::CELL_DIMENSIONS);
+		return !MapManager::IsCollidableUnit(unitTarget);
 	}
 
-	void PathFinder::init( sf::Vector2i *worldSize)
+	void PathFinder::Init( sf::Vector2i *worldSize)
 	{
 		unitMapSize = worldSize;
 	}
 
-	void PathFinder::fillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets)
+	void PathFinder::FillTargetsQueue(const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets)
 	{
 
 		if (!targetIsUnreachable(to)) return;

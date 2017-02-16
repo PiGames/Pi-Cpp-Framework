@@ -30,27 +30,27 @@ namespace mc
 	{
 		if (!coll)
 		{
-			pi::Logger::log("Cannot register collider - collider is not assigned", pi::Logger::MessageType::Error);
+			pi::Logger::Log("Cannot register collider - collider is not assigned", pi::Logger::MessageType::Error);
 			return;
 		}
 
 		for (ColliderComponent* c : this->colliders)
 			if (c == coll)
 			{
-				pi::Logger::log("Cannot register collider - found collider with same memory ID (" + std::to_string(reinterpret_cast<std::size_t>(coll)) + ")", pi::Logger::MessageType::Error);
+				pi::Logger::Log("Cannot register collider - found collider with same memory ID (" + std::to_string(reinterpret_cast<std::size_t>(coll)) + ")", pi::Logger::MessageType::Error);
 				return;
 			}
 
 		this->colliders.push_back(coll);
 
-		pi::Logger::log("Registred collider (" + std::to_string((int)&*coll) + "), total colliders registred: " + std::to_string(this->colliders.size()), pi::Logger::MessageType::Info);
+		pi::Logger::Log("Registred collider (" + std::to_string((int)&*coll) + "), total colliders registred: " + std::to_string(this->colliders.size()), pi::Logger::MessageType::Info);
 	}
 
 	void CollisionHandler::unregisterCollider(ColliderComponent * coll)
 	{
 		if (!coll)
 		{
-			pi::Logger::log("Cannot unregister collider - collider is not assigned", pi::Logger::MessageType::Error);
+			pi::Logger::Log("Cannot unregister collider - collider is not assigned", pi::Logger::MessageType::Error);
 			return;
 		}
 
@@ -59,12 +59,12 @@ namespace mc
 		if (result != this->colliders.end())
 		{
 			this->colliders.erase(result);
-			pi::Logger::log("Unregistering collider (" + std::to_string(reinterpret_cast<std::size_t>(coll)) + "), total colliders registred: " + std::to_string(this->colliders.size()), pi::Logger::MessageType::Info);
+			pi::Logger::Log("Unregistering collider (" + std::to_string(reinterpret_cast<std::size_t>(coll)) + "), total colliders registred: " + std::to_string(this->colliders.size()), pi::Logger::MessageType::Info);
 
 			return;
 		}
 
-		pi::Logger::log("Cannot unregister collider - cannot find collider (" + std::to_string(reinterpret_cast<std::size_t>(coll)) + ")", pi::Logger::MessageType::Error);
+		pi::Logger::Log("Cannot unregister collider - cannot find collider (" + std::to_string(reinterpret_cast<std::size_t>(coll)) + ")", pi::Logger::MessageType::Error);
 	}
 
 	void CollisionHandler::update(float deltaTime)

@@ -12,7 +12,7 @@ namespace pi
 
 	void MovableObject::setTargetTo(const sf::Vector2f& from, const sf::Vector2f& to)
 	{
-		PathFinder::fillTargetsQueue(from, to, &targets);
+		PathFinder::FillTargetsQueue(from, to, &targets);
 	}
 
 	bool MovableObject::canMove()
@@ -24,7 +24,7 @@ namespace pi
 	{
 		if (!canMove())
 		{
-			Logger::log(constants::error::movableObject::WRONG_USE_MOVE, Logger::MessageType::Warning, Logger::OutputType::Console);
+			Logger::Log(constants::error::movableObject::WRONG_USE_MOVE, Logger::MessageType::Warning, Logger::OutputType::Console);
 			return false;
 		}
 
@@ -65,7 +65,7 @@ namespace pi
 
 	bool MovableObject::isNearTarget()
 	{
-		return Math::distance(object.getPosition(), targets.front()) < constants::cell::CELL_DIMENSIONS.x;
+		return Math::Distance(object.getPosition(), targets.front()) < constants::cell::CELL_DIMENSIONS.x;
 	}
 
 	sf::Vector2f MovableObject::clearAndGetLastTarget()

@@ -8,7 +8,7 @@ namespace pi
 	}
 
 
-	sf::Vector2i Math::convertPositionToUnitSystem(const sf::Vector2f& data,const sf::Vector2f& cellDimensions)
+	sf::Vector2i Math::ConvertPositionToUnitSystem(const sf::Vector2f& data,const sf::Vector2f& cellDimensions)
 	{
 		return sf::Vector2i(data.x / cellDimensions.x, data.y / cellDimensions.y);
 	}
@@ -23,7 +23,7 @@ namespace pi
 		return 0;
 	}
 
-	float Math::distance(sf::Vector2f first, sf::Vector2f second)
+	float Math::Distance(sf::Vector2f first, sf::Vector2f second)
 	{
 		return std::sqrt(std::pow(first.x - second.x, 2) + std::pow(first.y - second.y, 2));
 	}

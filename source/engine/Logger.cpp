@@ -5,7 +5,7 @@ namespace pi
 	std::ofstream Logger::file;
 	Console* Logger::console;
 
-	void Logger::init(const std::string& outputFileName, Console* console)
+	void Logger::Init(const std::string& outputFileName, Console* console)
 	{
 		if (Logger::file.is_open())
 			return;
@@ -28,7 +28,7 @@ namespace pi
 			Logger::console->log(message);
 	}
 
-	void Logger::log(const std::string& message, MessageType messageType, OutputType outputType)
+	void Logger::Log(const std::string& message, MessageType messageType, OutputType outputType)
 	{
 		std::string typeText = "";
 		std::string output = "";

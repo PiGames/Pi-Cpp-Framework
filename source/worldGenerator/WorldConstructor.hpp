@@ -13,6 +13,7 @@ namespace pi
 	//It constructs world which is based on WorldHeightmapGenerator
 	class WorldConstructor final
 	{
+	private:
 		//Returns type of Cell
 		static uint8_t getCellID(uint8_t number);
 
@@ -25,7 +26,7 @@ namespace pi
 		WorldConstructor() = delete;
 
 		//Creates a world (width x height) with given seed and accuracy
-		static void constructWorld(int width, int height, int seed, int accuracy, TextureCache * textureCache);
+		static void ConstructWorld(int width, int height, int seed, int accuracy, TextureCache * textureCache);
 
 	private:
 		static float* heightMap;

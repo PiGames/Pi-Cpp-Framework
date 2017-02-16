@@ -26,7 +26,7 @@ namespace pi
 		{
 			if (path.empty())
 			{
-				Logger::log(constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error);
+				Logger::Log(constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error);
 
 				return handleError();
 			}
@@ -45,7 +45,7 @@ namespace pi
 
 				if (!resource->loadFromFile(path))
 				{
-					Logger::log(constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error);
+					Logger::Log(constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error);
 
 					return handleError();
 				}

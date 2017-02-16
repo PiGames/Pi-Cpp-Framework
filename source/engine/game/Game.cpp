@@ -11,17 +11,17 @@ namespace pi
 		this->console.setFillColor({ 255,255,255, 100 });
 		this->console.setTextColor({ 0,0,0,255 });
 
-		Logger::init("log.txt", &console);
+		Logger::Init("log.txt", &console);
 	}
 
 	void Game::run()
 	{
-		Logger::log("\n==========\nStarting Game\n==========\n", Logger::MessageType::Separator, Logger::OutputType::Both);
+		Logger::Log("\n==========\nStarting Game\n==========\n", Logger::MessageType::Separator, Logger::OutputType::Both);
 
 		this->stateMachine.run();
 		this->window.close();
 
-		Logger::log("\n==========\nClosing Game\n==========\n", Logger::MessageType::Separator, Logger::OutputType::Both);
+		Logger::Log("\n==========\nClosing Game\n==========\n", Logger::MessageType::Separator, Logger::OutputType::Both);
 
 	}
 }
