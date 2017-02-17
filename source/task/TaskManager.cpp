@@ -4,11 +4,30 @@ namespace mc
 {
 
 	std::map<int8_t, std::vector<Task>> TaskManager::taskData;
+	std::map<int8_t, int> TaskManager::NPC_properties;
 
-	bool TaskManager::loadData(std::string& actionPath, std::string& categoryPath)
+	bool TaskManager::LoadData(std::string& actionPath, std::string& categoryPath)
 	{
 		return (loadCategories(categoryPath) && loadActions(actionPath));
 	}
+
+	int TaskManager::GetProperty(NPC_PROPETIES property)
+	{
+		return NPC_properties[property];
+	}
+
+	std::vector<Task> TaskManager::GetActionCollection(TASK_CATEGORY category)
+	{
+		return taskData[category];
+	}
+
+	Task * TaskManager::GetRandomTask()
+	{
+		auto randomedCategory = std::rand() % (taskData.size() - 2) + 1;
+		auto randomedTask = std::rand() % (taskData[randomedCategory].size() - 1);
+		return &taskData[randomedCategory][randomedTask];
+	}
+
 
 	bool TaskManager::loadCategories(std::string & path)
 	{
@@ -16,7 +35,7 @@ namespace mc
 
 		if (!file.good())
 		{
-			pi::Logger::log(pi::constants::error::fileManager::WRONG_PATH + (std::string)"TaskManager::loadCategories()", pi::Logger::MessageType::Error, pi::Logger::OutputType::Both);
+			pi::Logger::Log(pi::constants::error::fileManager::WRONG_PATH + (std::string)"TaskManager::loadCategories()", pi::Logger::MessageType::Error, pi::Logger::OutputType::Both);
 			return false;
 		}
 
@@ -29,6 +48,29 @@ namespace mc
 			taskData.emplace(std::pair<int8_t, std::vector<Task>>(number,std::vector<Task>()));
 			number++;
 		}
+
+		return true;
+	}
+
+	bool TaskManager::loadSkillsAmmount(std::string & path)
+	{
+		std::ifstream file(path);
+
+		if (!file.good())
+		{
+			pi::Logger::Log(pi::constants::error::fileManager::WRONG_PATH + (std::string)"TaskManager::loadSkillsAmmount()", pi::Logger::MessageType::Error, pi::Logger::OutputType::Both);
+			return false;
+		}
+		
+		auto propertyType = 0;
+		int temp;
+
+
+		while (file >> temp)
+		{
+			NPC_properties.emplace(propertyType, temp);
+			propertyType++;
+		}
 	}
 
 	bool TaskManager::loadActions(std::string & path)
@@ -37,7 +79,7 @@ namespace mc
 
 		if (!file.good())
 		{
-			pi::Logger::log(pi::constants::error::fileManager::WRONG_PATH + (std::string)"TaskManager::loadAction()", pi::Logger::MessageType::Error, pi::Logger::OutputType::Both);
+			pi::Logger::Log(pi::constants::error::fileManager::WRONG_PATH + (std::string)"TaskManager::loadAction()", pi::Logger::MessageType::Error, pi::Logger::OutputType::Both);
 			return false;
 		}
 
@@ -51,13 +93,14 @@ namespace mc
 
 			if (itr == taskData.end())
 			{
-				pi::Logger::log(pi::constants::error::taskManager::CATEGORY_DOES_NOT_EXIST, pi::Logger::MessageType::Error, pi::Logger::OutputType::Both);
+				pi::Logger::Log(pi::constants::error::taskManager::CATEGORY_DOES_NOT_EXIST, pi::Logger::MessageType::Error, pi::Logger::OutputType::Both);
 				return false;
 			}
 
 			itr->second.emplace_back(Task(number, itr->second.size()));
 		}
-
+		return true;
+	
 	}
 
 }

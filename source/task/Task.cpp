@@ -11,6 +11,7 @@ namespace mc
 	{
 		return category;
 	}
+
 	uint8_t Task::getKind()
 	{
 		return kind;
