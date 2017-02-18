@@ -25,12 +25,18 @@ namespace mc
 				priorities.push_back(var);
 			else break;
 
-			std::vector<int> indexes;
-			std::generate(indexes.begin(), indexes.end(), std::rand() % (skills.size() - priorities.size()) + skills.size());
+			std::vector<Task*> temporaryTaskCollection;
 
-			for (int8_t i = 0; i < skills.size()-priorities.size(); i++)
+			for (size_t i = priorities.size(); i < skills.size(); i++)
+				temporaryTaskCollection.push_back(skills[i]);
+
+			while(!temporaryTaskCollection.empty())
 			{
-				priorities.push_back(skills[indexes[i]]);
+				auto index = std::rand() % temporaryTaskCollection.size();
+
+				priorities.push_back(temporaryTaskCollection[index]);
+
+				temporaryTaskCollection.erase(std::find(temporaryTaskCollection.begin(), temporaryTaskCollection.end(), temporaryTaskCollection[index]));
 			}
 	}
 
