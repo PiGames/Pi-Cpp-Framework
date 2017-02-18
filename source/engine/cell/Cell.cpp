@@ -9,4 +9,9 @@ namespace pi
 		object.setTextureRect(sf::IntRect(ID*constants::cell::CELL_DIMENSIONS.x, 0, constants::cell::CELL_DIMENSIONS.x, constants::cell::CELL_DIMENSIONS.y));
 		object.setOrigin(object.getGlobalBounds().width / 2.0f, object.getGlobalBounds().height / 2.0f);
 	}
+
+	int16_t Cell::getID()
+	{
+		return ID;
+	}
 }
