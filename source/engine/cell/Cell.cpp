@@ -10,7 +10,7 @@ namespace pi
 		object.setOrigin(object.getGlobalBounds().width / 2.0f, object.getGlobalBounds().height / 2.0f);
 	}
 
-	int16_t Cell::getID()
+	uint16_t Cell::getID() const
 	{
 		return ID;
 	}

@@ -15,11 +15,11 @@ namespace pi
 		Cell(int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i(0,0) }, bool collidableFlag = false);
 
 		//Returns ID of cell
-		int16_t getID();
+		uint16_t getID() const;
 
 	private:
 
-		const int16_t ID;
+		const uint16_t ID;
 	};
 
 }
