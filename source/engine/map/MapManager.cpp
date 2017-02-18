@@ -15,7 +15,7 @@ namespace pi
 
 	void MapManager::SurfaceCollisionMapUpdate()
 	{
-		for (int i = 0; i < unitWorldSize.x*unitWorldSize.x; ++i)
+		for (int i = 0; i < unitWorldSize.x*unitWorldSize.y; ++i)
 		{
 			collisionMap[i] = surface[i].isCollidable();
 		}

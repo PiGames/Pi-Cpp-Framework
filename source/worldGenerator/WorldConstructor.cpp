@@ -30,7 +30,7 @@ namespace pi
 
 		MapManager::SetUnitWorldSize(sf::Vector2i(width, height));
 
-		for (uint8_t i = 0; i < width*height; ++i)
+		for (uint16_t i = 0; i < width*height; ++i)
 			constructSingleCell(i, textureCache);
 
 		MapManager::FinalizeLogicPartOfMap();

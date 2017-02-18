@@ -27,8 +27,8 @@ namespace pi
 
 		struct
 		{
-			static constexpr float x = 1.f;
-			static constexpr float y = 1.f;
+			static constexpr float x = 5.f;
+			static constexpr float y = 5.f;
 		} static constexpr RENDER_SCALE;
 	}
 }
