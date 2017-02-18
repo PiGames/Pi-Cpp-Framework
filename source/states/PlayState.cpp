@@ -2,6 +2,14 @@
 
 namespace mc
 {
+	void PlayState::onActivation()
+	{
+		// ResourceCache should return std:shared_ptrs... :/
+		pi::Renderer::SetMapTexture(std::make_shared<sf::Texture>(textures.get("data/textures/textureSheet.png")));
+		pi::Renderer::SetWindow(this->window);
+		//pi::WorldConstructor::ConstructWorld(16, 16, 123, 1, nullptr);
+	}
+
 	PlayState::PlayState()
 	{
 	}	
@@ -41,11 +49,14 @@ namespace mc
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S) || sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
 				player.move(mc::Player::Direction::DOWN);
 
-			window->clear(sf::Color::Blue);
+			pi::Renderer::Update();
 
-			window->draw(*console);
-			player.update(*window);
-			window->display();
+			//window->clear(sf::Color::Blue);
+			//window->draw(*console);
+			//player.update(*window);			
+			//window->display();
+
+			pi::Renderer::Render();
 		}
 
 		return (short)States::Exit;
