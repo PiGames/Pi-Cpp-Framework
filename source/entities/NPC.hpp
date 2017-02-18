@@ -4,6 +4,8 @@
 #include "engine/map/MovableObject.hpp"
 #include "task/Task.hpp"
 #include "task/TaskManager.hpp"
+
+#include <algorithm>
 #include <vector>
 
 namespace mc
