@@ -44,7 +44,7 @@ namespace pi
 					return;
 				}
 
-				sf::IntRect cuttingArea(tileID * renderSettings::MAP_CELL_TEXTURE_SIZE.x, 0, renderSettings::MAP_CELL_TEXTURE_SIZE.x, renderSettings::MAP_CELL_TEXTURE_SIZE.y);
+				sf::FloatRect cuttingArea(static_cast<float>(tileID * renderSettings::MAP_CELL_TEXTURE_SIZE.x), 0.f, static_cast<float>(renderSettings::MAP_CELL_TEXTURE_SIZE.x), static_cast<float>(renderSettings::MAP_CELL_TEXTURE_SIZE.y));
 
 				sf::Vertex* quad = &mapVerticies[(x + y * mapSize.y) * 4];
 				
