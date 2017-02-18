@@ -11,12 +11,12 @@ namespace mc
 		return (loadCategories(categoryPath) && loadActions(actionPath));
 	}
 
-	int TaskManager::GetProperty(NPC_PROPETIES property)
+	int TaskManager::GetProperty(pi::enumerations::taskManager::NPC_PROPETIES property)
 	{
 		return NPC_properties[property];
 	}
 
-	std::vector<Task> TaskManager::GetActionCollection(TASK_CATEGORY category)
+	std::vector<Task> TaskManager::GetActionCollection(pi::enumerations::taskManager::TASK_CATEGORY category)
 	{
 		return taskData[category];
 	}

@@ -8,6 +8,7 @@
 #include "engine/map/MapManager.hpp"
 #include "engine/Config.hpp"
 #include "engine/Math.hpp"
+#include "engine/Types.hpp"
 
 namespace pi
 {
@@ -80,23 +81,6 @@ namespace pi
 			static std::vector<int> weights;
 		};
 
-		static enum CellState
-		{
-			NOT_VISITED = -1,
-			START_POSITION = 0
-		};
-
-		static enum	Direction
-		{
-			NORTH = 0,
-			NORTH_EAST = 1,
-			EAST = 2,
-			SOUTH_EAST = 3,
-			SOUTH = 4,
-			SOUTH_WEST = 5,
-			WEST = 6,
-			NORTH_WEST = 7
-		};
 
 		//Map size represented by i|j system
 		static sf::Vector2i *unitMapSize;

@@ -4,6 +4,7 @@
 #include "engine/Config.hpp"
 #include "task/Task.hpp"
 #include "entities/NPC.hpp"
+#include "engine/Types.hpp"
 
 #include <fstream>
 #include <vector>
@@ -17,25 +18,14 @@ namespace mc
 	class TaskManager final
 	{
 	public:
-		static enum TASK_CATEGORY
-		{
-			SECURITY,
-			FOOD
-		};
-
-		static enum NPC_PROPETIES
-		{
-			SKILLS_AMMOUNT_FROM,
-			SKILLS_AMMOUNT_TO
-		};
 
 		//Loads data like actions and categories
 		//returns false if data hasn't been loaded
 		static bool LoadData(std::string& actionPath, std::string& categoryPath);
 
-		static int GetProperty(NPC_PROPETIES property);
+		static int GetProperty(pi::enumerations::taskManager::NPC_PROPETIES property);
 
-		static std::vector<Task> GetActionCollection(TASK_CATEGORY category);
+		static std::vector<Task> GetActionCollection(pi::enumerations::taskManager::TASK_CATEGORY category);
 
 		static Task* GetRandomTask();
 

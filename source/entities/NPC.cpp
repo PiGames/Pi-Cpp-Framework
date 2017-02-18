@@ -5,12 +5,12 @@ namespace mc
 
 	void NPC::setSkills()
 	{
-		auto compartment = std::pair<int, int>(TaskManager::GetProperty(TaskManager::SKILLS_AMMOUNT_FROM), TaskManager::GetProperty(TaskManager::SKILLS_AMMOUNT_TO));
+		auto compartment = std::pair<int, int>(TaskManager::GetProperty(pi::enumerations::taskManager::SKILLS_AMMOUNT_FROM), TaskManager::GetProperty(pi::enumerations::taskManager::SKILLS_AMMOUNT_TO));
 
 		auto ammount = std::rand() % (compartment.second - compartment.first) + compartment.first;
 
 		//security tasks
-		for (auto&var : TaskManager::GetActionCollection(TaskManager::SECURITY))
+		for (auto&var : TaskManager::GetActionCollection(pi::enumerations::taskManager::SECURITY))
 			skills.push_back(&var);
 
 		//other tasks...
@@ -21,7 +21,7 @@ namespace mc
 	void NPC::setPriorities()
 	{
 		for (auto&var : skills)
-			if (var->getCategory() == TaskManager::TASK_CATEGORY::SECURITY)
+			if (var->getCategory() == pi::enumerations::taskManager::TASK_CATEGORY::SECURITY)
 				priorities.push_back(var);
 			else break;
 

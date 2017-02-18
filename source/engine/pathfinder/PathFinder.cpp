@@ -30,37 +30,37 @@ namespace pi
 	{
 		std::pair<sf::Vector2i, sf::Vector2i> alternate;
 
-		if (isInMap(*neighbor) && !MapManager::IsCollidableUnit(*neighbor) && mapImitation::weights[unitMapSize->x*neighbor->y + neighbor->x] == PathFinder::NOT_VISITED)
+		if (isInMap(*neighbor) && !MapManager::IsCollidableUnit(*neighbor) && mapImitation::weights[unitMapSize->x*neighbor->y + neighbor->x] == enumerations::pathfinder::NOT_VISITED)
 		{
 			switch (direction)
 			{
-				case PathFinder::Direction::NORTH:
-				case PathFinder::Direction::EAST:
-				case PathFinder::Direction::SOUTH:
-				case PathFinder::Direction::WEST: increaseWeight(neighbor, currentlyConsidered, Q); break;
+				case enumerations::pathfinder::NORTH:
+				case enumerations::pathfinder::EAST:
+				case enumerations::pathfinder::SOUTH:
+				case enumerations::pathfinder::WEST: increaseWeight(neighbor, currentlyConsidered, Q); break;
 
-				case PathFinder::Direction::NORTH_EAST:
+				case enumerations::pathfinder::NORTH_EAST:
 				{
 					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST); 
 					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
 					break;
 				}
 	
-				case PathFinder::Direction::SOUTH_EAST:
+				case enumerations::pathfinder::SOUTH_EAST:
 				{
 					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::EAST);
 					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
 					break;
 				}
 
-				case PathFinder::Direction::SOUTH_WEST:
+				case enumerations::pathfinder::SOUTH_WEST:
 				{
 					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
 					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::SOUTH);
 					break;
 				}
 
-				case PathFinder::Direction::NORTH_WEST:
+				case enumerations::pathfinder::NORTH_WEST:
 				{
 					alternate.first = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::WEST);
 					alternate.second = constants::mapManager::unitDirections.at(constants::mapManager::nameDirections::NORTH);
@@ -102,13 +102,13 @@ namespace pi
 	void PathFinder::setWeightsVectorAsNotVisited()
 	{
 		for (size_t i = 0; i < unitMapSize->x*unitMapSize->y; ++i)
-			mapImitation::weights.emplace_back(PathFinder::CellState::NOT_VISITED);
+			mapImitation::weights.emplace_back(enumerations::pathfinder::NOT_VISITED);
 	}
 
 	void PathFinder::enterFirstElementToQueue(std::queue<sf::Vector2i> *Q, sf::Vector2i *fromPos)
 	{
 		Q->push(sf::Vector2i(*fromPos));
-		mapImitation::weights[fromPos->y*unitMapSize->x + fromPos->x] = PathFinder::CellState::START_POSITION;
+		mapImitation::weights[fromPos->y*unitMapSize->x + fromPos->x] = enumerations::pathfinder::START_POSITION;
 	}
 
 	void PathFinder::tourTheMap(std::queue<sf::Vector2i> *Q, sf::Vector2i *toPos)
