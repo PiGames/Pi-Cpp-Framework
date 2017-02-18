@@ -7,7 +7,7 @@ namespace mc
 		// ResourceCache should return std:shared_ptrs... :/
 		pi::Renderer::SetMapTexture(std::make_shared<sf::Texture>(textures.get("data/textures/textureSheet.png")));
 		pi::Renderer::SetWindow(this->window);
-		//pi::WorldConstructor::ConstructWorld(16, 16, 123, 1, nullptr);
+		pi::WorldConstructor::ConstructWorld(16, 16, 123, 1, nullptr);
 	}
 
 	PlayState::PlayState()
