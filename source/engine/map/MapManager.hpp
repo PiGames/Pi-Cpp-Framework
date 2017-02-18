@@ -58,6 +58,8 @@ namespace pi
 
 		static void SetUnitWorldSize(sf::Vector2i size);
 
+		static void FinalizeLogicPartOfMap();
+
 	private:
 
 		static std::vector<Cell> surface;

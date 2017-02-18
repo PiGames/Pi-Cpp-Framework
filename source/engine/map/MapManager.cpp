@@ -106,6 +106,10 @@ namespace pi
 	void MapManager::SetUnitWorldSize(sf::Vector2i size)
 	{
 		unitWorldSize = size;
+	}
+
+	void MapManager::FinalizeLogicPartOfMap()
+	{
 		createArrays();
 		SurfaceCollisionMapUpdate();
 	}

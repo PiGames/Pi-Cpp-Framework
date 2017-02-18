@@ -8,7 +8,6 @@
 
 int main()
 {
-	pi::MapManager::Init({ 16,16 });
 	try
 	{
 		pi::Game game({ 1280, 720 }, "Mars Colony", 60u);

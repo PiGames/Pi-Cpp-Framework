@@ -27,10 +27,13 @@ namespace pi
 	{
 		heightMap = WorldHeightmapGenerator::Generate(width, height, seed, accuracy);
 		loadCellTypes();
+
 		MapManager::SetUnitWorldSize(sf::Vector2i(width, height));
 
 		for (uint8_t i = 0; i < width*height; ++i)
 			constructSingleCell(i, textureCache);
+
+		MapManager::FinalizeLogicPartOfMap();
 	}
 
 }
