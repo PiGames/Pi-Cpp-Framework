@@ -1,0 +1,2 @@
+Categories has got hidden number which is based on their position in category.txt (<0;+inf>
+	     

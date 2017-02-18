@@ -104,6 +104,7 @@ namespace pi
 		{
 			constexpr auto ACTION_PATH = "data/AI/tasks/actions.txt";
 			constexpr auto CATEGORY_PATH = "data/AI/tasks/category.txt";
+			constexpr auto PROPERTIES_PATH = "data/AI/tasks/NPC_properties.txt";
 		}
 
 		namespace worldConstructor
