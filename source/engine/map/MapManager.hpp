@@ -25,8 +25,6 @@ namespace pi
 		MapManager();
 
 	public:
-		//Initialization (on the begining of game process)
-		static void Init(sf::Vector2i uWorldSize);
 
 		//Updatesthe whole collision map (Only from surface) | Don't overuse this method!
 		static void SurfaceCollisionMapUpdate();
@@ -57,6 +55,8 @@ namespace pi
 		static std::string GetNameDirection(sf::Vector2f speed);
 
 		static void FillOverlappingToVector(std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction);
+
+		static void SetUnitWorldSize(sf::Vector2i size);
 
 	private:
 

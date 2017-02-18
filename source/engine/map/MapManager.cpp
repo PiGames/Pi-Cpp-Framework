@@ -13,13 +13,6 @@ namespace pi
 		collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
 	}
 
-	void MapManager::Init(sf::Vector2i uWorldSize)
-	{
-		unitWorldSize = uWorldSize;
-		createArrays();
-		SurfaceCollisionMapUpdate();
-	}
-
 	void MapManager::SurfaceCollisionMapUpdate()
 	{
 		for (int i = 0; i < unitWorldSize.x*unitWorldSize.x; ++i)
@@ -108,6 +101,13 @@ namespace pi
 		}
 		else
 			overlapping->emplace_back(direction);
+	}
+
+	void MapManager::SetUnitWorldSize(sf::Vector2i size)
+	{
+		unitWorldSize = size;
+		createArrays();
+		SurfaceCollisionMapUpdate();
 	}
 }
 
