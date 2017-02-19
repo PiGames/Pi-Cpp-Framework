@@ -14,12 +14,12 @@ namespace mc
 	}
 
 
-	void Player::move(Direction direction)
+	void Player::move(const Direction& direction)
 	{
 		switch (direction)
 		{
 		case Direction::UP:
-			this->position.y += this->speed;
+			this->position.y -= this->speed;
 			break;
 		case Direction::LEFT:
 			this->position.x -= this->speed;
@@ -28,7 +28,7 @@ namespace mc
 			this->position.x += this->speed;
 			break;
 		case Direction::DOWN:
-			this->position.y -= this->speed;
+			this->position.y += this->speed;
 			break;
 		}
 		this->sprite.setPosition(this->position);
