@@ -22,7 +22,7 @@ namespace pi
 			return;
 		errorMessageLogged = false;
 
-		sf::Vector2i mapSize = MapManager::GetUnitWorldSize();
+		sf::Vector2i& mapSize = MapManager::GetUnitWorldSize();
 		const auto& tiles = MapManager::GetSurface();
 
 		Renderer::mapVerticies.clear();
@@ -41,6 +41,7 @@ namespace pi
 					Logger::Log(
 						"Invalid map texture size! Requested/max: x: " + std::to_string(tileID * renderSettings::MAP_CELL_TEXTURE_SIZE.x) + " / " + std::to_string(Renderer::mapTexture->getSize().x) + ", y: " + std::to_string(renderSettings::MAP_CELL_TEXTURE_SIZE.y) + " / " + std::to_string(Renderer::mapTexture->getSize().y), 
 						Logger::MessageType::Error, Logger::OutputType::Both);
+					
 					return;
 				}
 
