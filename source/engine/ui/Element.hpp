@@ -1,3 +1,9 @@
+/*
+===============================================================================
+Created by: Beniamin Gajecki ,,Uriel"
+User Interface(UI) Element class.
+===============================================================================
+*/
 #pragma once
 
 #include <memory>
@@ -10,12 +16,12 @@ namespace pi
 {
 	namespace ui
 	{
-		enum ElementType
+		enum elementType_t
 		{
-			button,
-			checkbox,
-			slider,
-			list
+			BUTTON,
+			CHECKBOX,
+			SLIDER,
+			LIST
 		};
 
 		class Element
@@ -26,23 +32,23 @@ namespace pi
 
 			// STANDART UI GETS START
 			// Return element position
-			const sf::Vector2f getPosition() const { return this->position; }
+			const sf::Vector2f getPosition( ) const { return this->position; }
 			// Return element size
-			const sf::Vector2f getSize() const { return this->size; }
+			const sf::Vector2f getSize( ) const { return this->size; }
 			// STANDART UI GETS END
 
 		protected:
 			// STANDART UI FUNCTIONS START
 			// Use element
-			virtual void use(sf::Event&) = 0;
+			virtual void use( sf::Event& ) = 0;
 			// Update element
-			virtual void update(sf::RenderWindow&);
+			virtual void update( sf::RenderWindow& );
 			// STANDART UI FUNCTIONS END
 
 			// STANDART UI VARIABLES START
 			sf::Sprite sprite;
 			sf::Vector2f position, size;
-			ElementType type;
+			elementType_t type;
 			// STANDART UI VARIABLES END
 		};
 	}

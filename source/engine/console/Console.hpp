@@ -1,3 +1,9 @@
+/*
+===============================================================================
+Created by: Beniamin Gajecki ,,Uriel"
+Console class.
+===============================================================================
+*/
 #pragma once
 
 #include <memory>
@@ -13,63 +19,64 @@
 namespace pi
 {
 	class Console;
-	struct Command;
+	struct command_t;
 
-	struct Command
+	struct command_t
 	{
-		std::function<void(Console*, Command*)> function;
+		std::function<void( Console*, command_t* )> function;
 		std::string induction;
 		std::vector<std::string> args;
 	};
 
-	class Console final :
-		public sf::Drawable
+	class Console final //:
+		//public sf::Drawable
 	{
-	private:
-		void draw(sf::RenderTarget&, sf::RenderStates) const;
+	//private:
+	//	void draw( sf::RenderTarget&, sf::RenderStates ) const;
 
 	public:
-		Console();
-		Console(const sf::Vector2u&);
-		~Console() = default;
+		void update( sf::RenderWindow& );
+		Console(  );
+		Console( const sf::Vector2u& );
+		~Console(  ) = default;
 
-		Console& operator =(const Console&) = delete;
-		Console(const Console&) = delete;
+		Console& operator =( const Console& ) = delete;
+		Console( const Console& ) = delete;
 
 		// CONSOLE VIEW FUNCTIONS START
 		// Set window handle
-		// YOU MUST USE IT IF YOU DIDN'T USE THIS CONSTRUCTOR -> Console(sf::RenderWindow&);
-		void setWindowSize(const sf::Vector2u&);
+		// YOU MUST USE IT IF YOU DIDN'T USE THIS CONSTRUCTOR -> Console( sf::RenderWindow& );
+		void setWindowSize( const sf::Vector2u& );
 		// Set console fill color
-		void setFillColor(const sf::Color&);
+		void setFillColor( const sf::Color& );
 		// Set console outline color
-		void setOutlineColor(const sf::Color&);
+		void setOutlineColor( const sf::Color& );
 		// CONSOLE VIEW FUNCTIONS END
 
 		// TEXT SECTION START
 		// Set text color in all lines
-		void setTextColor(const sf::Color&);
+		void setTextColor( const sf::Color& );
 		// Set text font in all lines
-		void setTextFont(sf::Font&);
+		void setTextFont( sf::Font& );
 		// Set max number of characters in all lines
-		void setTextSizeInLine(const unsigned);
+		void setTextSizeInLine( const unsigned );
 		// TEXT SECTION END
 
 		// CONSOLE FUNCTIONS START
 		// Add command to commands vector
-		void addCommand(Command&);
+		void addCommand( command_t& );
 		// On-Off console
-		void toggle();
+		void toggle(  );
 		// Shows console
-		void show();
+		void show(  );
 		// Hides console
-		void hide();
+		void hide(  );
 		// Checks whether user click baskskape or enter
-		void key(sf::Event&);
+		void key( sf::Event& );
 		// Checks what user write on keyboard
-		void write(sf::Event&);
+		void write( sf::Event& );
 		// Write logs in console
-		void log(const std::string&);
+		void log( const std::string& );
 		// CONSOLE FUNCTIONS END
 
 	private:
@@ -77,10 +84,10 @@ namespace pi
 		sf::Vector2u windowSize;
 		sf::Text text, input;
 		std::array <std::string, constants::console::DEAFULT_NUMBER_OF_LINES> line;
-		std::vector <Command> commands;
+		std::vector <command_t> commands;
 		unsigned numberOfLines, textSizeInLine;
 		bool isOpen;
 
-		inline void commandInduction(std::string);
+		inline void commandInduction_r( std::string );
 	};
 }

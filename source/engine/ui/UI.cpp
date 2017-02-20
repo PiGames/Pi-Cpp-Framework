@@ -6,93 +6,141 @@ namespace pi
 	{
 		// Public
 
-		UI::UI()
+		UI::UI( )
 		{
 			this->elementArrayLenght = 0;
 		}
 
-		UI::UI(sf::RenderWindow& window)
+		UI::UI( sf::RenderWindow& window )
 		{
 			this->window = &window;
 			this->elementArrayLenght = 0;
 		}
 
-		void UI::setWindow(sf::RenderWindow& window)
+		void UI::setWindow( sf::RenderWindow& window )
 		{
 			this->window = &window;
 		}
 
 		// Button methods
 
-		void UI::useButtons(sf::Event& event)
+		void UI::useButtons( sf::Event& event )
 		{
-			for (auto &i : this->elements)
-				if (i)
-					if (i->type == ElementType::button)
-						i->use(event);
+			for( auto &i : this->elements )
+			{
+				if( i )
+				{
+					if( i->type == elementType_t::BUTTON )
+					{
+						i->use( event );
+					}
+				}
+			}
 		}
 
-		void UI::updateButtons(sf::RenderWindow& window)
+		void UI::updateButtons( sf::RenderWindow& window )
 		{
-			for (auto &i : this->elements)
-				if (i)
-					if (i->type == ElementType::button)
-						i->update(window);
+			for( auto &i : this->elements )
+			{
+				if( i )
+				{
+					if( i->type == elementType_t::BUTTON )
+					{
+						i->update( window );
+					}
+				}
+			}
 		}
 
 		// Checkbox methods
 
-		void UI::useCheckboxs(sf::Event& event)
+		void UI::useCheckboxs( sf::Event& event )
 		{
-			for (auto &i : this->elements)
-				if (i)
-					if (i->type == ElementType::checkbox)
-						i->use(event);
+			for( auto &i : this->elements )
+			{
+				if( i )
+				{
+					if( i->type == elementType_t::CHECKBOX )
+					{
+						i->use( event );
+					}
+				}
+			}
 		}
 
-		void UI::updateCheckboxs(sf::RenderWindow& window)
+		void UI::updateCheckboxs( sf::RenderWindow& window )
 		{
-			for (auto &i : this->elements)
-				if (i)
-					if (i->type == ElementType::checkbox)
-						i->update(window);
+			for( auto &i : this->elements )
+			{
+				if( i )
+				{
+					if( i->type == elementType_t::CHECKBOX )
+					{
+						i->update( window );
+					}
+				}
+			}
 		}
 
 		// Slider methods
 
-		void UI::useSliders(sf::Event& event)
+		void UI::useSliders( sf::Event& event )
 		{
-			for (auto &i : this->elements)
-				if (i)
-					if (i->type == ElementType::slider)
-						i->use(event);
+			for( auto &i : this->elements )
+			{
+				if( i )
+				{
+					if( i->type == elementType_t::SLIDER )
+					{
+						i->use( event );
+					}
+				}
+			}
 		}
 
-		void UI::updateSliders(sf::RenderWindow& window)
+		void UI::updateSliders( sf::RenderWindow& window )
 		{
-			for (auto &i : this->elements)
-				if (i)
-					if (i->type == ElementType::slider)
-						i->update(window);
+			for( auto &i : this->elements )
+			{
+				if( i )
+				{
+					if( i->type == elementType_t::SLIDER )
+					{
+						i->update( window );
+					}
+				}
+			}
 		}
 
 		// List methods
 
-		void UI::useLists(sf::Event& event)
+		void UI::useLists( sf::Event& event )
 		{
-			for (auto &i : this->elements)
-				if (i)
-					if (i->type == ElementType::list)
-						i->use(event);
+			for( auto &i : this->elements )
+			{
+				if( i )
+				{
+					if( i->type == elementType_t::LIST )
+					{
+						i->use( event );
+					}
+				}
+			}
 		}
 
-		void UI::updateLists(sf::RenderWindow& window)
+		void UI::updateLists( sf::RenderWindow& window )
 		{
-			for (auto &i : this->elements)
-				if (i)
-					if (i->type == ElementType::list)
-						i->update(window);
+			for( auto &i : this->elements )
+			{
+				if( i )
+				{
+					if( i->type == elementType_t::LIST )
+					{
+						i->update( window );
+					}
+				}
+			}
 		}
-
+		
 	}
 }

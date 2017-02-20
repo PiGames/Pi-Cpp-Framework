@@ -6,9 +6,9 @@ namespace pi
 	{
 		// Public
 
-		void Element::update(sf::RenderWindow& window)
+		void Element::update( sf::RenderWindow& window )
 		{
-			window.draw(this->sprite);
+			window.draw( this->sprite );
 		}
 	}
 }
