@@ -1,9 +1,3 @@
-/*
-===============================================================================
-Created by: Beniamin Gajecki ,,Uriel"
-Checkbox class.
-===============================================================================
-*/
 #pragma once
 
 #include "Element.hpp"
@@ -13,6 +7,12 @@ namespace pi
 {
 	namespace ui
 	{
+/*
+===============================================================================
+Created by: Beniamin Gajecki ,,Uriel"
+Checkbox class.
+===============================================================================
+*/
 		class Checkbox final : public Element
 		{
 		public:

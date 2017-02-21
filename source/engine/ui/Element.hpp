@@ -1,9 +1,3 @@
-/*
-===============================================================================
-Created by: Beniamin Gajecki ,,Uriel"
-User Interface(UI) Element class.
-===============================================================================
-*/
 #pragma once
 
 #include <memory>
@@ -23,7 +17,12 @@ namespace pi
 			SLIDER,
 			LIST
 		};
-
+/*
+===============================================================================
+Created by: Beniamin Gajecki ,,Uriel"
+User Interface(UI) Element class.
+===============================================================================
+*/
 		class Element
 		{
 		public:

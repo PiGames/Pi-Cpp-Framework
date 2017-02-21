@@ -1,9 +1,3 @@
-/*
-===============================================================================
-Created by: Beniamin Gajecki ,,Uriel"
-Console class.
-===============================================================================
-*/
 #pragma once
 
 #include <memory>
@@ -27,12 +21,16 @@ namespace pi
 		std::string induction;
 		std::vector<std::string> args;
 	};
-
-	class Console final //:
-		//public sf::Drawable
+/*
+===============================================================================
+Created by: Beniamin Gajecki ,,Uriel"
+Console class.
+===============================================================================
+*/
+	class Console final : public sf::Drawable
 	{
-	//private:
-	//	void draw( sf::RenderTarget&, sf::RenderStates ) const;
+	private:
+		void draw( sf::RenderTarget&, sf::RenderStates ) const;
 
 	public:
 		void update( sf::RenderWindow& );
