@@ -3,8 +3,9 @@
 namespace mc
 {
 	Task::Task(uint8_t _category, uint8_t _kind)
-		:category(_category), kind(_kind)
+		:category(_category), kind(_kind), doing(true)
 	{
+		generateCommands();
 	}
 
 	uint8_t Task::getCategory()
@@ -21,4 +22,10 @@ namespace mc
 	{
 		return this->kind == second.kind;
 	}
+
+	bool Task::isDoing()
+	{
+		return doing;
+	}
+
 }
