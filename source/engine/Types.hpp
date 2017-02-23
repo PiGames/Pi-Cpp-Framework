@@ -11,13 +11,13 @@ namespace pi
 	{
 		namespace pathfinder
 		{
-			static enum CellState
+			enum CellState
 			{
 				NOT_VISITED = -1,
 				START_POSITION = 0
 			};
 
-			static enum	Direction
+			enum	Direction
 			{
 				NORTH = 0,
 				NORTH_EAST = 1,
@@ -32,17 +32,27 @@ namespace pi
 
 		namespace taskManager
 		{
-			static enum TASK_CATEGORY
+			enum TASK_CATEGORY
 			{
 				SECURITY,
 				FOOD
 			};
 
-			static enum NPC_PROPETIES
+			enum NPC_PROPETIES
 			{
 				SKILLS_AMMOUNT_FROM,
 				SKILLS_AMMOUNT_TO
 			};
+		}
+
+		namespace task
+		{
+			enum status_t
+			{
+				DONE,
+				PROGRESS
+			};
+
 		}
 	}
 
