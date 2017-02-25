@@ -2,15 +2,13 @@
 
 namespace pi
 {
-
-
-	void Console::update( sf::RenderWindow& window )
+	void Console::draw( sf::RenderTarget& target, sf::RenderStates state ) const
 	{
 		if ( this->isOpen )
 		{
-			window.draw( shape );
-			window.draw( text );
-			window.draw( input );
+			target.draw( shape );
+			target.draw( text );
+			target.draw( input );
 		}
 	}
 
