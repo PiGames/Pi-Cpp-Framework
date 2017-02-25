@@ -27,5 +27,9 @@ namespace mc
 	{
 		return doing;
 	}
+		
+	void Task::generateCommands()
+	{
+	}
 
 }
