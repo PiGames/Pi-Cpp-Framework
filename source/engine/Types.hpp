@@ -11,34 +11,34 @@ namespace pi
 	{
 		namespace pathfinder
 		{
-			enum CellState
+			enum cellState_t
 			{
 				NOT_VISITED = -1,
 				START_POSITION = 0
 			};
 
-			enum	Direction
+			enum direction_t
 			{
-				NORTH = 0,
-				NORTH_EAST = 1,
-				EAST = 2,
-				SOUTH_EAST = 3,
-				SOUTH = 4,
-				SOUTH_WEST = 5,
-				WEST = 6,
-				NORTH_WEST = 7
+				NORTH,
+				NORTH_EAST,
+				EAST,
+				SOUTH_EAST,
+				SOUTH,
+				SOUTH_WEST,
+				WEST,
+				NORTH_WEST
 			};
 		}
 
 		namespace taskManager
 		{
-			enum TASK_CATEGORY
+			enum taskCategory_t
 			{
 				SECURITY,
 				FOOD
 			};
 
-			enum NPC_PROPETIES
+			enum npcProperties_t
 			{
 				SKILLS_AMMOUNT_FROM,
 				SKILLS_AMMOUNT_TO

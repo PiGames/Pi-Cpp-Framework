@@ -2,16 +2,16 @@
 
 namespace pi
 {
-	CollidableObject::CollidableObject(bool flag) :collidableFlag(flag)
+	CollidableObject::CollidableObject( bool flag ) :collidableFlag( flag )
 	{
 	}
 
-	bool CollidableObject::isCollidable()
+	bool CollidableObject::IsCollidable()
 	{
 		return collidableFlag;
 	}
 
-	void CollidableObject::setCollidable(bool flag)
+	void CollidableObject::SetCollidable( bool flag )
 	{
 		collidableFlag = flag;
 	}

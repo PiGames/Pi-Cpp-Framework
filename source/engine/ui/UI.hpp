@@ -1,50 +1,51 @@
 #pragma once
 
+#include "engine/Config.hpp"
+
 #include "Element.hpp"
 #include "Button.hpp"
 #include "Checkbox.hpp"
 #include "Slider.hpp"
 #include "List.hpp"
-#include "engine/Config.hpp"
 
 namespace pi
 {
 	namespace ui
 	{
-/*
-===============================================================================
-Created by: Beniamin Gajecki ,,Uriel"
-User Interface(UI) class.
-===============================================================================
-*/
+		/*
+		===============================================================================
+		Created by: Beniamin Gajecki ,,Uriel"
+		User Interface(UI) class.
+		===============================================================================
+		*/
 		class UI final
 		{
 		public:
-			UI( );
+			UI();
 			UI( sf::RenderWindow& );
-			~UI( ) = default;
+			~UI() = default;
 
 			UI& operator =( const UI& ) = delete;
 			UI( const UI& ) = delete;
 
 			// Set window handle for UI
-			void setWindow( sf::RenderWindow& );
-			
+			void SetWindow( sf::RenderWindow& window );
+
 			// Get number procent
-			const float getPercent( float procent, float number ) const { return number * procent / 100; }
+			const float GetPercent( float percent, float number ) const { return number * percent / 100; }
 			// Get window size - MUST USED setWindow or special constructor
-			const sf::Vector2u getWindowSize( ) const { return this->window->getSize( ); }
+			const sf::Vector2u GetWindowSize() const { return this->window->getSize(); }
 
 			// Add element to base
 			template<typename T>
-			T* add( )
+			T* Add()
 			{
-				for( auto &i : this->elements )
+				for ( auto &i : this->elements )
 				{
-					if( !i )
+					if ( !i )
 					{
 						i.reset( new T );
-						return dynamic_cast<T*>( i.get( ) );
+						return dynamic_cast<T*>( i.get() );
 						break;
 					}
 				}
@@ -52,28 +53,28 @@ User Interface(UI) class.
 			}
 
 			// Buttons section start
-			void useButtons( sf::Event& );
-			void updateButtons( sf::RenderWindow& );
+			void UseButtons( sf::Event& event );
+			void UpdateButtons( sf::RenderWindow& window );
 			// Buttons section end
 
 			// Chechbox section start
-			void useCheckboxs( sf::Event& );
-			void updateCheckboxs( sf::RenderWindow& );
+			void UseCheckboxes( sf::Event& event );
+			void UpdateCheckboxes( sf::RenderWindow& window );
 			// Chechbox section end
 
 			// Slider section start
-			void useSliders( sf::Event& );
-			void updateSliders( sf::RenderWindow& );
+			void UseSliders( sf::Event& event );
+			void UpdateSliders( sf::RenderWindow& window );
 			// Slider section end
 
 			// List section start
-			void useLists( sf::Event& );
-			void updateLists( sf::RenderWindow& );
+			void UseLists( sf::Event& event );
+			void UpdateLists( sf::RenderWindow& );
 			// List section end
 
 		private:
 			sf::RenderWindow* window;
-			unsigned elementArrayLenght;
+			std::size_t elementArrayLength;
 
 			std::array <std::unique_ptr<Element>, constants::ui::MAX_UIELEMENTS * constants::ui::NUMBER_OF_UI_ELEMENTS> elements;
 		};

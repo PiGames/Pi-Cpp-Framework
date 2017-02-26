@@ -16,11 +16,11 @@ namespace mc
 			DOWN
 		};
 
-		Player(const sf::Texture& texture, const std::string& name = "<unnamed Player>", const sf::Vector2f& position = { 0,0 }, float speed = 1.f);
+		Player( const sf::Texture& texture, const std::string& name = "<unnamed Player>", const sf::Vector2f& position = { 0, 0 }, float speed = 1.f );
 		~Player() = default;
 
-		void move(const Direction&);
-		void update(sf::RenderWindow&);
+		void move( const Direction& );
+		void update( sf::RenderWindow& );
 
 	private:
 		sf::Texture texture;

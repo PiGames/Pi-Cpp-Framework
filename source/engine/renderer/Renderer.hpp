@@ -22,18 +22,18 @@ namespace pi
 		Renderer() = delete;
 
 		static void Init();
-		static void SetMapTexture(std::shared_ptr<sf::Texture> texture);
-		static void SetWindow(sf::RenderWindow* win);
+		static void SetMapTexture( std::shared_ptr<sf::Texture> texture );
+		static void SetWindow( sf::RenderWindow* win );
 
 		static void Update();
 
-		static void Render(const sf::Color& clearColor = sf::Color::Black);
+		static void Render( const sf::Color& clearColor = sf::Color::Black );
 
 	private:
 		/* static std::shared_ptr<UI> ui; ? */
 		static std::shared_ptr<sf::Texture> mapTexture;
 		static sf::RenderWindow* window;
-		
+
 		static std::vector<sf::Vertex> mapVerticies;
 		/* static std::shared_ptr<std::vector<Entity>> player ? */
 	};

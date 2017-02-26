@@ -10,13 +10,13 @@ namespace pi
 	public:
 		//Constructor 
 		//flag <=> collidable flag (default false)
-		CollidableObject(bool flag = false);
+		CollidableObject( bool flag = false );
 
 		//Returns flag
-		bool isCollidable();
+		bool IsCollidable();
 
 		//Sets collidable flag
-		void setCollidable(bool flag);
+		void SetCollidable( bool flag );
 
 	private:
 		bool collidableFlag;

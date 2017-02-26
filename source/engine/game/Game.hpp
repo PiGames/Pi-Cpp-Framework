@@ -1,7 +1,8 @@
 #pragma once
 
-#include "StateMachine.hpp"
 #include "engine/console/Console.hpp"
+
+#include "StateMachine.hpp"
 
 namespace pi
 {
@@ -18,17 +19,17 @@ namespace pi
 			@param window title
 			@param framerate limit
 		*/
-		Game(sf::Vector2u screenSize, const std::string& title, unsigned fps);
+		Game( sf::Vector2u screenSize, const std::string& title, int fps );
 
 		template<class T, enable_if<std::is_base_of<State, T>>...>
-		void addState(unsigned short id)
+		void AddState( unsigned short id )
 		{
-			stateMachine.addState<T>(id);
-			stateMachine.states[id]->setWindowPointer(&window);
-			stateMachine.states[id]->setConsolePointer(&console);
+			stateMachine.AddState<T>( id );
+			stateMachine.states[id]->SetWindowPointer( &window );
+			stateMachine.states[id]->SetConsolePointer( &console );
 		}
 
-		void run();
+		void Run();
 
 	private:
 		sf::RenderWindow window;

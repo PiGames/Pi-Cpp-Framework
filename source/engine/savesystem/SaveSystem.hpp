@@ -14,11 +14,11 @@ namespace pi
 	class SaveSystem final
 	{
 	private:
-		bool checkComment(const std::string&);
-		bool load(const std::string&, std::vector<std::string>&);
-		void parse(std::vector<std::string>&);
-		void removeSpaces(std::string&);
-		void split(const std::string&);
+		bool checkComment( const std::string& );
+		bool load( const std::string&, std::vector<std::string>& );
+		void parse( std::vector<std::string>& );
+		void removeSpaces( std::string& );
+		void split( const std::string& );
 
 	public:
 		SaveSystem();
@@ -28,13 +28,13 @@ namespace pi
 		/ @param string varName
 		/ @param string varValue
 		*/
-		void addVariable(const std::string&, const std::string&);
+		void addVariable( const std::string&, const std::string& );
 		/*
 		/ Get var from vector by name
 		/ @param string varName
 		/ @return variable data or "@error"
 		*/
-		std::string getVariable(const std::string&);
+		std::string getVariable( const std::string& );
 		/*
 		/ Get vector with vars
 		/ @return std::vector<Var>
@@ -46,19 +46,19 @@ namespace pi
 		/ @param string newValue
 		/ @return bool ('true' if updated properly)
 		*/
-		bool updateVariable(const std::string&, const std::string&);
+		bool updateVariable( const std::string&, const std::string& );
 		/*
 		/ Save to file
 		/ @param string PathFile
 		/ @return bool ('true' if saved properly)
 		*/
-		bool saveToFile(const std::string&);
+		bool saveToFile( const std::string& );
 		/*
 		/ Parse from file
 		/ @param string PathFile
 		/ @return bool ('true' if parse properly)
 		*/
-		bool loadFromFile(const std::string&);
+		bool loadFromFile( const std::string& );
 		/*
 		/ Clear vars vector
 		*/

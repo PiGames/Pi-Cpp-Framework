@@ -12,13 +12,13 @@ namespace mc
 	class PlayState final :
 		public pi::State
 	{
-	private:
-		void onActivation() override;
-
 	public:
 		PlayState();
 
-		short run();
+		short Run();
+
+	private:
+		void onActivation() override;
 
 	private:
 		pi::FontCache fonts;

@@ -2,8 +2,8 @@
 
 namespace mc
 {
-	Task::Task(uint8_t _category, uint8_t _kind)
-		:category(_category), kind(_kind), doing(true)
+	Task::Task( uint8_t _category, uint8_t _kind )
+		:category( _category ), kind( _kind ), doing( true )
 	{
 		generateCommands();
 	}
@@ -18,7 +18,7 @@ namespace mc
 		return kind;
 	}
 
-	bool Task::operator==(const Task & second)
+	bool Task::operator==( const Task & second )
 	{
 		return this->kind == second.kind;
 	}
@@ -27,7 +27,7 @@ namespace mc
 	{
 		return doing;
 	}
-		
+
 	void Task::generateCommands()
 	{
 	}

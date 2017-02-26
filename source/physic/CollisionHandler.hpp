@@ -11,21 +11,20 @@ namespace mc
 {
 	class CollisionHandler final
 	{
-	private:
-		bool collidedLeft(const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b);
-		bool collidedRight(const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b);
-		bool collidedTop(const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b);
-		bool collidedBottom(const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b);
-
 	public:
 		CollisionHandler() {}
 
-		void registerCollider(ColliderComponent* coll);
-		void unregisterCollider(ColliderComponent* coll);
+		void registerCollider( ColliderComponent* coll );
+		void unregisterCollider( ColliderComponent* coll );
 
-		void update(float deltaTime);
+		void update( float deltaTime );
 
 	private:
 		std::vector<ColliderComponent*> colliders;
+
+		bool collidedLeft( const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b ) const;
+		bool collidedRight( const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b ) const;
+		bool collidedTop( const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b ) const;
+		bool collidedBottom( const sf::FloatRect& a, const sf::FloatRect& a_old, const sf::FloatRect& b ) const;
 	};
 }

@@ -23,10 +23,10 @@ namespace pi
 	protected:
 
 		//Draws object
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
 
 	public:
-		MapObject(const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0,0 });
+		MapObject( const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 } );
 
 		//Returns real position (in px)
 		sf::Vector2f& getPosition();
@@ -38,13 +38,13 @@ namespace pi
 		const float getHeight();
 
 		//Sets position (in px)
-		void setPosition(sf::Vector2f position);
+		void setPosition( sf::Vector2f position );
 
 		//Sets position (in unit system)
-		void setPosition(sf::Vector2i position);
+		void setPosition( sf::Vector2i position );
 
 		//Shift of object
-		void move(sf::Vector2f shift);
+		void move( sf::Vector2f shift );
 
 	protected:
 

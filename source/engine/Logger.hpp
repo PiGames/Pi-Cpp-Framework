@@ -29,21 +29,16 @@ namespace pi
 			Both
 		};
 
-	private:
-		static void logToFile(const std::string& message);
-		static void logToConsole(const std::string& message);
-
-	public:
-		// Logger class is static - you cannot make Logger object
 		Logger() = delete;
-
-		// Initializes Logger file 
-		static void Init(const std::string& outputFileName = "output.txt", Console* console = nullptr);
-		static void Log(const std::string& message, MessageType messageType = MessageType::Info, OutputType outputType = OutputType::Console);
+		static void Init( const std::string& outputFileName = "output.txt", Console* console = nullptr );
+		static void Log( const std::string& message, MessageType messageType = MessageType::Info, OutputType outputType = OutputType::Console );
 
 	private:
 		static std::ofstream file;
 		static Console* console;
+
+		static void logToFile( const std::string& message );
+		static void logToConsole( const std::string& message );
 	};
 }
 

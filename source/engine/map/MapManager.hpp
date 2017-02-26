@@ -19,44 +19,42 @@ namespace pi
 	{
 		friend class MapRenderer;
 
-
-		static void createArrays();
-
 		MapManager();
 
+		static void createArrays();
 	public:
 
 		//Updatesthe whole collision map (Only from surface) | Don't overuse this method!
 		static void SurfaceCollisionMapUpdate();
 
 		//Updates units which have represantion on given object 
-		static void UpdateSingleUnits(StaticObject* object);
+		static void UpdateSingleUnits( StaticObject* object );
 
-		static void AddCell(uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false);
+		static void AddCell( uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false );
 
-		static void AddStaticObject(StaticObject staticObject);
+		static void AddStaticObject( StaticObject staticObject );
 
 		//Returns unit world size (in units)
 		static sf::Vector2i& GetUnitWorldSize();
 
 		//Returns reference to surface
 		static std::vector<Cell> &GetSurface();
-		
+
 		//Returns reference to objects
 		static std::vector<StaticObject> &GetStaticObjects();
 
 		//Returns state of map unit
-		static bool IsCollidableUnit(uint16_t number);
+		static bool IsCollidableUnit( uint16_t number );
 
 		//Returns state of map unit
-		static bool IsCollidableUnit(sf::Vector2i unitPosition);
+		static bool IsCollidableUnit( sf::Vector2i unitPosition );
 
 		//Returns name direction of moving
-		static std::string GetNameDirection(sf::Vector2f speed);
+		static std::string GetNameDirection( sf::Vector2f speed );
 
-		static void FillOverlappingToVector(std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction);
+		static void FillOverlappingToVector( std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction );
 
-		static void SetUnitWorldSize(sf::Vector2i size);
+		static void SetUnitWorldSize( sf::Vector2i size );
 
 		static void FinalizeLogicPartOfMap();
 

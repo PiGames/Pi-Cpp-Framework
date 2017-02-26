@@ -22,20 +22,20 @@ namespace pi
 		virtual ~ResourceCache() = default;
 
 		// Returns reference to given resource
-		virtual T& get(const std::string& path)
+		virtual T& get( const std::string& path )
 		{
-			if (path.empty())
+			if ( path.empty() )
 			{
-				Logger::Log(constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error);
+				Logger::Log( constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error );
 
 				return handleError();
 			}
 
 			// Try to find T in cache
 			{
-				auto result = this->resources.find(path);
+				auto result = this->resources.find( path );
 
-				if (result != this->resources.end())
+				if ( result != this->resources.end() )
 					return *result->second;
 			}
 
@@ -43,14 +43,14 @@ namespace pi
 			{
 				auto resource = std::make_unique<T>();
 
-				if (!resource->loadFromFile(path))
+				if ( !resource->loadFromFile( path ) )
 				{
-					Logger::Log(constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error);
+					Logger::Log( constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error );
 
 					return handleError();
 				}
 
-				this->resources[path] = std::move(resource);
+				this->resources[path] = std::move( resource );
 
 				return *this->resources[path];
 			}
@@ -83,7 +83,7 @@ namespace pi
 		// Sets Fallback Color
 		sf::Color getFallbackColor();
 		// Returns Fallback Color
-		void setFallbackColor(const sf::Color& color);
+		void setFallbackColor( const sf::Color& color );
 
 	private:
 		sf::Color fallbackColor;

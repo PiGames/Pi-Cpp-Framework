@@ -16,7 +16,7 @@ namespace mc
 		MenuState();
 		~MenuState() = default;
 
-		short run();
+		short Run();
 	private:
 		// MenuState class variables
 		pi::ui::UI ui;

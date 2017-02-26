@@ -2,21 +2,21 @@
 
 namespace mc
 {
-	Player::Player(const sf::Texture& texture, const std::string& name, const sf::Vector2f& position, float speed)
+	Player::Player( const sf::Texture& texture, const std::string& name, const sf::Vector2f& position, float speed )
 	{
 		this->name = name;
 		this->position = position;
 		this->speed = speed;
 		this->texture = texture;
 
-		this->sprite.setTexture(this->texture);
-		this->sprite.setPosition(this->position);
+		this->sprite.setTexture( this->texture );
+		this->sprite.setPosition( this->position );
 	}
 
 
-	void Player::move(const Direction& direction)
+	void Player::move( const Direction& direction )
 	{
-		switch (direction)
+		switch ( direction )
 		{
 		case Direction::UP:
 			this->position.y -= this->speed;
@@ -31,11 +31,11 @@ namespace mc
 			this->position.y += this->speed;
 			break;
 		}
-		this->sprite.setPosition(this->position);
+		this->sprite.setPosition( this->position );
 	}
 
-	void Player::update(sf::RenderWindow& window)
+	void Player::update( sf::RenderWindow& window )
 	{
-		window.draw(this->sprite);
+		window.draw( this->sprite );
 	}
 }

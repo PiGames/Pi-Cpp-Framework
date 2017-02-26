@@ -13,13 +13,13 @@ namespace mc
 	{
 
 	public:
-		Task(uint8_t category, uint8_t kind);
+		Task( uint8_t category, uint8_t kind );
 
 		uint8_t getCategory();
 
 		uint8_t getKind();
 
-		bool operator==(const Task& second);
+		bool operator==( const Task& second );
 
 		bool isDoing();
 
@@ -35,7 +35,7 @@ namespace mc
 
 		/*type|status*/
 		std::queue<std::pair<command, bool>> commandList;
-		
+
 
 		bool doing;
 

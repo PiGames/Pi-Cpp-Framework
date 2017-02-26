@@ -8,9 +8,10 @@ namespace pi
 		const size_t size;
 
 		template<size_t count>
-		constexpr constexpr_string(const char(&str)[count]) :
-			str(str),
-			size(count - 1) // do not count'\0'
-		{}
+		constexpr constexpr_string( const char( &str )[count] ) :
+			str( str ),
+			size( count - 1 ) // do not count'\0'
+		{
+		}
 	};
 }

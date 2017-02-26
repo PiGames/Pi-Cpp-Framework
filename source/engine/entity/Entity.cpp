@@ -2,20 +2,20 @@
 
 namespace pi
 {
-	Entity::Entity(const std::string & name) :
-		name(name)
+	Entity::Entity( const std::string& name ) :
+		name( name )
 	{
 	}
-	void Entity::update(float)
-	{
-	}
-
-
-	void Entity::draw(sf::RenderTarget & target, sf::RenderStates states) const
+	void Entity::Update( float deltaTime )
 	{
 	}
 
-	std::string& Entity::getName()
+
+	void Entity::draw( sf::RenderTarget& target, sf::RenderStates states ) const
+	{
+	}
+
+	std::string& Entity::GetName()
 	{
 		return this->name;
 	}

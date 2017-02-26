@@ -10,11 +10,11 @@ namespace pi
 	TextureCache::TextureCache()
 	{
 		this->fallbackColor = sf::Color::Magenta;
-		
-		sf::Image image;
-		image.create(32, 32u, this->fallbackColor);
 
-		this->error_resource.loadFromImage(image);
+		sf::Image image;
+		image.create( 32, 32u, this->fallbackColor );
+
+		this->error_resource.loadFromImage( image );
 	}
 
 	sf::Color TextureCache::getFallbackColor()
@@ -22,7 +22,7 @@ namespace pi
 		return this->fallbackColor;
 	}
 
-	void TextureCache::setFallbackColor(const sf::Color& color)
+	void TextureCache::setFallbackColor( const sf::Color& color )
 	{
 		this->fallbackColor = color;
 	}
@@ -51,26 +51,26 @@ namespace pi
 		size_t encodedCounter = fontData.size() / 3 * 4;
 		size_t decodedCounter = 0;
 
-		const char* fontDataPtr = reinterpret_cast<const char*>(fontDataBase64);
+		const char* fontDataPtr = reinterpret_cast<const char*>( fontDataBase64 );
 
-		for (size_t i = 0; i < encodedCounter; i += 4)
+		for ( size_t i = 0; i < encodedCounter; i += 4 )
 		{
-			if (!fontDataPtr[i])
+			if ( !fontDataPtr[i] )
 			{
 				++i;
 				encodedCounter++;
 			}
 
-			inputBlock[0] = static_cast<unsigned char>(base64Chars.find(fontDataPtr[i]));
-			inputBlock[1] = static_cast<unsigned char>(base64Chars.find(fontDataPtr[i + 1]));
-			inputBlock[2] = static_cast<unsigned char>(base64Chars.find(fontDataPtr[i + 2]));
-			inputBlock[3] = static_cast<unsigned char>(base64Chars.find(fontDataPtr[i + 3]));
+			inputBlock[0] = static_cast<unsigned char>( base64Chars.find( fontDataPtr[i] ) );
+			inputBlock[1] = static_cast<unsigned char>( base64Chars.find( fontDataPtr[i + 1] ) );
+			inputBlock[2] = static_cast<unsigned char>( base64Chars.find( fontDataPtr[i + 2] ) );
+			inputBlock[3] = static_cast<unsigned char>( base64Chars.find( fontDataPtr[i + 3] ) );
 
-			fontData[decodedCounter++] = static_cast<unsigned char>((inputBlock[0] << 2) | ((inputBlock[1] & 0x30) >> 4));
-			fontData[decodedCounter++] = static_cast<unsigned char>(((inputBlock[1] & 0xf) << 4) | ((inputBlock[2] & 0x3c) >> 2));
-			fontData[decodedCounter++] = static_cast<unsigned char>(((inputBlock[2] & 0x3) << 6) | inputBlock[3]);
+			fontData[decodedCounter++] = static_cast<unsigned char>( ( inputBlock[0] << 2 ) | ( ( inputBlock[1] & 0x30 ) >> 4 ) );
+			fontData[decodedCounter++] = static_cast<unsigned char>( ( ( inputBlock[1] & 0xf ) << 4 ) | ( ( inputBlock[2] & 0x3c ) >> 2 ) );
+			fontData[decodedCounter++] = static_cast<unsigned char>( ( ( inputBlock[2] & 0x3 ) << 6 ) | inputBlock[3] );
 		}
 
-		error_resource.loadFromMemory(&fontData, fontData.size());
+		error_resource.loadFromMemory( &fontData, fontData.size() );
 	}
 }

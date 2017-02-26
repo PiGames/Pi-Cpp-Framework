@@ -12,7 +12,7 @@ namespace pi
 		}
 	}
 
-	Console::Console(  )
+	Console::Console()
 	{
 		// Default settings
 		this->isOpen = false;
@@ -57,7 +57,7 @@ namespace pi
 		this->shape.setSize( { static_cast<float>( this->windowSize.x ), static_cast<float>( this->windowSize.y ) / 2 } );
 	}
 
-	void Console::setWindowSize( const sf::Vector2u& size )
+	void Console::SetWindowSize( const sf::Vector2u& size )
 	{
 		// Default settings
 		this->windowSize = size;
@@ -67,133 +67,133 @@ namespace pi
 		this->shape.setSize( { static_cast<float>( this->windowSize.x ), static_cast<float>( this->windowSize.y ) / 2 } );
 	}
 
-	void Console::setFillColor( const sf::Color& fill )
+	void Console::SetFillColor( const sf::Color& fill )
 	{
 		this->shape.setFillColor( fill );
 
 	}
 
-	void Console::setOutlineColor( const sf::Color& outline )
+	void Console::SetOutlineColor( const sf::Color& outline )
 	{
 		this->shape.setOutlineColor( outline );
 	}
 
-	void Console::setTextColor( const sf::Color& color )
+	void Console::SetTextColor( const sf::Color& color )
 	{
 		this->text.setFillColor( color );
 		this->input.setFillColor( color );
 	}
 
-	void Console::setTextFont( sf::Font& font )
+	void Console::SetTextFont( const sf::Font& font )
 	{
 		this->text.setFont( font );
 		this->input.setFont( font );
 	}
 
-	void Console::setTextSizeInLine( const unsigned size )
+	void Console::SetTextSizeInLine( size_t size )
 	{
 		this->textSizeInLine = size;
 	}
 
-	void Console::addCommand( command_t& command )
+	void Console::AddCommand( const command_t& command )
 	{
 		this->commands.push_back( command );
 	}
 
-	void Console::toggle(  )
+	void Console::Toggle()
 	{
 		this->isOpen = !this->isOpen;
 	}
 
-	void Console::show(  )
+	void Console::Show()
 	{
 		this->isOpen = true;
 	}
 
-	void Console::hide(  )
+	void Console::Hide()
 	{
 		this->isOpen = false;
 	}
 
-	void Console::key( sf::Event& event )
+	void Console::Key( const sf::Event& event )
 	{
 		if ( event.key.code == sf::Keyboard::Return )
 		{
-			if ( this->input.getString(  ).getSize(  ) <= textSizeInLine ) // Input text one row
+			if ( this->input.getString().getSize() <= textSizeInLine ) // Input text one row
 			{
 				// First lane
-				for ( unsigned i = 0; i < this->line.size(  ) - 1; ++i )
+				for ( unsigned i = 0; i < this->line.size() - 1; ++i )
 				{
 					this->line[i] = this->line[i + 1];
 				}
-				this->line[line.size(  ) - 1] = this->input.getString(  ).substring( 0, this->input.getString(  ).getSize(  ) - 1 );
+				this->line[line.size() - 1] = this->input.getString().substring( 0, this->input.getString().getSize() - 1 );
 
 				// Write all string array in console text
 				this->text.setString( "" );
 				for ( auto &i : this->line )
 				{
-					this->text.setString( this->text.getString(  ) + i + "\n" );
+					this->text.setString( this->text.getString() + i + "\n" );
 				}
 				// Command induction
-				this->commandInduction_r( this->input.getString(  ).substring( 0, this->input.getString(  ).getSize(  ) - 1 ) );
+				this->commandInduction_r( this->input.getString().substring( 0, this->input.getString().getSize() - 1 ) );
 
 				this->input.setString( "|" );
-			} else if ( this->input.getString(  ).getSize(  ) < this->textSizeInLine * 2 ) // Input text two row
+			} else if ( this->input.getString().getSize() < this->textSizeInLine * 2 ) // Input text two row
 			{
-				this->input.setString( this->input.getString(  ).substring( 0, this->input.getString(  ).getSize(  ) - 1 ) );
+				this->input.setString( this->input.getString().substring( 0, this->input.getString().getSize() - 1 ) );
 				// First lane
-				for ( unsigned i = 0; i < this->line.size(  ) - 1; ++i )
+				for ( unsigned i = 0; i < this->line.size() - 1; ++i )
 				{
 					this->line[i] = this->line[i + 1];
 				}
-				this->line[line.size(  ) - 1] = this->input.getString(  ).substring( 0, this->textSizeInLine - 1 );
+				this->line[line.size() - 1] = this->input.getString().substring( 0, this->textSizeInLine - 1 );
 
 				// Second lane
-				for ( unsigned i = 0; i < this->line.size(  ) - 1; ++i )
+				for ( unsigned i = 0; i < this->line.size() - 1; ++i )
 				{
 					this->line[i] = this->line[i + 1];
 				}
-				this->line[line.size(  ) - 1] = this->input.getString(  ).substring( this->textSizeInLine, this->textSizeInLine * 2 - 1 );
+				this->line[line.size() - 1] = this->input.getString().substring( this->textSizeInLine, this->textSizeInLine * 2 - 1 );
 
 				// Write all string array in console text
 
 				this->text.setString( "" );
 				for ( auto &i : this->line )
 				{
-					this->text.setString( this->text.getString(  ) + i + "\n" );
+					this->text.setString( this->text.getString() + i + "\n" );
 				}
 				// Command induction
-				this->commandInduction_r( this->input.getString(  ).substring( 0, this->input.getString(  ).getSize(  ) - 1 ) );
+				this->commandInduction_r( this->input.getString().substring( 0, this->input.getString().getSize() - 1 ) );
 
 				this->input.setString( "|" );
 			}
 		} else if ( event.key.code == sf::Keyboard::BackSpace )
 		{
-			if ( this->input.getString(  ).getSize(  ) == 1 )
+			if ( this->input.getString().getSize() == 1 )
 			{
 				this->input.setString( "|" );
 			} else
 			{
-				this->input.setString( this->input.getString(  ).substring( 0, this->input.getString(  ).getSize(  ) - 2 ) + "|" );
+				this->input.setString( this->input.getString().substring( 0, this->input.getString().getSize() - 2 ) + "|" );
 			}
 		}
 	}
 
-	void Console::write( sf::Event& event )
+	void Console::Write( const sf::Event& event )
 	{
-		if ( this->input.getString(  ).getSize(  ) < this->textSizeInLine ) // Write in first row
+		if ( this->input.getString().getSize() < this->textSizeInLine ) // Write in first row
 		{
-			this->input.setString( this->input.getString(  ).substring( 0, this->input.getString(  ).getSize(  ) - 1 ) + static_cast<char>( event.text.unicode ) + "|" );
-		} else if ( this->input.getString(  ).getSize(  ) == this->textSizeInLine ) // Jump to next row
+			this->input.setString( this->input.getString().substring( 0, this->input.getString().getSize() - 1 ) + static_cast<char>( event.text.unicode ) + "|" );
+		} else if ( this->input.getString().getSize() == this->textSizeInLine ) // Jump to next row
 		{
-			this->input.setString( this->input.getString(  ).substring( 0, this->input.getString(  ).getSize(  ) - 1 ) + "\n" + static_cast<char>( event.text.unicode ) + "|" );
-		} else if ( this->input.getString(  ).getSize(  ) < this->textSizeInLine * 2 ) // Write in second row
+			this->input.setString( this->input.getString().substring( 0, this->input.getString().getSize() - 1 ) + "\n" + static_cast<char>( event.text.unicode ) + "|" );
+		} else if ( this->input.getString().getSize() < this->textSizeInLine * 2 ) // Write in second row
 		{
-			this->input.setString( this->input.getString(  ).substring( 0, this->input.getString(  ).getSize(  ) - 1 ) + static_cast<char>( event.text.unicode ) + "|" );
+			this->input.setString( this->input.getString().substring( 0, this->input.getString().getSize() - 1 ) + static_cast<char>( event.text.unicode ) + "|" );
 		}
 	}
 
-	void Console::log( const std::string& message )
+	void Console::Log( const std::string& message )
 	{
 		std::string text;
 		if ( message.find( "\n" ) != std::string::npos )
@@ -206,27 +206,27 @@ namespace pi
 
 		for ( unsigned size = 0; size < this->numberOfLines; ++size )
 		{
-			if ( text.size(  ) <= this->textSizeInLine * size )
+			if ( text.size() <= this->textSizeInLine * size )
 			{
 				for ( unsigned write = 1; write <= size; ++write )
 				{
-					for ( unsigned i = 0; i < this->line.size(  ) - 1; ++i )
+					for ( unsigned i = 0; i < this->line.size() - 1; ++i )
 					{
 						this->line[i] = this->line[i + 1];
 					}
 					if ( write < size ) // Whatever else line option
 					{
-						this->line[line.size(  ) - 1] = text.substr( 0, this->textSizeInLine );
+						this->line[line.size() - 1] = text.substr( 0, this->textSizeInLine );
 						text = text.substr( this->textSizeInLine, std::string::npos );
 					} else // Last line option
 					{
-						this->line[line.size(  ) - 1] = text.substr( 0, std::string::npos );
+						this->line[line.size() - 1] = text.substr( 0, std::string::npos );
 
 						// Write all string array in console text
 						this->text.setString( "" );
 						for ( auto &i : this->line )
 						{
-							this->text.setString( this->text.getString(  ) + i + "\n" );
+							this->text.setString( this->text.getString() + i + "\n" );
 						}
 						break;
 					}
@@ -238,11 +238,11 @@ namespace pi
 
 		if ( message.find( "\n" ) != std::string::npos )
 		{
-			this->log( message.substr( message.find( "\n" ) + 1, std::string::npos ) );
+			this->Log( message.substr( message.find( "\n" ) + 1, std::string::npos ) );
 		}
 	}
 
-	
+
 	// Private
 
 	inline void Console::commandInduction_r( std::string inputString )
@@ -263,7 +263,7 @@ namespace pi
 			{
 				if ( i.induction == inputString.substr( 0, inputString.find( " " ) ) )
 				{
-					i.args.clear(  );
+					i.args.clear();
 					spacePositionFirst = inputString.find( " " );
 					spacePositionSecond = inputString.find( " ", spacePositionFirst + 1 );
 					if ( spacePositionSecond != std::string::npos )
@@ -294,15 +294,13 @@ namespace pi
 					}
 
 					i.function( this, &i );
-				}
-				else if ( i.induction == inputString.substr( 0, inputString.size(  ) - 1 ) )
+				} else if ( i.induction == inputString.substr( 0, inputString.size() - 1 ) )
 				{
-					i.args.clear(  );
+					i.args.clear();
 					i.function( this, &i );
 				}
 			}
-		}
-		else // If more 
+		} else // If more 
 		{
 			inputString.erase( inputString.find( "\n" ), 2 );
 			this->commandInduction_r( inputString );

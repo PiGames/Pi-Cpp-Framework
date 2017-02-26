@@ -2,46 +2,45 @@
 
 namespace pi
 {
-	StateMachine::StateMachine(unsigned short stateToStart)
+	StateMachine::StateMachine( unsigned short stateToStart )
 	{
 		this->currentState = stateToStart;
 		this->emergencyState = 0;
 	}
 
-	void StateMachine::setEmergencyStateID(short id)
+	void StateMachine::SetEmergencyStateID( short id )
 	{
 		this->emergencyState = id;
 	}
 
-	void StateMachine::run()
+	void StateMachine::Run()
 	{
-		if (!states.size())
+		if ( !states.size() )
 		{
-			Logger::Log(constants::error::stateMachine::NO_STATES, Logger::MessageType::Error);
+			Logger::Log( constants::error::stateMachine::NO_STATES, Logger::MessageType::Error );
 
 			return;
 		}
 
 		short nextState = this->currentState;
 
-		while (nextState != constants::stateMachine::EXIT_STATE)
+		while ( nextState != constants::stateMachine::EXIT_STATE )
 		{
 			this->states[this->currentState]->onActivation();
-			nextState = this->states[this->currentState]->run();
+			nextState = this->states[this->currentState]->Run();
 
-			if (nextState != this->currentState)
+			if ( nextState != this->currentState )
 			{
 				this->states[this->currentState]->onDeactivation();
 
-				auto result = this->states.find(nextState);
+				auto result = this->states.find( nextState );
 
-				if (result == this->states.end())
+				if ( result == this->states.end() )
 				{
-					Logger::Log(constants::error::stateMachine::CANNOT_SWITCH + std::to_string(this->emergencyState), Logger::MessageType::Warning, Logger::OutputType::Console);
+					Logger::Log( constants::error::stateMachine::CANNOT_SWITCH + std::to_string( this->emergencyState ), Logger::MessageType::Warning, Logger::OutputType::Console );
 
 					this->currentState = emergencyState;
-				}
-				else
+				} else
 					this->currentState = nextState;
 			}
 		}
