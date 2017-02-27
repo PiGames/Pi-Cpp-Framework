@@ -34,7 +34,7 @@ namespace pi
 	private:
 		// Draws Entity
 		// Render Target
-		// Render states_t
-		virtual void draw( sf::RenderTarget& target, sf::RenderStates states_t ) const;
+		// Render States
+		virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
 	};
 }

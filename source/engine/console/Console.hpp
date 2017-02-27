@@ -111,7 +111,7 @@ namespace pi
 		unsigned numberOfLines, textSizeInLine;
 		bool isOpen;
 
-		inline void commandInduction_r( std::string );
-		void draw( sf::RenderTarget&, sf::RenderStates ) const;
+		inline void commandInduction_r( std::string inputString );
+		void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
 	};
 }

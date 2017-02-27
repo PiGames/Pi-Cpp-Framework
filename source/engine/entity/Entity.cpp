@@ -11,7 +11,7 @@ namespace pi
 	}
 
 
-	void Entity::draw( sf::RenderTarget& target, sf::RenderStates states_t ) const
+	void Entity::draw( sf::RenderTarget& target, sf::RenderStates States ) const
 	{
 	}
 }

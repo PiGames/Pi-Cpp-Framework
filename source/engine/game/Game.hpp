@@ -25,8 +25,8 @@ namespace pi
 		void AddState( unsigned short id )
 		{
 			this->stateMachine.AddState<T>( id );
-			this->stateMachine.states_t[id]->SetWindowPointer( &window );
-			this->stateMachine.states_t[id]->SetConsolePointer( &console );
+			this->stateMachine.states[id]->SetWindowPointer( &window );
+			this->stateMachine.states[id]->SetConsolePointer( &console );
 		}
 
 		void Run();

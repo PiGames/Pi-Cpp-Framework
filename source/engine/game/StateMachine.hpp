@@ -48,15 +48,15 @@ namespace pi
 		template<class T, enable_if<std::is_base_of<State, T>>...>
 		void AddState( short id )
 		{
-			auto result = states_t.find( id );
+			auto result = states.find( id );
 
-			if ( result != states_t.end() )
+			if ( result != states.end() )
 			{
 				Logger::Log( "StateMachine: Cannot add state, found same state id! ID: " + std::to_string( id ), Logger::MessageType::Error, Logger::OutputType::Both );
 
 				return;
 			}
-			states_t[id].reset( new T() );
+			states[id].reset( new T() );
 		}
 
 		/*
@@ -67,7 +67,7 @@ namespace pi
 	private:
 		short currentState;
 		short emergencyState;
-		std::map<short, std::unique_ptr<State>> states_t;
+		std::map<short, std::unique_ptr<State>> states;
 	};
 
 
