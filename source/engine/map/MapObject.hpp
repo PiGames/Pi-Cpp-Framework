@@ -30,25 +30,25 @@ namespace pi
 		}
 
 		//Returns width of object (in px)
-		const float GetWidth()
+		float GetWidth() const
 		{
 			return this->object.getGlobalBounds().width;
 		}
 
 		//Returns height of object (in px)
-		const float GetHeight()
+		float GetHeight() const
 		{
 			return this->object.getGlobalBounds().height;
 		}
 
 		//Sets position (in px)
-		void SetPosition( sf::Vector2f position )
+		void SetPosition( const sf::Vector2f& position )
 		{
 			this->object.setPosition( position );
 		}
 
 		//Sets position (in unit system)
-		void SetPosition( sf::Vector2i position );
+		void SetPosition( const sf::Vector2i& position );
 
 		//Shift of object
 		void Move( sf::Vector2f shift )

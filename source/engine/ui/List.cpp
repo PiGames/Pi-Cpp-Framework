@@ -108,7 +108,7 @@ namespace pi
 						this->drawDescription = false;
 					} else if ( !this->drawDescription ) // if description is disable
 					{
-						for ( unsigned i = 0; i < list.size() - 1; ++i )
+						for ( size_t i = 0; i < list.size() - 1; ++i )
 						{
 							if ( this->list[i] )
 							{

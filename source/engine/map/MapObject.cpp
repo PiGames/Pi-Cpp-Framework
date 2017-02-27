@@ -8,7 +8,7 @@ namespace pi
 
 	}
 
-	void MapObject::SetPosition( sf::Vector2i position )
+	void MapObject::SetPosition( const sf::Vector2i& position )
 	{
 		this->object.setPosition(
 			this->position.x*constants::cell::CELL_DIMENSIONS.x,
