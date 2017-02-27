@@ -1,0 +1,12 @@
+BG_PATH = "data/textures/background.jpg";
+BUTTON_PLAY_PATH = "data/textures/play.png";
+BUTTON_EXIT_PATH = "data/textures/exit.png";
+MUSIC_MAIN_PATH = "data/music/menu.ogg";
+TEXTURE_PATH = "data/textures/path.jpg";
+ACTION_PATH = "data/AI/tasks/actions.txt";
+CATEGORY_PATH = "data/AI/tasks/category.txt";
+PROPERTIES_PATH = "data/AI/tasks/npcProperties_t.txt";
+TEXTURE_FILE_PATH = "data/textures/textureAtlas.png";
+SOUND_PATH = "data/sound/";
+
+

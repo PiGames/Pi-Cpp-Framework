@@ -6,7 +6,7 @@ namespace mc
 		:MapObject( name, pos )
 	{
 		pi::TextureCache textureAtlas;
-		object.setTexture( textureAtlas.Get( pi::constants::mouse::TEXTURE_PATH ) );
+		object.setTexture( textureAtlas.Get( "data/textures/path.jpg" ) );
 		SetCursor( Mouse::TYPE::SIMPLE );
 	}
 

@@ -13,10 +13,10 @@ namespace mc
 	{
 		this->ui.SetWindow( *window );
 
-		this->backgroundTexture.loadFromFile( pi::constants::state::menu::BG_PATH );
-		this->playTexture.loadFromFile( pi::constants::state::menu::BUTTON_PLAY_PATH );
-		this->exitTexture.loadFromFile( pi::constants::state::menu::BUTTON_EXIT_PATH );
-		this->console->SetTextFont( fonts.Get( pi::constants::state::CONSOLE_FONT ) );
+		this->backgroundTexture.loadFromFile( "data/textures/background.jpg" );
+		this->playTexture.loadFromFile( "data/textures/play.png" );
+		this->exitTexture.loadFromFile( "data/textures/exit.png" );
+		this->console->SetTextFont( fonts.Get( "data/music/menu.ogg" ) );
 
 		this->background.setPosition( { 0, 0 } );
 		this->background.setSize( { static_cast<float>( this->window->getSize().x ), static_cast<float>( this->window->getSize().y ) } );
@@ -38,7 +38,7 @@ namespace mc
 			this->isExit = true;
 		} );
 
-		this->music.openFromFile( ( std::string )pi::constants::state::menu::MUSIC_MAIN_PATH );
+		this->music.openFromFile( "data/music/menu.ogg" );
 		this->music.setLoop( true );
 
 		this->isInitialized = true;

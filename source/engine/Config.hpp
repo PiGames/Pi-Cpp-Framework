@@ -36,15 +36,6 @@ namespace pi
 		{
 			constexpr auto CONSOLE_FONT = "";
 
-			namespace menu
-			{
-				constexpr auto BG_PATH = "data/textures/background.jpg";
-				constexpr auto BUTTON_PLAY_PATH = "data/textures/play.png";
-				constexpr auto BUTTON_EXIT_PATH = "data/textures/exit.png";
-
-				constexpr auto MUSIC_MAIN_PATH = "data/music/menu.ogg";
-			}
-
 			namespace play
 			{
 				//...
@@ -96,27 +87,17 @@ namespace pi
 
 		namespace mouse
 		{
-			constexpr auto TEXTURE_PATH = "data/textures/path.jpg";
 			const sf::Vector2f dimensions = { 20, 20 };
-		}
-
-		namespace taskManager
-		{
-			constexpr auto ACTION_PATH = "data/AI/tasks/actions.txt";
-			constexpr auto CATEGORY_PATH = "data/AI/tasks/category.txt";
-			constexpr auto PROPERTIES_PATH = "data/AI/tasks/npcProperties_t.txt";
 		}
 
 		namespace worldConstructor
 		{
 			constexpr auto CELL = "Cell";
-			constexpr auto TEXTURE_FILE_PATH = "data/textures/textureAtlas.png";
 			constexpr auto ID_FILE_PATH = "id.txt";
 		}
 
 		namespace soundSystem
 		{
-			constexpr auto SOUND_PATH = "data/sound/";
 			constexpr auto SOUND_FORMAT = ".ogg";
 		}
 

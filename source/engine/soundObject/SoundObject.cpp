@@ -11,7 +11,7 @@ namespace pi
 		}
 
 		sf::SoundBuffer soundBuffer;
-		if ( !soundBuffer.loadFromFile( constants::soundSystem::SOUND_PATH + name + constants::soundSystem::SOUND_FORMAT ) )
+		if ( !soundBuffer.loadFromFile( "data/sound/" + name + constants::soundSystem::SOUND_FORMAT ) )
 		{
 			Logger::Log( constants::error::soundSystem::DOES_NOT_EXIST_IN_FOLDER, Logger::MessageType::Warning, Logger::OutputType::Both );
 			return false;
