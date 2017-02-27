@@ -69,7 +69,7 @@ namespace mc
 
 	void CollisionHandler::Update( float deltaTime )
 	{
-		for ( unsigned i = 0; i < colliders.size(); ++i )
+		for ( size_t i = 0; i < colliders.size(); ++i )
 			for ( unsigned j = 0; j < colliders.size(); ++j )
 			{
 				if ( i == j )

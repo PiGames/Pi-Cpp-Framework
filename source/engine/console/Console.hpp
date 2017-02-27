@@ -108,7 +108,7 @@ namespace pi
 		sf::Text text, input;
 		std::array <std::string, constants::console::DEAFULT_NUMBER_OF_LINES> line;
 		std::vector <command_t> commands;
-		unsigned numberOfLines, textSizeInLine;
+		size_t numberOfLines, textSizeInLine;
 		bool isOpen;
 
 		inline void commandInduction_r( std::string inputString );

@@ -74,7 +74,7 @@ namespace pi
 			if ( this->input.getString().getSize() <= textSizeInLine ) // Input text one row
 			{
 				// First lane
-				for ( unsigned i = 0; i < this->line.size() - 1; ++i )
+				for ( size_t i = 0; i < this->line.size() - 1; ++i )
 				{
 					this->line[i] = this->line[i + 1];
 				}
@@ -94,14 +94,14 @@ namespace pi
 			{
 				this->input.setString( this->input.getString().substring( 0, this->input.getString().getSize() - 1 ) );
 				// First lane
-				for ( unsigned i = 0; i < this->line.size() - 1; ++i )
+				for ( size_t i = 0; i < this->line.size() - 1; ++i )
 				{
 					this->line[i] = this->line[i + 1];
 				}
 				this->line[line.size() - 1] = this->input.getString().substring( 0, this->textSizeInLine - 1 );
 
 				// Second lane
-				for ( unsigned i = 0; i < this->line.size() - 1; ++i )
+				for ( size_t i = 0; i < this->line.size() - 1; ++i )
 				{
 					this->line[i] = this->line[i + 1];
 				}
@@ -156,13 +156,13 @@ namespace pi
 			text = message;
 		}
 
-		for ( unsigned size = 0; size < this->numberOfLines; ++size )
+		for ( size_t size = 0; size < this->numberOfLines; ++size )
 		{
 			if ( text.size() <= this->textSizeInLine * size )
 			{
-				for ( unsigned write = 1; write <= size; ++write )
+				for ( int write = 1; write <= size; ++write )
 				{
-					for ( unsigned i = 0; i < this->line.size() - 1; ++i )
+					for ( size_t i = 0; i < this->line.size() - 1; ++i )
 					{
 						this->line[i] = this->line[i + 1];
 					}
