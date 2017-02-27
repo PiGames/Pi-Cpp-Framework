@@ -26,7 +26,7 @@ namespace mc
 			a.top < b.top + b.height;
 	}
 
-	void CollisionHandler::registerCollider( ColliderComponent * coll )
+	void CollisionHandler::RegisterCollider( ColliderComponent * coll )
 	{
 		if ( !coll )
 		{
@@ -46,7 +46,7 @@ namespace mc
 		pi::Logger::Log( "Registred collider (" + std::to_string( ( int )&*coll ) + "), total colliders registred: " + std::to_string( this->colliders.size() ), pi::Logger::MessageType::Info );
 	}
 
-	void CollisionHandler::unregisterCollider( ColliderComponent * coll )
+	void CollisionHandler::UnregisterCollider( ColliderComponent * coll )
 	{
 		if ( !coll )
 		{
@@ -67,7 +67,7 @@ namespace mc
 		pi::Logger::Log( "Cannot unregister collider - cannot find collider (" + std::to_string( reinterpret_cast<std::size_t>( coll ) ) + ")", pi::Logger::MessageType::Error );
 	}
 
-	void CollisionHandler::update( float deltaTime )
+	void CollisionHandler::Update( float deltaTime )
 	{
 		for ( unsigned i = 0; i < colliders.size(); ++i )
 			for ( unsigned j = 0; j < colliders.size(); ++j )
@@ -86,33 +86,33 @@ namespace mc
 
 				if ( collAupdated.intersects( collB ) )
 				{
-					CollisionInfo::side_t sideA = CollisionInfo::None;
-					CollisionInfo::side_t sideB = CollisionInfo::None;
+					collisionInfo_t::side_t sideA = collisionInfo_t::None;
+					collisionInfo_t::side_t sideB = collisionInfo_t::None;
 
 					if ( this->collidedLeft( collAupdated, collA, collB ) )
 					{
-						sideA = CollisionInfo::Left;
-						sideB = CollisionInfo::Right;
+						sideA = collisionInfo_t::Left;
+						sideB = collisionInfo_t::Right;
 					} else if ( this->collidedRight( collAupdated, collA, collB ) )
 					{
-						sideA = CollisionInfo::Right;
-						sideB = CollisionInfo::Left;
+						sideA = collisionInfo_t::Right;
+						sideB = collisionInfo_t::Left;
 					} else if ( this->collidedTop( collAupdated, collA, collB ) )
 					{
-						sideA = CollisionInfo::Top;
-						sideB = CollisionInfo::Down;
+						sideA = collisionInfo_t::Top;
+						sideB = collisionInfo_t::Down;
 					} else if ( this->collidedBottom( collAupdated, collA, collB ) )
 					{
-						sideA = CollisionInfo::Down;
-						sideB = CollisionInfo::Top;
+						sideA = collisionInfo_t::Down;
+						sideB = collisionInfo_t::Top;
 					}
 
-					if ( sideA != CollisionInfo::None && sideB != CollisionInfo::None )
+					if ( sideA != collisionInfo_t::None && sideB != collisionInfo_t::None )
 					{
 						if ( colliders[i]->callback )
-							colliders[i]->callback( CollisionInfo( colliders[j], colliders[j]->entity, sideA ) );
+							colliders[i]->callback( collisionInfo_t( colliders[j], colliders[j]->entity, sideA ) );
 						if ( colliders[j]->callback )
-							colliders[j]->callback( CollisionInfo( colliders[i], colliders[i]->entity, sideB ) );
+							colliders[j]->callback( collisionInfo_t( colliders[i], colliders[i]->entity, sideB ) );
 					}
 				}
 			}

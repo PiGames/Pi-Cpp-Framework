@@ -36,7 +36,7 @@ namespace pi
 			// GET END
 
 			// Add calback function for button
-			void AddCallback( std::function<void()> );
+			void AddCallback( std::function<void()> function );
 
 		private:
 			sf::Texture texture, relaseTexture;
@@ -44,7 +44,7 @@ namespace pi
 			bool isClicked;
 
 			// VIRTUAL FUNCTIONS START
-			void use( const sf::Event& event ) final;
+			void use( const sf::Event& event ) override;
 			// VIRTUAL FUNCTIONS END
 		};
 	}

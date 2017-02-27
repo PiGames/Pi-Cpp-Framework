@@ -3,7 +3,7 @@
 namespace mc
 {
 
-	void NPC::SetSkills()
+	void NPC::setSkills()
 	{
 		auto compartment = std::pair<int, int>( TaskManager::GetProperty( pi::enumerations::taskManager::SKILLS_AMMOUNT_FROM ), TaskManager::GetProperty( pi::enumerations::taskManager::SKILLS_AMMOUNT_TO ) );
 
@@ -18,10 +18,10 @@ namespace mc
 			skills.push_back( TaskManager::GetRandomTask() );
 	}
 
-	void NPC::SetPriorities()
+	void NPC::setPriorities()
 	{
 		for ( auto&var : skills )
-			if ( var->getCategory() == pi::enumerations::taskManager::taskCategory_t::SECURITY)
+			if ( var->GetCategory() == pi::enumerations::taskManager::taskCategory_t::SECURITY )
 				priorities.push_back( var );
 			else break;
 
@@ -43,7 +43,7 @@ namespace mc
 	NPC::NPC( const std::string & name, const sf::Vector2f & pos, float speed )
 		:pi::MovableObject( name, pos, speed )
 	{
-		SetSkills();
-		SetPriorities();
+		setSkills();
+		setPriorities();
 	}
 }

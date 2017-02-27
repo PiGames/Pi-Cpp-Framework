@@ -16,7 +16,7 @@ namespace mc
 		this->backgroundTexture.loadFromFile( pi::constants::state::menu::BG_PATH );
 		this->playTexture.loadFromFile( pi::constants::state::menu::BUTTON_PLAY_PATH );
 		this->exitTexture.loadFromFile( pi::constants::state::menu::BUTTON_EXIT_PATH );
-		this->console->SetTextFont( fonts.get( pi::constants::state::CONSOLE_FONT ) );
+		this->console->SetTextFont( fonts.Get( pi::constants::state::CONSOLE_FONT ) );
 
 		this->background.setPosition( { 0, 0 } );
 		this->background.setSize( { static_cast<float>( this->window->getSize().x ), static_cast<float>( this->window->getSize().y ) } );
@@ -61,7 +61,7 @@ namespace mc
 			while ( this->window->pollEvent( event ) )
 			{
 				if ( event.type == sf::Event::Closed )
-					return (short)States::Exit;
+					return (short)states_t::Exit;
 
 				if ( event.key.code == sf::Keyboard::Escape )
 					this->console->Hide();
@@ -76,12 +76,12 @@ namespace mc
 			if ( this->isPlay )
 			{
 				this->music.stop();
-				return (short)States::Play;
+				return (short)states_t::Play;
 			}
 			if ( this->isExit )
 			{
 				this->music.stop();
-				return (short)States::Exit;
+				return (short)states_t::Exit;
 			}
 
 			this->window->clear( sf::Color::Black );
@@ -91,6 +91,6 @@ namespace mc
 			this->window->display();
 		}
 
-		return (short)States::Exit;
+		return (short)states_t::Exit;
 	}
 }

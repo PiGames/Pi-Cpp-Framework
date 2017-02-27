@@ -3,8 +3,8 @@
 #include <SFML/Graphics.hpp>
 
 #include "engine/game/Game.hpp"
-#include "states/PlayState.hpp"
-#include "states/MenuState.hpp"
+#include "States/PlayState.hpp"
+#include "States/MenuState.hpp"
 
 int main()
 {
@@ -14,8 +14,8 @@ int main()
 
 		pi::Logger::Log( "Mars Colony v" + std::to_string( pi::constants::version::MAJOR ) + "." + std::to_string( pi::constants::version::MINOR ) + "." + std::to_string( pi::constants::version::RELEASE ), pi::Logger::MessageType::Info, pi::Logger::OutputType::Both );
 
-		game.AddState<mc::MenuState>( (short)mc::States::Menu );
-		game.AddState<mc::PlayState>( (short)mc::States::Play );
+		game.AddState<mc::MenuState>( (short)mc::states_t::Menu );
+		game.AddState<mc::PlayState>( (short)mc::states_t::Play );
 		game.Run();
 	} catch ( std::exception& e )
 	{

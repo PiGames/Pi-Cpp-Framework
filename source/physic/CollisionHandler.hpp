@@ -14,10 +14,10 @@ namespace mc
 	public:
 		CollisionHandler() {}
 
-		void registerCollider( ColliderComponent* coll );
-		void unregisterCollider( ColliderComponent* coll );
+		void RegisterCollider( ColliderComponent* coll );
+		void UnregisterCollider( ColliderComponent* coll );
 
-		void update( float deltaTime );
+		void Update( float deltaTime );
 
 	private:
 		std::vector<ColliderComponent*> colliders;

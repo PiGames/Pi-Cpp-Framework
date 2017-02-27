@@ -10,16 +10,6 @@ namespace pi
 
 	}
 
-	void MovableObject::SetTargetTo( const sf::Vector2f& from, const sf::Vector2f& to )
-	{
-		PathFinder::FillTargetsQueue( from, to, &targets );
-	}
-
-	bool MovableObject::CanMove()
-	{
-		return !targets.empty();
-	}
-
 	bool MovableObject::Move()
 	{
 		if ( !CanMove() )
@@ -45,36 +35,22 @@ namespace pi
 		return true;
 	}
 
-	sf::Vector2f& MovableObject::GetCurrentStep()
-	{
-		return CurrentStep;
-	}
-
 	void MovableObject::ComputeStep()
 	{
 		sf::Vector2f direction = targets.front() - this->position;
 
 		float magnitude = std::sqrt( ( direction.x * direction.x ) + ( direction.y + direction.y ) );
-		CurrentStep = sf::Vector2f( direction.x / magnitude, direction.y / magnitude )*moveSpeed;
-	}
-
-	void MovableObject::makeStep()
-	{
-		this->position += CurrentStep;
-	}
-
-	bool MovableObject::isNearTarget()
-	{
-		return Math::Distance( object.getPosition(), targets.front() ) < constants::cell::CELL_DIMENSIONS.x;
+		this->CurrentStep = sf::Vector2f( direction.x / magnitude, direction.y / magnitude )*moveSpeed;
 	}
 
 	sf::Vector2f MovableObject::clearAndGetLastTarget()
 	{
 		sf::Vector2f last;
-		while ( targets.size() > 1 )targets.pop();
+		while ( this->targets.size() > 1 )
+			this->targets.pop();
 
-		last = targets.front();
-		targets.pop();
+		last = this->targets.front();
+		this->targets.pop();
 
 		return last;
 	}

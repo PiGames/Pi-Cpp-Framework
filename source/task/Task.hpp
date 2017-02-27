@@ -15,17 +15,29 @@ namespace mc
 	public:
 		Task( uint8_t category, uint8_t kind );
 
-		uint8_t getCategory();
+		uint8_t GetCategory()
+		{
+			return category;
+		}
 
-		uint8_t getKind();
+		uint8_t GetKind()
+		{
+			return kind;
+		}
 
-		bool operator==( const Task& second );
+		bool operator==( const Task& second )
+		{
+			return this->kind == second.kind;
+		}
 
-		bool isDoing();
+		bool IsDoing()
+		{
+			return doing;
+		}
 
 	private:
 
-		void generateCommands();
+		void generateCommands() {}
 
 		union command
 		{

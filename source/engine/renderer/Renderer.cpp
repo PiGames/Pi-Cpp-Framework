@@ -91,26 +91,6 @@ namespace pi
 		Renderer::window->draw( &Renderer::mapVerticies[0], Renderer::mapVerticies.size(), sf::PrimitiveType::Quads, mapRenderStates );
 	}
 
-	void Renderer::Init()
-	{
-		Logger::Log( "Initialiing Renderer..." );
-	}
-
-	void Renderer::SetMapTexture( std::shared_ptr<sf::Texture> texture )
-	{
-		Renderer::mapTexture = texture;
-	}
-
-	void Renderer::SetWindow( sf::RenderWindow* win )
-	{
-		Renderer::window = win;
-	}
-
-	void Renderer::Update()
-	{
-		Renderer::updateMapVerticies();
-	}
-
 	void Renderer::Render( const sf::Color& clearColor )
 	{
 		Renderer::window->clear( clearColor );

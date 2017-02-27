@@ -35,7 +35,10 @@ namespace pi
 
 			@param emergency state id
 		*/
-		void SetEmergencyStateID( short id );
+		void SetEmergencyStateID( short id )
+		{
+			this->emergencyState = id;
+		}
 
 		/*
 			Adds State to StateMachine with specified id
@@ -45,15 +48,15 @@ namespace pi
 		template<class T, enable_if<std::is_base_of<State, T>>...>
 		void AddState( short id )
 		{
-			auto result = states.find( id );
+			auto result = states_t.find( id );
 
-			if ( result != states.end() )
+			if ( result != states_t.end() )
 			{
 				Logger::Log( "StateMachine: Cannot add state, found same state id! ID: " + std::to_string( id ), Logger::MessageType::Error, Logger::OutputType::Both );
 
 				return;
 			}
-			states[id].reset( new T() );
+			states_t[id].reset( new T() );
 		}
 
 		/*
@@ -64,7 +67,7 @@ namespace pi
 	private:
 		short currentState;
 		short emergencyState;
-		std::map<short, std::unique_ptr<State>> states;
+		std::map<short, std::unique_ptr<State>> states_t;
 	};
 
 

@@ -23,27 +23,45 @@ namespace pi
 			// Set slider and rate texture
 			void SetTexture( const sf::Texture& sliderTexture, const sf::Texture& rateTexture );
 			// Set scale slider and rate
-			void SetScale( const sf::Vector2f& scale );
+			void SetScale( const sf::Vector2f& scale )
+			{
+				this->scale = scale;
+			}
 			// Set position and size
 			void SetRect( const sf::Vector2f& position, const sf::Vector2f& size );
 			// VIEW FUNCTIONS END
 
 			// GET START
 			// If user click rate and not relase mouse button 
-			const bool GetSelected() const { return this->isSelected; }
+			const bool GetSelected() const
+			{
+				return this->isSelected;
+			}
 			// GET END
 
 			// FUNCTIONS FOR FUNCTIONS IN ARRAY START
-			float ScalePositionOfRate() const { return( this->ratePosition.x - this->position.x ) / ( this->size.x - this->rateSize.x ); }
-			float ScalePositionOfRateToReal( float number ) const { return( this->ratePosition.x - this->position.x ) / ( this->size.x - this->rateSize.x ) * number; }
+			float ScalePositionOfRate() const
+			{
+				return( this->ratePosition.x - this->position.x ) / ( this->size.x - this->rateSize.x );
+			}
+			float ScalePositionOfRateToReal( float number ) const
+			{
+				return( this->ratePosition.x - this->position.x ) / ( this->size.x - this->rateSize.x ) * number;
+			}
 			// FUNCTIONS FOR FUNCTIONS IN ARRAY END
 
 			// Add calback function for slider
 			void AddCallback( std::function<void( Slider* )> function );
 			// Set checking whether rate is selected and use callback
-			void SetCheckingInRealMode( bool isEnable );
+			void SetCheckingInRealMode( bool isEnable )
+			{
+				this->checkingInRealMode = isEnable;
+			}
 			// Set delay time for checkingInRealMode
-			void SetDelayTime( float time );
+			void SetDelayTime( float time )
+			{
+				this->delayTime = time;
+			}
 
 		private:
 			sf::Texture sliderTexture, rateTexture;

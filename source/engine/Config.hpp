@@ -162,8 +162,8 @@ namespace pi
 
 			namespace stateMachine
 			{
-				constexpr auto NO_STATES = "StateMachine: Cannot run, no states";
-				constexpr auto CANNOT_SWITCH = "StateMachine: Cannot switch states, switching to ";
+				constexpr auto NO_STATES = "StateMachine: Cannot run, no states_t";
+				constexpr auto CANNOT_SWITCH = "StateMachine: Cannot switch states_t, switching to ";
 			}
 
 			namespace saveSystem

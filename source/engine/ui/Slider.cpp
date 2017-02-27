@@ -25,11 +25,6 @@ namespace pi
 			this->rateSprite.setTexture( this->rateTexture );
 		}
 
-		void Slider::SetScale( const sf::Vector2f& scale )
-		{
-			this->scale = scale;
-		}
-
 		void Slider::SetRect( const sf::Vector2f& position, const sf::Vector2f& size )
 		{
 			this->position = position;
@@ -58,16 +53,6 @@ namespace pi
 					i = function; break;
 				}
 			}
-		}
-
-		void Slider::SetCheckingInRealMode( const bool isEnable )
-		{
-			this->checkingInRealMode = isEnable;
-		}
-
-		void Slider::SetDelayTime( const float time )
-		{
-			this->delayTime = time;
 		}
 
 		// Virtual methods

@@ -29,7 +29,10 @@ namespace pi
 			UI( const UI& ) = delete;
 
 			// Set window handle for UI
-			void SetWindow( sf::RenderWindow& window );
+			void SetWindow( sf::RenderWindow& window )
+			{
+				this->window = &window;
+			}
 
 			// Get number procent
 			const float GetPercent( float percent, float number ) const { return number * percent / 100; }

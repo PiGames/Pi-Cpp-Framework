@@ -2,10 +2,11 @@
 
 #include <SFML/Audio/Music.hpp>
 
-#include "States.hpp"
 #include "engine/game/State.hpp"
 #include "engine/ResourceCache.hpp"
 #include "engine/ui/UI.hpp"
+
+#include "States.hpp"
 
 namespace mc
 {

@@ -17,11 +17,6 @@ namespace pi
 			this->elementArrayLength = 0;
 		}
 
-		void UI::SetWindow( sf::RenderWindow& window )
-		{
-			this->window = &window;
-		}
-
 		// Button methods
 
 		void UI::UseButtons( sf::Event& event )

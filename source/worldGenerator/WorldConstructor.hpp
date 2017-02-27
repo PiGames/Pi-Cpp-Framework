@@ -13,15 +13,6 @@ namespace pi
 	//It constructs world which is based on WorldHeightmapGenerator
 	class WorldConstructor final
 	{
-	private:
-		//Returns type of Cell
-		static uint8_t getCellID( uint8_t number );
-
-		//Add single cell
-		static void constructSingleCell( uint8_t number, TextureCache * textureCache );
-
-		//Loades cell types to a vector of cells' ID
-		static void loadCellTypes();
 	public:
 		WorldConstructor() = delete;
 
@@ -31,6 +22,18 @@ namespace pi
 	private:
 		static float* heightMap;
 		static std::vector<int> id;
+
+		//Returns type of Cell
+		static uint8_t getCellID( uint8_t number )
+		{
+			return heightMap[number] / ( 1.0f / id.size() );
+		}
+
+		//Add single cell
+		static void constructSingleCell( uint8_t number, TextureCache * textureCache );
+
+		//Loades cell types to a vector of cells' ID
+		static void loadCellTypes();
 	};
 }
 

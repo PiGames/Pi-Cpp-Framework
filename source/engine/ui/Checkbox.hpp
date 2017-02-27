@@ -29,24 +29,39 @@ namespace pi
 			// Set checkbox position and size
 			void SetRect( const sf::Vector2f&, const sf::Vector2f& );
 			// Set On-Off
-			void SetEnable( const bool );
+			void SetEnable( bool flag )
+			{
+				this->isEnable = flag;
+			}
 			// VIEW FUNCTIONS END
 
 			// GET START
 			// Get checkbox texture
-			const sf::Texture GetTexture() const { return *this->texture; }
+			const sf::Texture GetTexture() const
+			{
+				return *this->texture;
+			}
 			// Get checkbox when is on
-			const sf::Texture GetTextureOn() const { return this->textureOn; }
+			const sf::Texture GetTextureOn() const
+			{
+				return this->textureOn;
+			}
 			// Get checkbox when is off
-			const sf::Texture GetTextureOff() const { return this->textureOff; }
+			const sf::Texture GetTextureOff() const
+			{
+				return this->textureOff;
+			}
 			// Get On or Off
-			const bool GetEnable() const { return this->isEnable; }
+			const bool GetEnable() const
+			{
+				return this->isEnable;
+			}
 			// GET END
 
 			// Add calback function for checkbox when is on
-			void AddCallbackOn( std::function<void()> );
+			void AddCallbackOn( std::function<void()> function );
 			// Add calback function for checkbox when is off
-			void AddCallbackOff( std::function<void()> );
+			void AddCallbackOff( std::function<void()> function );
 
 		private:
 			sf::Texture *texture, textureOn, textureOff;
@@ -58,7 +73,7 @@ namespace pi
 			void disable();
 
 			// VIRTUAL FUNCTIONS START
-			void use( const sf::Event& event ) final;
+			void use( const sf::Event& event ) override;
 			// VIRTUAL FUNCTIONS END
 		};
 	}

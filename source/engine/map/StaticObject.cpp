@@ -11,10 +11,4 @@ namespace pi
 	{
 		//to do (update collision map)
 	}
-
-	std::vector<sf::Vector2i>& StaticObject::GetUnitPosition()
-	{
-		return unitPosition;
-	}
-
 }

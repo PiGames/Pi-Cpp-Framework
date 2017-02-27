@@ -67,54 +67,6 @@ namespace pi
 		this->shape.setSize( { static_cast<float>( this->windowSize.x ), static_cast<float>( this->windowSize.y ) / 2 } );
 	}
 
-	void Console::SetFillColor( const sf::Color& fill )
-	{
-		this->shape.setFillColor( fill );
-
-	}
-
-	void Console::SetOutlineColor( const sf::Color& outline )
-	{
-		this->shape.setOutlineColor( outline );
-	}
-
-	void Console::SetTextColor( const sf::Color& color )
-	{
-		this->text.setFillColor( color );
-		this->input.setFillColor( color );
-	}
-
-	void Console::SetTextFont( const sf::Font& font )
-	{
-		this->text.setFont( font );
-		this->input.setFont( font );
-	}
-
-	void Console::SetTextSizeInLine( size_t size )
-	{
-		this->textSizeInLine = size;
-	}
-
-	void Console::AddCommand( const command_t& command )
-	{
-		this->commands.push_back( command );
-	}
-
-	void Console::Toggle()
-	{
-		this->isOpen = !this->isOpen;
-	}
-
-	void Console::Show()
-	{
-		this->isOpen = true;
-	}
-
-	void Console::Hide()
-	{
-		this->isOpen = false;
-	}
-
 	void Console::Key( const sf::Event& event )
 	{
 		if ( event.key.code == sf::Keyboard::Return )

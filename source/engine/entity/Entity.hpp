@@ -23,8 +23,10 @@ namespace pi
 		// deltaTime
 		virtual void Update( float deltaTime );
 
-		// Returns reference to Entity name
-		std::string& GetName();
+		std::string GetName() const
+		{
+			return this->name;
+		}
 
 	protected:
 		std::string name;
@@ -32,7 +34,7 @@ namespace pi
 	private:
 		// Draws Entity
 		// Render Target
-		// Render States
-		virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
+		// Render states_t
+		virtual void draw( sf::RenderTarget& target, sf::RenderStates states_t ) const;
 	};
 }

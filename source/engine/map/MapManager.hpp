@@ -20,8 +20,6 @@ namespace pi
 		friend class MapRenderer;
 
 		MapManager();
-
-		static void createArrays();
 	public:
 
 		//Updatesthe whole collision map (Only from surface) | Don't overuse this method!
@@ -35,13 +33,22 @@ namespace pi
 		static void AddStaticObject( StaticObject staticObject );
 
 		//Returns unit world size (in units)
-		static sf::Vector2i& GetUnitWorldSize();
+		static sf::Vector2i& GetUnitWorldSize()
+		{
+			return unitWorldSize;
+		}
 
 		//Returns reference to surface
-		static std::vector<Cell> &GetSurface();
+		static std::vector<Cell> &GetSurface()
+		{
+			return surface;
+		}
 
 		//Returns reference to objects
-		static std::vector<StaticObject> &GetStaticObjects();
+		static std::vector<StaticObject> &GetStaticObjects()
+		{
+			return staticObjects;
+		}
 
 		//Returns state of map unit
 		static bool IsCollidableUnit( uint16_t number );
@@ -54,11 +61,23 @@ namespace pi
 
 		static void FillOverlappingToVector( std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction );
 
-		static void SetUnitWorldSize( sf::Vector2i size );
+		static void SetUnitWorldSize( sf::Vector2i size )
+		{
+			unitWorldSize = size;
+		}
 
-		static void FinalizeLogicPartOfMap();
+		static void FinalizeLogicPartOfMap()
+		{
+			createArrays();
+			SurfaceCollisionMapUpdate();
+		}
 
 	private:
+
+		static void createArrays()
+		{
+			collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
+		}
 
 		static std::vector<Cell> surface;
 

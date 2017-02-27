@@ -26,7 +26,7 @@ namespace mc
 		std::vector<Task> tasks;
 		std::vector<Task*> priorities;
 
-		void SetSkills();
-		void SetPriorities();
+		void setSkills();
+		void setPriorities();
 	};
 }

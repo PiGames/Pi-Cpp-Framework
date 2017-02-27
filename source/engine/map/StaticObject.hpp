@@ -21,7 +21,10 @@ namespace pi
 		~StaticObject();
 
 		//Returns vector of unit position (in unit system)
-		std::vector<sf::Vector2i>& GetUnitPosition();
+		std::vector<sf::Vector2i>& GetUnitPosition()
+		{
+			return unitPosition;
+		}
 
 	protected:
 

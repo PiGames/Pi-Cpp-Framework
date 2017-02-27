@@ -11,16 +11,6 @@ namespace mc
 		return ( loadCategories( categoryPath ) && loadActions( actionPath ) );
 	}
 
-	int TaskManager::GetProperty( pi::enumerations::taskManager::npcProperties_t property )
-	{
-		return npcProperties[property];
-	}
-
-	std::vector<Task> TaskManager::GetActionCollection( pi::enumerations::taskManager::taskCategory_t category )
-	{
-		return taskData[category];
-	}
-
 	Task * TaskManager::GetRandomTask()
 	{
 		auto randomedCategory = std::rand() % ( taskData.size() - 2 ) + 1;

@@ -2,11 +2,6 @@
 
 namespace pi
 {
-	sf::Texture& TextureCache::handleError()
-	{
-		return this->error_resource;
-	}
-
 	TextureCache::TextureCache()
 	{
 		this->fallbackColor = sf::Color::Magenta;
@@ -15,21 +10,6 @@ namespace pi
 		image.create( 32, 32u, this->fallbackColor );
 
 		this->error_resource.loadFromImage( image );
-	}
-
-	sf::Color TextureCache::getFallbackColor()
-	{
-		return this->fallbackColor;
-	}
-
-	void TextureCache::setFallbackColor( const sf::Color& color )
-	{
-		this->fallbackColor = color;
-	}
-
-	sf::Font& FontCache::handleError()
-	{
-		return error_resource;
 	}
 
 	FontCache::FontCache()

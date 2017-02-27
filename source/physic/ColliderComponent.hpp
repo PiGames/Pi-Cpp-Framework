@@ -15,7 +15,7 @@ namespace mc
 {
 	class ColliderComponent;
 
-	struct CollisionInfo final
+	struct collisionInfo_t final
 	{
 		ColliderComponent* collider = nullptr;
 		pi::Entity* entity = nullptr;
@@ -28,7 +28,10 @@ namespace mc
 			Down
 		} side = None;
 
-		CollisionInfo( ColliderComponent* p, pi::Entity* e, CollisionInfo::side_t s ) { collider = p; entity = e; side = s; }
+		collisionInfo_t( ColliderComponent* p, pi::Entity* e, collisionInfo_t::side_t s )
+		{
+			collider = p; entity = e; side = s;
+		}
 	};
 
 	class ColliderComponent
@@ -38,16 +41,31 @@ namespace mc
 	public:
 		ColliderComponent( pi::Entity* ent, Velocity* v ) :collisionRect( 0, 0, 0, 0 ), entity( ent ), velocity( v ), name( "<unnamed collider>" ) {}
 
-		sf::FloatRect& GetCollisionRect() { return this->collisionRect; }
-		std::string GetColliderName() { return this->name; }
+		sf::FloatRect& GetCollisionRect()
+		{
+			return this->collisionRect;
+		}
+		std::string GetColliderName()
+		{
+			return this->name;
+		}
 
-		void SetColliderName( const std::string& n ) { this->name = n; }
-		void SetCollisionRect( const sf::FloatRect& rect ) { this->collisionRect = rect; };
-		void SetCallback( std::function<void( CollisionInfo )> f ) { this->callback = f; }
+		void SetColliderName( const std::string& name )
+		{
+			this->name = name;
+		}
+		void SetCollisionRect( const sf::FloatRect& rect )
+		{
+			this->collisionRect = rect;
+		}
+		void SetCallback( std::function<void( collisionInfo_t )> function )
+		{
+			this->callback = function;
+		}
 
 	protected:
 		sf::FloatRect collisionRect;
-		std::function<void( CollisionInfo )> callback;
+		std::function<void( collisionInfo_t )> callback;
 
 		Velocity* velocity;
 		pi::Entity* entity;

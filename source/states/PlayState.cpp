@@ -5,7 +5,7 @@ namespace mc
 	void PlayState::onActivation()
 	{
 		// ResourceCache should return std:shared_ptrs... :/
-		pi::Renderer::SetMapTexture( std::make_shared<sf::Texture>( textures.get( "data/textures/textureSheet.png" ) ) );
+		pi::Renderer::SetMapTexture( std::make_shared<sf::Texture>( textures.Get( "data/textures/textureSheet.png" ) ) );
 		pi::Renderer::SetWindow( this->window );
 		pi::WorldConstructor::ConstructWorld( 16, 16, 123, 1, nullptr );
 	}
@@ -23,14 +23,14 @@ namespace mc
 
 		sf::Event ev;
 
-		console->SetTextFont( fonts.get( pi::constants::state::CONSOLE_FONT ) );
+		console->SetTextFont( fonts.Get( pi::constants::state::CONSOLE_FONT ) );
 
 		while ( window->isOpen() )
 		{
 			while ( window->pollEvent( ev ) )
 			{
 				if ( ev.type == sf::Event::Closed )
-					return (short)States::Exit;
+					return (short)states_t::Exit;
 
 				if ( ev.key.code == sf::Keyboard::Escape )
 					console->Hide();
@@ -41,13 +41,13 @@ namespace mc
 				console->Show();
 
 			if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Key::W ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Key::Up ) )
-				player.move( mc::Player::Direction::UP );
+				player.Move( mc::Player::direction_t::UP );
 			if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Key::D ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Key::Right ) )
-				player.move( mc::Player::Direction::RIGHT );
+				player.Move( mc::Player::direction_t::RIGHT );
 			if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Key::A ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Key::Left ) )
-				player.move( mc::Player::Direction::LEFT );
+				player.Move( mc::Player::direction_t::LEFT );
 			if ( sf::Keyboard::isKeyPressed( sf::Keyboard::Key::S ) || sf::Keyboard::isKeyPressed( sf::Keyboard::Key::Down ) )
-				player.move( mc::Player::Direction::DOWN );
+				player.Move( mc::Player::direction_t::DOWN );
 
 			pi::Renderer::Update();
 
@@ -59,7 +59,7 @@ namespace mc
 			pi::Renderer::Render();
 		}
 
-		return (short)States::Exit;
+		return (short)states_t::Exit;
 	}
 }
 

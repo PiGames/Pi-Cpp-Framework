@@ -6,11 +6,11 @@ namespace mc
 		:MapObject( name, pos )
 	{
 		pi::TextureCache textureAtlas;
-		object.setTexture( textureAtlas.get( pi::constants::mouse::TEXTURE_PATH ) );
-		setCursor( Mouse::TYPE::SIMPLE );
+		object.setTexture( textureAtlas.Get( pi::constants::mouse::TEXTURE_PATH ) );
+		SetCursor( Mouse::TYPE::SIMPLE );
 	}
 
-	void Mouse::setCursor( Mouse::TYPE type )
+	void Mouse::SetCursor( Mouse::TYPE type )
 	{
 		object.setTextureRect( sf::IntRect( type * pi::constants::mouse::dimensions.x, 0, pi::constants::mouse::dimensions.x, pi::constants::mouse::dimensions.y ) );
 	}

@@ -24,9 +24,9 @@ namespace pi
 		template<class T, enable_if<std::is_base_of<State, T>>...>
 		void AddState( unsigned short id )
 		{
-			stateMachine.AddState<T>( id );
-			stateMachine.states[id]->SetWindowPointer( &window );
-			stateMachine.states[id]->SetConsolePointer( &console );
+			this->stateMachine.AddState<T>( id );
+			this->stateMachine.states_t[id]->SetWindowPointer( &window );
+			this->stateMachine.states_t[id]->SetConsolePointer( &console );
 		}
 
 		void Run();

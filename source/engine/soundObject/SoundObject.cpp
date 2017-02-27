@@ -2,7 +2,7 @@
 
 namespace pi
 {
-	bool SoundObject::emplaceSound( std::string name )
+	bool SoundObject::EmplaceSound( std::string name )
 	{
 		if ( sounds.find( name ) != sounds.end() )
 		{
@@ -27,12 +27,7 @@ namespace pi
 		return true;
 	}
 
-	bool SoundObject::isSoundExist( std::string name )
-	{
-		return ( sounds.find( name ) != sounds.end() );
-	}
-
-	int8_t SoundObject::getNumberOfSound( std::string name )
+	int8_t SoundObject::GetNumberOfSound( std::string name )
 	{
 		auto itr = sounds.find( name );
 
@@ -43,7 +38,7 @@ namespace pi
 		} else return itr->second;
 	}
 
-	bool SoundObject::eraseSound( std::string name )
+	bool SoundObject::EraseSound( std::string name )
 	{
 		auto soundIterator = sounds.find( name );
 
@@ -64,9 +59,9 @@ namespace pi
 		return true;
 	}
 
-	bool SoundObject::playSound( std::string name )
+	bool SoundObject::PlaySound( std::string name )
 	{
-		if ( !isSoundExist( name ) )
+		if ( !IsSoundExist( name ) )
 			return false;
 
 		soundSource[sounds[name]].first.play();

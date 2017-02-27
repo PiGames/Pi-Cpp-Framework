@@ -6,22 +6,17 @@ namespace pi
 	{
 	}
 
-	void SaveSystem::addVariable( const std::string& name, const std::string& value )
-	{
-		this->variables[name] = value;
-	}
-
-	std::string SaveSystem::getVariable( const std::string& name )
+	std::string SaveSystem::GetVariable( const std::string& name ) const
 	{
 		auto find = this->variables.find( name );
 
 		if ( find == this->variables.end() )
 			return "@error";
 
-		return this->variables[name];
+		return this->variables.at( name );
 	}
 
-	bool SaveSystem::updateVariable( const std::string& name, const std::string& value )
+	bool SaveSystem::UpdateVariable( const std::string& name, const std::string& value )
 	{
 		auto find = this->variables.find( name );
 
@@ -37,12 +32,7 @@ namespace pi
 		return true;
 	}
 
-	std::unordered_map<std::string, std::string> SaveSystem::getVariables()
-	{
-		return this->variables;
-	}
-
-	bool SaveSystem::saveToFile( const std::string& path )
+	bool SaveSystem::SaveToFile( const std::string& path )
 	{
 		std::ofstream file;
 
@@ -132,11 +122,11 @@ namespace pi
 		this->variables[name] = value;
 	}
 
-	bool SaveSystem::loadFromFile( const std::string& file )
+	bool SaveSystem::LoadFromFile( const std::string& file )
 	{
 		std::vector<std::string> raw;
 
-		clear();
+		Clear();
 
 		if ( !load( file, raw ) )
 			return false;
@@ -144,11 +134,6 @@ namespace pi
 		parse( raw );
 
 		return true;
-	}
-
-	void SaveSystem::clear()
-	{
-		this->variables.clear();
 	}
 }
 

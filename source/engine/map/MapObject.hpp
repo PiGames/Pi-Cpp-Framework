@@ -20,37 +20,48 @@ namespace pi
 	//If you want to create map object, firstly you need to create static/movable (which inherits from it)
 	class MapObject : public Entity
 	{
-	protected:
-
-		//Draws object
-		virtual void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
-
 	public:
 		MapObject( const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 } );
 
 		//Returns real position (in px)
-		sf::Vector2f& getPosition();
+		sf::Vector2f& GetPosition()
+		{
+			return this->position;
+		}
 
 		//Returns width of object (in px)
-		const float getWidth();
+		const float GetWidth()
+		{
+			return this->object.getGlobalBounds().width;
+		}
 
 		//Returns height of object (in px)
-		const float getHeight();
+		const float GetHeight()
+		{
+			return this->object.getGlobalBounds().height;
+		}
 
 		//Sets position (in px)
-		void setPosition( sf::Vector2f position );
+		void SetPosition( sf::Vector2f position )
+		{
+			this->object.setPosition( position );
+		}
 
 		//Sets position (in unit system)
-		void setPosition( sf::Vector2i position );
+		void SetPosition( sf::Vector2i position );
 
 		//Shift of object
-		void move( sf::Vector2f shift );
-
+		void Move( sf::Vector2f shift )
+		{
+			this->object.move( shift );
+		}
 	protected:
-
 		//position (in px)
 		sf::Vector2f position;
 
 		sf::Sprite object;
+
+	private:
+		virtual void draw( sf::RenderTarget& target, sf::RenderStates states_t ) const { target.draw( object, states_t ); }
 	};
 }

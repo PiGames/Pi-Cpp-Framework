@@ -19,6 +19,6 @@ namespace mc
 			SIMPLE = 0
 		};
 
-		void setCursor( Mouse::TYPE type );
+		void SetCursor( Mouse::TYPE type );
 	};
 }

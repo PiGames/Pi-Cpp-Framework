@@ -20,14 +20,23 @@ namespace pi
 		MovableObject( const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 }, float speed = 1.f );
 
 		//Returns state of moving
-		bool CanMove();
+		bool CanMove() const
+		{
+			return !targets.empty();
+		}
 		//Sets target and use pathfinder
-		void SetTargetTo( const sf::Vector2f& from, const sf::Vector2f& to );
+		void SetTargetTo( const sf::Vector2f& from, const sf::Vector2f& to )
+		{
+			PathFinder::FillTargetsQueue( from, to, &targets );
+		}
 		//Move object in direction of first target
 		//returns false if object isn't moving now
 		//returns true if object has done step
 		bool Move();
-		sf::Vector2f& GetCurrentStep();
+		sf::Vector2f& GetCurrentStep()
+		{
+			return CurrentStep;
+		}
 
 	private:
 
@@ -38,9 +47,15 @@ namespace pi
 
 		void ComputeStep();
 		//Makes single step
-		void makeStep();
+		void makeStep()
+		{
+			this->position += this->CurrentStep;
+		}
 		//Checks distance to front target
-		bool isNearTarget();
+		bool isNearTarget() const
+		{
+			return Math::Distance( this->object.getPosition(), this->targets.front() ) < constants::cell::CELL_DIMENSIONS.x;
+		}
 		//Clears targets' vector and returns last one
 		sf::Vector2f clearAndGetLastTarget();
 	};

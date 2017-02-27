@@ -8,11 +8,6 @@ namespace pi
 	bool* MapManager::collisionMap;
 
 
-	void MapManager::createArrays()
-	{
-		collisionMap = new bool[unitWorldSize.x*unitWorldSize.y];
-	}
-
 	void MapManager::SurfaceCollisionMapUpdate()
 	{
 		for ( int i = 0; i < unitWorldSize.x*unitWorldSize.y; ++i )
@@ -38,21 +33,6 @@ namespace pi
 	{
 		staticObjects.push_back( staticObject );
 		UpdateSingleUnits( &staticObject );
-	}
-
-	sf::Vector2i & MapManager::GetUnitWorldSize()
-	{
-		return unitWorldSize;
-	}
-
-	std::vector<Cell>& MapManager::GetSurface()
-	{
-		return surface;
-	}
-
-	std::vector<StaticObject>& MapManager::GetStaticObjects()
-	{
-		return staticObjects;
 	}
 
 	bool MapManager::IsCollidableUnit( uint16_t number )
@@ -100,17 +80,6 @@ namespace pi
 			overlapping->emplace_back( 0, direction.y );
 		} else
 			overlapping->emplace_back( direction );
-	}
-
-	void MapManager::SetUnitWorldSize( sf::Vector2i size )
-	{
-		unitWorldSize = size;
-	}
-
-	void MapManager::FinalizeLogicPartOfMap()
-	{
-		createArrays();
-		SurfaceCollisionMapUpdate();
 	}
 }
 

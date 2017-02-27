@@ -50,11 +50,6 @@ namespace pi
 			this->sprite.setScale( { this->size.x / this->texture->getSize().x, this->size.y / this->texture->getSize().y } );
 		}
 
-		void Checkbox::SetEnable( const bool enable )
-		{
-			this->isEnable = enable;
-		}
-
 		void Checkbox::AddCallbackOn( std::function<void()> function )
 		{
 			for ( auto &i : this->functionsOn )

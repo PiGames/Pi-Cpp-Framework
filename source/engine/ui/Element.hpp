@@ -31,9 +31,15 @@ namespace pi
 
 			// STANDART UI GETS START
 			// Return element position
-			const sf::Vector2f GetPosition() const { return this->position; }
+			const sf::Vector2f GetPosition() const
+			{
+				return this->position;
+			}
 			// Return element size
-			const sf::Vector2f GetSize() const { return this->size; }
+			const sf::Vector2f GetSize() const
+			{
+				return this->size;
+			}
 			// STANDART UI GETS END
 
 		protected:

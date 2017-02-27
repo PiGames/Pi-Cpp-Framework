@@ -14,27 +14,27 @@ namespace mc
 	}
 
 
-	void Player::move( const Direction& direction )
+	void Player::Move( Player::direction_t direction )
 	{
 		switch ( direction )
 		{
-		case Direction::UP:
+		case Player::direction_t::UP:
 			this->position.y -= this->speed;
 			break;
-		case Direction::LEFT:
+		case Player::direction_t::LEFT:
 			this->position.x -= this->speed;
 			break;
-		case Direction::RIGHT:
+		case Player::direction_t::RIGHT:
 			this->position.x += this->speed;
 			break;
-		case Direction::DOWN:
+		case Player::direction_t::DOWN:
 			this->position.y += this->speed;
 			break;
 		}
 		this->sprite.setPosition( this->position );
 	}
 
-	void Player::update( sf::RenderWindow& window )
+	void Player::Update( sf::RenderWindow& window )
 	{
 		window.draw( this->sprite );
 	}

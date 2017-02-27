@@ -11,13 +11,8 @@ namespace pi
 	}
 
 
-	void Entity::draw( sf::RenderTarget& target, sf::RenderStates states ) const
+	void Entity::draw( sf::RenderTarget& target, sf::RenderStates states_t ) const
 	{
-	}
-
-	std::string& Entity::GetName()
-	{
-		return this->name;
 	}
 }
 

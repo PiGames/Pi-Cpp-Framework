@@ -8,13 +8,6 @@ namespace pi
 
 	sf::Vector2i *PathFinder::unitMapSize;
 
-
-	void PathFinder::clearTargets( std::queue<sf::Vector2f>* targets )
-	{
-		while ( !targets->empty() ) targets->pop();
-	}
-
-
 	bool PathFinder::isInMap( const sf::Vector2i& position )
 	{
 		return !( position.x<0 || position.x > unitMapSize->x - 1 || position.y<0 || position.y > unitMapSize->y - 1 );
@@ -91,12 +84,6 @@ namespace pi
 			targets->push( sf::Vector2f( var.x + constants::cell::CELL_DIMENSIONS.x / 2, var.y + constants::cell::CELL_DIMENSIONS.y / 2 ) );
 		}
 
-	}
-
-	void PathFinder::initialTreatments( std::queue<sf::Vector2i>* Q, sf::Vector2i * fromPos )
-	{
-		setWeightsVectorAsNotVisited();
-		enterFirstElementToQueue( Q, fromPos );
 	}
 
 	void PathFinder::setWeightsVectorAsNotVisited()
@@ -183,11 +170,6 @@ namespace pi
 		addToQueueSearch( Q, neighbor );
 	}
 
-	void PathFinder::addToQueueSearch( std::queue<sf::Vector2i>* Q, sf::Vector2i * neighbor )
-	{
-		Q->push( *neighbor );
-	}
-
 	bool PathFinder::isCellBlocking( sf::Vector2i * currentlyConsidered, sf::Vector2i * singleAlternate )
 	{
 		if ( !isInMap( sf::Vector2i( currentlyConsidered->x + singleAlternate->x, currentlyConsidered->y + singleAlternate->y ) ) )
@@ -201,11 +183,6 @@ namespace pi
 	{
 		sf::Vector2i unitTarget = Math::ConvertPositionToUnitSystem( to, constants::cell::CELL_DIMENSIONS );
 		return !MapManager::IsCollidableUnit( unitTarget );
-	}
-
-	void PathFinder::Init( sf::Vector2i *worldSize )
-	{
-		unitMapSize = worldSize;
 	}
 
 	void PathFinder::FillTargetsQueue( const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets )

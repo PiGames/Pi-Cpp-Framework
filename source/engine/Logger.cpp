@@ -31,7 +31,6 @@ namespace pi
 	void Logger::Log( const std::string& message, MessageType messageType, OutputType outputType )
 	{
 		std::string typeText = "";
-		std::string output = "";
 
 		switch ( messageType )
 		{
@@ -55,7 +54,7 @@ namespace pi
 			break;
 		}
 
-		output = typeText + message;
+		std::string output = typeText + message;
 
 		switch ( outputType )
 		{

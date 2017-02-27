@@ -23,7 +23,10 @@ namespace pi
 		PathFinder() = delete;
 
 		//Initialization (on the begining of game process)
-		static void Init( sf::Vector2i *worldSize );
+		static void Init( sf::Vector2i *worldSize )
+		{
+			unitMapSize = worldSize;
+		}
 
 		//Filling targets queue by points which represents way to "to" point
 		static void FillTargetsQueue( const sf::Vector2f& from, const sf::Vector2f& to, std::queue<sf::Vector2f> *targets );
@@ -36,7 +39,11 @@ namespace pi
 		};
 	private:
 		//Clears targets queue
-		static void clearTargets( std::queue<sf::Vector2f>* targets );
+		static void clearTargets( std::queue<sf::Vector2f>* targets )
+		{
+			while ( !targets->empty() )
+				targets->pop();
+		}
 
 		//Checksthat point (represented by i|j system) is in map
 		static bool isInMap( const sf::Vector2i& position );
@@ -51,7 +58,11 @@ namespace pi
 		static void categorizeCells( sf::Vector2i *w, sf::Vector2i *v, std::queue<sf::Vector2i> *Q, short direction );
 
 		//basic treatments to start a pathfinding process
-		static void initialTreatments( std::queue<sf::Vector2i>* Q, sf::Vector2i *fromPos );
+		static void initialTreatments( std::queue<sf::Vector2i>* Q, sf::Vector2i *fromPos )
+		{
+			setWeightsVectorAsNotVisited();
+			enterFirstElementToQueue( Q, fromPos );
+		}
 
 		//Resets value of map <=> set all weights at "NOT_VISITED"
 		static void setWeightsVectorAsNotVisited();
@@ -75,7 +86,10 @@ namespace pi
 		static void increaseWeight( sf::Vector2i *neighbor, sf::Vector2i *currentlyConsidered, std::queue<sf::Vector2i> *Q );
 
 		//Adds cordinates fo cell to queue search
-		static void	addToQueueSearch( std::queue<sf::Vector2i> *Q, sf::Vector2i *neighbor );
+		static void	addToQueueSearch( std::queue<sf::Vector2i> *Q, sf::Vector2i *neighbor )
+		{
+			Q->push( *neighbor );
+		}
 
 		//Checks that a cell is an obstacle or not
 		static bool isCellBlocking( sf::Vector2i * currentlyConsidered, sf::Vector2i *singleAlternate );
