@@ -4,7 +4,7 @@
 
 namespace mc
 {
-	enum class States
+	enum class states_t
 	{
 		Exit = pi::constants::stateMachine::EXIT_STATE,
 

@@ -7,43 +7,61 @@ namespace pi
 {
 	namespace ui
 	{
-/*
-===============================================================================
-Created by: Beniamin Gajecki ,,Uriel"
-Slider class.
-===============================================================================
-*/
+		/*
+		===============================================================================
+		Created by: Beniamin Gajecki ,,Uriel"
+		Slider class.
+		===============================================================================
+		*/
 		class Slider final : public Element
 		{
 		public:
-			Slider( );
-			~Slider( ) = default;
+			Slider();
+			~Slider() = default;
 
 			// VIEW FUNCTIONS START
 			// Set slider and rate texture
-			void setTexture( const sf::Texture&, const sf::Texture& );
+			void SetTexture( const sf::Texture& sliderTexture, const sf::Texture& rateTexture );
 			// Set scale slider and rate
-			void setScale( const sf::Vector2f& );
+			void SetScale( const sf::Vector2f& scale )
+			{
+				this->scale = scale;
+			}
 			// Set position and size
-			void setRect( const sf::Vector2f&, const sf::Vector2f& );
+			void SetRect( const sf::Vector2f& position, const sf::Vector2f& size );
 			// VIEW FUNCTIONS END
 
 			// GET START
 			// If user click rate and not relase mouse button 
-			const bool getSelected( ) const { return this->isSelected; }
+			const bool GetSelected() const
+			{
+				return this->isSelected;
+			}
 			// GET END
 
 			// FUNCTIONS FOR FUNCTIONS IN ARRAY START
-			float scalePositionOfRate( ) const { return( this->ratePosition.x - this->position.x ) /( this->size.x - this->rateSize.x ); }
-			float scalePositionOfRateToReal( float number ) const { return( this->ratePosition.x - this->position.x ) /( this->size.x - this->rateSize.x ) * number; }
+			float ScalePositionOfRate() const
+			{
+				return( this->ratePosition.x - this->position.x ) / ( this->size.x - this->rateSize.x );
+			}
+			float ScalePositionOfRateToReal( float number ) const
+			{
+				return( this->ratePosition.x - this->position.x ) / ( this->size.x - this->rateSize.x ) * number;
+			}
 			// FUNCTIONS FOR FUNCTIONS IN ARRAY END
 
 			// Add calback function for slider
-			void addCallback( std::function<void( Slider* )> );
+			void AddCallback( std::function<void( Slider* )> function );
 			// Set checking whether rate is selected and use callback
-			void setCheckingInRealMode( const bool );
+			void SetCheckingInRealMode( bool isEnable )
+			{
+				this->checkingInRealMode = isEnable;
+			}
 			// Set delay time for checkingInRealMode
-			void setDelayTime( const float );
+			void SetDelayTime( float time )
+			{
+				this->delayTime = time;
+			}
 
 		private:
 			sf::Texture sliderTexture, rateTexture;
@@ -54,8 +72,8 @@ Slider class.
 			bool isSelected, checkingInRealMode;
 
 			// VIRTUAL FUNCTIONS START
-			void use( sf::Event& ) final;
-			void update( sf::RenderWindow& ) final;
+			void use( const sf::Event& event ) override;
+			void update( sf::RenderWindow& window ) override;
 			// VIRTUAL FUNCTIONS START
 		};
 	}

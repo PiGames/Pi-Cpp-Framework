@@ -13,7 +13,6 @@
 namespace pi
 {
 	class Console;
-	struct command_t;
 
 	struct command_t
 	{
@@ -21,22 +20,19 @@ namespace pi
 		std::string induction;
 		std::vector<std::string> args;
 	};
-/*
-===============================================================================
-Created by: Beniamin Gajecki ,,Uriel"
-Console class.
-===============================================================================
-*/
+	/*
+	===============================================================================
+	Created by: Beniamin Gajecki ,,Uriel"
+	Console class.
+	===============================================================================
+	*/
 	class Console final : public sf::Drawable
 	{
-	private:
-		void draw( sf::RenderTarget&, sf::RenderStates ) const;
-
 	public:
-		void update( sf::RenderWindow& );
-		Console(  );
-		Console( const sf::Vector2u& );
-		~Console(  ) = default;
+		void Update( sf::RenderWindow& window );
+		Console();
+		Console( const sf::Vector2u& size );
+		~Console() = default;
 
 		Console& operator =( const Console& ) = delete;
 		Console( const Console& ) = delete;
@@ -44,37 +40,66 @@ Console class.
 		// CONSOLE VIEW FUNCTIONS START
 		// Set window handle
 		// YOU MUST USE IT IF YOU DIDN'T USE THIS CONSTRUCTOR -> Console( sf::RenderWindow& );
-		void setWindowSize( const sf::Vector2u& );
+		void SetWindowSize( const sf::Vector2u& size );
 		// Set console fill color
-		void setFillColor( const sf::Color& );
+		void SetFillColor( const sf::Color& fill )
+		{
+			this->shape.setFillColor( fill );
+		}
 		// Set console outline color
-		void setOutlineColor( const sf::Color& );
+		void SetOutlineColor( const sf::Color& outline )
+		{
+			this->shape.setOutlineColor( outline );
+		}
 		// CONSOLE VIEW FUNCTIONS END
 
 		// TEXT SECTION START
 		// Set text color in all lines
-		void setTextColor( const sf::Color& );
+		void SetTextColor( const sf::Color& color )
+		{
+			this->text.setFillColor( color );
+			this->input.setFillColor( color );
+		}
 		// Set text font in all lines
-		void setTextFont( sf::Font& );
+		void SetTextFont( const sf::Font& font )
+		{
+			this->text.setFont( font );
+			this->input.setFont( font );
+		}
 		// Set max number of characters in all lines
-		void setTextSizeInLine( const unsigned );
+		void SetTextSizeInLine( size_t size )
+		{
+			this->textSizeInLine = size;
+		}
 		// TEXT SECTION END
 
 		// CONSOLE FUNCTIONS START
 		// Add command to commands vector
-		void addCommand( command_t& );
+		void AddCommand( const command_t& command )
+		{
+			this->commands.push_back( command );
+		}
 		// On-Off console
-		void toggle(  );
+		void Toggle()
+		{
+			this->isOpen = !this->isOpen;
+		}
 		// Shows console
-		void show(  );
+		void Show()
+		{
+			this->isOpen = true;
+		}
 		// Hides console
-		void hide(  );
+		void Hide()
+		{
+			this->isOpen = false;
+		}
 		// Checks whether user click baskskape or enter
-		void key( sf::Event& );
+		void Key( const sf::Event& event );
 		// Checks what user write on keyboard
-		void write( sf::Event& );
+		void Write( const sf::Event& event );
 		// Write logs in console
-		void log( const std::string& );
+		void Log( const std::string& message );
 		// CONSOLE FUNCTIONS END
 
 	private:
@@ -83,9 +108,10 @@ Console class.
 		sf::Text text, input;
 		std::array <std::string, constants::console::DEAFULT_NUMBER_OF_LINES> line;
 		std::vector <command_t> commands;
-		unsigned numberOfLines, textSizeInLine;
+		size_t numberOfLines, textSizeInLine;
 		bool isOpen;
 
-		inline void commandInduction_r( std::string );
+		inline void commandInduction_r( std::string inputString );
+		void draw( sf::RenderTarget& target, sf::RenderStates states ) const;
 	};
 }

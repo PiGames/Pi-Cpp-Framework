@@ -28,14 +28,17 @@ namespace pi
 
 			@param number of state that state machine will start (menu state for example)
 		*/
-		StateMachine(unsigned short stateToStart = 0);
+		StateMachine( unsigned short stateToStart = 0 );
 
 		/*
 			Sets state id for errorus situations; if state request to change state that doesnt exist
 
 			@param emergency state id
 		*/
-		void setEmergencyStateID(short id);
+		void SetEmergencyStateID( short id )
+		{
+			this->emergencyState = id;
+		}
 
 		/*
 			Adds State to StateMachine with specified id
@@ -43,24 +46,23 @@ namespace pi
 			@param id of state; cannot be same as previulsy added (you cannot have more than one state of given 'n' number)
 		*/
 		template<class T, enable_if<std::is_base_of<State, T>>...>
-		void addState(short id)
+		void AddState( short id )
 		{
-			auto result = states.find(id);
+			auto result = states.find( id );
 
-			if (result != states.end())
+			if ( result != states.end() )
 			{
-				Logger::Log("StateMachine: Cannot add state, found same state id! ID: " + std::to_string(id), Logger::MessageType::Error, Logger::OutputType::Both);
+				Logger::Log( "StateMachine: Cannot add state, found same state id! ID: " + std::to_string( id ), Logger::MessageType::Error, Logger::OutputType::Both );
 
 				return;
 			}
-
-			states[id].reset(new T());
+			states[id].reset( new T() );
 		}
 
 		/*
 			Runs state machine
 		*/
-		void run();
+		void Run();
 
 	private:
 		short currentState;

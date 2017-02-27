@@ -3,24 +3,23 @@
 #include <SFML/Graphics.hpp>
 
 #include "engine/game/Game.hpp"
-#include "states/PlayState.hpp"
-#include "states/MenuState.hpp"
+#include "States/PlayState.hpp"
+#include "States/MenuState.hpp"
 
 int main()
 {
 	try
 	{
-		pi::Game game({ 1280, 720 }, "Mars Colony", 60u);
+		pi::Game game( { 1280, 720 }, "Mars Colony", 60u );
 
-		pi::Logger::Log("Mars Colony v" + std::to_string(pi::constants::version::MAJOR) + "." + std::to_string(pi::constants::version::MINOR) + "." + std::to_string(pi::constants::version::RELEASE), pi::Logger::MessageType::Info, pi::Logger::OutputType::Both);
+		pi::Logger::Log( "Mars Colony v" + std::to_string( pi::constants::version::MAJOR ) + "." + std::to_string( pi::constants::version::MINOR ) + "." + std::to_string( pi::constants::version::RELEASE ), pi::Logger::MessageType::Info, pi::Logger::OutputType::Both );
 
-		game.addState<mc::MenuState>((short)mc::States::Menu);
-		game.addState<mc::PlayState>((short)mc::States::Play);
-		game.run();
-	}
-	catch (std::exception& e)
+		game.AddState<mc::MenuState>( (short)mc::states_t::Menu );
+		game.AddState<mc::PlayState>( (short)mc::states_t::Play );
+		game.Run();
+	} catch ( std::exception& e )
 	{
-		pi::Logger::Log("EXCPTION: " + *e.what(), pi::Logger::MessageType::Error, pi::Logger::OutputType::Both);
+		pi::Logger::Log( "EXCPTION: " + *e.what(), pi::Logger::MessageType::Error, pi::Logger::OutputType::Both );
 		std::cin.get();
 	}
 

@@ -5,33 +5,28 @@ namespace pi
 	float* WorldConstructor::heightMap;
 	std::vector<int> WorldConstructor::id;
 
-	uint8_t WorldConstructor::getCellID(uint8_t number)
+	void WorldConstructor::constructSingleCell( uint8_t number, TextureCache * textureCache )
 	{
-		return heightMap[number] / (1.0f / id.size());
-	}
-
-	void WorldConstructor::constructSingleCell(uint8_t number, TextureCache * textureCache)
-	{
-		MapManager::AddCell(number, getCellID(number), nullptr/*&textureCache->get(constants::worldConstructor::TEXTURE_FILE_PATH)*/, constants::worldConstructor::CELL);
+		MapManager::AddCell( number, getCellID( number ), nullptr/*&textureCache->get(constants::worldConstructor::TEXTURE_FILE_PATH)*/, constants::worldConstructor::CELL );
 	}
 
 	void WorldConstructor::loadCellTypes()
 	{
-		std::ifstream input(constants::worldConstructor::ID_FILE_PATH);
+		std::ifstream input( constants::worldConstructor::ID_FILE_PATH );
 		int tempID;
 
-		while (input >> tempID) id.push_back(tempID);
+		while ( input >> tempID ) id.push_back( tempID );
 	}
 
-	void WorldConstructor::ConstructWorld(int width, int height, int seed, int accuracy, TextureCache * textureCache)
+	void WorldConstructor::ConstructWorld( int width, int height, int seed, int accuracy, TextureCache * textureCache )
 	{
-		heightMap = WorldHeightmapGenerator::Generate(width, height, seed, accuracy);
+		heightMap = WorldHeightmapGenerator::Generate( width, height, seed, accuracy );
 		loadCellTypes();
 
-		MapManager::SetUnitWorldSize(sf::Vector2i(width, height));
+		MapManager::SetUnitWorldSize( sf::Vector2i( width, height ) );
 
-		for (uint16_t i = 0; i < width*height; ++i)
-			constructSingleCell(i, textureCache);
+		for ( uint16_t i = 0; i < width*height; ++i )
+			constructSingleCell( i, textureCache );
 
 		MapManager::FinalizeLogicPartOfMap();
 	}

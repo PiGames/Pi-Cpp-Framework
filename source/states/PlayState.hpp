@@ -9,19 +9,17 @@
 
 namespace mc
 {
-	class PlayState final :
-		public pi::State
+	class PlayState final : public pi::State
 	{
-	private:
-		void onActivation() override;
-
 	public:
 		PlayState();
 
-		short run();
+		short Run() override;
 
 	private:
 		pi::FontCache fonts;
 		pi::TextureCache textures;
+
+		void onActivation() override;
 	};
 }

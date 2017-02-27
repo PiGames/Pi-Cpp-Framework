@@ -7,58 +7,73 @@ namespace pi
 {
 	namespace ui
 	{
-/*
-===============================================================================
-Created by: Beniamin Gajecki ,,Uriel"
-Checkbox class.
-===============================================================================
-*/
+		/*
+		===============================================================================
+		Created by: Beniamin Gajecki ,,Uriel"
+		Checkbox class.
+		===============================================================================
+		*/
 		class Checkbox final : public Element
 		{
 		public:
-			Checkbox( );
-			~Checkbox( ) = default;
+			Checkbox();
+			~Checkbox() = default;
 
 			// VIEW FUNCTIONS START
 			// Set checkbox textures when on and off
-			void setTexture( const sf::Texture&, const sf::Texture& );
+			void SetTexture( const sf::Texture& textureOff, const sf::Texture& textureOn );
 			// Set checkbox position
-			void setPosition( const sf::Vector2f& );
+			void SetPosition( const sf::Vector2f& position );
 			// Set checkbox size
-			void setSize( const sf::Vector2f& );
+			void SetSize( const sf::Vector2f& size );
 			// Set checkbox position and size
-			void setRect( const sf::Vector2f&, const sf::Vector2f& );
+			void SetRect( const sf::Vector2f&, const sf::Vector2f& );
 			// Set On-Off
-			void setEnable( const bool );
+			void SetEnable( bool flag )
+			{
+				this->isEnable = flag;
+			}
 			// VIEW FUNCTIONS END
 
 			// GET START
 			// Get checkbox texture
-			const sf::Texture getTexture( ) const { return *this->texture; }
+			const sf::Texture GetTexture() const
+			{
+				return *this->texture;
+			}
 			// Get checkbox when is on
-			const sf::Texture getTextureOn( ) const { return this->textureOn; }
+			const sf::Texture GetTextureOn() const
+			{
+				return this->textureOn;
+			}
 			// Get checkbox when is off
-			const sf::Texture getTextureOff( ) const { return this->textureOff; }
+			const sf::Texture GetTextureOff() const
+			{
+				return this->textureOff;
+			}
 			// Get On or Off
-			const bool getEnable( ) const { return this->isEnable; }
+			const bool GetEnable() const
+			{
+				return this->isEnable;
+			}
 			// GET END
 
 			// Add calback function for checkbox when is on
-			void addCallbackOn( std::function<void( )> );
+			void AddCallbackOn( std::function<void()> function );
 			// Add calback function for checkbox when is off
-			void addCallbackOff( std::function<void( )> );
+			void AddCallbackOff( std::function<void()> function );
 
 		private:
 			sf::Texture *texture, textureOn, textureOff;
-			std::array <std::function<void( )>, constants::ui::MAX_CALLBACKS> functionsOff;
-			std::array <std::function<void( )>, constants::ui::MAX_CALLBACKS> functionsOn;
+			std::array <std::function<void()>, constants::ui::MAX_CALLBACKS> functionsOff;
+			std::array <std::function<void()>, constants::ui::MAX_CALLBACKS> functionsOn;
 			bool isEnable;
 
-			void enable( );
-			void disable( );
+			void enable();
+			void disable();
 
 			// VIRTUAL FUNCTIONS START
-			void use( sf::Event& event ) final;
+			void use( const sf::Event& event ) override;
 			// VIRTUAL FUNCTIONS END
 		};
 	}

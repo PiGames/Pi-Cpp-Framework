@@ -8,7 +8,7 @@ namespace mc
 	class Player final : public pi::Entity
 	{
 	public:
-		enum Direction
+		enum direction_t
 		{
 			UP,
 			LEFT,
@@ -16,11 +16,11 @@ namespace mc
 			DOWN
 		};
 
-		Player(const sf::Texture& texture, const std::string& name = "<unnamed Player>", const sf::Vector2f& position = { 0,0 }, float speed = 1.f);
+		Player( const sf::Texture& texture, const std::string& name = "<unnamed Player>", const sf::Vector2f& position = { 0, 0 }, float speed = 1.f );
 		~Player() = default;
 
-		void move(const Direction&);
-		void update(sf::RenderWindow&);
+		void Move( Player::direction_t direction );
+		void Update( sf::RenderWindow& window );
 
 	private:
 		sf::Texture texture;

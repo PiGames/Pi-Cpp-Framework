@@ -22,20 +22,20 @@ namespace pi
 		virtual ~ResourceCache() = default;
 
 		// Returns reference to given resource
-		virtual T& get(const std::string& path)
+		virtual T& Get( const std::string& path )
 		{
-			if (path.empty())
+			if ( path.empty() )
 			{
-				Logger::Log(constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error);
+				Logger::Log( constants::error::resourceCache::CANNOT_GET_NO_PATH, Logger::MessageType::Error );
 
 				return handleError();
 			}
 
 			// Try to find T in cache
 			{
-				auto result = this->resources.find(path);
+				auto result = this->resources.find( path );
 
-				if (result != this->resources.end())
+				if ( result != this->resources.end() )
 					return *result->second;
 			}
 
@@ -43,24 +43,25 @@ namespace pi
 			{
 				auto resource = std::make_unique<T>();
 
-				if (!resource->loadFromFile(path))
+				if ( !resource->loadFromFile( path ) )
 				{
-					Logger::Log(constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error);
+					Logger::Log( constants::error::resourceCache::CANNOT_GET_CANNOT_LOAD + path, pi::Logger::MessageType::Error );
 
 					return handleError();
 				}
 
-				this->resources[path] = std::move(resource);
+				this->resources[path] = std::move( resource );
 
 				return *this->resources[path];
 			}
 		}
-
 	protected:
 		// Returns special resource version if error occures in get method
-		virtual T& handleError() { return error_resource; }
+		virtual T& handleError()
+		{
+			return error_resource;
+		}
 
-	protected:
 		std::unordered_map<std::string, std::unique_ptr<T>> resources;
 		T error_resource;
 	};
@@ -71,32 +72,41 @@ namespace pi
 	}
 
 	// Returns 32x32 texture if cannot load correctly 
-	class TextureCache final :
-		public ResourceCache<sf::Texture>
+	class TextureCache final : public ResourceCache<sf::Texture>
 	{
-	private:
-		sf::Texture& handleError();
-
 	public:
 		TextureCache();
 
 		// Sets Fallback Color
-		sf::Color getFallbackColor();
+		sf::Color GetFallbackColor()
+		{
+			return this->fallbackColor;
+		}
 		// Returns Fallback Color
-		void setFallbackColor(const sf::Color& color);
+		void SetFallbackColor( const sf::Color& color )
+		{
+			this->fallbackColor = color;
+		}
 
 	private:
 		sf::Color fallbackColor;
+
+		sf::Texture& handleError()
+		{
+			return error_resource;
+		}
+
 	};
 
 	// Returns DejaVuSans if cannot lad correctly
-	class FontCache final :
-		public ResourceCache<sf::Font>
+	class FontCache final : public ResourceCache<sf::Font>
 	{
-	private:
-		sf::Font& handleError();
-
 	public:
 		FontCache();
+	private:
+		sf::Font& handleError()
+		{
+			return error_resource;
+		}
 	};
 }

@@ -55,14 +55,14 @@ namespace pi
 		{
 			const std::map<std::string, sf::Vector2i> unitDirections =
 			{
-				{ "NORTH",		{0,-1}	},
-				{ "NORTH_EAST",	{1,-1}	},
-				{ "EAST",		{1,0}	},
-				{ "SOUTH_EAST",	{1,1}	},
-				{ "SOUTH",		{0,1}	},
-				{ "SOUTH_WEST",	{-1,1}	},
-				{ "WEST",		{-1,0}	},
-				{ "NORT_WEST",	{-1,-1}	}
+				{ "NORTH", { 0, -1 } },
+				{ "NORTH_EAST", { 1, -1 } },
+				{ "EAST", { 1, 0 } },
+				{ "SOUTH_EAST", { 1, 1 } },
+				{ "SOUTH", { 0, 1 } },
+				{ "SOUTH_WEST", { -1, 1 } },
+				{ "WEST", { -1, 0 } },
+				{ "NORT_WEST", { -1, -1 } }
 			};
 
 			namespace nameDirections
@@ -97,14 +97,14 @@ namespace pi
 		namespace mouse
 		{
 			constexpr auto TEXTURE_PATH = "data/textures/path.jpg";
-			const sf::Vector2f dimensions = { 20,20 };
+			const sf::Vector2f dimensions = { 20, 20 };
 		}
 
 		namespace taskManager
 		{
 			constexpr auto ACTION_PATH = "data/AI/tasks/actions.txt";
 			constexpr auto CATEGORY_PATH = "data/AI/tasks/category.txt";
-			constexpr auto PROPERTIES_PATH = "data/AI/tasks/NPC_properties.txt";
+			constexpr auto PROPERTIES_PATH = "data/AI/tasks/npcProperties_t.txt";
 		}
 
 		namespace worldConstructor
@@ -132,7 +132,7 @@ namespace pi
 
 		namespace cell
 		{
-			const sf::Vector2f CELL_DIMENSIONS = { 64,64 };
+			const sf::Vector2f CELL_DIMENSIONS = { 64, 64 };
 		}
 
 		namespace error

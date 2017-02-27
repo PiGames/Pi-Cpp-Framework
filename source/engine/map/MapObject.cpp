@@ -2,46 +2,17 @@
 
 namespace pi
 {
-	MapObject::MapObject(const std::string & name, const sf::Vector2f& pos)
-		:position(pos), Entity(name)
+	MapObject::MapObject( const std::string & name, const sf::Vector2f& pos )
+		:position( pos ), Entity( name )
 	{
 
 	}
 
-	sf::Vector2f & MapObject::getPosition()
+	void MapObject::SetPosition( const sf::Vector2i& position )
 	{
-		return position;
+		this->object.setPosition(
+			this->position.x*constants::cell::CELL_DIMENSIONS.x,
+			this->position.y*constants::cell::CELL_DIMENSIONS.y );
 	}
-
-	const float MapObject::getWidth()
-	{
-		return object.getGlobalBounds().width;
-	}
-
-	const float MapObject::getHeight()
-	{
-		return object.getGlobalBounds().height;
-	}
-
-	void MapObject::setPosition(sf::Vector2f position)
-	{
-		object.setPosition(position);
-	}
-
-	void MapObject::setPosition(sf::Vector2i position)
-	{
-		object.setPosition(position.x*constants::cell::CELL_DIMENSIONS.x, position.y*constants::cell::CELL_DIMENSIONS.y);
-	}
-
-	void MapObject::move(sf::Vector2f shift)
-	{
-		object.move(shift);
-	}
-
-	void MapObject::draw(sf::RenderTarget& target, sf::RenderStates states) const
-	{
-		target.draw(object, states);
-	}
-
 }
 

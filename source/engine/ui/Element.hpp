@@ -17,12 +17,12 @@ namespace pi
 			SLIDER,
 			LIST
 		};
-/*
-===============================================================================
-Created by: Beniamin Gajecki ,,Uriel"
-User Interface(UI) Element class.
-===============================================================================
-*/
+		/*
+		===============================================================================
+		Created by: Beniamin Gajecki ,,Uriel"
+		User Interface(UI) Element class.
+		===============================================================================
+		*/
 		class Element
 		{
 		public:
@@ -31,24 +31,30 @@ User Interface(UI) Element class.
 
 			// STANDART UI GETS START
 			// Return element position
-			const sf::Vector2f getPosition( ) const { return this->position; }
+			const sf::Vector2f GetPosition() const
+			{
+				return this->position;
+			}
 			// Return element size
-			const sf::Vector2f getSize( ) const { return this->size; }
+			const sf::Vector2f GetSize() const
+			{
+				return this->size;
+			}
 			// STANDART UI GETS END
 
 		protected:
-			// STANDART UI FUNCTIONS START
-			// Use element
-			virtual void use( sf::Event& ) = 0;
-			// Update element
-			virtual void update( sf::RenderWindow& );
-			// STANDART UI FUNCTIONS END
-
 			// STANDART UI VARIABLES START
 			sf::Sprite sprite;
 			sf::Vector2f position, size;
 			elementType_t type;
 			// STANDART UI VARIABLES END
+
+			// STANDART UI FUNCTIONS START
+			// Use element
+			virtual void use( const sf::Event& event ) = 0;
+			// Update element
+			virtual void update( sf::RenderWindow& window );
+			// STANDART UI FUNCTIONS END
 		};
 	}
 }
