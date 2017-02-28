@@ -30,7 +30,7 @@ namespace pi
 		}
 
 		//Add single cell
-		static void constructSingleCell( uint8_t number, TextureCache * textureCache );
+		static void constructSingleCell( uint8_t number, sf::Texture * texture );
 
 		//Loades cell types to a vector of cells' ID
 		static void loadCellTypes();

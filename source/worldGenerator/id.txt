@@ -1,3 +1,4 @@
 stone
 grass
 water
+example
