@@ -56,9 +56,6 @@ namespace pi
 		//Returns state of map unit
 		static bool IsCollidableUnit( sf::Vector2i unitPosition );
 
-		//Returns name direction of moving
-		static std::string GetNameDirection( sf::Vector2f speed );
-
 		static void FillOverlappingToVector( std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction );
 
 		static void SetUnitWorldSize( sf::Vector2i size )
