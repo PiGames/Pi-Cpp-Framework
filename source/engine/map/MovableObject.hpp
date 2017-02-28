@@ -27,7 +27,7 @@ namespace pi
 		//Sets target and use pathfinder
 		void SetTargetTo( const sf::Vector2f& from, const sf::Vector2f& to )
 		{
-			PathFinder::FillTargetsQueue( from, to, &targets );
+			PathFinder::FillTargetsQueue( from, to, targets );
 		}
 		//Move object in direction of first target
 		//returns false if object isn't moving now

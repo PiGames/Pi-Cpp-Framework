@@ -30,7 +30,7 @@ namespace pi
 
 		static void AddCell( uint8_t number = 0, int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", bool collidableFlag = false );
 
-		static void AddStaticObject( StaticObject staticObject );
+		static void AddStaticObject( StaticObject & staticObject );
 
 		//Returns unit world size (in units)
 		static sf::Vector2i& GetUnitWorldSize()
@@ -54,11 +54,11 @@ namespace pi
 		static bool IsCollidableUnit( uint16_t number );
 
 		//Returns state of map unit
-		static bool IsCollidableUnit( sf::Vector2i unitPosition );
+		static bool IsCollidableUnit( sf::Vector2i& unitPosition );
 
-		static void FillOverlappingToVector( std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction );
+		static void FillOverlappingToVector( std::vector<sf::Vector2i>* overlapping, sf::Vector2i& direction );
 
-		static void SetUnitWorldSize( sf::Vector2i size )
+		static void SetUnitWorldSize( sf::Vector2i& size )
 		{
 			unitWorldSize = size;
 		}

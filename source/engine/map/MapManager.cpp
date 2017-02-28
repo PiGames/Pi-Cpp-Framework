@@ -29,7 +29,7 @@ namespace pi
 		surface.push_back( Cell( id, texture, name, sf::Vector2f( ( number - number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.x, ( number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.y ), std::vector<sf::Vector2i>() = { sf::Vector2i( number - number / unitWorldSize.x, number / unitWorldSize.x ) }, collidableFlag ) );
 	}
 
-	void MapManager::AddStaticObject( StaticObject staticObject )
+	void MapManager::AddStaticObject( StaticObject& staticObject )
 	{
 		staticObjects.push_back( staticObject );
 		UpdateSingleUnits( &staticObject );
@@ -46,7 +46,7 @@ namespace pi
 		return collisionMap[number];
 	}
 
-	bool MapManager::IsCollidableUnit( sf::Vector2i unitPosition )
+	bool MapManager::IsCollidableUnit( sf::Vector2i& unitPosition )
 	{
 
 		if ( unitPosition.y*unitWorldSize.x + unitPosition.x > unitWorldSize.x*unitWorldSize.y ||
@@ -61,7 +61,7 @@ namespace pi
 
 
 
-	void MapManager::FillOverlappingToVector( std::vector<sf::Vector2i>* overlapping, sf::Vector2i direction )
+	void MapManager::FillOverlappingToVector( std::vector<sf::Vector2i>* overlapping, sf::Vector2i& direction )
 	{
 		if ( direction.x != 0 && direction.y != 0 )
 		{
