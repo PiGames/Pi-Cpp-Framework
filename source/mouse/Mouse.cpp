@@ -7,11 +7,19 @@ namespace mc
 	{
 		pi::TextureCache textureAtlas;
 		object.setTexture( textureAtlas.Get( "data/textures/path.jpg" ) );
-		SetCursor( Mouse::TYPE::SIMPLE );
+		SetCursor( Mouse::type_t::SIMPLE );
 	}
 
-	void Mouse::SetCursor( Mouse::TYPE type )
+	void Mouse::ProcessEvent( const sf::Event& event, const sf::RenderWindow& window )
 	{
-		object.setTextureRect( sf::IntRect( type * pi::constants::mouse::dimensions.x, 0, pi::constants::mouse::dimensions.x, pi::constants::mouse::dimensions.y ) );
+		if ( event.type == sf::Event::MouseMoved )
+		{
+			this->SetPosition( sf::Mouse::getPosition( window ) );
+		}
+	}
+
+	void Mouse::SetCursor( Mouse::type_t type )
+	{
+		object.setTextureRect( sf::IntRect( static_cast<int>( type ) * pi::constants::mouse::dimensions.x, 0, pi::constants::mouse::dimensions.x, pi::constants::mouse::dimensions.y ) );
 	}
 }

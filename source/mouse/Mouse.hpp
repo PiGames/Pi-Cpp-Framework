@@ -14,11 +14,14 @@ namespace mc
 	public:
 		Mouse( const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 } );
 
-		static enum TYPE
+		enum class type_t
 		{
 			SIMPLE = 0
 		};
 
-		void SetCursor( Mouse::TYPE type );
+		void ProcessEvent( const sf::Event& event, const sf::RenderWindow& window );
+
+		void SetCursor( Mouse::type_t type );
+	private:
 	};
 }
