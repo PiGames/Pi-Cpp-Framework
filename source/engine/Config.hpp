@@ -156,8 +156,8 @@ namespace pi
 
 			namespace resourceCache
 			{
-				constexpr auto CANNOT_GET_NO_PATH = "ResourceCache: cannot return proper resource, no name has given";
-				constexpr auto CANNOT_GET_CANNOT_LOAD = "ResourceCache: cannot return proper resource, cannot load from path: ";
+				constexpr auto CANNOT_GET_NO_PATH = "OldResourceCache: cannot return proper resource, no name has given";
+				constexpr auto CANNOT_GET_CANNOT_LOAD = "OldResourceCache: cannot return proper resource, cannot load from path: ";
 			}
 
 			namespace mapManager

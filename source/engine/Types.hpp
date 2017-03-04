@@ -3,6 +3,8 @@
 
 namespace pi
 {
+	using cstring_t = const char*;
+
 	////////////////////
 	//	Enumerations  //
 	////////////////////

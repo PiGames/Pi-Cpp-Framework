@@ -16,7 +16,7 @@ namespace mc
 		this->backgroundTexture.loadFromFile( "data/textures/background.jpg" );
 		this->playTexture.loadFromFile( "data/textures/play.png" );
 		this->exitTexture.loadFromFile( "data/textures/exit.png" );
-		this->console->SetTextFont( fonts.Get( "data/music/menu.ogg" ) );
+		this->console->SetTextFont( fonts.Get( "-" ) );
 
 		this->background.setPosition( { 0, 0 } );
 		this->background.setSize( { static_cast<float>( this->window->getSize().x ), static_cast<float>( this->window->getSize().y ) } );

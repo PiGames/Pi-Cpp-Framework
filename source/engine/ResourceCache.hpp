@@ -15,11 +15,11 @@ namespace pi
 {
 	// Template for Resource Cache - use it to store your resources 
 	template<class T>
-	class ResourceCache
+	class OldResourceCache
 	{
 	public:
-		ResourceCache();
-		virtual ~ResourceCache() = default;
+		OldResourceCache();
+		virtual ~OldResourceCache() = default;
 
 		// Returns reference to given resource
 		virtual T& Get( const std::string& path )
@@ -67,12 +67,12 @@ namespace pi
 	};
 
 	template<class T>
-	inline ResourceCache<T>::ResourceCache()
+	inline OldResourceCache<T>::OldResourceCache()
 	{
 	}
 
 	// Returns 32x32 texture if cannot load correctly 
-	class TextureCache final : public ResourceCache<sf::Texture>
+	class TextureCache final : public OldResourceCache<sf::Texture>
 	{
 	public:
 		TextureCache();
@@ -99,7 +99,7 @@ namespace pi
 	};
 
 	// Returns DejaVuSans if cannot lad correctly
-	class FontCache final : public ResourceCache<sf::Font>
+	class FontCache final : public OldResourceCache<sf::Font>
 	{
 	public:
 		FontCache();
