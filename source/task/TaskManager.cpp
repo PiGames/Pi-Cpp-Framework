@@ -13,4 +13,11 @@ namespace mc
 		return &taskData[randomedCategory][randomedTask];
 	}
 
+	void TaskManager::loadData()
+	{
+		{//Security
+			taskData.emplace(pi::enumerations::taskManager::taskCategory_t::SECURITY, std::vector<Task>{/*FirefightingTask()*/});
+		}
+	}
+
 }

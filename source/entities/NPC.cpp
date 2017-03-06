@@ -43,7 +43,7 @@ namespace mc
 	NPC::NPC( const std::string & name, const sf::Vector2f & pos, float speed )
 		:pi::MovableObject( name, pos, speed )
 	{
-		//setSkills();
-		//setPriorities();
+		setSkills();
+		setPriorities();
 	}
 }

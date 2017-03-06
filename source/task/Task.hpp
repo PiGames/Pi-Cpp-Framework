@@ -15,7 +15,7 @@ namespace mc
 	{
 
 	public:
-		Task( uint8_t category, uint8_t kind, NPC* npc );
+		Task(uint8_t category = 0, uint8_t kind = 0, NPC* npc = nullptr );
 
 		uint8_t GetCategory()
 		{
@@ -36,8 +36,6 @@ namespace mc
 		{
 			return doing;
 		}
-
-		virtual bool act() = 0;
 
 	private:
 

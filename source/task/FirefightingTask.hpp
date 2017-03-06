@@ -8,8 +8,8 @@ namespace mc
 	{
 	public:
 
-		FirefightingTask( uint8_t category, uint8_t kind, NPC* npc );
+		FirefightingTask( uint8_t category = 0, uint8_t kind = 0, NPC* npc = nullptr );
 
-		virtual bool act() override;
+		bool act();
 	};
 }
