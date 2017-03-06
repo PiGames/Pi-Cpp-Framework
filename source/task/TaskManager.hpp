@@ -19,16 +19,12 @@ namespace mc
 	{
 	public:
 
-		//Loads data like actions and categories
-		//returns false if data hasn't been loaded
-		static bool LoadData( std::string& actionPath, std::string& categoryPath );
-
 		static int GetProperty( pi::enumerations::taskManager::npcProperties_t property )
 		{
 			return npcProperties[property];
 		}
 
-		static std::vector<Task> GetActionCollection( pi::enumerations::taskManager::taskCategory_t category )
+		static std::vector<Task>& GetActionCollection( pi::enumerations::taskManager::taskCategory_t category )
 		{
 			return taskData[category];
 		}
@@ -36,9 +32,6 @@ namespace mc
 		static Task* GetRandomTask();
 
 	private:
-		static bool loadActions( const std::string& path );
-		static bool loadCategories( const std::string& path );
-		static bool loadSkillsAmmount( const std::string& path );
 
 		/*  TASK_CATEGORY, vec<Action>  */
 		static std::map<int8_t, std::vector<Task>> taskData;
