@@ -5,6 +5,8 @@
 
 #include <queue>
 
+class NPC;
+
 namespace mc
 {
 	//Task
@@ -13,7 +15,7 @@ namespace mc
 	{
 
 	public:
-		Task( uint8_t category, uint8_t kind );
+		Task( uint8_t category, uint8_t kind, NPC* npc );
 
 		uint8_t GetCategory()
 		{
@@ -30,29 +32,21 @@ namespace mc
 			return this->kind == second.kind;
 		}
 
-		bool IsDoing()
+		bool inProgress()
 		{
 			return doing;
 		}
 
+		virtual bool act() = 0;
+
 	private:
-
-		void generateCommands() {}
-
-		union command
-		{
-			sf::Vector2i target;
-			float sleepTime;
-		};
-
-		/*type|status*/
-		std::queue<std::pair<command, bool>> commandList;
-
 
 		bool doing;
 
 		const int8_t category;
 
 		const int8_t kind;
+
+		NPC* owner;
 	};
 }
