@@ -14,24 +14,26 @@ namespace mc
 	}
 
 
-	void Player::Move( Player::direction_t direction )
+	void Player::Move( Player::direction_t direction, sf::View* view )
 	{
+		sf::Vector2f move;
 		switch ( direction )
 		{
 		case Player::direction_t::UP:
-			this->position.y -= this->speed;
+			move.y -= this->speed;
 			break;
 		case Player::direction_t::LEFT:
-			this->position.x -= this->speed;
+			move.x -= this->speed;
 			break;
 		case Player::direction_t::RIGHT:
-			this->position.x += this->speed;
+			move.x += this->speed;
 			break;
 		case Player::direction_t::DOWN:
-			this->position.y += this->speed;
+			move.y += this->speed;
 			break;
 		}
-		this->sprite.setPosition( this->position );
+		this->sprite.move( move );
+		view->move( move );
 	}
 
 	void Player::Update( sf::RenderWindow& window )

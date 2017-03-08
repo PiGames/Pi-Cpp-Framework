@@ -93,10 +93,10 @@ namespace pi
 
 	void Renderer::Render( const sf::Color& clearColor )
 	{
-		Renderer::window->clear( clearColor );
+	//	Renderer::window->clear( clearColor );
 
 		Renderer::drawMap();
 
-		Renderer::window->display();
+		//Renderer::window->display();
 	}
 }

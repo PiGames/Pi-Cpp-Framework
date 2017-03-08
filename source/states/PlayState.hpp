@@ -13,12 +13,15 @@ namespace mc
 	{
 	public:
 		PlayState();
-
 		short Run() override;
 
 	private:
+
 		pi::FontCache fonts;
 		pi::TextureCache textures;
+
+		mc::Player player;
+		sf::View view;
 
 		void onActivation() override;
 	};
