@@ -1,8 +1,39 @@
 // Created by: Condzi (but everyone will edit it)
 #pragma once
 
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/Texture.hpp>
+
+#include "ResourceHolder/ResourceWrapper.hpp"
+
 namespace pi
 {
+	using textureResource_t = ResourceWrapper<sf::Texture>;
+	using fontResource_t = ResourceWrapper<sf::Font>;
+
+	enum class resourcePriorites_t
+	{
+		UI = 0,
+		ENTITIES,
+		LEVEL
+	};
+
+	enum class textureResourceID_t
+	{
+		LEVEL_BG = 0,
+		ENEMY,
+		PLAYER,
+
+		count
+	};
+
+	enum class fontResourceID_t
+	{
+		UI_FONT = static_cast<uint8_t>( textureResourceID_t::count ),
+
+		count
+	};
+
 	using cstring_t = const char*;
 
 	////////////////////

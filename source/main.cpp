@@ -6,9 +6,6 @@
 #include "States/PlayState.hpp"
 #include "States/MenuState.hpp"
 
-#include <engine/resourceCache/ResourceCache.hpp>
-
-
 int main()
 {
 	try
@@ -26,47 +23,5 @@ int main()
 		std::cin.get();
 	}
 
-
-
 	return 0;
 }
-
-//#include "engine/resourceCache/ResourceCache.hpp"
-//
-//enum testEnum
-//{
-//	A = 0,
-//	B
-//};
-//
-//struct testRes
-//{
-//	bool loadFromFile( const std::string& path )
-//	{
-//		pi::Logger::Log( "Loaded!" );
-//
-//		return true;
-//	}
-//
-//	testRes() :
-//		Val( 0 )
-//	{}
-//
-//	int Val;
-//};
-//
-//int main()
-//{
-//	pi::ResourceCache<testRes, testEnum> res;
-//
-//	res.SetLoadingMethod( &testRes::loadFromFile );
-//	res.AddResourcePath( testEnum::A, "somePath" );
-//
-//	res.Get( testEnum::A )->Val = 123;
-//	std::cout<<res.Get( testEnum::A )->Val << "\n";
-//	res.Get( testEnum::B );
-//	res.Release(testEnum::A, true );
-//	std::cout << res.Get( testEnum::A )->Val;
-//
-//	std::cin.get();
-//}
