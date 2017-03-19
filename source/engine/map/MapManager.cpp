@@ -26,7 +26,10 @@ namespace pi
 
 	void MapManager::AddCell( uint8_t number, int id, sf::Texture * texture, const std::string & name, bool collidableFlag )
 	{
-		surface.push_back( Cell( id, texture, name, sf::Vector2f( ( number - number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.x, ( number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.y ), std::vector<sf::Vector2i>() = { sf::Vector2i( number - number / unitWorldSize.x, number / unitWorldSize.x ) }, collidableFlag ) );
+		if ( unitWorldSize.x == 0 || unitWorldSize.y == 0 )
+			pi::Logger::Log( "World size cannot be zero", pi::Logger::MessageType::Error );
+		else
+			surface.push_back( Cell( id, texture, name, sf::Vector2f( ( number - number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.x, ( number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.y ), std::vector<sf::Vector2i>() = { sf::Vector2i( number - number / unitWorldSize.x, number / unitWorldSize.x ) }, collidableFlag ) );
 	}
 
 	void MapManager::AddStaticObject( StaticObject& staticObject )
