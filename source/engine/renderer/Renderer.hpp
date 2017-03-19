@@ -9,6 +9,8 @@
 #include "engine/RenderSettings.hpp"
 #include "engine/Logger.hpp"
 #include "engine/map/MapManager.hpp"
+#include "engine/Types.hpp"
+
 
 namespace pi
 {
@@ -17,7 +19,7 @@ namespace pi
 	public:
 		Renderer() = delete;
 
-		static void SetMapTexture( std::shared_ptr<sf::Texture> texture )
+		static void SetMapTexture( std::weak_ptr<sf::Texture> texture )
 		{
 			Renderer::mapTexture = texture;
 		}
@@ -33,14 +35,14 @@ namespace pi
 
 		static void Update()
 		{
-			updateMapVerticies();
+			Renderer::updateMapVerticies();
 		}
 
 		static void Render( const sf::Color& clearColor = sf::Color::Black );
 
 	private:
 		/* static std::shared_ptr<UI> ui; ? */
-		static std::shared_ptr<sf::Texture> mapTexture;
+		static std::weak_ptr<sf::Texture> mapTexture;
 		static sf::RenderWindow* window;
 
 		static std::vector<sf::Vertex> mapVerticies;

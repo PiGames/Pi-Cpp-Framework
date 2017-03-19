@@ -5,6 +5,8 @@
 #include "engine/ResourceCache.hpp"
 #include "entities/Player.hpp"
 #include "engine/renderer/Renderer.hpp"
+#include "engine/resourceHolder/ResourceHolder.hpp"
+
 #include "worldGenerator/WorldConstructor.hpp"
 
 namespace mc
@@ -24,5 +26,6 @@ namespace mc
 		sf::View view;
 
 		void onActivation() override;
+		void onDeactivation() override;
 	};
 }

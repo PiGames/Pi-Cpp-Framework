@@ -5,18 +5,28 @@ namespace mc
 	void PlayState::onActivation()
 	{
 		// ResourceCache should return std:shared_ptrs... :/
-		pi::Renderer::SetMapTexture( std::make_shared<sf::Texture>( textures.Get( "data/textures/textureSheet.png" ) ) );
+		pi::ResourceHolder::textures.push_back( std::make_shared<pi::textureResource_t>() );
+		pi::ResourceHolder::textures.back()->loadFromFile( "data/textures/textureSheet.png" );
+		pi::ResourceHolder::textures.back()->SetResourcePriority( static_cast<uint8_t>( pi::resourcePriorites_t::LEVEL ) );
+		pi::ResourceHolder::textures.back()->SetResourceID( static_cast<uint8_t>( pi::textureResourceID_t::LEVEL_BG ) );
+
+
+		pi::Renderer::SetMapTexture( pi::ResourceHolder::GetTexture( static_cast<uint8_t>( pi::textureResourceID_t::LEVEL_BG ) ) );
 		pi::Renderer::SetWindow( this->window );
 		pi::WorldConstructor::ConstructWorld( 16, 16, 123, 1, nullptr );
 
 		view = window->getDefaultView();
 		sf::Vector2u textureSize = player.GetTexture()->getSize();
-		view.setCenter(player.GetPosition().x + textureSize.x / 2, player.GetPosition().y + textureSize.y / 2);
+		view.setCenter( player.GetPosition().x + textureSize.x / 2, player.GetPosition().y + textureSize.y / 2 );
+	}
+
+	void PlayState::onDeactivation()
+	{
+		pi::ResourceHolder::DeleteAllResourcesByPriority( static_cast<uint8_t>( pi::resourcePriorites_t::LEVEL ) );
 	}
 
 	PlayState::PlayState() : player( textures.Get( "data/textures/play.png" ) )
 	{
-		
 	}
 
 	short PlayState::Run()

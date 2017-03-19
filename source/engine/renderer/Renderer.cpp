@@ -4,7 +4,7 @@ namespace pi
 {
 	/* static std::shared_ptr<UI> ui; ? */
 	/* static std::shared_ptr<Player> player ? */
-	std::shared_ptr<sf::Texture> Renderer::mapTexture;
+	std::weak_ptr<sf::Texture> Renderer::mapTexture;
 	sf::RenderWindow* Renderer::window;
 
 	std::vector<sf::Vertex> Renderer::mapVerticies;
@@ -13,7 +13,7 @@ namespace pi
 	void Renderer::updateMapVerticies()
 	{
 		static bool errorMessageLogged = false;
-		if ( !mapTexture && !errorMessageLogged )
+		if ( mapTexture.expired() && !errorMessageLogged )
 		{
 			errorMessageLogged = true;
 			Logger::Log( "mapTexture is not set, Renderer cannot update map verticies", pi::Logger::MessageType::Error, pi::Logger::OutputType::Console );
@@ -35,11 +35,11 @@ namespace pi
 			{
 				uint32_t tileID = tiles[x + y * mapSize.x].GetID();
 
-				if ( tileID * renderSettings::MAP_CELL_TEXTURE_SIZE.X > Renderer::mapTexture->getSize().x ||
-					renderSettings::MAP_CELL_TEXTURE_SIZE.Y > Renderer::mapTexture->getSize().y )
+				if ( tileID * renderSettings::MAP_CELL_TEXTURE_SIZE.X > Renderer::mapTexture.lock()->getSize().x ||
+					renderSettings::MAP_CELL_TEXTURE_SIZE.Y > Renderer::mapTexture.lock()->getSize().y )
 				{
 					Logger::Log(
-						"Invalid map texture size! Requested/max: x: " + std::to_string( tileID * renderSettings::MAP_CELL_TEXTURE_SIZE.X ) + " / " + std::to_string( Renderer::mapTexture->getSize().x ) + ", y: " + std::to_string( renderSettings::MAP_CELL_TEXTURE_SIZE.Y ) + " / " + std::to_string( Renderer::mapTexture->getSize().y ),
+						"Invalid map texture size! Requested/max: x: " + std::to_string( tileID * renderSettings::MAP_CELL_TEXTURE_SIZE.X ) + " / " + std::to_string( Renderer::mapTexture.lock()->getSize().x ) + ", y: " + std::to_string( renderSettings::MAP_CELL_TEXTURE_SIZE.Y ) + " / " + std::to_string( Renderer::mapTexture.lock()->getSize().y ),
 						Logger::MessageType::Error, Logger::OutputType::Both );
 
 					return;
@@ -65,7 +65,7 @@ namespace pi
 	void Renderer::drawMap()
 	{
 		static bool errorMessageLogged = false;
-		if ( !Renderer::mapTexture && !errorMessageLogged )
+		if ( Renderer::mapTexture.expired() && !errorMessageLogged )
 		{
 			errorMessageLogged = true;
 			Logger::Log( "mapTexture is not set, Renderer cannot draw map", pi::Logger::MessageType::Error, pi::Logger::OutputType::Console );
@@ -85,7 +85,7 @@ namespace pi
 
 		mapTransform.scale( renderSettings::RENDER_SCALE.X, renderSettings::RENDER_SCALE.Y );
 		// Sad because calling .get() :(
-		mapRenderStates.texture = Renderer::mapTexture.get();
+		mapRenderStates.texture = &*Renderer::mapTexture.lock();
 		mapRenderStates.transform = mapTransform;
 
 		Renderer::window->draw( &Renderer::mapVerticies[0], Renderer::mapVerticies.size(), sf::PrimitiveType::Quads, mapRenderStates );
