@@ -11,6 +11,7 @@
 #include <fstream>
 #include <vector>
 #include <map>
+#include <memory>
 
 
 namespace mc
@@ -26,19 +27,19 @@ namespace mc
 			return npcProperties[property];
 		}
 
-		static std::vector<Task>& GetActionCollection( pi::enumerations::taskManager::taskCategory_t category )
+		static std::vector<std::shared_ptr<Task>> GetActionCollection( pi::enumerations::taskManager::taskCategory_t category )
 		{
 			return taskData[category];
 		}
 
-		static Task* GetRandomTask();
+		static std::shared_ptr<Task> GetRandomTask();
 
 		static void loadData();
 
 	private:
 
 		/*  TASK_CATEGORY, vec<Action_ID>  */
-		static std::map<int8_t, std::vector<Task>> taskData;
+		static std::map<int8_t, std::vector<std::shared_ptr<Task>>> taskData;
 
 		/*  NPC_PROPETIES, vec<property>  */
 		static std::map<int8_t, int> npcProperties;

@@ -2,6 +2,9 @@
 
 namespace mc
 {
+	void NPC::addTask()
+	{
+	}
 
 	void NPC::setSkills()
 	{
@@ -11,7 +14,7 @@ namespace mc
 
 		//security tasks
 		for ( auto&var : TaskManager::GetActionCollection( pi::enumerations::taskManager::SECURITY ) )
-			skills.push_back( &var );
+			skills.push_back( var );
 
 		//other tasks...
 		for ( size_t i = 0; i < ammount - skills.size(); i++ )
@@ -25,7 +28,7 @@ namespace mc
 				priorities.push_back( var );
 			else break;
 
-			std::vector<Task*> temporaryTaskCollection;
+			std::vector<std::shared_ptr<Task>> temporaryTaskCollection;
 
 			for ( size_t i = priorities.size(); i < skills.size(); i++ )
 				temporaryTaskCollection.push_back( skills[i] );

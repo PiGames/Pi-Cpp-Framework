@@ -21,10 +21,12 @@ namespace mc
 
 	private:
 		//Skills
-		std::vector<Task*> skills;
+		std::vector<std::shared_ptr<Task>> skills;
 		//Tasks
 		std::vector<Task> tasks;
-		std::vector<Task*> priorities;
+		std::vector<std::shared_ptr<Task>> priorities;
+
+		void addTask();
 
 		void setSkills();
 		void setPriorities();

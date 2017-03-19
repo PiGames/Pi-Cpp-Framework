@@ -1,3 +1,4 @@
+//Created by: mvxxx
 #pragma once
 
 #include "Task.hpp"
@@ -10,6 +11,6 @@ namespace mc
 
 		FirefightingTask( uint8_t category = 0, uint8_t kind = 0, NPC* npc = nullptr );
 
-		bool act();
+		virtual bool act() override;
 	};
 }

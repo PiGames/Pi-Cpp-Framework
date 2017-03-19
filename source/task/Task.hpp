@@ -4,6 +4,7 @@
 #include "engine/Config.hpp" 
 
 #include <queue>
+#include <memory>
 
 class NPC;
 
@@ -36,6 +37,8 @@ namespace mc
 		{
 			return doing;
 		}
+
+		virtual bool act() = 0;
 
 	private:
 
