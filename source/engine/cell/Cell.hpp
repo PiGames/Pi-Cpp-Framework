@@ -12,7 +12,7 @@ namespace pi
 	class Cell : public StaticObject
 	{
 	public:
-		Cell( int id = 0, sf::Texture *texture = nullptr, const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i( 0, 0 ) }, bool collidableFlag = false );
+		Cell( std::weak_ptr<sf::Texture> texture, int id = 0, const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i( 0, 0 ) }, bool collidableFlag = false );
 
 		//Returns ID of cell
 		uint16_t GetID() const

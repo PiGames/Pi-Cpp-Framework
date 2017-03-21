@@ -17,7 +17,7 @@ namespace pi
 	{
 	public:
 
-		StaticObject( const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i( 0, 0 ) }, bool collidableFlag = false );
+		StaticObject( std::weak_ptr<sf::Texture> texture, const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 }, std::vector<sf::Vector2i> uPos = { sf::Vector2i( 0, 0 ) }, bool collidableFlag = false );
 		~StaticObject();
 
 		//Returns vector of unit position (in unit system)

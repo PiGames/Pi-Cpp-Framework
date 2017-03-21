@@ -20,16 +20,16 @@ namespace pi
 	{
 		bool flag = object->IsCollidable();
 
-		for ( auto& var : object->GetUnitPosition() )
-			collisionMap[var.y*unitWorldSize.x + var.x] = surface[var.y*unitWorldSize.x + var.x].IsCollidable() || flag;
+		for ( const auto& var : object->GetUnitPosition() )
+			collisionMap[var.y * unitWorldSize.x + var.x] = surface[var.y * unitWorldSize.x + var.x].IsCollidable() || flag;
 	}
 
-	void MapManager::AddCell( uint8_t number, int id, sf::Texture * texture, const std::string & name, bool collidableFlag )
+	void MapManager::AddCell( std::weak_ptr<sf::Texture> texture, uint8_t number, int id, const std::string & name, bool collidableFlag )
 	{
 		if ( unitWorldSize.x == 0 || unitWorldSize.y == 0 )
 			pi::Logger::Log( "World size cannot be zero", pi::Logger::MessageType::Error );
 		else
-			surface.push_back( Cell( id, texture, name, sf::Vector2f( ( number - number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.x, ( number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.y ), std::vector<sf::Vector2i>() = { sf::Vector2i( number - number / unitWorldSize.x, number / unitWorldSize.x ) }, collidableFlag ) );
+			surface.push_back( Cell( texture, id, name, sf::Vector2f( ( number - number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.x, ( number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.y ), std::vector<sf::Vector2i>() = { sf::Vector2i( number - number / unitWorldSize.x, number / unitWorldSize.x ) }, collidableFlag ) );
 	}
 
 	void MapManager::AddStaticObject( StaticObject& staticObject )

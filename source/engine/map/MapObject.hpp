@@ -2,6 +2,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include <SFML/System/Vector2.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -21,7 +22,7 @@ namespace pi
 	class MapObject : public Entity
 	{
 	public:
-		MapObject( const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 } );
+		MapObject( std::weak_ptr<sf::Texture> texture, const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 } );
 
 		//Returns real position (in px)
 		sf::Vector2f& GetPosition()

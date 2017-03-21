@@ -17,7 +17,7 @@ namespace pi
 	{
 	public:
 
-		MovableObject( const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 }, float speed = 1.f );
+		MovableObject( std::weak_ptr<sf::Texture> texture, const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 }, float speed = 1.f );
 
 		//Returns state of moving
 		bool CanMove() const

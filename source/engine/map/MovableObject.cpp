@@ -2,8 +2,8 @@
 
 namespace pi
 {
-	MovableObject::MovableObject( const std::string& name, const sf::Vector2f& pos, float speed ) :
-		MapObject( name, pos ),
+	MovableObject::MovableObject( std::weak_ptr<sf::Texture> texture, const std::string& name, const sf::Vector2f& pos, float speed ) :
+		MapObject( texture, name, pos ),
 		moveSpeed( speed ),
 		isMoving( false )
 	{

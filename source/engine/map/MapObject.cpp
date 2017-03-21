@@ -2,10 +2,10 @@
 
 namespace pi
 {
-	MapObject::MapObject( const std::string & name, const sf::Vector2f& pos )
+	MapObject::MapObject( std::weak_ptr<sf::Texture> texture, const std::string & name, const sf::Vector2f& pos )
 		:position( pos ), Entity( name )
 	{
-
+		object.setTexture( *texture.lock().get() );
 	}
 
 	void MapObject::SetUnitPosition( const sf::Vector2i& position )

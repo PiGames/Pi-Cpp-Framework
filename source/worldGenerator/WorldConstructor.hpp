@@ -17,7 +17,7 @@ namespace pi
 		WorldConstructor() = delete;
 
 		//Creates a world (width x height) with given seed and accuracy
-		static void ConstructWorld( int width, int height, int seed, int accuracy, TextureCache * textureCache );
+		static void ConstructWorld( int width, int height, int seed, int accuracy, TextureCache& textureCache );
 
 	private:
 		static float* heightMap;
@@ -30,7 +30,7 @@ namespace pi
 		}
 
 		//Add single cell
-		static void constructSingleCell( uint8_t number, sf::Texture * texture );
+		static void constructSingleCell( uint8_t number, std::weak_ptr<sf::Texture> texture );
 
 		//Loades cell types to a vector of cells' ID
 		static void loadCellTypes();

@@ -12,7 +12,7 @@ namespace mc
 	class Mouse : public pi::MapObject
 	{
 	public:
-		Mouse( const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 } );
+		Mouse( std::weak_ptr<sf::Texture> texture, const std::string& name = "<unnamed Entity>", const sf::Vector2f& pos = { 0, 0 } );
 
 		enum class type_t
 		{

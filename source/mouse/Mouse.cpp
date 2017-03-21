@@ -2,11 +2,9 @@
 
 namespace mc
 {
-	Mouse::Mouse( const std::string & name, const sf::Vector2f & pos )
-		:MapObject( name, pos )
+	Mouse::Mouse( std::weak_ptr<sf::Texture> texture, const std::string & name, const sf::Vector2f & pos )
+		:MapObject( texture, name, pos )
 	{
-		pi::TextureCache textureAtlas;
-		object.setTexture( textureAtlas.Get( "data/textures/path.jpg" ) );
 		SetCursor( Mouse::type_t::SIMPLE );
 	}
 

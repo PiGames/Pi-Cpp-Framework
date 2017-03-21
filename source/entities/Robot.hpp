@@ -10,7 +10,7 @@ namespace mc
 	class Robot : public pi::MovableObject
 	{
 	public:
-		Robot( const std::string& name = "<unnamed Robot>", const sf::Vector2f& pos = { 0, 0 }, float speed = 1.f, float batteryCap = 100.f );
+		Robot( std::weak_ptr<sf::Texture> texture, const std::string& name = "<unnamed Robot>", const sf::Vector2f& pos = { 0, 0 }, float speed = 1.f, float batteryCap = 100.f );
 
 	private:
 		//Value which represents battery capacity
