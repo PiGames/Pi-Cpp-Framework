@@ -8,6 +8,11 @@ namespace pi
 	bool* MapManager::collisionMap;
 
 
+	MapManager::~MapManager()
+	{
+		delete collisionMap;
+	}
+
 	void MapManager::SurfaceCollisionMapUpdate()
 	{
 		for ( int i = 0; i < unitWorldSize.x*unitWorldSize.y; ++i )

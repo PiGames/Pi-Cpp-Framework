@@ -20,6 +20,7 @@ namespace pi
 		friend class MapRenderer;
 
 		MapManager();
+		~MapManager();
 	public:
 
 		//Updatesthe whole collision map (Only from surface) | Don't overuse this method!
