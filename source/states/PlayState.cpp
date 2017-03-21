@@ -13,7 +13,7 @@ namespace mc
 
 		pi::Renderer::SetMapTexture( pi::ResourceHolder::GetTexture( static_cast<uint8_t>( pi::textureResourceID_t::LEVEL_BG ) ) );
 		pi::Renderer::SetWindow( this->window );
-		pi::WorldConstructor::ConstructWorld( 16, 16, 123, 1, nullptr );
+		pi::WorldConstructor::ConstructWorld( 16, 16, 123, 1, textures );
 
 		view = window->getDefaultView();
 		sf::Vector2u textureSize = player.GetTexture()->getSize();
