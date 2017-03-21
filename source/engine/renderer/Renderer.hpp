@@ -38,6 +38,16 @@ namespace pi
 			Renderer::updateMapVerticies();
 		}
 
+		static void Clear( const sf::Color& clearColor = sf::Color::Black )
+		{
+			Renderer::window->clear( clearColor );
+		}
+		template<class T, enable_if<std::is_base_of<sf::Drawable, T>>>
+		static void DrawCollection( std::vector<T> collection )
+		{
+			for ( auto& element : collection )
+				Renderer::window->draw( element );;
+		}
 		static void Render( const sf::Color& clearColor = sf::Color::Black );
 
 	private:

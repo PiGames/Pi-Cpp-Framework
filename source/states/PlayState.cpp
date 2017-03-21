@@ -65,10 +65,11 @@ namespace mc
 
 			pi::Renderer::Update();
 
-			//window->clear(sf::Color::Blue);
+			pi::Renderer::Clear();
+			// Add console to collection rendering later
 			//window->draw(*console);
+			// This should be called "draw" not update /condzi
 			player.Update( *window );
-			//window->display();
 
 			pi::Renderer::Render();
 
