@@ -11,8 +11,8 @@ namespace pi
 	void MapObject::SetUnitPosition( const sf::Vector2i& position )
 	{
 		this->object.setPosition(
-			this->position.x*constants::cell::CELL_DIMENSIONS.x,
-			this->position.y*constants::cell::CELL_DIMENSIONS.y );
+			position.x*constants::cell::CELL_DIMENSIONS.x,
+			position.y*constants::cell::CELL_DIMENSIONS.y );
 	}
 }
 
