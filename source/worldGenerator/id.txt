@@ -1,4 +1,0 @@
-stone
-grass
-water
-example

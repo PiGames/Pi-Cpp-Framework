@@ -93,7 +93,6 @@ namespace pi
 		namespace worldConstructor
 		{
 			constexpr auto CELL = "Cell";
-			constexpr auto ID_FILE_PATH = "id.txt";
 		}
 
 		namespace soundSystem

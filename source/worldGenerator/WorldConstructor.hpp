@@ -21,19 +21,16 @@ namespace pi
 
 	private:
 		static float* heightMap;
-		static std::vector<int> id;
+		static int ammountOfTypes ;
 
 		//Returns type of Cell
 		static uint8_t getCellID( uint8_t number )
 		{
-			return heightMap[number] / ( 1.0f / id.size() );
+			return heightMap[number] / ( 1.0f / ammountOfTypes );
 		}
 
 		//Add single cell
 		static void constructSingleCell( uint8_t number, std::weak_ptr<sf::Texture> texture );
-
-		//Loades cell types to a vector of cells' ID
-		static void loadCellTypes();
 	};
 }
 
