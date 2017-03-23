@@ -7,12 +7,5 @@ namespace pi
 	{
 		object.setTexture( *texture.lock() );
 	}
-
-	void MapObject::SetUnitPosition( const sf::Vector2i& position )
-	{
-		this->object.setPosition(
-			position.x*constants::cell::CELL_DIMENSIONS.x,
-			position.y*constants::cell::CELL_DIMENSIONS.y );
-	}
 }
 

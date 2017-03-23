@@ -12,6 +12,7 @@
 #include "engine/Config.hpp"
 #include "CollidableObject.hpp"
 #include "engine/entity/Entity.hpp"
+#include "engine/Math.hpp"
 
 namespace pi
 {
@@ -47,15 +48,6 @@ namespace pi
 		{
 			this->object.setPosition( position );
 		}
-
-		//Sets position (in px)
-		void SetPosition( const sf::Vector2i& position )
-		{
-			this->object.setPosition( position.x, position.y );
-		}
-
-		//Sets position (in unit system)
-		void SetUnitPosition( const sf::Vector2i& position );
 
 		//Shift of object
 		void Move( sf::Vector2f shift )
