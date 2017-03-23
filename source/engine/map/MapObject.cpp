@@ -7,5 +7,6 @@ namespace pi
 	{
 		object.setTexture( *texture.lock() );
 	}
+
 }
 

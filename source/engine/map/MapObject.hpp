@@ -54,6 +54,13 @@ namespace pi
 		{
 			this->object.move( shift );
 		}
+
+		//Sets position (in px)
+		void SetPosition(const sf::Vector2i& position)
+		{
+			this->object.setPosition(position.x, position.y);
+		}
+
 	protected:
 		//position (in px)
 		sf::Vector2f position;
