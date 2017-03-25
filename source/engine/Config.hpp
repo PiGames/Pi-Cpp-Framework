@@ -9,6 +9,7 @@
 #include <map>
 
 #include <SFML/System/Vector2.hpp>
+#include <SFML/Window/Keyboard.hpp>
 
 namespace pi
 {
@@ -108,6 +109,11 @@ namespace pi
 		namespace saveSystem
 		{
 			constexpr char COMMENT = '#';
+		}
+
+		namespace screenShot
+		{
+			constexpr sf::Keyboard::Key SCREENSHOT_BUTTON = sf::Keyboard::F2;
 		}
 
 		namespace cell
