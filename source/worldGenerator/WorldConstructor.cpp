@@ -15,7 +15,7 @@ namespace pi
 
 		heightMap = WorldHeightmapGenerator::Generate( width, height, seed, accuracy );
 
-		std::ifstream input( "ammountOfCellTypes.txt" );
+		std::ifstream input( "source/worldGenerator/ammountOfCellTypes.txt" );
 		input >> ammountOfTypes;
 
 		MapManager::SetUnitWorldSize( sf::Vector2i( width, height ) );

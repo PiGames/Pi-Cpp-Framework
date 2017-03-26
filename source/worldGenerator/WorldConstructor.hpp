@@ -21,12 +21,12 @@ namespace pi
 
 	private:
 		static float* heightMap;
-		static int ammountOfTypes ;
+		static int ammountOfTypes;
 
 		//Returns type of Cell
 		static uint8_t getCellID( uint8_t number )
 		{
-			return heightMap[number] / ( 1.0f / ammountOfTypes );
+			return heightMap[number] / (1.0f / (ammountOfTypes));
 		}
 
 		//Add single cell
