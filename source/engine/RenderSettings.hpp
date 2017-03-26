@@ -21,14 +21,14 @@ namespace pi
 
 		struct
 		{
-			static constexpr float X = 100.f;
-			static constexpr float Y = 400.f;
+			static constexpr float X = 100.0f;
+			static constexpr float Y = 400.0f;
 		} static constexpr RENDER_OFFSET;
 
 		struct
 		{
-			static constexpr float X = 1.f;
-			static constexpr float Y = 1.f;
+			static constexpr float X = 5.0f;
+			static constexpr float Y = 5.0f;
 		} static constexpr RENDER_SCALE;
 	}
 }

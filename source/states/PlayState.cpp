@@ -13,8 +13,9 @@ namespace mc
 
 		pi::Renderer::SetMapTexture( pi::ResourceHolder::GetTexture( static_cast<uint8_t>( pi::textureResourceID_t::LEVEL_BG ) ) );
 		pi::Renderer::SetWindow( this->window );
-		pi::WorldConstructor::ConstructWorld( 16, 16, 123, 1, textures );
+		pi::WorldConstructor::ConstructWorld( 16, 16, 123, 1 );
 
+		
 		view = window->getDefaultView();
 		sf::Vector2u textureSize = player.GetTexture()->getSize();
 		view.setCenter( player.GetPosition().x + textureSize.x / 2, player.GetPosition().y + textureSize.y / 2 );
@@ -67,7 +68,7 @@ namespace mc
 
 			pi::Renderer::Clear();
 			// Add console to collection rendering later
-			//window->draw(*console);
+			window->draw(*console);
 			// This should be called "draw" not update /condzi
 			player.Update( *window );
 

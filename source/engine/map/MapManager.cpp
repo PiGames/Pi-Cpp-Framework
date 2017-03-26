@@ -17,7 +17,7 @@ namespace pi
 	{
 		for ( int i = 0; i < unitWorldSize.x*unitWorldSize.y; ++i )
 		{
-			collisionMap[i] = surface[i].IsCollidable();
+			collisionMap[i] = surface[i].GetCollidableFlag();
 		}
 	}
 
@@ -26,15 +26,15 @@ namespace pi
 		bool flag = object->IsCollidable();
 
 		for ( const auto& var : object->GetUnitPosition() )
-			collisionMap[var.y * unitWorldSize.x + var.x] = surface[var.y * unitWorldSize.x + var.x].IsCollidable() || flag;
+			collisionMap[var.y * unitWorldSize.x + var.x] = surface[var.y * unitWorldSize.x + var.x].GetCollidableFlag() || flag;
 	}
 
-	void MapManager::AddCell( std::weak_ptr<sf::Texture> texture, uint8_t number, int id, const std::string & name, bool collidableFlag )
+	void MapManager::AddCell( uint8_t number, int id, bool collidableFlag )
 	{
 		if ( unitWorldSize.x == 0 || unitWorldSize.y == 0 )
 			pi::Logger::Log( "World size cannot be zero", pi::Logger::MessageType::Error );
 		else
-			surface.push_back( Cell( texture, id, name, sf::Vector2f( ( number - number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.x, ( number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.y ), std::vector<sf::Vector2i>() = { sf::Vector2i( number - number / unitWorldSize.x, number / unitWorldSize.x ) }, collidableFlag ) );
+			surface.push_back( Cell( id, sf::Vector2f( ( number - number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.x, ( number / unitWorldSize.x )*constants::cell::CELL_DIMENSIONS.y ), std::vector<sf::Vector2i>() = { sf::Vector2i( number - number / unitWorldSize.x, number / unitWorldSize.x ) }, collidableFlag ) );
 	}
 
 	void MapManager::AddStaticObject( StaticObject& staticObject )

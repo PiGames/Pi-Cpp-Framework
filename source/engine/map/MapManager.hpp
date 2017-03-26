@@ -29,7 +29,7 @@ namespace pi
 		//Updates units which have represantion on given object 
 		static void UpdateSingleUnits( StaticObject* object );
 
-		static void AddCell( std::weak_ptr<sf::Texture> texture, uint8_t number = 0, int id = 0, const std::string& name = "<unnamed Entity>", bool collidableFlag = false );
+		static void AddCell( uint8_t number = 0, int id = 0, bool collidableFlag = false );
 
 		static void AddStaticObject( StaticObject & staticObject );
 
