@@ -34,6 +34,15 @@ namespace pi
 		count
 	};
 
+	enum class collisionSide_t
+	{
+		NONE = -1,
+		LEFT = 0,
+		RIGHT,
+		DOWN,
+		TOP
+	};
+
 	using cstring_t = const char*;
 
 	////////////////////
