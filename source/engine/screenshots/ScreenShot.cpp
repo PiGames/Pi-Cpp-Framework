@@ -16,11 +16,7 @@ namespace pi
 		texture.create(window.getSize().x, window.getSize().y);
 		texture.update(window);
 		sf::Image ss = texture.copyToImage();
-		
-		std::stringstream filename;
-
-		filename << "data/screenshots/screenshot_" << time(0) << ".png";
-		if (ss.saveToFile(filename.str())) {
+		if (ss.saveToFile("data/screenshots/screenshot_" + std::to_string(time(0)) + ".png")) {
 			return true;
 		} else {
 			return false;

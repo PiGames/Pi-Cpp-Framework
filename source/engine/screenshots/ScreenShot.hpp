@@ -5,7 +5,6 @@
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <string>
-#include <sstream>
 #include <ctime>
 
 namespace pi 
