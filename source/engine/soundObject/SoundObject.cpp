@@ -1,50 +1,46 @@
 #include "SoundObject.hpp"
-
+#include <iostream>
 namespace pi
 {
-	bool SoundObject::EmplaceSound( std::string & name )
+	bool SoundObject::EmplaceSound(const std::string & name )
 	{
 		if ( sounds.find( name ) != sounds.end() )
 		{
-			Logger::Log( constants::error::soundSystem::ALREADY_EXIST, Logger::MessageType::Warning, Logger::OutputType::Both );
+			Logger::Log( constants::error::soundSystem::ALREADY_EXIST, Logger::MessageType::Warning, Logger::OutputType::Console);
 			return false;
 		}
 
 		sf::SoundBuffer soundBuffer;
-		if ( !soundBuffer.loadFromFile( "data/sound/" + name + constants::soundSystem::SOUND_FORMAT ) )
+		if ( !soundBuffer.loadFromFile( "data/sounds/" + name ) )
 		{
-			Logger::Log( constants::error::soundSystem::DOES_NOT_EXIST_IN_FOLDER, Logger::MessageType::Warning, Logger::OutputType::Both );
 			return false;
 		}
 
 		sf::Sound sound;
-		sound.setBuffer( soundBuffer );
-
 		soundSource.push_back( std::pair<sf::Sound, sf::SoundBuffer>( sound, soundBuffer ) );
-
-		sounds.emplace( name, sounds.size() );
-
+		soundSource.back().first.setBuffer(soundSource.back().second);
+		sounds.emplace(std::pair<std::string,int>(name, sounds.size()));
 		return true;
 	}
 
-	int8_t SoundObject::GetNumberOfSound( std::string & name )
+	int8_t SoundObject::GetNumberOfSound(const std::string & name )
 	{
 		auto itr = sounds.find( name );
 
 		if ( itr == sounds.end() )
 		{
-			Logger::Log( constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both );
+			Logger::Log( constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Console );
 			return -1;
 		} else return itr->second;
 	}
 
-	bool SoundObject::EraseSound( std::string & name )
+	bool SoundObject::EraseSound(const std::string & name )
 	{
 		auto soundIterator = sounds.find( name );
 
 		if ( soundIterator == sounds.end() )
 		{
-			Logger::Log( constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Both );
+			Logger::Log( constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Console );
 			return false;
 		}
 
@@ -59,13 +55,19 @@ namespace pi
 		return true;
 	}
 
-	bool SoundObject::PlaySound( std::string & name )
+	bool SoundObject::PlaySound(const std::string & name )
 	{
-		if ( !IsSoundExist( name ) )
+		if (!IsSoundExist(name))
+		{
+			Logger::Log( constants::error::soundSystem::DOES_NOT_EXIST_IN_SYSTEM, Logger::MessageType::Warning, Logger::OutputType::Console );
 			return false;
+		}
 
+		for (auto&var : sounds)
+		{
+			std::cout << var.first <<" "<<var.second<< std::endl;
+		}
 		soundSource[sounds[name]].first.play();
-
 		return true;
 	}
 }
