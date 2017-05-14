@@ -1,15 +1,24 @@
 #pragma once
 
-#include "engine/Config.hpp"
+#include "Config.hpp"
 
-namespace mc
+namespace pg
 {
-	enum class states_t
+	// Game state enumerations
+	enum state_t : uint8_t
 	{
-		Exit = pi::constants::stateMachine::EXIT_STATE,
+		// Change to config value later.
+		STATE_EXIT = constants::EXIT_STATE,
+		STATE_INIT,
+		STATE_MENU,
+		STATE_PLAY,
 
-		// Temporary
-		Menu = 0,
-		Play = 1
+		SUB_STATE_MENU_MAIN,
+		SUB_STATE_MENU_OPTIONS,
+		SUB_STATE_MENU_CREDITS,
+
+		SUB_STATE_PLAY_MAIN,
+		SUB_STATE_PLAY_GAMEOVER,
+		SUB_STATE_PLAY_PAUSE
 	};
 }
